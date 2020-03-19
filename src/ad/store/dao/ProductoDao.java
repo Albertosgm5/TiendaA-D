@@ -10,5 +10,11 @@ public interface ProductoDao extends GenericDao<Producto>{
 	
 	public List<Producto> listarModulosPorNombre(String nombreModulo);
 	
+	public boolean crearProducto();
+	
+	
+	
+	
+	
 	
 }

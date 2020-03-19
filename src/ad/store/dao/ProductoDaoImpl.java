@@ -15,14 +15,14 @@ import ad.store.entity.Producto;
 public class ProductoDaoImpl extends GenericDaoImpl<Producto> implements ProductoDao {
 
 	@Override
-	public List<Producto> listarModulosPorNombre(String nombreModulo) {
+	public List<Producto> listarModulosPorNombre(String nombreProducto) {
 		Query query = this.em
                 .createQuery("select u FROM modulo u where u.nombreModulo= :nombre");
-        query.setParameter("nombre", nombreModulo);
-        List<Producto> lModulo = query.getResultList();
+        query.setParameter("nombre", nombreProducto);
+        List<Producto> lProducto = query.getResultList();
         
-        if (lModulo != null ) {
-            return lModulo;
+        if (lProducto != null ) {
+            return lProducto;
         }
 		return null;
 	}
@@ -30,11 +30,11 @@ public class ProductoDaoImpl extends GenericDaoImpl<Producto> implements Product
 	@Override
 	public List<Producto> listarModulos() {
 		Query query = this.em
-                .createQuery("FROM modulo");
-        List<Producto> lModulo = query.getResultList();
+                .createQuery("FROM producto");
+        List<Producto> lProducto = query.getResultList();
         
-        if (lModulo != null ) {
-            return lModulo;
+        if (lProducto != null ) {
+            return lProducto;
         }
 		return null;
 	}
