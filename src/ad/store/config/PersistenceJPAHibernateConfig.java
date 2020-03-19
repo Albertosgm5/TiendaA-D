@@ -23,8 +23,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Configuration
 @EnableTransactionManagement
 @PropertySource({ "classpath:database.properties" })
-@ComponentScan({ "gm.albertstore" })
-@EnableJpaRepositories(basePackages = "gm.albertstore.dao")
+@ComponentScan({ "ad.store" })
+@EnableJpaRepositories(basePackages = "ad.store.dao")
 public class PersistenceJPAHibernateConfig {
 	@Autowired
 	private Environment env;
@@ -59,7 +59,7 @@ public class PersistenceJPAHibernateConfig {
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
 		final LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
 		entityManagerFactoryBean.setDataSource(dataSource());
-		entityManagerFactoryBean.setPackagesToScan(new String[] { "gm.albertstore.entity" });
+		entityManagerFactoryBean.setPackagesToScan(new String[] { "ad.store.entity" });
 
 		final HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
 		entityManagerFactoryBean.setJpaVendorAdapter(vendorAdapter);

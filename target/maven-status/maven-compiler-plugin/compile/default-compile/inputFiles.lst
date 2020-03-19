@@ -1,7 +1,7 @@
-D:\ProyectosSpring\A&DStore\src\gm\albertstore\config\PersistenceJPAHibernateConfig.java
-D:\ProyectosSpring\A&DStore\src\gm\albertstore\config\AppInitializer.java
-D:\ProyectosSpring\A&DStore\src\gm\albertstore\config\WebMvcConfig.java
-D:\ProyectosSpring\A&DStore\src\gm\albertstore\controller\LoginController.java
-D:\ProyectosSpring\A&DStore\src\gm\albertstore\entity\Account.java
-D:\ProyectosSpring\A&DStore\src\gm\albertstore\controller\indexController.java
-D:\ProyectosSpring\A&DStore\src\gm\albertstore\controller\SignUpController.java
+D:\ProyectosSpring\A&DStore\src\ad\store\controller\SignUpController.java
+D:\ProyectosSpring\A&DStore\src\ad\store\entity\Account.java
+D:\ProyectosSpring\A&DStore\src\ad\store\config\WebMvcConfig.java
+D:\ProyectosSpring\A&DStore\src\ad\store\config\AppInitializer.java
+D:\ProyectosSpring\A&DStore\src\ad\store\controller\LoginController.java
+D:\ProyectosSpring\A&DStore\src\ad\store\controller\indexController.java
+D:\ProyectosSpring\A&DStore\src\ad\store\config\PersistenceJPAHibernateConfig.java
