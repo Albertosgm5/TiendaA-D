@@ -7,18 +7,19 @@ import javax.persistence.Query;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
-import des.springprueba.entity.Modulo;
+import ad.store.entity.Producto;
+
 
 @Repository
 @Component("ModuloDao")
-public class ModuloDaoImpl extends GenericDaoImpl<Modulo> implements ModuloDao {
+public class ProductoDaoImpl extends GenericDaoImpl<Producto> implements ProductoDao {
 
 	@Override
-	public List<Modulo> listarModulosPorNombre(String nombreModulo) {
+	public List<Producto> listarModulosPorNombre(String nombreModulo) {
 		Query query = this.em
                 .createQuery("select u FROM modulo u where u.nombreModulo= :nombre");
         query.setParameter("nombre", nombreModulo);
-        List<Modulo> lModulo = query.getResultList();
+        List<Producto> lModulo = query.getResultList();
         
         if (lModulo != null ) {
             return lModulo;
@@ -27,10 +28,10 @@ public class ModuloDaoImpl extends GenericDaoImpl<Modulo> implements ModuloDao {
 	}
 
 	@Override
-	public List<Modulo> listarModulos() {
+	public List<Producto> listarModulos() {
 		Query query = this.em
                 .createQuery("FROM modulo");
-        List<Modulo> lModulo = query.getResultList();
+        List<Producto> lModulo = query.getResultList();
         
         if (lModulo != null ) {
             return lModulo;
