@@ -8,7 +8,7 @@ public interface ProductoDao extends GenericDao<Producto>{
 
 	public List<Producto> listarProductos();
 	
-	public List<Producto> listarProductoPorNombre(String nombreModulo);
+	public List<Producto> listarProductosPorNombre(String nombreModulo);
 	
 	public Producto crearProducto (String nombre, float precio, int stock);
 	

@@ -11,23 +11,23 @@ import ad.store.entity.Producto;
 
 @Transactional
 @Service
-public class ModuloServiceImpl implements ModuloService {
+public class ProductoServiceImpl implements ProductoService {
 
 	@Autowired
 	ProductoDao productoDao;
 
 	@Override
-	public List<Producto> listarModulos() {
-		return productoDao.listarModulos();
+	public List<Producto> listarProductos() {
+		return productoDao.listarProductos();
 	}
 
 	@Override
-	public List<Producto> listarModulosPorNombre(String nombreModulo) {
-		return productoDao.listarModulosPorNombre(nombreModulo);
+	public List<Producto> listarProductosPorNombre(String nombreProducto) {
+		return productoDao.listarProductosPorNombre(nombreProducto);
 	}
 
 	@Override
-	public Producto obtenerModulo(long idModulo) {
+	public Producto obtenerProducto(long idModulo) {
 		return productoDao.find(idModulo);
 	}
 

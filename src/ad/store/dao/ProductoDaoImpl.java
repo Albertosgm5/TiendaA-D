@@ -15,7 +15,7 @@ import ad.store.entity.Producto;
 public class ProductoDaoImpl extends GenericDaoImpl<Producto> implements ProductoDao {
 
 	@Override
-	public List<Producto> listarProductoPorNombre(String nombreProducto) {
+	public List<Producto> listarProductosPorNombre(String nombreProducto) {
 		Query query = this.em
                 .createQuery("select u FROM modulo u where u.nombreModulo= :nombre");
         query.setParameter("nombre", nombreProducto);
