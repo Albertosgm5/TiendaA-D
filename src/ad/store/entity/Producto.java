@@ -14,6 +14,11 @@ public class Producto {
 		this.precio = precio;
 		this.stock = stock;
 	}
+	public Producto(String nombreProducto, float precio, int stock) {
+		this.nombreProducto = nombreProducto;
+		this.precio = precio;
+		this.stock = stock;
+	}
 	public Producto() {
 	}
 	public long getIdProducto() {

@@ -11,11 +11,11 @@ import ad.store.entity.Producto;
 
 
 @Repository
-@Component("ModuloDao")
+@Component("ProductoDao")
 public class ProductoDaoImpl extends GenericDaoImpl<Producto> implements ProductoDao {
 
 	@Override
-	public List<Producto> listarModulosPorNombre(String nombreProducto) {
+	public List<Producto> listarProductoPorNombre(String nombreProducto) {
 		Query query = this.em
                 .createQuery("select u FROM modulo u where u.nombreModulo= :nombre");
         query.setParameter("nombre", nombreProducto);
@@ -28,7 +28,7 @@ public class ProductoDaoImpl extends GenericDaoImpl<Producto> implements Product
 	}
 
 	@Override
-	public List<Producto> listarModulos() {
+	public List<Producto> listarProductos() {
 		Query query = this.em
                 .createQuery("FROM producto");
         List<Producto> lProducto = query.getResultList();
@@ -36,6 +36,37 @@ public class ProductoDaoImpl extends GenericDaoImpl<Producto> implements Product
         if (lProducto != null ) {
             return lProducto;
         }
+		return null;
+	}
+
+
+	@Override
+	public Producto crearProducto(String nombre, float precio, int stock) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Producto obtenerProducto(long idProducto) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Producto editarProducto(Producto producto) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean eliminarProducto(long idProducto) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public List<Producto> obtenerProductosNombre(String nombre, int count, int index) {
+		// TODO Auto-generated method stub
 		return null;
 	}
 
