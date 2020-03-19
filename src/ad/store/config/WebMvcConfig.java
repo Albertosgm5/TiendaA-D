@@ -13,7 +13,7 @@ import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = { "gm.albertstore" })
+@ComponentScan(basePackages = { "ad.store" })
 public class WebMvcConfig implements WebMvcConfigurer{
 	@Autowired
 	private ApplicationContext applicationContext;
