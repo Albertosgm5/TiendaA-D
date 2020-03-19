@@ -1,27 +1,20 @@
 package ad.store.dao;
 
-import java.util.List;
 
-import ad.store.entity.Producto;
+import ad.store.entity.Cliente;
 
-public interface UserDao extends GenericDao<Producto>{
+public interface UserDao extends GenericDao<Cliente>{
 
-	public List<Producto> listarProductos();
+	public Cliente altaCliente(String nombreUsuario, String direccion, String password);
 	
-	public List<Producto> listarProductosPorNombre(String nombreModulo);
+	public Cliente obtenerCliente(long idCliente);
 	
-	public Producto crearProducto (String nombre, float precio, int stock);
+	public Cliente editarCliente(Cliente cliente);
 	
-	public Producto obtenerProducto (long idProducto);
+	public Boolean eliminarCliente(long idCliente);
 	
-	public Producto editarProducto(Producto producto);
+	public Cliente logIn(String nombreUsuario, String direccion, String password);
 	
-	public boolean eliminarProducto(long idProducto);
-	
-	public List<Producto> obtenerProductosNombre (String nombre, int count, int index);
-	
-	public List<Producto> obtenerProductosPorPrecio (float minPrecio, float maxPrecio, int count, int index);
-	
-	public List<Producto> obtenerProductosPorNombreYPrecio (String nombre , float minPrecio, float maxPrecio, int count, int index);
+	public Boolean logOut(Cliente cliente);
 	
 }
