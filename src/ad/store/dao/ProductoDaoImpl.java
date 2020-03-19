@@ -70,4 +70,17 @@ public class ProductoDaoImpl extends GenericDaoImpl<Producto> implements Product
 		return null;
 	}
 
+	@Override
+	public List<Producto> obtenerProductosPorPrecio(float minPrecio, float maxPrecio, int count, int index) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Producto> obtenerProductosPorNombreYPrecio(String nombre, float minPrecio, float maxPrecio, int count,
+			int index) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

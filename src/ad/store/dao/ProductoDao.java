@@ -20,5 +20,8 @@ public interface ProductoDao extends GenericDao<Producto>{
 	
 	public List<Producto> obtenerProductosNombre (String nombre, int count, int index);
 	
+	public List<Producto> obtenerProductosPorPrecio (float minPrecio, float maxPrecio, int count, int index);
+	
+	public List<Producto> obtenerProductosPorNombreYPrecio (String nombre , float minPrecio, float maxPrecio, int count, int index);
 	
 }
