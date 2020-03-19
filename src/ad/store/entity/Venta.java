@@ -1,5 +1,4 @@
-package modelo;
-
+package ad.store.entity;
 import java.util.Date;
 import java.util.List;
 

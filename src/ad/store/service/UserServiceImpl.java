@@ -6,6 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import ad.store.entity.Cliente;
+import ad.store.dao.UserDao;
+
 
 
 @Transactional
@@ -13,18 +16,14 @@ import org.springframework.transaction.annotation.Transactional;
 public class UserServiceImpl implements UserService {
 
 	@Autowired
-	private UserDao profesorDao;
+	private UserDao UserDao;
 
-	@Autowired
-	private EmailDao emailDao;
-
-	@Autowired
-	private ModuloDao moduloDao;
+	
 
 	@Override
-	public Profesor crearPorfesor(Profesor profesor) {
+	public Cliente crearPorfesor(Cliente cliente) {
 
-		return profesorDao.create(profesor);
+		return UserDao.create(cliente);
 	}
 
 	@Override
@@ -85,6 +84,42 @@ public class UserServiceImpl implements UserService {
 		p.removeEmails(email);
 		emailDao.update(email);
 
+	}
+
+	@Override
+	public Cliente altaCliente(String nombreUsuario, String direccion, String password) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Cliente obtenerCliente(long idCliente) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Cliente editarCliente(Cliente cliente) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Boolean eliminarCliente(long idCliente) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Cliente logIn(String nombreUsuario, String direccion, String password) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Boolean logOut(Cliente cliente) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

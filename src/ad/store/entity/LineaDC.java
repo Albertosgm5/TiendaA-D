@@ -1,4 +1,4 @@
-package modelo;
+package ad.store.entity;
 
 public class LineaDC {
 	private long idLineaCompra;
