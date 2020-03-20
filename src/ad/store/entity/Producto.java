@@ -1,6 +1,5 @@
 package ad.store.entity;
 
-import java.util.List;
 
 public class Producto {
 	private long idProducto;

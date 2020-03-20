@@ -1,6 +1,5 @@
 package ad.store.entity;
 import java.util.Date;
-import java.util.List;
 
 public class Venta {
 	private long idVenta;
