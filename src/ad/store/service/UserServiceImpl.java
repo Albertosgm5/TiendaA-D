@@ -21,19 +21,22 @@ import ad.store.entity.Cliente;
 public class UserServiceImpl implements UserService {
 
 	@Autowired
-	private UserDao profesorDao;
+	private UserDao userDao;
 
 	
 
 	@Autowired
-	private ProductoDao moduloDao;
+	private ProductoDao productoDao;
 
 
 
 	@Override
 	public Cliente altaCliente(String nombreUsuario, String direccion, String password) {
-		// TODO Auto-generated method stub
-		return null;
+		Cliente cliente = new Cliente();
+		cliente.setNombreUsuario(nombreUsuario);
+		cliente.setDireccion(direccion);
+		cliente.setPassword(password);
+		return userDao.create(cliente);
 	}
 
 
