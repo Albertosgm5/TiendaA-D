@@ -1,10 +1,25 @@
 package ad.store.entity;
 
+import static javax.persistence.GenerationType.IDENTITY;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "PRODUCTO")
 public class Producto {
+	@Id
+	@GeneratedValue(strategy = IDENTITY)
+	@Column(name = "idProducto")
 	private long idProducto;
+	@Column(name = "nombreProducto")
 	private String nombreProducto;
+	@Column(name = "precio")
 	private float precio;
+	@Column(name = "stock")
 	private int stock;
 	
 	public Producto(long idProducto, String nombreProducto, float precio, int stock) {

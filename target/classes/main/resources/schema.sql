@@ -1,6 +1,6 @@
-drop database if exists tienda;
-create database tienda;
-use tienda;
+drop database if exists tiendaOnline;
+create database tiendaOnline;
+use tiendaOnline;
 
 DROP TABLE IF EXISTS `lineadc`;
 DROP TABLE IF EXISTS `ventas`;

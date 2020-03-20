@@ -1,12 +1,27 @@
 package ad.store.entity;
 
 import java.util.List;
+import static javax.persistence.GenerationType.IDENTITY;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+@Entity
+@Table(name = "CLIENTE")
 public class Cliente {
+	@Id
+	@GeneratedValue(strategy = IDENTITY)
+	@Column(name = "idCliente")
 	private long idCliente;
+	@Column(name = "direccion")
 	private String direccion;
+	@Column(name = "nombreUsuario")
 	private String nombreUsuario;
+	@Column(name = "password")
 	private String password;
+	@Column(name = "ventas")
 	private List<Venta> ventas;
 
 	public Cliente() {
