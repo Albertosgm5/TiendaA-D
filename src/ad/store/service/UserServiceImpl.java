@@ -2,6 +2,7 @@ package ad.store.service;
 
 import java.util.List;
 
+import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -43,7 +44,8 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public Cliente obtenerCliente(long idCliente) {
-		// TODO Auto-generated method stub
+		/*Cliente cliente = recuperarCliente(idCliente);
+		return cliente;*/
 		return null;
 	}
 
@@ -59,10 +61,28 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public Boolean eliminarCliente(long idCliente) {
-		// TODO Auto-generated method stub
-		return null;
+		//Cliente cliente = recuperarCliente(session, idCliente);
+		boolean eliminado = false;
+		/*try {
+		userDao.delete(cliente);
+		eliminado = true;
+		} catch (RuntimeException e) {
+			
+		} catch (Exception e) {}*/
+		return eliminado;
 	}
-
+	/*public Cliente recuperarCliente(long id) {
+		// Conseguimos un objeto sesión para comunicarnos con la BD
+		Session session = Utilidades.getSessionFactory().openSession();
+		Cliente cliente = new Cliente();
+		
+		session.beginTransaction();
+	
+		cliente = (Cliente) session.load(Cliente.class, id);
+		session.getTransaction().commit();
+		
+		return cliente;
+	}*/
 
 
 	@Override
