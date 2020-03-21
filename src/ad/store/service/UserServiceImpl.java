@@ -44,9 +44,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public Cliente obtenerCliente(long idCliente) {
-		/*Cliente cliente = recuperarCliente(idCliente);
-		return cliente;*/
-		return null;
+		return userDao.find(idCliente);
 	}
 
 
@@ -60,29 +58,10 @@ public class UserServiceImpl implements UserService {
 
 
 	@Override
-	public Boolean eliminarCliente(long idCliente) {
-		//Cliente cliente = recuperarCliente(session, idCliente);
-		boolean eliminado = false;
-		/*try {
-		userDao.delete(cliente);
-		eliminado = true;
-		} catch (RuntimeException e) {
-			
-		} catch (Exception e) {}*/
-		return eliminado;
+	public void eliminarCliente(long idCliente) {
+		userDao.delete(idCliente);
 	}
-	/*public Cliente recuperarCliente(long id) {
-		// Conseguimos un objeto sesión para comunicarnos con la BD
-		Session session = Utilidades.getSessionFactory().openSession();
-		Cliente cliente = new Cliente();
-		
-		session.beginTransaction();
 	
-		cliente = (Cliente) session.load(Cliente.class, id);
-		session.getTransaction().commit();
-		
-		return cliente;
-	}*/
 
 
 	@Override
