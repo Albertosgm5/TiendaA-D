@@ -24,6 +24,7 @@ public class ClienteController {
 	UserService clienteService;
 
 
+/*
 	@RequestMapping(method = RequestMethod.GET, value = "/perfil/{id}")
 	public ModelAndView perfilProfesor(@PathVariable("id") long idCliente) {
 
@@ -34,7 +35,7 @@ public class ClienteController {
 		mav.addObject("cliente", cliente);
 		mav.setViewName("cliente_perfil");
 		return mav;
-	}
+	}*/
 
 	
 	
