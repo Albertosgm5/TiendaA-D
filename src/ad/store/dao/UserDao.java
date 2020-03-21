@@ -11,7 +11,7 @@ public interface UserDao extends GenericDao<Cliente>{
 	
 	public Cliente editarCliente(Cliente cliente);
 	
-	public void eliminarCliente(long idCliente);
+	public Boolean eliminarCliente(long idCliente);
 	
 	public Cliente logIn(String nombreUsuario, String direccion, String password);
 	
