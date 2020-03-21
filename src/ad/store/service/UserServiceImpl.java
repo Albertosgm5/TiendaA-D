@@ -58,9 +58,8 @@ public class UserServiceImpl implements UserService {
 
 
 	@Override
-	public Boolean eliminarCliente(long idCliente) {
+	public void eliminarCliente(long idCliente) {
 		// TODO Auto-generated method stub
-		return null;
 	}
 
 

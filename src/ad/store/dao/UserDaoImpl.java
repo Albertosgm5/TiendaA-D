@@ -31,9 +31,10 @@ public class UserDaoImpl extends GenericDaoImpl<Cliente> implements UserDao {
 	}
 
 	@Override
-	public Boolean eliminarCliente(long idCliente) {
+	public void eliminarCliente(long idCliente) {
+		
 		// TODO Auto-generated method stub
-		return null;
+		
 	}
 
 	@Override
