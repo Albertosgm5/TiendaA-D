@@ -9,16 +9,22 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-
+@Entity
+@Table(name = "cliente")
 public class Cliente {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long idCliente;
+	@Column(name = "direccion")
 	private String direccion;
+	@Column(name = "nombreUsuario")
 	private String nombreUsuario;
+	@Column(name = "password")
 	private String password;
 
 	
-	private List<Venta> ventas;
+//	private List<Venta> ventas;
 
 	public Cliente() {
 
@@ -62,12 +68,12 @@ public class Cliente {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public List<Venta> getVentas() {
-		return ventas;
-	}
-	public void setVentas(List<Venta> ventas) {
-		this.ventas = ventas;
-	}
+//	public List<Venta> getVentas() {
+//		return ventas;
+//	}
+//	public void setVentas(List<Venta> ventas) {
+//		this.ventas = ventas;
+//	}
 	@Override
 	public String toString() {
 		return "Cliente [idCliente=" + idCliente + ", direccion=" + direccion + ", nombreUsuario=" + nombreUsuario
