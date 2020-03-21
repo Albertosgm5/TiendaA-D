@@ -2,11 +2,22 @@ package ad.store.entity;
 
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+
 public class Cliente {
+
 	private long idCliente;
 	private String direccion;
 	private String nombreUsuario;
 	private String password;
+
+	
 	private List<Venta> ventas;
 
 	public Cliente() {
@@ -25,7 +36,7 @@ public class Cliente {
 		this.direccion = direccion;
 		this.nombreUsuario = nombreUsuario;
 		this.password = password;
-		this.ventas = ventas;
+//		this.ventas = ventas;
 	}
 	public long getIdCliente() {
 		return idCliente;
@@ -60,7 +71,7 @@ public class Cliente {
 	@Override
 	public String toString() {
 		return "Cliente [idCliente=" + idCliente + ", direccion=" + direccion + ", nombreUsuario=" + nombreUsuario
-				+ ", password=" + password + ", ventas=" + ventas + "]";
+				+ ", password=" + password + "]";
 	}
 	
 }
