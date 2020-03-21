@@ -2,6 +2,7 @@ package ad.store.dao;
 
 
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
@@ -12,28 +13,25 @@ import ad.store.entity.Cliente;
 @Component("UserDao")
 public class UserDaoImpl extends GenericDaoImpl<Cliente> implements UserDao {
 
+	
 	@Override
 	public Cliente altaCliente(String nombreUsuario, String direccion, String password) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public Cliente obtenerCliente(long idCliente) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public Cliente editarCliente(Cliente cliente) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public void eliminarCliente(long idCliente) {
 		
-		// TODO Auto-generated method stub
 		
 	}
 

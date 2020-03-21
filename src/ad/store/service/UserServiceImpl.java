@@ -43,8 +43,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public Cliente obtenerCliente(long idCliente) {
-		// TODO Auto-generated method stub
-		return null;
+		return userDao.find(idCliente);
 	}
 
 
@@ -59,7 +58,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public void eliminarCliente(long idCliente) {
-		// TODO Auto-generated method stub
+		userDao.delete(idCliente);
 	}
 
 
