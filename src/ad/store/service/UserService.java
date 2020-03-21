@@ -1,7 +1,5 @@
 package ad.store.service;
 
-import java.util.List;
-
 import ad.store.entity.Cliente;
 
 

@@ -1,33 +1,24 @@
 package ad.store.service;
 
-import java.util.List;
 
-import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import ad.store.dao.ProductoDao;
+import ad.store.dao.ProductoDaoImpl;
 import ad.store.entity.Cliente;
-import ad.store.entity.Producto;
-
-import ad.store.dao.ProductoDao;
-import ad.store.dao.UserDao;
-
-import ad.store.entity.Producto;
-import ad.store.entity.Cliente;
+import ad.store.dao.UserDaoImpl;
 
 @Transactional
 @Service
 public class UserServiceImpl implements UserService {
 
 	@Autowired
-	private UserDao userDao;
+	private UserDaoImpl userDaoImpl;
 
 	
 
 	@Autowired
-	private ProductoDao productoDao;
+	private ProductoDaoImpl productoDaoImpl;
 
 
 
@@ -37,14 +28,14 @@ public class UserServiceImpl implements UserService {
 		cliente.setNombreUsuario(nombreUsuario);
 		cliente.setDireccion(direccion);
 		cliente.setPassword(password);
-		return userDao.create(cliente);
+		return userDaoImpl.create(cliente);
 	}
 
 
 
 	@Override
 	public Cliente obtenerCliente(long idCliente) {
-		return userDao.find(idCliente);
+		return userDaoImpl.find(idCliente);
 	}
 
 
@@ -59,7 +50,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public void eliminarCliente(long idCliente) {
-		userDao.delete(idCliente);
+		userDaoImpl.delete(idCliente);
 	}
 	
 

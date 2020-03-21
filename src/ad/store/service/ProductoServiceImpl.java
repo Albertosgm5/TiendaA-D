@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import ad.store.dao.ProductoDao;
+import ad.store.dao.ProductoDaoImpl;
 import ad.store.entity.Producto;
 
 @Transactional
@@ -14,21 +14,21 @@ import ad.store.entity.Producto;
 public class ProductoServiceImpl implements ProductoService {
 
 	@Autowired
-	ProductoDao productoDao;
+	ProductoDaoImpl productoDaoImpl;
 
 	@Override
 	public List<Producto> listarProductos() {
-		return productoDao.listarProductos();
+		return productoDaoImpl.listarProductos();
 	}
 
 	@Override
 	public List<Producto> listarProductosPorNombre(String nombreProducto) {
-		return productoDao.listarProductosPorNombre(nombreProducto);
+		return productoDaoImpl.listarProductosPorNombre(nombreProducto);
 	}
 
 	@Override
-	public Producto obtenerProducto(long idModulo) {
-		return productoDao.find(idModulo);
+	public Producto obtenerProducto(long idProducto) {
+		return productoDaoImpl.find(idProducto);
 	}
 
 }
