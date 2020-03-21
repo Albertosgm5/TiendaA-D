@@ -21,8 +21,8 @@ public class Cliente {
 	private String nombreUsuario;
 	@Column(name = "password")
 	private String password;
-	@Column(name = "ventas")
-	private List<Venta> ventas;
+//	@Column(name = "ventas")
+//	private List<Venta> ventas;
 
 	public Cliente() {
 
@@ -40,7 +40,7 @@ public class Cliente {
 		this.direccion = direccion;
 		this.nombreUsuario = nombreUsuario;
 		this.password = password;
-		this.ventas = ventas;
+//		this.ventas = ventas;
 	}
 	public long getIdCliente() {
 		return idCliente;
@@ -66,16 +66,16 @@ public class Cliente {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public List<Venta> getVentas() {
-		return ventas;
-	}
-	public void setVentas(List<Venta> ventas) {
-		this.ventas = ventas;
-	}
+//	public List<Venta> getVentas() {
+//		return ventas;
+//	}
+//	public void setVentas(List<Venta> ventas) {
+//		this.ventas = ventas;
+//	}
 	@Override
 	public String toString() {
 		return "Cliente [idCliente=" + idCliente + ", direccion=" + direccion + ", nombreUsuario=" + nombreUsuario
-				+ ", password=" + password + ", ventas=" + ventas + "]";
+				+ ", password=" + password + "]";
 	}
 	
 }
