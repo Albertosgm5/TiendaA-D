@@ -24,18 +24,18 @@ public class ClienteController {
 	UserService clienteService;
 
 
-/*
+
 	@RequestMapping(method = RequestMethod.GET, value = "/perfil/{id}")
 	public ModelAndView perfilProfesor(@PathVariable("id") long idCliente) {
 
 		ModelAndView mav = new ModelAndView();
 
-		Cliente cliente = UserService.obtenerCliente(idCliente);
+		Cliente cliente = clienteService.obtenerCliente(idCliente);
 
 		mav.addObject("cliente", cliente);
 		mav.setViewName("cliente_perfil");
 		return mav;
-	}*/
+	}
 
 	
 	

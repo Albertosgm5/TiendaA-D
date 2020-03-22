@@ -13,8 +13,8 @@ public interface UserDao extends GenericDao<Cliente>{
 	
 	public void eliminarCliente(long idCliente);
 	
-	public Cliente logIn(String nombreUsuario, String direccion, String password);
+	public Cliente logIn(String email, String password);
 	
-	public Boolean logOut(Cliente cliente);
+	public boolean logOut(Cliente cliente);
 	
 }

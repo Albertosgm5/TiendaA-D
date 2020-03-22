@@ -2,6 +2,8 @@ package ad.store.dao;
 
 
 
+import javax.persistence.Query;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
@@ -36,15 +38,25 @@ public class UserDaoImpl extends GenericDaoImpl<Cliente> implements UserDao {
 	}
 
 	@Override
-	public Cliente logIn(String nombreUsuario, String direccion, String password) {
-		// TODO Auto-generated method stub
+	public Cliente logIn(String email, String password) {
+		try {
+			Query query = this.em.createQuery("From Clientes c Where c.email =:email AND c.password =:password");
+			query.setParameter("email", email);
+			query.setParameter("password", password);
+			Cliente cliente = (Cliente) query.getSingleResult();
+			if (cliente != null) {
+				return cliente;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return null;
 	}
 
 	@Override
-	public Boolean logOut(Cliente cliente) {
+	public boolean logOut(Cliente cliente) {
 		// TODO Auto-generated method stub
-		return null;
+		return false;
 	}
 
 	

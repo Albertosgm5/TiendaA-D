@@ -50,8 +50,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public Cliente editarCliente(Cliente cliente) {
-		// TODO Auto-generated method stub
-		return null;
+		return userDao.update(cliente);
 	}
 
 
@@ -64,17 +63,15 @@ public class UserServiceImpl implements UserService {
 
 
 	@Override
-	public Cliente logIn(String nombreUsuario, String direccion, String password) {
-		// TODO Auto-generated method stub
-		return null;
+	public Cliente logIn(String email, String password) {
+		return userDao.logIn(email, password);
 	}
 
 
 
 	@Override
-	public Boolean logOut(Cliente cliente) {
-		// TODO Auto-generated method stub
-		return null;
+	public boolean logOut(Cliente cliente) {
+		return userDao.logOut(cliente);
 	}
 
 	

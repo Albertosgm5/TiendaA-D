@@ -12,7 +12,7 @@ public interface UserService {
 	public Cliente obtenerCliente (long idCliente);
 	public Cliente editarCliente(Cliente cliente);
 	public void eliminarCliente (long idCliente);
-	public Cliente logIn(String nombreUsuario, String direccion, String password);
-	public Boolean logOut(Cliente cliente);
+	public Cliente logIn(String email, String password);
+	public boolean logOut(Cliente cliente);
 	
 }

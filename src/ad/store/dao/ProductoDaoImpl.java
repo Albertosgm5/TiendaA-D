@@ -59,9 +59,8 @@ public class ProductoDaoImpl extends GenericDaoImpl<Producto> implements Product
 	}
 
 	@Override
-	public boolean eliminarProducto(long idProducto) {
-		// TODO Auto-generated method stub
-		return false;
+	public void eliminarProducto(long idProducto) {
+		
 	}
 
 	@Override
