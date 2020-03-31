@@ -1,5 +1,6 @@
 package ad.store.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Query;
@@ -21,6 +22,7 @@ public class ProductoDaoImpl extends GenericDaoImpl<Producto> implements Product
         query.setParameter("nombre", nombreProducto);
         List<Producto> lProducto = query.getResultList();
         
+        
         if (lProducto != null ) {
             return lProducto;
         }
@@ -29,9 +31,10 @@ public class ProductoDaoImpl extends GenericDaoImpl<Producto> implements Product
 
 	@Override
 	public List<Producto> listarProductos() {
-		Query query = this.em
-                .createQuery("FROM producto");
-        List<Producto> lProducto = query.getResultList();
+		List<Producto> lProducto = new ArrayList<Producto>();
+
+        lProducto = this.em
+                .createQuery("FROM Producto", Producto.class).getResultList();
         
         if (lProducto != null ) {
             return lProducto;

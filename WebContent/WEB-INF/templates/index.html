@@ -21,5 +21,24 @@
 		<p> Y si no lo estas registrate </p>
 		<a href="signup"> Registrarse </a>
 	</div>
+	<CENTER>
+	<h2>Productos en Oferta!</h2>
+	<table border>
+    <thead>
+    <tr>
+        <th>Nombre</th>
+        <th>Precio</th>
+        <th>Stock</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="producto : ${productos}">
+        <td th:text="${producto.nombreProducto}"></td>
+        <td th:text="${producto.precio}"></td>
+        <td th:text="${producto.stock}"></td>
+    </tr>
+    </tbody>
+</table>
+</CENTER>
 </body>
 </html>
