@@ -16,6 +16,7 @@ import ad.store.dao.UserDao;
 import ad.store.entity.Producto;
 import ad.store.entity.Cliente;
 
+
 @Transactional
 @Service
 public class UserServiceImpl implements UserService {
@@ -28,8 +29,7 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	private ProductoDao productoDao;
 
-
-
+	
 	@Override
 	public Cliente altaCliente(String nombreUsuario, String direccion, String password) {
 		Cliente cliente = new Cliente();
@@ -63,8 +63,8 @@ public class UserServiceImpl implements UserService {
 
 
 	@Override
-	public Cliente logIn(String email, String password) {
-		return userDao.logIn(email, password);
+	public Cliente logIn(String userName, String password) {
+		return userDao.logIn(userName, password);
 	}
 
 
@@ -73,6 +73,9 @@ public class UserServiceImpl implements UserService {
 	public boolean logOut(Cliente cliente) {
 		return userDao.logOut(cliente);
 	}
+
+
+
 
 
 	

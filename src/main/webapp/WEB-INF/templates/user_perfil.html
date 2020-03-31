@@ -33,10 +33,10 @@
 			<div class="card-body">
 
 				<h1>
-					El perfil de usuario de <span th:text="${profesor.nombreCliente}"></span>
+					El perfil de usuario de <span th:text="${cliente.nombreCliente}"></span>
 				</h1>
 				<div>
-					<b>Nombre:</b> <span th:text="${profesor.nombreProducto}"></span>
+					<b>Nombre:</b> <span th:text="${cliente.nombreProducto}"></span>
 				</div>
 				
 
@@ -56,7 +56,7 @@
 				</thead>
 				<tbody>
 				
-				<tr th:if="${profesor.modulos.empty}">
+				<tr th:if="${cliente.productos.empty}">
 							<td colspan="2">No existen productos asignados</td>
 						</tr>
 					<tr th:each="producto : ${cliente.productos}">
