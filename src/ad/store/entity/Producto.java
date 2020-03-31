@@ -20,19 +20,40 @@ public class Producto {
 	private float precio;
 	@Column(name = "stock")
 	private int stock;
+	@Column(name = "categoria")
+	private String categoria;
+	@Column(name = "descripcion")
+	private String descripcion;
 	
-	public Producto(long idProducto, String nombreProducto, float precio, int stock) {
+	public Producto(long idProducto, String nombreProducto, float precio, int stock,String categoria, String descripcion) {
 		this.idProducto = idProducto;
 		this.nombreProducto = nombreProducto;
 		this.precio = precio;
 		this.stock = stock;
+		this.categoria = categoria;
+		this.descripcion = descripcion;
 	}
-	public Producto(String nombreProducto, float precio, int stock) {
+	public Producto(String nombreProducto, float precio, int stock, String categoria, String descripcion) {
 		this.nombreProducto = nombreProducto;
 		this.precio = precio;
 		this.stock = stock;
+		this.categoria = categoria;
+		this.descripcion = descripcion;
 	}
 	public Producto() {
+	}
+	
+	public String getCategoria() {
+		return categoria;
+	}
+	public void setCategoria(String categoria) {
+		this.categoria = categoria;
+	}
+	public String getDescripcion() {
+		return descripcion;
+	}
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
 	}
 	public long getIdProducto() {
 		return idProducto;
@@ -62,7 +83,7 @@ public class Producto {
 	@Override
 	public String toString() {
 		return "Producto [idProducto=" + idProducto + ", nombreProducto=" + nombreProducto + ", precio=" + precio
-				+ ", stock=" + stock + "]";
+				+ ", stock=" + stock +", categoria=" + categoria+", stock=" + descripcion+ "]";
 	}
 	
 }

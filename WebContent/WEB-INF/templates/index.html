@@ -29,6 +29,7 @@
         <th>Nombre</th>
         <th>Precio</th>
         <th>Stock</th>
+        <th>Informacion</th>
     </tr>
     </thead>
     <tbody>
@@ -36,6 +37,12 @@
         <td th:text="${producto.nombreProducto}"></td>
         <td th:text="${producto.precio}"></td>
         <td th:text="${producto.stock}"></td>
+        <td>
+        <form action="login" method="get">
+        <input type="hidden" name="prueba" value="1" >
+        <input type="submit" value ="Enviar">
+        </form>
+        </td>
     </tr>
     </tbody>
 </table>
