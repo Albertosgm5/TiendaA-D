@@ -15,4 +15,5 @@ public interface UserService {
 	public Cliente logIn(String email, String password);
 	public boolean logOut(Cliente cliente);
 	
+	
 }

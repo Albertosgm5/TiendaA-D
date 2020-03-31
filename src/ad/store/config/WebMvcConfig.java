@@ -26,6 +26,8 @@ public class WebMvcConfig implements WebMvcConfigurer{
 		templateResolver.setApplicationContext(applicationContext);
 		templateResolver.setPrefix("/WEB-INF/templates/");
 		templateResolver.setSuffix(".html");
+		templateResolver.setCharacterEncoding("UTF-8");
+		templateResolver.setTemplateMode("HTML5");
 		return templateResolver;
 	}
 	/*Establecemos Thymeleaf como motor de plantillas*/
