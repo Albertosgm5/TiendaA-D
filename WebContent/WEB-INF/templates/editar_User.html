@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<title>Modificar Datos de Cliente</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+</head>
+
+<body style="background-color:#117733;">
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<a class="navbar-brand"
+			th:href="@{/Cliente/perfil-cliente/{idCliente}(idCliente=${Cliente.idCliente})}"
+			th:text="${Cliente.email}"></a>
+
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#navbarColor03" aria-controls="navbarColor03"
+			aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse" id="navbarColor02">
+			<ul class="navbar-nav mr-auto">
+				<li><a class="nav-link"
+					th:href="@{/indice/{idCliente}(idCliente=${Cliente.idCliente})}">Inicio</a></li>
+
+				<li class="nav-item"><a class="nav-link" th:href="@{/logout}">Cerrar sesión</a></li>
+
+			</ul>
+
+
+			<form class="form-inline my-2 my-lg-0"
+				th:action="@{/Producto/searchProducto/{idCliente}(idCliente=${Cliente.idCliente})}">
+				<input class="form-control mr-sm-2" type="text" name="valorProducto"
+					id="valorProducto" placeholder="Buscar">
+				<button class="btn btn-secondary my-2 my-sm-0" type="submit">Buscar</button>
+			</form>
+		</div>
+	</nav>
+
+
+	<div class="container my-5">
+		<h3>Modificar tus datos:</h3>
+		<div class="card">
+			<div class="card-body">
+				<div class="col-md-8">
+					<form action="#"
+						th:action="@{/Cliente/editar-cliente/{idCliente}(idCliente=${Cliente.idCliente})}"
+						th:object="${Cliente}" method="post">
+						<div class="row">
+							<div class="form-group col-md-6">
+								<label for="nombre" class="col-form-label">Nombre de usuario :</label> <input
+									type="text" th:field="*{nombre}" class="form-control"
+									id="nombre" th:value="${Cliente.nombre}"> <span
+									th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"
+									class="text-danger"></span>
+							</div>
+							
+							<div class="form-group col-md-6">
+								<label for="apellido" class="col-form-label">Apellido :</label>
+								<input type="text" th:field="*{apellido}" class="form-control"
+									id="apellido" th:value="${Cliente.apellido}"> <span
+									th:if="${#fields.hasErrors('apellido')}"
+									th:errors="*{apellido}" class="text-danger"></span>
+							</div>
+
+
+							<div class="form-group col-md-8">
+								<label for="direccion" class="col-form-label">Dirección</label>
+								<input type="text" th:field="*{direccion}" class="form-control"
+									id="direccion" th:value="${Cliente.direccion}"> <span
+									th:if="${#fields.hasErrors('direccion')}" th:errors="direccion"
+									class="text-danger"></span>
+							</div>
+
+							<div class="form-group col-md-8">
+								<label for="password" class="col-form-label">Password</label> <input
+									type="text" th:field="*{password}" class="form-control"
+									id="password" th:value="${Cliente.password}"> <span
+									th:if="${#fields.hasErrors('password')}" th:errors="password"
+									class="text-danger"></span>
+							</div>
+
+
+							<div class="form-group col-md-8">
+								<input type="submit" class="btn btn-primary" value="Editar">
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

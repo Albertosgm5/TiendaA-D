@@ -47,7 +47,6 @@ public class UserServiceImpl implements UserService {
 	}
 
 
-
 	@Override
 	public Cliente editarCliente(Cliente cliente) {
 		return userDao.update(cliente);
