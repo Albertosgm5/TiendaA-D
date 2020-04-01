@@ -19,15 +19,15 @@ public class ProductoController {
 	@Autowired
 	ProductoService productoService;
 	
-	@RequestMapping(method = RequestMethod.GET,value = "/{id}")
-	public ModelAndView perfilCliente(@PathVariable ("id") long idProducto) {
+	@RequestMapping("/detallesProducto/{idProducto}")
+	public ModelAndView perfilCliente(@PathVariable ("idProducto") long idProducto) {
 
 		ModelAndView mav = new ModelAndView();
 
 		Producto producto = productoService.obtenerProducto(idProducto);
 		
 		mav.addObject("producto", producto);
-		mav.setViewName("producto_perfil");
+		mav.setViewName("detallesproducto");
 		return mav;
 	}
 	
