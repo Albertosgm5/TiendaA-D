@@ -20,7 +20,7 @@ import ad.store.service.UserServiceImpl;
 @Controller
 @RequestMapping(value = "/cliente")
 public class ClienteController {
-	private Cliente cli;
+
 	@Autowired
 	UserService userService;
 	
@@ -37,39 +37,8 @@ public class ClienteController {
 		mav.setViewName("profile");
 		return mav;
 	}
-
-	@RequestMapping(method = RequestMethod.POST,value = "editar_User")
-	public ModelAndView handleEdit(@RequestParam("username") String username, 
-									@RequestParam("password") String password,
-									@RequestParam("direccion") String direccion) {
-		
-		cli.setNombreUsuario(username);
-		cli.setPassword(password);
-		cli.setDireccion(direccion);
-		Cliente cliente = userService.editarCliente(cli);
-
-		ModelAndView mav = new ModelAndView();
-		if (cliente == null) {
-			mav.addObject("exception", "Username or password are empty.");
-			mav.setViewName("editar_User");
-		}
 	
-		mav.addObject("account", cliente);
-		mav.setViewName("profile");
-		return mav;
-	}
-	@RequestMapping(method = RequestMethod.POST,value = "profile")
-	public ModelAndView handleDelete(@RequestParam("username") String username, 
-									@RequestParam("password") String password,
-									@RequestParam("direccion") String direccion) {
-		Cliente cli = userService.logIn(username, password);
-		Long id= cli.getIdCliente();
-		Cliente cliente = userService.obtenerCliente(id);
-		userService.eliminarCliente(id);
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("index");
-		return mav;
-	}
+	
 	
 	
 }
