@@ -13,8 +13,8 @@
 <body style="background-color:#117733;">
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 		<a class="navbar-brand"
-			th:href="@{/Cliente/perfil-cliente/{idCliente}(idCliente=${Cliente.idCliente})}"
-			th:text="${Cliente.email}"></a>
+			th:href="@{/Cliente/profile/{idCliente}(idCliente=${Cliente.idCliente})}"
+			th:text="${Cliente.direccion}"></a>
 
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarColor03" aria-controls="navbarColor03"

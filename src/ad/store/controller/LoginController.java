@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import ad.store.dao.UserDao;
-import ad.store.entity.Account;
 import ad.store.entity.Cliente;
 import ad.store.service.ProductoService;
 import ad.store.service.UserService;
