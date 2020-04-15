@@ -18,8 +18,8 @@ public class ProductoDaoImpl extends GenericDaoImpl<Producto> implements Product
 	@Override
 	public List<Producto> listarProductosPorNombre(String nombreProducto) {
 		Query query = this.em
-                .createQuery("select u FROM modulo u where u.nombreModulo= :nombre");
-        query.setParameter("nombre", nombreProducto);
+                .createQuery("FROM Producto u where u.nombreProducto LIKE :nombre",Producto.class);
+        query.setParameter("nombre",'%'+ nombreProducto +'%');
         List<Producto> lProducto = query.getResultList();
         
         
