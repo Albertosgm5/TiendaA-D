@@ -20,13 +20,13 @@ import ad.store.service.UserServiceImpl;
 @Controller
 @RequestMapping(value = "/cliente")
 public class ClienteController {
-
+	private Cliente cli;
 	@Autowired
 	UserService userService;
+	
 
 
-
-	@RequestMapping(method = RequestMethod.GET, value = "/perfil/{id}")
+	@RequestMapping(method = RequestMethod.GET, value = "/profile/{id}")
 	public ModelAndView perfilProfesor(@PathVariable("id") long idCliente) {
 
 		ModelAndView mav = new ModelAndView();
@@ -34,7 +34,7 @@ public class ClienteController {
 		Cliente cliente = userService.obtenerCliente(idCliente);
 
 		mav.addObject("cliente", cliente);
-		mav.setViewName("cliente_perfil");
+		mav.setViewName("profile");
 		return mav;
 	}
 
@@ -42,7 +42,7 @@ public class ClienteController {
 	public ModelAndView handleEdit(@RequestParam("username") String username, 
 									@RequestParam("password") String password,
 									@RequestParam("direccion") String direccion) {
-		Cliente cli = null;
+		
 		cli.setNombreUsuario(username);
 		cli.setPassword(password);
 		cli.setDireccion(direccion);
