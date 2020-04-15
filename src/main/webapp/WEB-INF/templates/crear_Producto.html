@@ -5,7 +5,7 @@
   </head>
   <body style="background-color:#117733;">
     <h1>Crear Producto</h1>
-    <form th:action="@{}" method="post">
+    <form th:action="@{/crear_Producto}" method="post">
       <label for="nombreProducto">Nombre Producto </label>:
       <input type="text" id="nombreProducto" name="nombreProducto"/> <br/>
       <label for="precio">Precio </label>:
@@ -16,7 +16,7 @@
       <input type="text" id="categoria" name="categoria"/> <br/>
       <label for="descripcion">Descripcion </label>:
       <input type="text" id="descripcion" name="descripcion"/> <br/>
-      <input type="submit" value="Crear"/>
+      <input type="submit" value="crear_Producto"/>
     </form>
   </body>
 </html>

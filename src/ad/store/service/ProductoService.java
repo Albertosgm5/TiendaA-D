@@ -12,7 +12,7 @@ public interface ProductoService {
 
 	public Producto obtenerProducto(long idProducto);
 	
-	public Producto crearProducto (String nombre, float precio, int stock);
+	public Producto crearProducto (String nombre, float precio, int stock, String categoria, String descripcion);
 	
 	public Producto editarProducto(Producto producto);
 	

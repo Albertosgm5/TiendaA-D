@@ -33,7 +33,7 @@ public class ProductoServiceImpl implements ProductoService {
 	}
 
 	@Override
-	public Producto crearProducto(String nombre, float precio, int stock) {
+	public Producto crearProducto(String nombre, float precio, int stock, String categoria, String descripcion) {
 		Producto producto = new Producto();
 		producto.setNombreProducto(nombre);
 		producto.setPrecio(precio);
