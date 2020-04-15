@@ -1,8 +1,10 @@
 package ad.store.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,11 +55,11 @@ public class ProductoController {
 		return "crear_Producto";
 	}
 	@RequestMapping(method = RequestMethod.POST,value = "crear_Producto")
-	public ModelAndView handleSignUp(HttpServletRequest request,@RequestParam("nombreProducto") String nombre, 
+	public void handleSignUp(HttpServletRequest request,HttpServletResponse response,@RequestParam("nombreProducto") String nombre, 
 									@RequestParam("precio") float precio,
 									@RequestParam("stock") int stock,
 									@RequestParam("categoria") String categoria,
-									@RequestParam("descripcion") String descripcion) {
+									@RequestParam("descripcion") String descripcion) throws IOException {
 		Producto producto = productoService.crearProducto(nombre, precio, stock, categoria, descripcion);
 
 		ModelAndView mav = new ModelAndView();
@@ -66,10 +68,9 @@ public class ProductoController {
 			mav.setViewName("index");
 		}
 		HttpSession session = request.getSession();
-		mav.addObject("producto", producto);
-		mav.setViewName("profile");
+
 		session.setAttribute("productoSession", nombre);
-		return mav;
+		 response.sendRedirect("/A&DStore/");
 	}
 	
 }
