@@ -56,26 +56,18 @@ public class EditarCliente {
 		mav.setViewName("profile");
 		return mav;
 	}
-	@RequestMapping(method = RequestMethod.POST,value = "Borrar")
-	public ModelAndView handleDelete(HttpServletRequest request,@RequestParam("username") String username, 
-									@RequestParam("password") String password,
-									@RequestParam("direccion") String direccion) {
+	@RequestMapping(value = "/Borrar")
+	public void handleDelete(HttpServletRequest request,HttpServletResponse response) throws IOException {
 		HttpSession sesion = request.getSession();
 		name=(String) sesion.getAttribute("accountSession");
 		pass=(String) sesion.getAttribute("passSession");
 		Cliente cli = userService.logIn(name, pass);
 		Long id= cli.getIdCliente();
-		Cliente cliente = userService.obtenerCliente(id);
 		userService.eliminarCliente(id);
-		ModelAndView mav = new ModelAndView();
 	    sesion.invalidate();
-	    try {
+
 			response.sendRedirect("/A&DStore/");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		};
-		mav.setViewName("index");
-		return mav;
+
+
 	}
 }

@@ -13,7 +13,9 @@
       <label for="direccion">Direccion</label>:
       <input type="text" id="direccion" name="direccion" /> <br/>
       <input type="submit" value="Editar"/>
-      <input type="submit" value="Borrar"/>
     </form>
+     <form th:action="@{/Borrar}">
+           <input type="submit" value="Borrar"/>
+     </form>
   </body>
 </html>
