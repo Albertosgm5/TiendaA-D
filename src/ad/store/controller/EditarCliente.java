@@ -1,6 +1,9 @@
 package ad.store.controller;
 
+import java.io.IOException;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,15 +23,16 @@ public class EditarCliente {
 	private Cliente cliente;
 	private String name;
 	private String pass;
+	private HttpServletResponse response;
 	@Autowired
 	UserService userService;
-	@RequestMapping(method = RequestMethod.GET,value = "editar_User2" )
+	@RequestMapping(method = RequestMethod.GET,value = "editar_User" )
 	public String editarView() {
-		return "editar_User2";
+		return "editar_User";
 	}
 	
 	
-	@RequestMapping(method = RequestMethod.POST,value = "editar_User2")
+	@RequestMapping(method = RequestMethod.POST,value = "editar_User")
 	public ModelAndView handleEdit(	HttpServletRequest request,@RequestParam("username") String username, 
 									@RequestParam("password") String password,
 									@RequestParam("direccion") String direccion) {
@@ -64,6 +68,13 @@ public class EditarCliente {
 		Cliente cliente = userService.obtenerCliente(id);
 		userService.eliminarCliente(id);
 		ModelAndView mav = new ModelAndView();
+	    sesion.invalidate();
+	    try {
+			response.sendRedirect("/A&DStore/");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		};
 		mav.setViewName("index");
 		return mav;
 	}
