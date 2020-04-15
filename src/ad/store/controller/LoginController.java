@@ -25,7 +25,7 @@ public class LoginController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	public ModelAndView handleLogin(HttpServletRequest request, HttpSession session)  {
+	public ModelAndView handleLogin(HttpServletRequest request)  {
 
 		ModelAndView mav = new ModelAndView();
 		String username = request.getParameter("username");
@@ -35,7 +35,7 @@ public class LoginController {
 		String pass=cliente.getPassword();
 		
 		if (username.equals(nom) && password.equals(pass)) {
-			
+			HttpSession session = request.getSession();
 			mav.addObject("account", cliente);
 			mav.setViewName("profile");
 			session.setAttribute("accountSession", username);

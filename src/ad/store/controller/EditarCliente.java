@@ -1,5 +1,6 @@
 package ad.store.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,8 +22,6 @@ public class EditarCliente {
 	private String pass;
 	@Autowired
 	UserService userService;
-	HttpSession session;
-	
 	@RequestMapping(method = RequestMethod.GET,value = "editar_User2" )
 	public String editarView() {
 		return "editar_User2";
@@ -30,9 +29,12 @@ public class EditarCliente {
 	
 	
 	@RequestMapping(method = RequestMethod.POST,value = "editar_User2")
-	public ModelAndView handleEdit(@RequestParam("username") String username, 
+	public ModelAndView handleEdit(	HttpServletRequest request,@RequestParam("username") String username, 
 									@RequestParam("password") String password,
 									@RequestParam("direccion") String direccion) {
+		
+		HttpSession session = request.getSession();
+		
 		name=(String) session.getAttribute("accountSession");
 		pass=(String) session.getAttribute("passSession");
 		Cliente cli = userService.logIn(name, pass);
@@ -44,17 +46,19 @@ public class EditarCliente {
 		Cliente cliente = userService.editarCliente(cli);
 
 		ModelAndView mav = new ModelAndView();
-	
+		session.setAttribute("accountSession", cli.getNombreUsuario());
+		session.setAttribute("passSession", cli.getPassword());
 		mav.addObject("account", cliente);
 		mav.setViewName("profile");
 		return mav;
 	}
 	@RequestMapping(method = RequestMethod.POST,value = "Borrar")
-	public ModelAndView handleDelete(@RequestParam("username") String username, 
+	public ModelAndView handleDelete(HttpServletRequest request,@RequestParam("username") String username, 
 									@RequestParam("password") String password,
 									@RequestParam("direccion") String direccion) {
-		name=(String) session.getAttribute("accountSession");
-		pass=(String) session.getAttribute("passSession");
+		HttpSession sesion = request.getSession();
+		name=(String) sesion.getAttribute("accountSession");
+		pass=(String) sesion.getAttribute("passSession");
 		Cliente cli = userService.logIn(name, pass);
 		Long id= cli.getIdCliente();
 		Cliente cliente = userService.obtenerCliente(id);

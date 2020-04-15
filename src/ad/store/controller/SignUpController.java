@@ -1,5 +1,8 @@
 package ad.store.controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,7 +24,7 @@ public class SignUpController {
 	}
 	
 	@RequestMapping(method = RequestMethod.POST,value = "signup")
-	public ModelAndView handleSignUp(@RequestParam("username") String username, 
+	public ModelAndView handleSignUp(HttpServletRequest request,@RequestParam("username") String username, 
 									@RequestParam("password") String password,
 									@RequestParam("direccion") String direccion) {
 		Cliente cliente = userService.altaCliente(username, password, direccion);
@@ -32,8 +35,11 @@ public class SignUpController {
 			mav.setViewName("signup");
 		}
 		//Account account = new Account(username, password);
+		HttpSession session = request.getSession();
 		mav.addObject("account", cliente);
 		mav.setViewName("profile");
+		session.setAttribute("accountSession", username);
+		session.setAttribute("passSession", password);
 		return mav;
 	}
 }
