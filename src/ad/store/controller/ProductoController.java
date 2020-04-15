@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import ad.store.entity.Producto;
@@ -31,15 +32,15 @@ public class ProductoController {
 		return mav;
 	}
 	
-	@RequestMapping(method = RequestMethod.GET, value = "/list")
-	public ModelAndView listarProductos() {
+	@RequestMapping(method = RequestMethod.POST, value = "/list")
+	public ModelAndView listarProductos(@RequestParam("producto") String nombreProducto){
 
 		ModelAndView mav = new ModelAndView();
 
-		List<Producto> lProducto = productoService.listarProductos();
+		List<Producto> lProducto = productoService.listarProductosPorNombre(nombreProducto);
 
-		mav.addObject("profesores", lProducto);
-		mav.setViewName("profesor_lista");
+		mav.addObject("productos", lProducto);
+		mav.setViewName("listarproductos");
 		return mav;
 	}
 	
