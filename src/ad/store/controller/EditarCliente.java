@@ -33,9 +33,8 @@ public class EditarCliente {
 	public ModelAndView handleEdit(@RequestParam("username") String username, 
 									@RequestParam("password") String password,
 									@RequestParam("direccion") String direccion) {
-		
-		session.setAttribute("accountSession", name);
-		session.setAttribute("accountSession",pass);
+		name=(String) session.getAttribute("accountSession");
+		pass=(String) session.getAttribute("passSession");
 		Cliente cli = userService.logIn(name, pass);
 		Long id= cli.getIdCliente();
 		cli.setIdCliente(id);
@@ -54,8 +53,8 @@ public class EditarCliente {
 	public ModelAndView handleDelete(@RequestParam("username") String username, 
 									@RequestParam("password") String password,
 									@RequestParam("direccion") String direccion) {
-		session.setAttribute("accountSession", name);
-		session.setAttribute("accountSession",pass);
+		name=(String) session.getAttribute("accountSession");
+		pass=(String) session.getAttribute("passSession");
 		Cliente cli = userService.logIn(name, pass);
 		Long id= cli.getIdCliente();
 		Cliente cliente = userService.obtenerCliente(id);

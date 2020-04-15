@@ -39,6 +39,7 @@ public class LoginController {
 			mav.addObject("account", cliente);
 			mav.setViewName("profile");
 			session.setAttribute("accountSession", username);
+			session.setAttribute("passSession", password);
 			return mav;
 		}else {
 			mav.addObject("exception", "Este usuario no existe en nuestro sistema.");
