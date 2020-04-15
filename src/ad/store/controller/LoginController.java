@@ -42,10 +42,11 @@ public class LoginController {
 			mav.setViewName("profile");
 			session.setAttribute("accountSession", username);
 			return mav;
+		}else {
+			mav.addObject("exception", "Este usuario no existe en nuestro sistema.");
+			mav.setViewName("singup");
+			return mav;
 		}
-		mav.addObject("exception", "Este usuario no existe en nuestro sistema.");
-		mav.setViewName("singup");
-		return mav;
 	}
 
 }
