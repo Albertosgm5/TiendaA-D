@@ -38,6 +38,8 @@ public class ProductoServiceImpl implements ProductoService {
 		producto.setNombreProducto(nombre);
 		producto.setPrecio(precio);
 		producto.setStock(stock);
+		producto.setCategoria(categoria);
+		producto.setDescripcion(descripcion);;
 		return productoDao.create(producto);
 	}
 
