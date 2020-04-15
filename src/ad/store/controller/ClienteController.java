@@ -1,8 +1,11 @@
 package ad.store.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -39,7 +42,14 @@ public class ClienteController {
 		return mav;
 	}
 
-	
+	@RequestMapping(method = RequestMethod.GET, value = "/cerrar")
+	public String perfilCliente(HttpServletRequest request,HttpServletResponse response) throws IOException {
+		HttpSession sesion = request.getSession();
+	    sesion.invalidate();
+	    response.sendRedirect("/A&DStore/");
+		
+		return "index";
+	}
 	
 	
 	
