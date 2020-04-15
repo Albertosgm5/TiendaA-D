@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 
 import ad.store.entity.Cliente;
+import ad.store.entity.Producto;
 import ad.store.service.UserService;
 import ad.store.service.UserServiceImpl;
 
@@ -37,6 +38,9 @@ public class ClienteController {
 		mav.setViewName("profile");
 		return mav;
 	}
+
+	
+	
 	
 	
 	

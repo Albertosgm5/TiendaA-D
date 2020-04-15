@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import ad.store.entity.Cliente;
+import ad.store.entity.Producto;
 import ad.store.service.UserService;
 
 public class EditarCliente {
@@ -20,6 +21,17 @@ public class EditarCliente {
 	public String editarView() {
 		return "editar_User2";
 	}
+	/*@RequestMapping("/editar/{idCliente}")
+	public ModelAndView perfilCliente(@PathVariable ("idCliente") long idCliente) {
+
+		ModelAndView mav = new ModelAndView();
+
+		Cliente cliente = userService.obtenerCliente(idCliente);
+		
+		mav.addObject("cliente", cliente);
+		mav.setViewName("profile");
+		return mav;
+	}*/
 	
 	@RequestMapping(method = RequestMethod.POST,value = "editar_User2")
 	public ModelAndView handleEdit(@RequestParam("username") String username, 
