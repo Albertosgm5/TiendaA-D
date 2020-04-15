@@ -37,8 +37,7 @@ public class LoginController {
 		
 		if (username.equals(nom) && password.equals(pass)) {
 			
-			Account account = new Account(username, password);
-			mav.addObject("account", account);
+			mav.addObject("account", cliente);
 			mav.setViewName("profile");
 			session.setAttribute("accountSession", username);
 			return mav;

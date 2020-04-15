@@ -41,7 +41,7 @@ public class UserDaoImpl extends GenericDaoImpl<Cliente> implements UserDao {
 	@Override
 	public Cliente logIn(String nombreUsuario, String password) {
 		try {
-			Query query = this.em.createQuery("From cliente c Where c.nombreUsuario =:nombreUsuario AND c.password =:password");
+			Query query = this.em.createQuery("From Cliente c Where c.nombreUsuario = :nombreUsuario AND c.password = :password");
 			query.setParameter("nombreUsuario", nombreUsuario);
 			query.setParameter("password", password);
 			Cliente cliente = (Cliente) query.getSingleResult();
