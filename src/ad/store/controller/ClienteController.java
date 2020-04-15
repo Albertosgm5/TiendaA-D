@@ -27,7 +27,7 @@ public class ClienteController {
 
 
 	@RequestMapping(method = RequestMethod.GET, value = "/profile/{id}")
-	public ModelAndView perfilProfesor(@PathVariable("id") long idCliente) {
+	public ModelAndView perfilCliente(@PathVariable("id") long idCliente) {
 
 		ModelAndView mav = new ModelAndView();
 

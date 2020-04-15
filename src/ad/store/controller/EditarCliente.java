@@ -20,22 +20,14 @@ public class EditarCliente {
 	public String editarView() {
 		return "editar_User2";
 	}
-	@RequestMapping(method = RequestMethod.GET, value = "/profile/{id}")
-	public ModelAndView perfilProfesor(@PathVariable("id") long idCliente) {
-
-		ModelAndView mav = new ModelAndView();
-
-		cliente = userService.obtenerCliente(idCliente);
-
-		mav.addObject("cliente", cliente);
-		mav.setViewName("editar_User2");
-		return mav;
-	}
+	
 	@RequestMapping(method = RequestMethod.POST,value = "editar_User2")
 	public ModelAndView handleEdit(@RequestParam("username") String username, 
 									@RequestParam("password") String password,
 									@RequestParam("direccion") String direccion) {
-		
+		Cliente cli = userService.logIn(username, password);
+		Long id= cli.getIdCliente();
+		cli.setIdCliente(id);
 		cli.setNombreUsuario(username);
 		cli.setPassword(password);
 		cli.setDireccion(direccion);
