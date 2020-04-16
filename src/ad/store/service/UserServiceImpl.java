@@ -1,5 +1,6 @@
 package ad.store.service;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,11 +32,22 @@ public class UserServiceImpl implements UserService {
 
 	
 	@Override
-	public Cliente altaCliente(String nombreUsuario, String direccion, String password) {
+	public Cliente altaCliente(String nombreUsuario, String direccionEnvio, String password, String nombre,
+			String apellidos, String email, Date fechaNa, String banco, int numTarjeta, String titular,
+			int codigoS, String direccionFa) {
 		Cliente cliente = new Cliente();
 		cliente.setNombreUsuario(nombreUsuario);
-		cliente.setDireccion(direccion);
+		cliente.setDireccionEnvio(direccionEnvio);
 		cliente.setPassword(password);
+		cliente.setNombre(nombre);
+		cliente.setApellidos(apellidos);
+		cliente.setEmail(email);
+		cliente.setFechaNa(fechaNa);
+		cliente.setBanco(banco);
+		cliente.setNumTarjeta(numTarjeta);
+		cliente.setTitular(titular);
+		cliente.setCodigoS(codigoS);
+		cliente.setDireccionFa(direccionFa);
 		return userDao.create(cliente);
 	}
 

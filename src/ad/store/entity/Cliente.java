@@ -1,5 +1,6 @@
 package ad.store.entity;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -16,12 +17,30 @@ public class Cliente {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long idCliente;
-	@Column(name = "direccion")
-	private String direccion;
+	@Column(name = "direccionEnvio")
+	private String direccionEnvio;
 	@Column(name = "nombreUsuario")
 	private String nombreUsuario;
 	@Column(name = "password")
 	private String password;
+	@Column(name = "nombre")
+	private String nombre;
+	@Column(name = "apellidos")
+	private String apellidos;
+	@Column(name = "email")
+	private String email;
+	@Column(name = "fechaNacimniento")
+	private Date fechaNa;
+	@Column(name = "banco")
+	private String banco;
+	@Column(name = "numTarjeta")
+	private int numTarjeta;
+	@Column(name = "titular")
+	private String titular;
+	@Column(name = "codigoSeguridad")
+	private int codigoS;
+	@Column(name = "direccionFacturacion")
+	private String direccionFa;
 
 	
 //	private List<Venta> ventas;
@@ -30,16 +49,27 @@ public class Cliente {
 
 		
 	}
-	public Cliente(long idCliente, String direccion, String nombreUsuario, String password) {
+	public Cliente(long idCliente, String direccionEnvio, String nombreUsuario, String password, String nombre,
+			String apellidos, String email, Date fechaNa, String banco, int numTarjeta, String titular,
+			int codigoS, String direccionFa) {
 		super();
 		this.idCliente = idCliente;
-		this.direccion = direccion;
+		this.direccionEnvio = direccionEnvio;
 		this.nombreUsuario = nombreUsuario;
 		this.password = password;
+		this.nombre = nombre;
+		this.apellidos = apellidos;
+		this.email = email;
+		this.fechaNa = fechaNa;
+		this.banco = banco;
+		this.numTarjeta = numTarjeta;
+		this.apellidos = apellidos;
+		this.email = email;
+		this.fechaNa = fechaNa;
 	}
-	public Cliente(long idCliente, String direccion, String nombreUsuario, String password, List<Venta> ventas) {
+	public Cliente(long idCliente, String direccionEnvio, String nombreUsuario, String password, List<Venta> ventas) {
 		this.idCliente = idCliente;
-		this.direccion = direccion;
+		this.direccionEnvio = direccionEnvio;
 		this.nombreUsuario = nombreUsuario;
 		this.password = password;
 //		this.ventas = ventas;
@@ -50,11 +80,11 @@ public class Cliente {
 	public void setIdCliente(long idCliente) {
 		this.idCliente = idCliente;
 	}
-	public String getDireccion() {
-		return direccion;
+	public String getDireccionEnvio() {
+		return direccionEnvio;
 	}
-	public void setDireccion(String direccion) {
-		this.direccion = direccion;
+	public void setDireccionEnvio(String direccionEnvio) {
+		this.direccionEnvio = direccionEnvio;
 	}
 	public String getNombreUsuario() {
 		return nombreUsuario;
@@ -74,10 +104,66 @@ public class Cliente {
 //	public void setVentas(List<Venta> ventas) {
 //		this.ventas = ventas;
 //	}
-	@Override
-	public String toString() {
-		return "Cliente [idCliente=" + idCliente + ", direccion=" + direccion + ", nombreUsuario=" + nombreUsuario
-				+ ", password=" + password + "]";
+	public String getNombre() {
+		return nombre;
 	}
 	
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+	public String getApellidos() {
+		return apellidos;
+	}
+	public void setApellidos(String apellidos) {
+		this.apellidos = apellidos;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public Date getFechaNa() {
+		return fechaNa;
+	}
+	public void setFechaNa(Date fechaNa) {
+		this.fechaNa = fechaNa;
+	}
+	public String getBanco() {
+		return banco;
+	}
+	public void setBanco(String banco) {
+		this.banco = banco;
+	}
+	public int getNumTarjeta() {
+		return numTarjeta;
+	}
+	public void setNumTarjeta(int numTarjeta) {
+		this.numTarjeta = numTarjeta;
+	}
+	public String getTitular() {
+		return titular;
+	}
+	public void setTitular(String titular) {
+		this.titular = titular;
+	}
+	public int getCodigoS() {
+		return codigoS;
+	}
+	public void setCodigoS(int codigoS) {
+		this.codigoS = codigoS;
+	}
+	public String getDireccionFa() {
+		return direccionFa;
+	}
+	public void setDireccionFa(String direccionFa) {
+		this.direccionFa = direccionFa;
+	}
+	@Override
+	public String toString() {
+		return "Cliente [idCliente=" + idCliente + ", direccionEnvio=" + direccionEnvio + ", nombreUsuario="
+				+ nombreUsuario + ", password=" + password + ", nombre=" + nombre + ", apellidos=" + apellidos
+				+ ", email=" + email + ", fechaNa=" + fechaNa + ", banco=" + banco + ", numTarjeta=" + numTarjeta
+				+ ", titular=" + titular + ", codigoS=" + codigoS + ", direccionFa=" + direccionFa + "]";
+	}
 }

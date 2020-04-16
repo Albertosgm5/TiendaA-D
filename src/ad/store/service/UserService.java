@@ -1,5 +1,6 @@
 package ad.store.service;
 
+import java.util.Date;
 import java.util.List;
 
 import ad.store.entity.Cliente;
@@ -8,7 +9,9 @@ import ad.store.entity.Cliente;
 
 public interface UserService {
 
-	public Cliente altaCliente(String nombreUsuario, String direccion, String password);
+	public Cliente altaCliente(String nombreUsuario, String direccionEnvio, String password, String nombre,
+			String apellidos, String email, Date fechaNa, String banco, int numTarjeta, String titular,
+			int codigoS, String direccionFa);
 	public Cliente obtenerCliente (long idCliente);
 	public Cliente editarCliente(Cliente cliente);
 	public void eliminarCliente (long idCliente);

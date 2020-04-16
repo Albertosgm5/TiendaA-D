@@ -1,6 +1,7 @@
 package ad.store.controller;
 
 import java.io.IOException;
+import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -35,7 +36,16 @@ public class EditarCliente {
 	@RequestMapping(method = RequestMethod.POST,value = "editar_User")
 	public ModelAndView handleEdit(	HttpServletRequest request,@RequestParam("username") String username, 
 									@RequestParam("password") String password,
-									@RequestParam("direccion") String direccion) {
+									@RequestParam("direccionEnvio") String direccionEnvio,
+									@RequestParam("nombre") String nombre,
+									@RequestParam("apellidos") String apellidos,
+									@RequestParam("email") String email,
+									@RequestParam("fechaNa") Date fechaNa,
+									@RequestParam("banco") String banco,
+									@RequestParam("numTarjeta") int numTarjeta,
+									@RequestParam("titular") String titular,
+									@RequestParam("codigoS") int codigoS,
+									@RequestParam("direccionFa") String  direccionFa) {
 		
 		HttpSession session = request.getSession();
 		
@@ -46,7 +56,16 @@ public class EditarCliente {
 		cli.setIdCliente(id);
 		cli.setNombreUsuario(username);
 		cli.setPassword(password);
-		cli.setDireccion(direccion);
+		cli.setDireccionEnvio(direccionEnvio);
+		cli.setNombre(nombre);
+		cli.setApellidos(apellidos);
+		cli.setEmail(email);
+		cli.setFechaNa(fechaNa);
+		cli.setBanco(banco);
+		cli.setNumTarjeta(numTarjeta);
+		cli.setTitular(titular);
+		cli.setCodigoS(codigoS);
+		cli.setDireccionFa(direccionFa);
 		Cliente cliente = userService.editarCliente(cli);
 
 		ModelAndView mav = new ModelAndView();

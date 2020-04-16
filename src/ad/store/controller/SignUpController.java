@@ -1,5 +1,7 @@
 package ad.store.controller;
 
+import java.util.Date;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -26,8 +28,17 @@ public class SignUpController {
 	@RequestMapping(method = RequestMethod.POST,value = "signup")
 	public ModelAndView handleSignUp(HttpServletRequest request,@RequestParam("username") String username, 
 									@RequestParam("password") String password,
-									@RequestParam("direccion") String direccion) {
-		Cliente cliente = userService.altaCliente(username, password, direccion);
+									@RequestParam("direccionEnvio") String direccionEnvio,
+									@RequestParam("nombre") String nombre,
+									@RequestParam("apellidos") String apellidos,
+									@RequestParam("email") String email,
+									@RequestParam("fechaNa") Date fechaNa,
+									@RequestParam("banco") String banco,
+									@RequestParam("numTarjeta") int numTarjeta,
+									@RequestParam("titular") String titular,
+									@RequestParam("codigoS") int codigoS,
+									@RequestParam("direccionFa") String  direccionFa){
+		Cliente cliente = userService.altaCliente(username, password, direccionEnvio, nombre, apellidos, email, fechaNa, banco, numTarjeta, titular, codigoS, direccionFa);
 
 		ModelAndView mav = new ModelAndView();
 		if (cliente == null) {
