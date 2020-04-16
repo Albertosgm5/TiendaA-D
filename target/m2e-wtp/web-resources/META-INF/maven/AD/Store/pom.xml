@@ -112,6 +112,10 @@
 			<artifactId>mysql-connector-java</artifactId>
 			<version>${mysql.connector.version}</version>
 		</dependency>
-
+		<dependency>
+   			<groupId>org.springframework.security</groupId>
+    		<artifactId>spring-security-core</artifactId>
+    		<version>5.3.1.RELEASE</version>
+		</dependency>
   </dependencies>
 </project>
