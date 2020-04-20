@@ -40,6 +40,7 @@ public class UserServiceImpl implements UserService {
 		Cliente cliente = new Cliente();
 		cliente.setNombreUsuario(nombreUsuario);
 		cliente.setDireccionEnvio(direccionEnvio);
+		cliente.setPassword(password);
 		//cliente.setPassword(bCryptPasswordEncoder.encode(password));
 		cliente.setNombre(nombre);
 		cliente.setApellidos(apellidos);
