@@ -26,8 +26,8 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	private UserDao userDao;
 
-	@Autowired
-	private BCryptPasswordEncoder bCryptPasswordEncoder;
+	//@Autowired
+	//private BCryptPasswordEncoder bCryptPasswordEncoder;
 	
 	@Autowired
 	private ProductoDao productoDao;
@@ -40,7 +40,7 @@ public class UserServiceImpl implements UserService {
 		Cliente cliente = new Cliente();
 		cliente.setNombreUsuario(nombreUsuario);
 		cliente.setDireccionEnvio(direccionEnvio);
-		cliente.setPassword(bCryptPasswordEncoder.encode(password));
+		//cliente.setPassword(bCryptPasswordEncoder.encode(password));
 		cliente.setNombre(nombre);
 		cliente.setApellidos(apellidos);
 		cliente.setEmail(email);
