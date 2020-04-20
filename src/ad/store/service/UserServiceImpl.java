@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,8 +26,9 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	private UserDao userDao;
 
+	@Autowired
+	private BCryptPasswordEncoder bCryptPasswordEncoder;
 	
-
 	@Autowired
 	private ProductoDao productoDao;
 
@@ -38,7 +40,7 @@ public class UserServiceImpl implements UserService {
 		Cliente cliente = new Cliente();
 		cliente.setNombreUsuario(nombreUsuario);
 		cliente.setDireccionEnvio(direccionEnvio);
-		cliente.setPassword(password);
+		cliente.setPassword(bCryptPasswordEncoder.encode(password));
 		cliente.setNombre(nombre);
 		cliente.setApellidos(apellidos);
 		cliente.setEmail(email);
@@ -83,6 +85,14 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public boolean logOut(Cliente cliente) {
 		return userDao.logOut(cliente);
+	}
+
+
+
+	@Override
+	public Cliente findByUsername(String nombre) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 
