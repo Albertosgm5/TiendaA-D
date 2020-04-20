@@ -20,6 +20,8 @@ CREATE TABLE `producto` (
   `nombreProducto` varchar(255) NOT NULL,
   `precio` float NOT NULL,
   `stock` int(11) NOT NULL,
+  `categoria` varchar(255) NOT NULL,
+  `descripcion` varchar(255) NOT NULL,
   PRIMARY KEY (`idProducto`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 

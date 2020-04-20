@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title  th:text="${session.accountSession}" th:unless="${session ==null}"> Profile</title>
+
+</head>
+<body style="background-color:#117733;">
+
+<h1>Profile</h1>
+<p th:text="${session.accountSession}" > Profile</p>
+
+	<table>
+		<tr>
+			<td> Usuario:</td>
+			<td> Password:</td>
+			<td> Direccion de envio:</td>
+			<td> Nombre:</td>
+			<td> Apellidos:</td>
+			<td> Email:</td>
+			<td> Fecha de nacimiento:</td>
+			<td> Banco:</td>
+			<td> Numero de tarjeta:</td>
+			<td> Titular:</td>
+			<td> Codigo de seguridad:</td>
+			<td> Direccion de facturacion:</td>
+		</tr>
+		<tr>
+			<td th:text="${account.nombreUsuario}"></td>
+			<td th:text="${account.password}"></td>
+			<td th:text="${account.direccionEnvio}"></td>
+			<td th:text="${account.nombre}"></td>
+			<td th:text="${account.apellidos}"></td>
+			<td th:text="${account.email}"></td>
+			<td th:text="${account.fechaNa}"></td>
+			<td th:text="${account.banco}"></td>
+			<td th:text="${account.numTarjeta}"></td>
+			<td th:text="${account.titular}"></td>
+			<td th:text="${account.codigoS}"></td>
+			<td th:text="${account.direccionFa}"></td>
+		</tr>
+	</table>
+	<a href="editar_User"> Editar </a>
+	<a href="cliente/cerrar"> Logoff </a>
+	<a href="producto/crear_Producto"> Crear Producto </a>
+</body>
+</html>
