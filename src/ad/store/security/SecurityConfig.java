@@ -18,8 +18,10 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @EnableGlobalMethodSecurity(securedEnabled=true)
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
+
 	@Autowired
 	private UserDetailsService userDetailsService;
+	
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
