@@ -87,6 +87,13 @@ public class UserServiceImpl implements UserService {
 
 
 
+	@Override
+	public Cliente findByUsername(String nombre) {
+		return userDao.findByUsername(nombre);
+	}
+
+
+
 
 
 	

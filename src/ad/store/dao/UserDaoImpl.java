@@ -63,6 +63,21 @@ public class UserDaoImpl extends GenericDaoImpl<Cliente> implements UserDao {
 		return false;
 	}
 
+	@Override
+	public Cliente findByUsername(String nombre) {
+		try {
+			Query query = this.em.createQuery("From Cliente c Where c.nombreUsuario = :nombreUsuario");
+			query.setParameter("nombreUsuario", nombre);
+			Cliente cliente = (Cliente) query.getSingleResult();
+			if (cliente != null) {
+				return cliente;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
 	
 	
 }

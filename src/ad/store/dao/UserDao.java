@@ -21,5 +21,6 @@ public interface UserDao extends GenericDao<Cliente>{
 	
 	public boolean logOut(Cliente cliente);
 	
+	public Cliente findByUsername(String nombre);
 	
 }
