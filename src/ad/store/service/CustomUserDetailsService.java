@@ -31,7 +31,7 @@ public class CustomUserDetailsService implements  UserDetailsService {
 		Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
 		/*for (Rol rol : cliente.getRoles()) {
 			grantedAuthorities.add(new SimpleGrantedAuthority(rol.getNombreRol()));
-		}*/
+		}*///hacer una tabla de roles y enlazar con el pojo cliente
 
 		return new org.springframework.security.core.userdetails.User(cliente.getNombreUsuario(), cliente.getPassword(),
 				grantedAuthorities);
