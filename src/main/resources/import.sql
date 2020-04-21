@@ -1,7 +1,7 @@
 
-insert into Cliente (nombre, apellidos, fechaNacimniento, email, banco, titular, codigoSeguridad, numTarjeta, direccionEnvio, direccionFacturacion, nombreUsuario, password) values ('Alberto','G M','06/05/1992','alberto@gmail.com','Bankia','AlbertGM','111','1000999900001111','Av.Europa','Av.Europa','Albert', 'A5GM');
-insert into Cliente (nombre, apellidos, fechaNacimniento, email, banco, titular, codigoSeguridad, numTarjeta, direccionEnvio, direccionFacturacion, nombreUsuario, password) values ('Daniel','N','07/07/1996','daniel@gmail.com','Bankia','DaniN','222','2200999900001211','Av.America','Av.America','Dani', 'dani');
-insert into Cliente (nombre, apellidos, fechaNacimniento, email, banco, titular, codigoSeguridad, numTarjeta, direccionEnvio, direccionFacturacion, nombreUsuario, password) values ('Marcos','F P','08/07/1992','marcos@gmail.com','Bankia','MarcosFP','333','3300999900001311','Av.FP','Av.FP','Marcos', '12345');
+insert into Cliente (nombre, apellidos, fechaNacimniento, email, banco, titular, codigoSeguridad, numTarjeta, direccionEnvio, direccionFacturacion, nombreUsuario, password) values ('Alberto','G M','06/05/1992','alberto@gmail.com','Bankia','AlbertGM',111,1000999900001111,'Av.Europa','Av.Europa','Albert', 'A5GM');
+insert into Cliente (nombre, apellidos, fechaNacimniento, email, banco, titular, codigoSeguridad, numTarjeta, direccionEnvio, direccionFacturacion, nombreUsuario, password) values ('Daniel','N','07/07/1996','daniel@gmail.com','Bankia','DaniN',222,2200999900001211,'Av.America','Av.America','Dani', 'dani');
+insert into Cliente (nombre, apellidos, fechaNacimniento, email, banco, titular, codigoSeguridad, numTarjeta, direccionEnvio, direccionFacturacion, nombreUsuario, password) values ('Marcos','F P','08/07/1992','marcos@gmail.com','Bankia','MarcosFP',333,3300999900001311,'Av.FP','Av.FP','Marcos', '12345');
 
 insert into Producto(nombreProducto, precio, stock, categoria, descripcion) values ('Camara', 53, 34,'Fotografia','Esto es una camara');
 insert into Producto(nombreProducto, precio, stock, categoria, descripcion) values ('Pantalla', 153, 3,'Perifericos','Esto es una pantalla');
