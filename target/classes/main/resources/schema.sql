@@ -9,9 +9,18 @@ DROP TABLE IF EXISTS `cliente`;
 
 CREATE TABLE `cliente` (
   `idCliente` bigint(20) NOT NULL AUTO_INCREMENT,
-  `direccionEnvio` varchar(255) NOT NULL,
-  `nombreUsuario` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL,
+  `apellidos` varchar(255) DEFAULT NULL,
+  `banco` varchar(255) DEFAULT NULL,
+  `codigoSeguridad` int(11) DEFAULT NULL,
+  `direccionEnvio` varchar(255) DEFAULT NULL,
+  `direccionFacturacion` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `fechaNacimniento` datetime DEFAULT NULL,
+  `nombre` varchar(255) DEFAULT NULL,
+  `nombreUsuario` varchar(255) DEFAULT NULL,
+  `numTarjeta` int(11) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  `titular` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`idCliente`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
