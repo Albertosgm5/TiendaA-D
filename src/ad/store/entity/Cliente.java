@@ -34,7 +34,7 @@ public class Cliente {
 	@Column(name = "banco")
 	private String banco;
 	@Column(name = "numTarjeta")
-	private int numTarjeta;
+	private long numTarjeta;
 	@Column(name = "titular")
 	private String titular;
 	@Column(name = "codigoSeguridad")
@@ -50,7 +50,7 @@ public class Cliente {
 		
 	}
 	public Cliente(long idCliente, String direccionEnvio, String nombreUsuario, String password, String nombre,
-			String apellidos, String email, Date fechaNa, String banco, int numTarjeta, String titular,
+			String apellidos, String email, Date fechaNa, String banco, long numTarjeta, String titular,
 			int codigoS, String direccionFa) {
 		super();
 		this.idCliente = idCliente;
@@ -135,10 +135,10 @@ public class Cliente {
 	public void setBanco(String banco) {
 		this.banco = banco;
 	}
-	public int getNumTarjeta() {
+	public long getNumTarjeta() {
 		return numTarjeta;
 	}
-	public void setNumTarjeta(int numTarjeta) {
+	public void setNumTarjeta(long numTarjeta) {
 		this.numTarjeta = numTarjeta;
 	}
 	public String getTitular() {

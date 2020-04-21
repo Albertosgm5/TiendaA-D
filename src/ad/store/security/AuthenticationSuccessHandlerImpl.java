@@ -56,7 +56,7 @@ public class AuthenticationSuccessHandlerImpl implements AuthenticationSuccessHa
 		}
 		String targetUrl;
 		if (isUser) {
-		targetUrl = "/profesor/myprofile";
+		targetUrl = "/index";
 		} else if (isAdmin) {
 		targetUrl = "/index";
 		} else {

@@ -19,7 +19,7 @@ public class UserDaoImpl extends GenericDaoImpl<Cliente> implements UserDao {
 	
 	@Override
 	public Cliente altaCliente(String nombreUsuario, String direccionEnvio, String password, String nombre,
-			String apellidos, String email, Date fechaNa, String banco, int numTarjeta, String titular,
+			String apellidos, String email, Date fechaNa, String banco, long numTarjeta, String titular,
 			int codigoS, String direccionFa) {
 		
 		return null;

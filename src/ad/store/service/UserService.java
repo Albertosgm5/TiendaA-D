@@ -10,7 +10,7 @@ import ad.store.entity.Cliente;
 public interface UserService {
 
 	public Cliente altaCliente(String nombreUsuario, String direccionEnvio, String password, String nombre,
-			String apellidos, String email, Date fechaNa, String banco, int numTarjeta, String titular,
+			String apellidos, String email, Date fechaNa, String banco, long numTarjeta, String titular,
 			int codigoS, String direccionFa);
 	
 	public Cliente obtenerCliente (long idCliente);

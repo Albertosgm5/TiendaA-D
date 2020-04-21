@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,15 +28,22 @@ public class EditarCliente {
 	private String name;
 	private String pass;
 	private HttpServletResponse response;
+	
 	@Autowired
 	UserService userService;
+	
+	@Autowired
+	private BCryptPasswordEncoder bCryptPasswordEncoder;
+	
 	@RequestMapping(method = RequestMethod.GET,value = "editar_User" )
+	//@GetMapping("/editar_User")
 	public String editarView() {
 		return "editar_User";
 	}
 	
 	
 	@RequestMapping(method = RequestMethod.POST,value = "editar_User")
+	//@PostMapping("/editar_User")
 	public ModelAndView handleEdit(	HttpServletRequest request,@RequestParam("username") String username, 
 									@RequestParam("password") String password,
 									@RequestParam("direccionEnvio") String direccionEnvio,
@@ -44,7 +52,7 @@ public class EditarCliente {
 									@RequestParam("email") String email,
 									@RequestParam("fechaNa") Date fechaNa,
 									@RequestParam("banco") String banco,
-									@RequestParam("numTarjeta") int numTarjeta,
+									@RequestParam("numTarjeta") long numTarjeta,
 									@RequestParam("titular") String titular,
 									@RequestParam("codigoS") int codigoS,
 									@RequestParam("direccionFa") String  direccionFa) {
@@ -57,7 +65,8 @@ public class EditarCliente {
 		Long id= cli.getIdCliente();
 		cli.setIdCliente(id);
 		cli.setNombreUsuario(username);
-		cli.setPassword(password);
+		//cli.setPassword(password);
+		cli.setPassword(bCryptPasswordEncoder.encode(password));
 		cli.setDireccionEnvio(direccionEnvio);
 		cli.setNombre(nombre);
 		cli.setApellidos(apellidos);

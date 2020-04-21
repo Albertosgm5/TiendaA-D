@@ -38,12 +38,12 @@ public class SignUpController {
 									@RequestParam("email") String email,
 									@RequestParam("fechaNa") Date fechaNa,
 									@RequestParam("banco") String banco,
-									@RequestParam("numTarjeta") int numTarjeta,
+									@RequestParam("numTarjeta") long numTarjeta,
 									@RequestParam("titular") String titular,
 									@RequestParam("codigoS") int codigoS,
 									@RequestParam("direccionFa") String  direccionFa){
 		Cliente cliente = userService.altaCliente(username, password, direccionEnvio, nombre, apellidos, email, fechaNa, banco, numTarjeta, titular, codigoS, direccionFa);
-
+		String pass = cliente.getPassword();
 		ModelAndView mav = new ModelAndView();
 		if (cliente == null) {
 			mav.addObject("exception", "Username or password are empty.");
@@ -54,7 +54,7 @@ public class SignUpController {
 		mav.addObject("account", cliente);
 		mav.setViewName("profile");
 		session.setAttribute("accountSession", username);
-		session.setAttribute("passSession", password);
+		session.setAttribute("passSession", pass);
 		return mav;
 	}
 }

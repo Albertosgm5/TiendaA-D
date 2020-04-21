@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 16-04-2020 a las 17:29:29
+-- Tiempo de generación: 21-04-2020 a las 19:39:00
 -- Versión del servidor: 10.1.37-MariaDB
 -- Versión de PHP: 7.2.12
 
@@ -39,9 +39,29 @@ CREATE TABLE `cliente` (
   `fechaNacimniento` datetime DEFAULT NULL,
   `nombre` varchar(255) DEFAULT NULL,
   `nombreUsuario` varchar(255) DEFAULT NULL,
-  `numTarjeta` int(11) DEFAULT NULL,
+  `numTarjeta` bigint(20) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL,
   `titular` varchar(255) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `cliente`
+--
+
+INSERT INTO `cliente` (`idCliente`, `apellidos`, `banco`, `codigoSeguridad`, `direccionEnvio`, `direccionFacturacion`, `email`, `fechaNacimniento`, `nombre`, `nombreUsuario`, `numTarjeta`, `password`, `titular`) VALUES
+(1, 'G M', 'Bankia', 111, 'Av.Europa', 'Av.Europa', 'alberto@gmail.com', '1992-06-05 00:00:00', 'Alberto', 'Albert', 1000999900001111, 'A5GM', 'AlbertGM'),
+(2, 'N', 'Bankia', 222, 'Av.America', 'Av.America', 'daniel@gmail.com', '1997-08-05 00:00:00', 'Daniel', 'Dani', 2200999900001211, 'dani', 'DaniN'),
+(3, 'F P', 'Bankia', 333, 'Av.FP', 'Av.FP', 'marcos@gmail.com', '1992-07-07 00:00:00', 'Marcos', 'Marcos', 3300999900001311, '12345', 'MarcosFP');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `cliente_rol`
+--
+
+CREATE TABLE `cliente_rol` (
+  `ID_ROL` bigint(20) NOT NULL,
+  `ID_CLIENTE` bigint(20) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -59,8 +79,8 @@ CREATE TABLE `hibernate_sequence` (
 --
 
 INSERT INTO `hibernate_sequence` (`next_val`) VALUES
-(2),
-(2);
+(1),
+(1);
 
 -- --------------------------------------------------------
 
@@ -95,87 +115,25 @@ CREATE TABLE `producto` (
 --
 
 INSERT INTO `producto` (`idProducto`, `nombreProducto`, `precio`, `stock`, `categoria`, `descripcion`) VALUES
-(5, 'u', 78, 7, 'u', 'u'),
-(1377, 'Camara', 53, 34, 'Fotografia', 'Esto es una camara'),
-(1378, 'Pantalla', 153, 3, 'Perifericos', 'Esto es una pantalla'),
-(1379, 'Teclado Gamer', 253, 4, 'Perifericos', 'Esto es un teclado'),
-(1380, 'Portatil hp v7', 353, 30, 'Portatiles', 'Este es un portatil'),
-(1381, 'Portatil Acer 45', 453, 31, 'Portatiles', 'Este es un portatil'),
-(1382, 'Xbox one + 6 juegos', 553, 14, 'Consolas', 'Esto es una consola'),
-(1383, 'Movil hn7', 653, 3, 'Smartphones', 'Esto es un telefono'),
-(1384, 'Movil Apple 78', 753, 4, 'Smartphones', 'Esto es un telefono'),
-(1385, 'Camara', 53, 34, 'Fotografia', 'Esto es una camara'),
-(1386, 'Pantalla', 153, 3, 'Perifericos', 'Esto es una pantalla'),
-(1387, 'Teclado Gamer', 253, 4, 'Perifericos', 'Esto es un teclado'),
-(1388, 'Portatil hp v7', 353, 30, 'Portatiles', 'Este es un portatil'),
-(1389, 'Portatil Acer 45', 453, 31, 'Portatiles', 'Este es un portatil'),
-(1390, 'Xbox one + 6 juegos', 553, 14, 'Consolas', 'Esto es una consola'),
-(1391, 'Movil hn7', 653, 3, 'Smartphones', 'Esto es un telefono'),
-(1392, 'Movil Apple 78', 753, 4, 'Smartphones', 'Esto es un telefono'),
-(1393, 'Camara', 53, 34, 'Fotografia', 'Esto es una camara'),
-(1394, 'Pantalla', 153, 3, 'Perifericos', 'Esto es una pantalla'),
-(1395, 'Teclado Gamer', 253, 4, 'Perifericos', 'Esto es un teclado'),
-(1396, 'Portatil hp v7', 353, 30, 'Portatiles', 'Este es un portatil'),
-(1397, 'Portatil Acer 45', 453, 31, 'Portatiles', 'Este es un portatil'),
-(1398, 'Xbox one + 6 juegos', 553, 14, 'Consolas', 'Esto es una consola'),
-(1399, 'Movil hn7', 653, 3, 'Smartphones', 'Esto es un telefono'),
-(1400, 'Movil Apple 78', 753, 4, 'Smartphones', 'Esto es un telefono'),
-(1401, 'Camara', 53, 34, 'Fotografia', 'Esto es una camara'),
-(1402, 'Pantalla', 153, 3, 'Perifericos', 'Esto es una pantalla'),
-(1403, 'Teclado Gamer', 253, 4, 'Perifericos', 'Esto es un teclado'),
-(1404, 'Portatil hp v7', 353, 30, 'Portatiles', 'Este es un portatil'),
-(1405, 'Portatil Acer 45', 453, 31, 'Portatiles', 'Este es un portatil'),
-(1406, 'Xbox one + 6 juegos', 553, 14, 'Consolas', 'Esto es una consola'),
-(1407, 'Movil hn7', 653, 3, 'Smartphones', 'Esto es un telefono'),
-(1408, 'Movil Apple 78', 753, 4, 'Smartphones', 'Esto es un telefono'),
-(1409, 'Camara', 53, 34, 'Fotografia', 'Esto es una camara'),
-(1410, 'Pantalla', 153, 3, 'Perifericos', 'Esto es una pantalla'),
-(1411, 'Teclado Gamer', 253, 4, 'Perifericos', 'Esto es un teclado'),
-(1412, 'Portatil hp v7', 353, 30, 'Portatiles', 'Este es un portatil'),
-(1413, 'Portatil Acer 45', 453, 31, 'Portatiles', 'Este es un portatil'),
-(1414, 'Xbox one + 6 juegos', 553, 14, 'Consolas', 'Esto es una consola'),
-(1415, 'Movil hn7', 653, 3, 'Smartphones', 'Esto es un telefono'),
-(1416, 'Movil Apple 78', 753, 4, 'Smartphones', 'Esto es un telefono'),
-(1417, 'Camara', 53, 34, 'Fotografia', 'Esto es una camara'),
-(1418, 'Pantalla', 153, 3, 'Perifericos', 'Esto es una pantalla'),
-(1419, 'Teclado Gamer', 253, 4, 'Perifericos', 'Esto es un teclado'),
-(1420, 'Portatil hp v7', 353, 30, 'Portatiles', 'Este es un portatil'),
-(1421, 'Portatil Acer 45', 453, 31, 'Portatiles', 'Este es un portatil'),
-(1422, 'Xbox one + 6 juegos', 553, 14, 'Consolas', 'Esto es una consola'),
-(1423, 'Movil hn7', 653, 3, 'Smartphones', 'Esto es un telefono'),
-(1424, 'Movil Apple 78', 753, 4, 'Smartphones', 'Esto es un telefono'),
-(1425, 'Camara', 53, 34, 'Fotografia', 'Esto es una camara'),
-(1426, 'Pantalla', 153, 3, 'Perifericos', 'Esto es una pantalla'),
-(1427, 'Teclado Gamer', 253, 4, 'Perifericos', 'Esto es un teclado'),
-(1428, 'Portatil hp v7', 353, 30, 'Portatiles', 'Este es un portatil'),
-(1429, 'Portatil Acer 45', 453, 31, 'Portatiles', 'Este es un portatil'),
-(1430, 'Xbox one + 6 juegos', 553, 14, 'Consolas', 'Esto es una consola'),
-(1431, 'Movil hn7', 653, 3, 'Smartphones', 'Esto es un telefono'),
-(1432, 'Movil Apple 78', 753, 4, 'Smartphones', 'Esto es un telefono'),
-(1433, 'Camara', 53, 34, 'Fotografia', 'Esto es una camara'),
-(1434, 'Pantalla', 153, 3, 'Perifericos', 'Esto es una pantalla'),
-(1435, 'Teclado Gamer', 253, 4, 'Perifericos', 'Esto es un teclado'),
-(1436, 'Portatil hp v7', 353, 30, 'Portatiles', 'Este es un portatil'),
-(1437, 'Portatil Acer 45', 453, 31, 'Portatiles', 'Este es un portatil'),
-(1438, 'Xbox one + 6 juegos', 553, 14, 'Consolas', 'Esto es una consola'),
-(1439, 'Movil hn7', 653, 3, 'Smartphones', 'Esto es un telefono'),
-(1440, 'Movil Apple 78', 753, 4, 'Smartphones', 'Esto es un telefono'),
-(1441, 'Camara', 53, 34, 'Fotografia', 'Esto es una camara'),
-(1442, 'Pantalla', 153, 3, 'Perifericos', 'Esto es una pantalla'),
-(1443, 'Teclado Gamer', 253, 4, 'Perifericos', 'Esto es un teclado'),
-(1444, 'Portatil hp v7', 353, 30, 'Portatiles', 'Este es un portatil'),
-(1445, 'Portatil Acer 45', 453, 31, 'Portatiles', 'Este es un portatil'),
-(1446, 'Xbox one + 6 juegos', 553, 14, 'Consolas', 'Esto es una consola'),
-(1447, 'Movil hn7', 653, 3, 'Smartphones', 'Esto es un telefono'),
-(1448, 'Movil Apple 78', 753, 4, 'Smartphones', 'Esto es un telefono'),
-(1449, 'Camara', 53, 34, 'Fotografia', 'Esto es una camara'),
-(1450, 'Pantalla', 153, 3, 'Perifericos', 'Esto es una pantalla'),
-(1451, 'Teclado Gamer', 253, 4, 'Perifericos', 'Esto es un teclado'),
-(1452, 'Portatil hp v7', 353, 30, 'Portatiles', 'Este es un portatil'),
-(1453, 'Portatil Acer 45', 453, 31, 'Portatiles', 'Este es un portatil'),
-(1454, 'Xbox one + 6 juegos', 553, 14, 'Consolas', 'Esto es una consola'),
-(1455, 'Movil hn7', 653, 3, 'Smartphones', 'Esto es un telefono'),
-(1456, 'Movil Apple 78', 753, 4, 'Smartphones', 'Esto es un telefono');
+(1, 'Camara', 53, 34, 'Fotografia', 'Esto es una camara'),
+(2, 'Pantalla', 153, 3, 'Perifericos', 'Esto es una pantalla'),
+(3, 'Teclado Gamer', 253, 4, 'Perifericos', 'Esto es un teclado'),
+(4, 'Portatil hp v7', 353, 30, 'Portatiles', 'Este es un portatil'),
+(5, 'Portatil Acer 45', 453, 31, 'Portatiles', 'Este es un portatil'),
+(6, 'Xbox one + 6 juegos', 553, 14, 'Consolas', 'Esto es una consola'),
+(7, 'Movil hn7', 653, 3, 'Smartphones', 'Esto es un telefono'),
+(8, 'Movil Apple 78', 753, 4, 'Smartphones', 'Esto es un telefono');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `rol`
+--
+
+CREATE TABLE `rol` (
+  `idRol` bigint(20) NOT NULL,
+  `nombre_rol` varchar(255) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -201,6 +159,13 @@ ALTER TABLE `cliente`
   ADD PRIMARY KEY (`idCliente`);
 
 --
+-- Indices de la tabla `cliente_rol`
+--
+ALTER TABLE `cliente_rol`
+  ADD PRIMARY KEY (`ID_ROL`,`ID_CLIENTE`),
+  ADD KEY `FK4jcnldwcc7ryao7yxy8xtm1n2` (`ID_CLIENTE`);
+
+--
 -- Indices de la tabla `lineadc`
 --
 ALTER TABLE `lineadc`
@@ -215,6 +180,12 @@ ALTER TABLE `producto`
   ADD PRIMARY KEY (`idProducto`);
 
 --
+-- Indices de la tabla `rol`
+--
+ALTER TABLE `rol`
+  ADD PRIMARY KEY (`idRol`);
+
+--
 -- Indices de la tabla `ventas`
 --
 ALTER TABLE `ventas`
@@ -223,6 +194,12 @@ ALTER TABLE `ventas`
 --
 -- AUTO_INCREMENT de las tablas volcadas
 --
+
+--
+-- AUTO_INCREMENT de la tabla `cliente`
+--
+ALTER TABLE `cliente`
+  MODIFY `idCliente` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `lineadc`
@@ -234,7 +211,13 @@ ALTER TABLE `lineadc`
 -- AUTO_INCREMENT de la tabla `producto`
 --
 ALTER TABLE `producto`
-  MODIFY `idProducto` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1457;
+  MODIFY `idProducto` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT de la tabla `rol`
+--
+ALTER TABLE `rol`
+  MODIFY `idRol` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `ventas`
