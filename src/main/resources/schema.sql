@@ -9,7 +9,7 @@ DROP TABLE IF EXISTS `cliente`;
 
 CREATE TABLE `cliente` (
   `idCliente` bigint(20) NOT NULL AUTO_INCREMENT,
-  `direccion` varchar(255) NOT NULL,
+  `direccionEnvio` varchar(255) NOT NULL,
   `nombreUsuario` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   PRIMARY KEY (`idCliente`)

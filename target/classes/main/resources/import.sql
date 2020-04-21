@@ -1,8 +1,8 @@
 
-insert into Cliente (direccion, nombreUsuario, password) values ('Av. dir 5','Marcosin', 'UUHH5');
-insert into Cliente (direccion, nombreUsuario, password) values ('Av. dir 15','sinpa', 'UUHH5');
-insert into Cliente (direccion, nombreUsuario, password) values ('Av. dir 25', 'Fawler', 'UUHH5');
-insert into Cliente (direccion, nombreUsuario, password) values ('Av. dir 1', 'Wozniak', 'UUHH5');
+insert into Cliente (direccionEnvio, nombreUsuario, password) values ('Av. dir 5','Marcosin', 'UUHH5');
+insert into Cliente (direccionEnvio, nombreUsuario, password) values ('Av. dir 15','sinpa', 'UUHH5');
+insert into Cliente (direccionEnvio, nombreUsuario, password) values ('Av. dir 25', 'Fawler', 'UUHH5');
+insert into Cliente (direccionEnvio, nombreUsuario, password) values ('Av. dir 1', 'Wozniak', 'UUHH5');
 
 insert into Producto(nombreProducto, precio, stock, categoria, descripcion) values ('Camara', 53, 34,'Fotografia','Esto es una camara');
 insert into Producto(nombreProducto, precio, stock, categoria, descripcion) values ('Pantalla', 153, 3,'Perifericos','Esto es una pantalla');
