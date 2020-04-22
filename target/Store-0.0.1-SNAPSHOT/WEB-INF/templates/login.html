@@ -6,7 +6,8 @@
   <body style="background-color:#117733;">
     <h1>Login page</h1>
 	<p th:if="${exception}" class="error">Wrong user or password</p>
-    <form th:action="@{/login.html}" method="post">
+	 <!-- <form th:action="@{/login.html}" method="post">-->
+    <form th:action="@{/login}" method="post">
       <label for="username">Username</label>:
       <input type="text" id="username" name="username"/> <br/>
       <label for="password">Password</label>:

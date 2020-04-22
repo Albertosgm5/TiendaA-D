@@ -3,6 +3,13 @@ insert into Cliente (nombre, apellidos, fechaNacimniento, email, banco, titular,
 insert into Cliente (nombre, apellidos, fechaNacimniento, email, banco, titular, codigoSeguridad, numTarjeta, direccionEnvio, direccionFacturacion, nombreUsuario, password) values ('Daniel','N','1997-08-05','daniel@gmail.com','Bankia','DaniN',222,2200999900001211,'Av.America','Av.America','Dani', 'dani');
 insert into Cliente (nombre, apellidos, fechaNacimniento, email, banco, titular, codigoSeguridad, numTarjeta, direccionEnvio, direccionFacturacion, nombreUsuario, password) values ('Marcos','F P','1992-07-07','marcos@gmail.com','Bankia','MarcosFP',333,3300999900001311,'Av.FP','Av.FP','Marcos', '12345');
 
+insert into Rol (idrol, nombre_rol ) values (1, 'ROL_USER');
+insert into Rol (idrol, nombre_rol ) values (2,'ROL_ADMIN');
+
+insert into Cliente_rol (ID_ROL, ID_CLIENTE ) values (1,1);
+insert into Cliente_rol (ID_ROL, ID_CLIENTE ) values (1,2);
+insert into Cliente_rol (ID_ROL, ID_CLIENTE ) values (2,1);
+
 insert into Producto(nombreProducto, precio, stock, categoria, descripcion) values ('Camara', 53, 34,'Fotografia','Esto es una camara');
 insert into Producto(nombreProducto, precio, stock, categoria, descripcion) values ('Pantalla', 153, 3,'Perifericos','Esto es una pantalla');
 insert into Producto(nombreProducto, precio, stock, categoria, descripcion) values ('Teclado Gamer', 253, 4,'Perifericos','Esto es un teclado');

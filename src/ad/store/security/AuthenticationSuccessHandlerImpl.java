@@ -23,7 +23,7 @@ import ad.store.service.UserService;
 public class AuthenticationSuccessHandlerImpl implements AuthenticationSuccessHandler{
 
 	@Autowired 
-	UserService userService;
+	private UserService userService;
 	
 	private RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
 	

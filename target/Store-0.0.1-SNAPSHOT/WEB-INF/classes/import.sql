@@ -1,8 +1,7 @@
 
-insert into Cliente (direccion, nombreUsuario, password) values ('Av. dir 5','Marcosin', 'UUHH5');
-insert into Cliente (direccion, nombreUsuario, password) values ('Av. dir 15','sinpa', 'UUHH5');
-insert into Cliente (direccion, nombreUsuario, password) values ('Av. dir 25', 'Fawler', 'UUHH5');
-insert into Cliente (direccion, nombreUsuario, password) values ('Av. dir 1', 'Wozniak', 'UUHH5');
+insert into Cliente (nombre, apellidos, fechaNacimniento, email, banco, titular, codigoSeguridad, numTarjeta, direccionEnvio, direccionFacturacion, nombreUsuario, password) values ('Alberto','G M','1992-06-05','alberto@gmail.com','Bankia','AlbertGM',111,1000999900001111,'Av.Europa','Av.Europa','Albert', 'A5GM');
+insert into Cliente (nombre, apellidos, fechaNacimniento, email, banco, titular, codigoSeguridad, numTarjeta, direccionEnvio, direccionFacturacion, nombreUsuario, password) values ('Daniel','N','1997-08-05','daniel@gmail.com','Bankia','DaniN',222,2200999900001211,'Av.America','Av.America','Dani', 'dani');
+insert into Cliente (nombre, apellidos, fechaNacimniento, email, banco, titular, codigoSeguridad, numTarjeta, direccionEnvio, direccionFacturacion, nombreUsuario, password) values ('Marcos','F P','1992-07-07','marcos@gmail.com','Bankia','MarcosFP',333,3300999900001311,'Av.FP','Av.FP','Marcos', '12345');
 
 insert into Producto(nombreProducto, precio, stock, categoria, descripcion) values ('Camara', 53, 34,'Fotografia','Esto es una camara');
 insert into Producto(nombreProducto, precio, stock, categoria, descripcion) values ('Pantalla', 153, 3,'Perifericos','Esto es una pantalla');
