@@ -28,8 +28,13 @@ public class ProductoServiceImpl implements ProductoService {
 	}
 
 	@Override
-	public Producto obtenerProducto(long idModulo) {
-		return productoDao.find(idModulo);
+	public Producto obtenerProducto(long idProducto) {
+		return productoDao.find(idProducto);
+	}
+	
+	@Override
+	public Producto obtenerProductoPorNombre(String nombreProducto) {
+		return productoDao.obtenerProductoPorNombre(nombreProducto);
 	}
 
 	@Override
@@ -42,6 +47,7 @@ public class ProductoServiceImpl implements ProductoService {
 		producto.setDescripcion(descripcion);;
 		return productoDao.create(producto);
 	}
+	
 
 	@Override
 	public Producto editarProducto(Producto producto) {

@@ -1,6 +1,7 @@
 package ad.store.controller;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -22,7 +23,7 @@ import ad.store.service.ProductoService;
 @Controller
 @RequestMapping(value = "/producto")
 public class ProductoController {
-
+	private String name;
 	@Autowired
 	ProductoService productoService;
 	
@@ -71,6 +72,50 @@ public class ProductoController {
 
 		session.setAttribute("productoSession", nombre);
 		 response.sendRedirect("/A&DStore/");
+	}
+	@RequestMapping(method = RequestMethod.GET,value = "editar_Producto" )
+	public String updateView() {
+		return "editar_Producto";
+	}
+	@RequestMapping(method = RequestMethod.POST,value = "editar_Producto")
+	public ModelAndView handleEdit(	HttpServletRequest request,HttpServletResponse response,@RequestParam("nombreProducto") String nombre, 
+			@RequestParam("precio") float precio,
+			@RequestParam("stock") int stock,
+			@RequestParam("categoria") String categoria,
+			@RequestParam("descripcion") String descripcion) {
+		
+		HttpSession session = request.getSession();
+		
+		name=(String) session.getAttribute("accountSession");
+		Producto pro = productoService.obtenerProductoPorNombre(name);
+		Long id= pro.getIdProducto();
+		pro.setIdProducto(id);
+		pro.setNombreProducto(nombre);
+		pro.setPrecio(precio);
+		pro.setStock(stock);
+		pro.setCategoria(categoria);
+		pro.setDescripcion(descripcion);
+		
+		Producto producto = productoService.editarProducto(pro);
+
+		ModelAndView mav = new ModelAndView();
+		session.setAttribute("productoSession", pro.getNombreProducto());
+		mav.addObject("account", producto);
+		mav.setViewName("profile");
+		return mav;
+	}
+	@RequestMapping(value = "/BorrarP")
+	public void handleDelete(HttpServletRequest request,HttpServletResponse response) throws IOException {
+		HttpSession sesion = request.getSession();
+		name=(String) sesion.getAttribute("productoSession");
+		Producto pro = productoService.obtenerProductoPorNombre(name);
+		Long id= pro.getIdProducto();
+		productoService.eliminarProducto(id);
+	    sesion.invalidate();
+
+			response.sendRedirect("/A&DStore/");
+
+
 	}
 	
 }

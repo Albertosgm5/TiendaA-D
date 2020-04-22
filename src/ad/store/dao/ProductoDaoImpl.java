@@ -28,6 +28,19 @@ public class ProductoDaoImpl extends GenericDaoImpl<Producto> implements Product
         }
 		return null;
 	}
+	@Override
+	public Producto obtenerProductoPorNombre(String nombreProducto) {
+		Query query = this.em
+                .createQuery("FROM Producto u where u.nombreProducto",Producto.class);
+        query.setParameter("u.nombreProducto",nombreProducto);
+        Producto producto = (Producto) query.getSingleResult();
+        
+        
+        if (producto != null ) {
+            return producto;
+        }
+		return null;
+	}
 
 	@Override
 	public List<Producto> listarProductos() {
@@ -84,5 +97,7 @@ public class ProductoDaoImpl extends GenericDaoImpl<Producto> implements Product
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	
 
 }

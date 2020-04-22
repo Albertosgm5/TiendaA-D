@@ -14,6 +14,8 @@ public interface ProductoDao extends GenericDao<Producto>{
 	
 	public Producto obtenerProducto (long idProducto);
 	
+	public Producto obtenerProductoPorNombre(String nombreProducto);
+	
 	public Producto editarProducto(Producto producto);
 	
 	public void eliminarProducto(long idProducto);
