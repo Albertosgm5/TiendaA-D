@@ -31,8 +31,8 @@ public class ProductoDaoImpl extends GenericDaoImpl<Producto> implements Product
 	@Override
 	public Producto obtenerProductoPorNombre(String nombreProducto) {
 		Query query = this.em
-                .createQuery("FROM Producto u where u.nombreProducto",Producto.class);
-        query.setParameter("u.nombreProducto",nombreProducto);
+                .createQuery("FROM Producto u where u.nombreProducto = :nombreProducto",Producto.class);
+        query.setParameter("nombreProducto",nombreProducto);
         Producto producto = (Producto) query.getSingleResult();
         
         
