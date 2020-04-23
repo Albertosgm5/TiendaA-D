@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import ad.store.dao.UserDao;
 import ad.store.entity.Cliente;
+import ad.store.entity.Rol;
 
 
 @Transactional
@@ -29,9 +30,9 @@ public class CustomUserDetailsService implements  UserDetailsService {
 
 		Cliente cliente = userDao.findByUsername(userName);
 		Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
-		/*for (Rol rol : cliente.getRoles()) {
+		for (Rol rol : cliente.getRoles()) {
 			grantedAuthorities.add(new SimpleGrantedAuthority(rol.getNombreRol()));
-		}*///hacer una tabla de roles y enlazar con el pojo cliente
+		}
 
 		return new org.springframework.security.core.userdetails.User(cliente.getNombreUsuario(), cliente.getPassword(),
 				grantedAuthorities);

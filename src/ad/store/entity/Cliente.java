@@ -1,14 +1,22 @@
 package ad.store.entity;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+
 
 @Entity
 @Table(name = "cliente")
@@ -41,7 +49,11 @@ public class Cliente {
 	private int codigoS;
 	@Column(name = "direccionFacturacion")
 	private String direccionFa;
-
+	@ManyToMany(fetch = FetchType.EAGER,cascade=CascadeType.MERGE)
+	@JoinTable(name = "liente_rol", 
+	joinColumns = @JoinColumn(name = "ID_CLIENTE"),
+	inverseJoinColumns = @JoinColumn(name = "ID_ROL"))
+	private Set<Rol> roles = new HashSet<>();
 	
 //	private List<Venta> ventas;
 
@@ -158,6 +170,14 @@ public class Cliente {
 	}
 	public void setDireccionFa(String direccionFa) {
 		this.direccionFa = direccionFa;
+	}
+	
+	
+	public Set<Rol> getRoles() {
+		return roles;
+	}
+	public void setRoles(Set<Rol> roles) {
+		this.roles = roles;
 	}
 	@Override
 	public String toString() {

@@ -17,7 +17,6 @@ import ad.store.service.ProductoService;
 import ad.store.service.UserService;
 
 @Controller
-@RequestMapping(value = "/login")
 public class LoginController {
 	@Autowired
 	private UserService userService;
