@@ -32,7 +32,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	                        "/signup",
 	                        "/producto/**"
 	                        ).permitAll()
-	                .antMatchers("/admin/**").hasAuthority("admin")
+	                .antMatchers("/**").hasAuthority("admin")
 	                .anyRequest().authenticated()
 	            .and()
 	            .formLogin()
