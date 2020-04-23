@@ -43,6 +43,20 @@ public class ProductoController {
 	public ModelAndView listarProductos(@RequestParam("producto") String nombreProducto){
 
 		ModelAndView mav = new ModelAndView();
+		//var xhr = new XMLHttpRequest();
+		/*xhr.open('PUT','myservice/user/{id}');
+		 * xhr.setRequestHeader();
+		 * */
+		List<Producto> lProducto = productoService.listarProductosPorNombre(nombreProducto);
+
+		mav.addObject("productos", lProducto);
+		mav.setViewName("listarproductos");
+		return mav;
+	}
+	@RequestMapping(method = RequestMethod.POST, value = "/listAjax")
+	public ModelAndView listarProductosAjax(@RequestParam("producto") String nombreProducto){
+        
+		ModelAndView mav = new ModelAndView();
 
 		List<Producto> lProducto = productoService.listarProductosPorNombre(nombreProducto);
 
