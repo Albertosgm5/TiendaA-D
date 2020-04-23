@@ -2,28 +2,31 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title  th:text="${session.accountSession}" th:unless="${session ==null}"> Profile</title>
+<title th:text="${session.accountSession}" th:unless="${session ==null}">
+	Profile</title>
 
 </head>
-<body style="background-color:#117733;">
-
-<h1>Profile</h1>
-<p th:text="${session.accountSession}" > Profile</p>
-
+<body style="background-color: #117733;">
+	<form th:action="@{/producto/list}" method="post">
+		<input type="text" id="producto" name="producto" /> <input
+			type="submit" value="Busqueda" />
+	</form>
+	<h1>Profile</h1>
+	<p th:text="${session.accountSession}">Profile</p>
 	<table>
 		<tr>
-			<td> Usuario:</td>
-			<td> Password:</td>
-			<td> Direccion de envio:</td>
-			<td> Nombre:</td>
-			<td> Apellidos:</td>
-			<td> Email:</td>
-			<td> Fecha de nacimiento:</td>
-			<td> Banco:</td>
-			<td> Numero de tarjeta:</td>
-			<td> Titular:</td>
-			<td> Codigo de seguridad:</td>
-			<td> Direccion de facturacion:</td>
+			<td>Usuario:</td>
+			<td>Password:</td>
+			<td>Direccion de envio:</td>
+			<td>Nombre:</td>
+			<td>Apellidos:</td>
+			<td>Email:</td>
+			<td>Fecha de nacimiento:</td>
+			<td>Banco:</td>
+			<td>Numero de tarjeta:</td>
+			<td>Titular:</td>
+			<td>Codigo de seguridad:</td>
+			<td>Direccion de facturacion:</td>
 		</tr>
 		<tr>
 			<td th:text="${account.nombreUsuario}"></td>
