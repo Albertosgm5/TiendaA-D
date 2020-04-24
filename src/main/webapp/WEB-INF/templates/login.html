@@ -67,6 +67,9 @@
 						<div class="form-group col-md-8"></div>
 					</div>
 				</form>
+				<div th:if="${param.error}" class= "alert-danger" role="alert">
+					Campos invalidos
+				</div>
 			</div>
 		</div>
 	</div>
