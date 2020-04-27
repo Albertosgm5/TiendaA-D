@@ -3,6 +3,7 @@ package ad.store.service;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,10 +12,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import ad.store.dao.ProductoDao;
+import ad.store.dao.RolRepository;
 import ad.store.entity.Cliente;
 import ad.store.entity.Producto;
 import ad.store.entity.Rol;
-import ad.store.entity.RolRepository;
 import ad.store.dao.ProductoDao;
 import ad.store.dao.UserDao;
 
@@ -29,6 +30,7 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	private UserDao userDao;
 
+	@Autowired
 	private RolRepository rolRepository;
 	
 	@Autowired
@@ -57,7 +59,7 @@ public class UserServiceImpl implements UserService {
 		cliente.setCodigoS(codigoS);
 		cliente.setDireccionFa(direccionFa);
 		Set<Rol> roles  =new HashSet<Rol>();
-		Rol rol = new Rol(1,"ROL_USER");
+		Rol rol = rolRepository.getOne(1);
 		roles.add(rol);
 		cliente.setRoles(roles);
 		return userDao.create(cliente);

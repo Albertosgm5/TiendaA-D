@@ -13,30 +13,23 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Rol")
+@Table(name = "rol")
 public class Rol {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long idRol;
-	@Column(name = "nombre_rol")
+	@Column(name = "idRol")
+	private int idRol;
+	@Column(name = "nombreRol")
 	private String nombreRol;
 	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "CLIENTE_ROL", joinColumns = @JoinColumn(name = "ID_ROL"), inverseJoinColumns = @JoinColumn(name = "ID_CLIENTE"))
+	@JoinTable(name = "cliente_rol", joinColumns = @JoinColumn(name = "idRol"), inverseJoinColumns = @JoinColumn(name = "idCliente"))
     private Set<Cliente> clientes;
-    public Rol() {
-    	
-    }
-	public Rol(long idRol, String nombreRol){
-		this.idRol = idRol;
-		this.nombreRol = nombreRol;
-	}
-	
 	
 	public long getIdRol() {
 		return idRol;
 	}
-	public void setIdRol(long idRol) {
+	public void setIdRol(int idRol) {
 		this.idRol = idRol;
 	}
 	public String getNombreRol() {

@@ -59,16 +59,16 @@ CREATE TABLE `lineadc` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 CREATE TABLE `rol` (
-  `id_rol` bigint NOT NULL AUTO_INCREMENT,
-  `nombre_rol` varchar(255) NOT NULL,
-  PRIMARY KEY (`id_rol`)
+  `idRol` int NOT NULL AUTO_INCREMENT,
+  `nombreRol` varchar(255) NOT NULL,
+  PRIMARY KEY (`idRol`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 CREATE TABLE `cliente_rol` (
-  `id_cliente` bigint NOT NULL,
-  `id_rol` bigint NOT NULL,
-  PRIMARY KEY (`id_cliente`,`id_rol`),
-  KEY `fk_rolrol_idx` (`id_rol`),
-  CONSTRAINT `fk_clienterol` FOREIGN KEY (`id_cliente`) REFERENCES `cliente` (`idCliente`) ON DELETE CASCADE,
-  CONSTRAINT `fk_rolrol` FOREIGN KEY (`id_rol`) REFERENCES `rol` (`id_rol`)
+  `idCliente` bigint NOT NULL,
+  `idRol` bigint NOT NULL,
+  PRIMARY KEY (`idCliente`,`idRol`),
+  KEY `fk_rolrol_idx` (`idRol`),
+  CONSTRAINT `fk_clienterol` FOREIGN KEY (`idCliente`) REFERENCES `cliente` (`idCliente`) ON DELETE CASCADE,
+  CONSTRAINT `fk_rolrol` FOREIGN KEY (`idRol`) REFERENCES `rol` (`idRol`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;

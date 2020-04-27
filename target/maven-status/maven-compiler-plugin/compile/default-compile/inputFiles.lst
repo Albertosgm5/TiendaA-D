@@ -20,6 +20,7 @@ C:\Users\Dani\Desktop\Spring\TiendaA-D\src\ad\store\config\AppInitializer.java
 C:\Users\Dani\Desktop\Spring\TiendaA-D\src\ad\store\config\WebMvcConfig.java
 C:\Users\Dani\Desktop\Spring\TiendaA-D\src\ad\store\controller\SignUpController.java
 C:\Users\Dani\Desktop\Spring\TiendaA-D\src\ad\store\controller\ClienteController.java
+C:\Users\Dani\Desktop\Spring\TiendaA-D\src\ad\store\dao\RolRepository.java
 C:\Users\Dani\Desktop\Spring\TiendaA-D\src\ad\store\security\LoggingAccessDeniedHandler.java
 C:\Users\Dani\Desktop\Spring\TiendaA-D\src\ad\store\security\AuthenticationSuccessHandlerImpl.java
 C:\Users\Dani\Desktop\Spring\TiendaA-D\src\ad\store\dao\ProductoDao.java
