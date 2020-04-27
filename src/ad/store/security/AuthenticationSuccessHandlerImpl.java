@@ -56,7 +56,7 @@ public class AuthenticationSuccessHandlerImpl implements AuthenticationSuccessHa
 		String targetUrl;
 		if (isUser) {
 			session.setAttribute("rol", "user");
-			targetUrl = "/index";
+			targetUrl = "/";
 		} else if (isAdmin) {
 			session.setAttribute("rol", "admin");
 			targetUrl = "/index";
