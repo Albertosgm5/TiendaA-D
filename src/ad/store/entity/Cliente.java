@@ -50,7 +50,7 @@ public class Cliente {
 	@Column(name = "direccionFacturacion")
 	private String direccionFa;
 	@ManyToMany(fetch = FetchType.EAGER,cascade=CascadeType.MERGE)
-	@JoinTable(name = "liente_rol", 
+	@JoinTable(name = "cliente_rol", 
 	joinColumns = @JoinColumn(name = "ID_CLIENTE"),
 	inverseJoinColumns = @JoinColumn(name = "ID_ROL"))
 	private Set<Rol> roles = new HashSet<>();

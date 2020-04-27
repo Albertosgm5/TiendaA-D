@@ -24,7 +24,9 @@ public class Rol {
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "CLIENTE_ROL", joinColumns = @JoinColumn(name = "ID_ROL"), inverseJoinColumns = @JoinColumn(name = "ID_CLIENTE"))
     private Set<Cliente> clientes;
-    
+    public Rol() {
+    	
+    }
 	public Rol(long idRol, String nombreRol){
 		this.idRol = idRol;
 		this.nombreRol = nombreRol;

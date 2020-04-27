@@ -57,7 +57,7 @@ public class UserServiceImpl implements UserService {
 		cliente.setCodigoS(codigoS);
 		cliente.setDireccionFa(direccionFa);
 		Set<Rol> roles  =new HashSet<Rol>();
-		Rol rol = new Rol(2,"ROL_ADMIN");
+		Rol rol = new Rol(1,"ROL_USER");
 		roles.add(rol);
 		cliente.setRoles(roles);
 		return userDao.create(cliente);
