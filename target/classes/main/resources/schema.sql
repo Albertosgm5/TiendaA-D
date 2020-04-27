@@ -2,12 +2,12 @@ drop database if exists tienda;
 create database tienda;
 use tienda;
 
-DROP TABLE IF EXISTS `lineadc`;
-DROP TABLE IF EXISTS `ventas`;
+
 DROP TABLE IF EXISTS `producto`;
 DROP TABLE IF EXISTS `cliente`;
 DROP TABLE IF EXISTS `rol`;
 DROP TABLE IF EXISTS `cliente_rol`;
+DROP TABLE IF EXISTS `compra`;
 
 CREATE TABLE `cliente` (
   `idCliente` bigint(20) NOT NULL AUTO_INCREMENT,
@@ -36,27 +36,18 @@ CREATE TABLE `producto` (
   PRIMARY KEY (`idProducto`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-CREATE TABLE `ventas` (
-  `idVenta` bigint(20) NOT NULL AUTO_INCREMENT,
-  `fechaVenta` date NOT NULL,
-  `descuento` float NOT NULL,
-  `idCliente` bigint(20) DEFAULT NULL,
-  PRIMARY KEY (`idVenta`),
-  KEY `fk_idCliente` (`idCliente`),
-  CONSTRAINT `fk_idCliente` FOREIGN KEY (`idCliente`) REFERENCES `cliente` (`idCliente`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-CREATE TABLE `lineadc` (
-  `idLineaCompra` bigint(20) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `compra` (
+  `idCompra` bigint(20) NOT NULL AUTO_INCREMENT,
+  `fecha` datetime NOT NULL,
+  `unidades` int(11) NOT NULL,
   `idProducto` bigint(20) NOT NULL,
-  `idVenta` bigint(20) NOT NULL,
-  `precioProducto` float NOT NULL,
-  PRIMARY KEY (`idLineaCompra`),
-  KEY `idProducto` (`idProducto`),
-  KEY `idVenta` (`idVenta`),
-  CONSTRAINT `idProducto` FOREIGN KEY (`idProducto`) REFERENCES `producto` (`idProducto`),
-  CONSTRAINT `idVenta` FOREIGN KEY (`idVenta`) REFERENCES `ventas` (`idVenta`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `idCliente` bigint(20) NOT NULL,
+  PRIMARY KEY (`idCompra`),
+CONSTRAINT `fk_cliente` FOREIGN KEY (`idCliente`) REFERENCES `cliente` (`idCliente`),
+CONSTRAINT `fk_producto` FOREIGN KEY (`idProducto`) REFERENCES `producto` (`idProducto`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
 
 CREATE TABLE `rol` (
   `idRol` int NOT NULL AUTO_INCREMENT,

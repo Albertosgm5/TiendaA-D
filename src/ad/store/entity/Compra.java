@@ -2,11 +2,16 @@ package ad.store.entity;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -16,23 +21,27 @@ public class Compra {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "idCompra")
 	private long idCompra;
-	@Column(name = "idCliente")
-	private long idCliente;
-	@Column(name = "idProducto")
-	private long idProducto;
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "idCliente")
+	private Cliente cliente;
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "idProducto")
+	private Producto Producto;
 	@Column(name = "unidades")
 	private int unidades;
 	@Column(name = "fecha")
 	private Date fecha;
 	
-	public Compra(long idCompra, long idCliente, long idProducto, int unidades, Date fecha) {
+	
+	public Compra(long idCompra, Cliente cliente, Producto producto, int unidades, Date fecha) {
 		super();
 		this.idCompra = idCompra;
-		this.idCliente = idCliente;
-		this.idProducto = idProducto;
+		this.cliente = cliente;
+		Producto = producto;
 		this.unidades = unidades;
-		this.fecha=fecha;
+		this.fecha = fecha;
 	}
+
 	public Compra() {
 	}
 
@@ -44,20 +53,20 @@ public class Compra {
 		this.idCompra = idCompra;
 	}
 
-	public long getIdCliente() {
-		return idCliente;
+	public Cliente getCliente() {
+		return cliente;
 	}
 
-	public void setIdCliente(long idCliente) {
-		this.idCliente = idCliente;
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
 	}
 
-	public long getIdProducto() {
-		return idProducto;
+	public Producto getProducto() {
+		return Producto;
 	}
 
-	public void setIdProducto(long idProducto) {
-		this.idProducto = idProducto;
+	public void setProducto(Producto producto) {
+		Producto = producto;
 	}
 
 	public int getUnidades() {
@@ -67,6 +76,7 @@ public class Compra {
 	public void setUnidades(int unidades) {
 		this.unidades = unidades;
 	}
+
 	public Date getFecha() {
 		return fecha;
 	}
@@ -77,11 +87,8 @@ public class Compra {
 
 	@Override
 	public String toString() {
-		return "Compra [idCompra=" + idCompra + ", idCliente=" + idCliente + ", idProducto=" + idProducto
-				+ ", unidades=" + unidades + ", fecha=" + fecha + "]";
+		return "Compra [idCompra=" + idCompra + ", cliente=" + cliente + ", Producto=" + Producto + ", unidades="
+				+ unidades + ", fecha=" + fecha + "]";
 	}
 
-	
-	
-	
 }

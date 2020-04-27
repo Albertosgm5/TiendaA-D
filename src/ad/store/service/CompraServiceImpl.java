@@ -8,7 +8,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import ad.store.dao.CompraDao;
+import ad.store.entity.Cliente;
 import ad.store.entity.Compra;
+import ad.store.entity.Producto;
 
 @Transactional
 @Service
@@ -17,18 +19,18 @@ public class CompraServiceImpl implements CompraService{
 	CompraDao compraDao;
 
 	@Override
-	public Compra hacerCompra(long idCliente, long idProducto, int unidades, Date fecha) {
+	public Compra hacerCompra(Cliente cliente, Producto producto, int unidades, Date fecha) {
 		Compra compra = new Compra();
-		compra.setIdCliente(idCliente);
-		compra.setIdProducto(idProducto);
+		compra.setCliente(cliente);
+		compra.setProducto(producto);
 		compra.setUnidades(unidades);
 		compra.setFecha(fecha);
 		return compraDao.create(compra);
 	}
 
 	@Override
-	public List<Compra> listarCompras(long idCliente) {
-		return compraDao.listarCompras(idCliente);
+	public List<Compra> listarCompras(Cliente cliente) {
+		return compraDao.listarCompras(cliente);
 	}
 
 	@Override
@@ -38,8 +40,8 @@ public class CompraServiceImpl implements CompraService{
 	}
 
 	@Override
-	public Compra obtenerCompra(long idCliente, long idProducto) {
-		return compraDao.obtenerCompra(idCliente,idProducto);
+	public Compra obtenerCompra(Cliente cliente, Producto producto) {
+		return compraDao.obtenerCompra(cliente,producto);
 	}
 
 }
