@@ -33,6 +33,8 @@ public class CustomUserDetailsService implements  UserDetailsService {
 		for (Rol rol : cliente.getRoles()) {
 			grantedAuthorities.add(new SimpleGrantedAuthority(rol.getNombreRol()));
 			System.out.println(rol.getNombreRol());
+			System.out.println(cliente.getNombreUsuario());
+			System.out.println(cliente.getPassword());
 		}
 
 		return new org.springframework.security.core.userdetails.User(cliente.getNombreUsuario(), cliente.getPassword(),

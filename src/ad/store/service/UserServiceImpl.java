@@ -41,7 +41,7 @@ public class UserServiceImpl implements UserService {
 
 	
 	@Override
-	public Cliente altaCliente(String nombreUsuario, String direccionEnvio, String password, String nombre,
+	public Cliente altaCliente(String nombreUsuario,String password, String direccionEnvio, String nombre,
 			String apellidos, String email, Date fechaNa, String banco, long numTarjeta, String titular,
 			int codigoS, String direccionFa) {
 		Cliente cliente = new Cliente();

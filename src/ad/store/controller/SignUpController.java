@@ -42,8 +42,10 @@ public class SignUpController {
 									@RequestParam("titular") String titular,
 									@RequestParam("codigoS") int codigoS,
 									@RequestParam("direccionFa") String  direccionFa){
+		
 		Cliente cliente = userService.altaCliente(username, password, direccionEnvio, nombre, apellidos, email, fechaNa, banco, numTarjeta, titular, codigoS, direccionFa);
 		String pass = cliente.getPassword();
+		//System.out.println(cliente.getPassword());
 		ModelAndView mav = new ModelAndView();
 		if (cliente == null) {
 			mav.addObject("exception", "Username or password are empty.");
