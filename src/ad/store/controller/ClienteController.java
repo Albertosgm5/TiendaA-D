@@ -30,25 +30,23 @@ public class ClienteController {
 	
 
 
-	@RequestMapping(method = RequestMethod.GET, value = "/profile/{id}")
-	public ModelAndView perfilCliente(@PathVariable("id") long idCliente) {
+	@RequestMapping("/perfil")
+	public ModelAndView perfilCliente(HttpServletRequest request) {
 
 		ModelAndView mav = new ModelAndView();
-
+		HttpSession session = request.getSession();
+		long idCliente = (long) session.getAttribute("idSession");
 		Cliente cliente = userService.obtenerCliente(idCliente);
-
-		mav.addObject("cliente", cliente);
+		mav.addObject("account", cliente);
 		mav.setViewName("profile");
 		return mav;
 	}
 
 	@RequestMapping(method = RequestMethod.GET, value = "/cerrar")
-	public String perfilCliente(HttpServletRequest request,HttpServletResponse response) throws IOException {
+	public void perfilCliente(HttpServletRequest request,HttpServletResponse response) throws IOException {
 		HttpSession sesion = request.getSession();
 	    sesion.invalidate();
 	    response.sendRedirect("/A&DStore/");
-		
-		return "index";
 	}
 	
 	

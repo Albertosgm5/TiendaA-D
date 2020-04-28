@@ -18,7 +18,7 @@ import ad.store.service.ProductoServiceImpl;
 public class indexController {
 	@Autowired
 	private ProductoService productoService;
-	@GetMapping("/")
+	@GetMapping({"/","index"})
 	public String index(Model model) {
 		List<Producto> productos = productoService.listarProductos();
 		 ArrayList<Producto>oferta = new ArrayList<Producto>();
