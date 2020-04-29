@@ -32,9 +32,9 @@ public class CompraController {
 	@RequestMapping(method = RequestMethod.GET,value="/cesta")
 	public ModelAndView cesta(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
-//		HttpSession session = request.getSession();
-//		List<Producto>productos = (List<Producto>) session.getAttribute("cProductos");
-//		mav.addObject("productos", productos);
+		HttpSession session = request.getSession();
+		List<Producto>cProductos = (List<Producto>) session.getAttribute("lProductoSession");
+		mav.addObject("productos", cProductos);
 		mav.setViewName("carro_Compra");
 		return mav;
 	}
