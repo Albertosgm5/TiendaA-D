@@ -2,6 +2,7 @@ package ad.store.security;
 
 import java.io.IOException;
 import java.util.Collection;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -18,6 +19,7 @@ import org.springframework.security.web.RedirectStrategy;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 import ad.store.entity.Cliente;
+import ad.store.entity.Producto;
 import ad.store.service.UserService;
 
 public class AuthenticationSuccessHandlerImpl implements AuthenticationSuccessHandler{
@@ -32,12 +34,14 @@ public class AuthenticationSuccessHandlerImpl implements AuthenticationSuccessHa
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
 			Authentication authentication) throws IOException, ServletException {
 		
+		List<Producto>lProductos = null;
 		UserDetails userDetails = (UserDetails)
 		SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		HttpSession session = request.getSession();
 		Cliente authUser = userService.findByUsername(userDetails.getUsername());
 		session.setAttribute("accountSession", authUser.getNombreUsuario());
 		session.setAttribute("passSession", authUser.getPassword());
+		session.setAttribute("lProductoSession", lProductos);
 		session.setAttribute("idSession", authUser.getIdCliente());
 		session.setAttribute("nombreSession", authUser.getNombre());
 		
