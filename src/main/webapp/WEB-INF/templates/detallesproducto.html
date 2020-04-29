@@ -49,17 +49,18 @@
 		<div class="card">
 			<div class="card-body">
 				<p th:if="${exception}" class="error">Wrong user or password</p>
-				<form action="#" th:object="${producto}" method="post">
+				<form action="#" th:action="@{/producto/agregar}" th:object="${producto}" method="post">
 					<h2>Nombre Producto</h2>
-					<p th:text="*{nombreProducto}"></p>
+					<p id="nombreProducto" name="nombreProducto" th:text="*{nombreProducto}"></p>
 					<h2>Precio</h2>
-					<p th:text="*{precio}"></p>
+					<p id="precio" name="precio" th:text="*{precio}"></p>
 					<h2>Stock</h2>
-					<p th:text="*{stock}"></p>
+					<p id="stock" name="stock" th:text="*{stock}"></p>
 					<h2>Categoria</h2>
-					<p th:text="*{categoria}"></p>
+					<p id="categoria" name="categoria" th:text="*{categoria}"></p>
 					<h2>Descripcion</h2>
-					<p th:text="*{descripcion}"></p>
+					<p id="descripcion" name="descripcion" th:text="*{descripcion}"></p>
+					<input type="submit" value="Registrar" />
 				</form>
 			</div>
 		</div>
