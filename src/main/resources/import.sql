@@ -1,15 +1,12 @@
 
-insert into Cliente (nombre, apellidos, fechaNacimniento, email, banco, titular, codigoSeguridad, numTarjeta, direccionEnvio, direccionFacturacion, nombreUsuario, password) values ('Alberto','G M','1992-06-05','alberto@gmail.com','Bankia','AlbertGM',111,1000999900001111,'Av.Europa','Av.Europa','Albert', '$2a$10$9QDtTzzqbfR8p3YoOHR2Iu5/iZHlwg5m7ql8RgDfAXJC4OTVbaLqy');
-insert into Cliente (nombre, apellidos, fechaNacimniento, email, banco, titular, codigoSeguridad, numTarjeta, direccionEnvio, direccionFacturacion, nombreUsuario, password) values ('Daniel','N','1997-08-05','daniel@gmail.com','Bankia','DaniN',222,2200999900001211,'Av.America','Av.America','Dani', '$2a$10$HZKL6onvjzTtwWrFPzZw.eTxkF2rZeLFfHJagwAoImFKhKGXWIkeK ');
-insert into Cliente (nombre, apellidos, fechaNacimniento, email, banco, titular, codigoSeguridad, numTarjeta, direccionEnvio, direccionFacturacion, nombreUsuario, password) values ('Marcos','F P','1992-07-07','marcos@gmail.com','Bankia','MarcosFP',333,3300999900001311,'Av.FP','Av.FP','Marcos', '12345');
+insert into Cliente (nombre, apellidos, fechaNacimniento, email, banco, titular, codigoSeguridad, numTarjeta, direccionEnvio, direccionFacturacion, nombreUsuario, password) values ('admin','admin','1992-06-05','admin@gmail.com','admin','admin',111,1000999900001111,'admin','admin','admin', '$2a$10$x81Gc/y2Abgous23qb/6DOAWHm9UlzZl35wRo4emOUAIglRce/Pzu');
+insert into Cliente (nombre, apellidos, fechaNacimniento, email, banco, titular, codigoSeguridad, numTarjeta, direccionEnvio, direccionFacturacion, nombreUsuario, password) values ('user','user','1997-08-05','usergmail.com','user','user',222,2200999900001211,'user','user','user', '$2a$10$0prZ1MMAqlXxVtLwv8o0ZOrRiNOTMtE29iHF6at7wELPvXRo0aC9u');
 
 insert into Rol (idRol, nombreRol) values (1, 'ROL_USER');
 insert into Rol (idRol, nombreRol) values (2,'ROL_ADMIN');
 
-insert into Cliente_rol (idRol, idCliente) values (1,1);
 insert into Cliente_rol (idRol, idCliente) values (1,2);
 insert into Cliente_rol (idRol, idCliente) values (2,1);
-insert into Cliente_rol (idRol, idCliente) values (2,2);
 
 insert into Producto(nombreProducto, precio, stock, categoria, descripcion) values ('Camara', 53, 34,'Fotografia','Esto es una camara');
 insert into Producto(nombreProducto, precio, stock, categoria, descripcion) values ('Pantalla', 153, 3,'Perifericos','Esto es una pantalla');

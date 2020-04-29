@@ -29,7 +29,7 @@ public class CompraController {
 	@Autowired
 	CompraService compraService;
 	
-	@RequestMapping("/cesta")
+	@RequestMapping(method = RequestMethod.GET,value="/cesta")
 	public ModelAndView cesta(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
 //		HttpSession session = request.getSession();
