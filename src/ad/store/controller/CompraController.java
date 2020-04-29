@@ -29,6 +29,16 @@ public class CompraController {
 	@Autowired
 	CompraService compraService;
 	
+	@RequestMapping("/cesta")
+	public ModelAndView cesta(HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView();
+//		HttpSession session = request.getSession();
+//		List<Producto>productos = (List<Producto>) session.getAttribute("cProductos");
+//		mav.addObject("productos", productos);
+		mav.setViewName("carro_Compra");
+		return mav;
+	}
+	
 	@RequestMapping(method = RequestMethod.POST,value = "crear_Producto")
 	public void handlecrear(HttpServletRequest request,HttpServletResponse response,
 			@RequestParam("cliente") Cliente cliente, @RequestParam("producto") Producto producto,

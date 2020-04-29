@@ -20,8 +20,6 @@ import ad.store.service.UserService;
 public class LoginController {
 	@Autowired
 	private UserService userService;
-	
-	//@RequestMapping(method = RequestMethod.GET)
 	@GetMapping("/login")
 	public String login() {
 		return "login";
