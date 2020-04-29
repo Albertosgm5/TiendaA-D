@@ -1,7 +1,9 @@
 package ad.store.controller;
 
 import java.io.IOException;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import ad.store.entity.Cliente;
 import ad.store.entity.Compra;
 import ad.store.entity.Producto;
 import ad.store.service.CompraService;
@@ -26,11 +29,15 @@ public class CompraController {
 	@Autowired
 	CompraService compraService;
 	
-	/*@RequestMapping(method = RequestMethod.POST,value = "crear_Producto")
+	@RequestMapping(method = RequestMethod.POST,value = "crear_Producto")
 	public void handlecrear(HttpServletRequest request,HttpServletResponse response,
-									@RequestParam("unidades") int unidades) throws IOException {
-		Compra compra = compraService.hacerProducto(idCliente, idProducto, unidades, fecha);
-
+			@RequestParam("cliente") Cliente cliente, @RequestParam("producto") Producto producto,
+			@RequestParam("unidades") int unidades, @RequestParam("fecha") Date fecha) throws IOException {
+		
+		Compra compra = compraService.hacerCompra(cliente, producto, unidades, fecha);
+		Compra comp = compraService.obtenerCompra(cliente, producto);
+		long idCompra=comp.getIdCompra();
+		Date fech=comp.getFecha();
 		ModelAndView mav = new ModelAndView();
 		if (compra == null) {
 			mav.addObject("exception", "Username or password are empty.");
@@ -38,21 +45,40 @@ public class CompraController {
 		}
 		HttpSession session = request.getSession();
 		session.setAttribute("compraSession", idCompra);
-		session.setAttribute("fechaCompraSession", fecha);
+		session.setAttribute("fechaCompraSession", fech);
 		 response.sendRedirect("/A&DStore/");
-	}*/
+	}
 	
-	/*@RequestMapping(value = "/BorrarC")
+	@RequestMapping(value = "/BorrarC")
 	public void handleDelete(HttpServletRequest request,HttpServletResponse response) throws IOException {
 		HttpSession sesion = request.getSession();
 		idC=(long) sesion.getAttribute("compraSession");
 		fechaC=(Date) sesion.getAttribute("fechaCompraSession");
-		Compra comp = compraService.obtenerCompra(idC);
+		Compra comp = compraService.obtenerCompraPorId(idC);
 		Long id= comp.getIdCompra();
+		Calendar fecha = Calendar.getInstance();
+		Calendar cal = Calendar.getInstance();;
+		cal.setTime(fechaC);
+		cal.add(Calendar.DAY_OF_YEAR, 15); 
+		if(fecha.DAY_OF_YEAR<=cal.DAY_OF_YEAR) {
 		compraService.devolverCompra(id);
 	    sesion.invalidate();
 
 			response.sendRedirect("/A&DStore/");
-	}*/
+		}else {
+			System.out.println("Compra no valida");
+		}
+	}
+	@RequestMapping(method = RequestMethod.POST, value = "/listC")
+	public ModelAndView listarProductos(@RequestParam("cliente") Cliente cliente){
+		
+		ModelAndView mav = new ModelAndView();
+		
+		List<Compra> compra = compraService.listarCompras(cliente);
+
+		mav.addObject("compras", compra);
+		mav.setViewName("listarcompras");
+		return mav;
+	}
 
 }

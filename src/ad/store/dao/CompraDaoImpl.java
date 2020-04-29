@@ -48,4 +48,10 @@ public class CompraDaoImpl extends GenericDaoImpl<Compra> implements CompraDao{
 		return null;
 	}
 
+	@Override
+	public Compra obtenerCompraPorId(long idCompra) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

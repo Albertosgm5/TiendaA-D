@@ -12,4 +12,5 @@ public interface CompraDao extends GenericDao<Compra>{
 	public List<Compra> listarCompras(Cliente cliente);
 	public void devolverCompra(long idCompra);
 	public Compra obtenerCompra(Cliente cliente, Producto producto);
+	public Compra obtenerCompraPorId(long idCompra);
 }

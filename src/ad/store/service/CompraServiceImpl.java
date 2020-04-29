@@ -44,4 +44,9 @@ public class CompraServiceImpl implements CompraService{
 		return compraDao.obtenerCompra(cliente,producto);
 	}
 
+	@Override
+	public Compra obtenerCompraPorId(long idCompra) {
+		return compraDao.find(idCompra);
+	}
+
 }
