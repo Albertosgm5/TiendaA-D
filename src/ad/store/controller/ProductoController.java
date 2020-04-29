@@ -118,6 +118,19 @@ public class ProductoController {
 		mav.setViewName("profile");
 		return mav;
 	}
+	@RequestMapping(method = RequestMethod.POST,value = "/agregar")
+	public void cambioSesionProducto(HttpServletRequest request,HttpServletResponse response,
+			@RequestParam("nombreProducto")String cliente, @RequestParam("precio") float precio,
+			@RequestParam("stock") int stock, @RequestParam("categoria") String categoria,
+			@RequestParam("descripcion") String descripcion) throws IOException {
+		HttpSession sesion = request.getSession();
+		List<Producto>cProductos = (List<Producto>) sesion.getAttribute("lProductoSession");
+		Producto producto = new Producto(cliente, precio, stock, categoria, descripcion);
+		cProductos.add(producto);
+		sesion.setAttribute("lProductoSession", cProductos);
+		response.sendRedirect("/A&DStore/");
+	}
+	
 	@RequestMapping(value = "/BorrarP")
 	public void handleDelete(HttpServletRequest request,HttpServletResponse response) throws IOException {
 		HttpSession sesion = request.getSession();
