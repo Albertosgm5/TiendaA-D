@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="icon" type="image/jpg"
-	href="https://subefotos.com/ver/?0c1a1228532d0203f254fd548b63bbb1o.jpg">
+<link rel="icon" th:href="@{/images/logo.ico}" type="image/ico" />
 <meta charset="ISO-8859-1">
 <title th:text="${session.accountSession}" th:unless="${session ==null}">
 	Profile</title>
@@ -26,13 +25,18 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarCollapse">
 				<ul class="navbar-nav mr-auto">
-					<li class="nav-item"><a class="nav-link" href="login">
-							Ingresar</a></li>
-					<li class="nav-item"><a class="nav-link" href="signup">
-							Registrarse</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="/A&DStore/login"> Ingresar</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="/A&DStore/signup"> Registrarse</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="/A&DStore/cliente/perfil"> Perfil</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="/A&DStore/compras/cesta"> Carrito</a></li>
 				</ul>
-				<form class="form-inline mt-2 mt-md-0" th:action="@{producto/list}"
-					method="post">
+				<!-- Falla. Manda al login -->
+				<form class="form-inline mt-2 mt-md-0"
+					th:action="@{../producto/list}" method="post">
 					<input class="form-control mr-sm-2" type="text"
 						placeholder="Ingrese Producto" aria-label="Search" name="producto">
 					<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Busqueda

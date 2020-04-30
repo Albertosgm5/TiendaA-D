@@ -2,6 +2,7 @@
 <html>
 
 <head>
+<link rel="icon" th:href="@{/images/logo.ico}" type="image/ico" />
 <meta charset="ISO-8859-1">
 <title>Detalles Producto</title>
 <link rel="stylesheet"
@@ -28,10 +29,14 @@
 						href="/A&DStore/login"> Ingresar</a></li>
 					<li class="nav-item"><a class="nav-link"
 						href="/A&DStore/signup"> Registrarse</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="/A&DStore/cliente/perfil"> Perfil</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="/A&DStore/compras/cesta"> Carrito</a></li>
 				</ul>
 				<!-- Falla. Manda al login -->
 				<form class="form-inline mt-2 mt-md-0"
-					th:action="@{/A&DStore/producto/list}" method="post">
+					th:action="@{../../producto/list}" method="post">
 					<input class="form-control mr-sm-2" type="text"
 						placeholder="Ingrese Producto" aria-label="Search" name="producto">
 					<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Busqueda
@@ -45,16 +50,12 @@
 			type="submit" value="Busqueda" />
 	</form>
 	<div class="container my-5">
-		<h1>Registrate</h1>
+		<h1>Detalles Producto</h1>
 		<div class="card">
 			<div class="card-body">
 				<p th:if="${exception}" class="error">Wrong user or password</p>
 				<form action="#" th:object="${producto}" method="post">
 					<h2>Nombre Producto</h2>
-					<div class="form-group col-md-6">
-						<input field="*{nombreProducto}" id="username" name="username" />
-						<br />
-					</div>
 					<p id="nombreProducto" name="nombreProducto"
 						th:text="*{nombreProducto}"></p>
 					<h2>Precio</h2>
@@ -67,15 +68,19 @@
 					<p id="descripcion" name="descripcion" th:text="*{descripcion}"></p>
 
 				</form>
-				<form action="#" th:object="${producto}"
-					th:action="@{/producto/detallesProducto/} + *{idProducto}"
-					method="post">
-					<div class="form-group col-md-6">
-						<label for="username">Cantidad</label>: <input
-							type="text" id="cantidad" name="cantidad" /> <br />
-					</div>
-					<input type="submit" value="Agregar" />
-				</form>
+				<div style="float: right; width: 30%;">
+					<form action="#" th:object="${producto}"
+						th:action="@{/producto/detallesProducto/} + *{idProducto}"
+						method="post">
+						<label for="username">Introduce la cantidad a comprar:</label>
+						<div style="float: left; width: 70%;">
+							 <input type="text" id="cantidad" name="cantidad" /> <br />
+						</div>
+						<div style="float: right; width: 30%;">
+							<input type="submit" value="Agregar" />
+						</div>
+					</form>
+				</div>
 			</div>
 		</div>
 	</div>
