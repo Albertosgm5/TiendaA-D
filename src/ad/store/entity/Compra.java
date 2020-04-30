@@ -26,20 +26,23 @@ public class Compra {
 	private Cliente cliente;
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "idProducto")
-	private Producto Producto;
+	private Producto producto;
 	@Column(name = "unidades")
 	private int unidades;
 	@Column(name = "fecha")
 	private Date fecha;
+	@Column(name = "precioTotal")
+	private float precioT;
 	
 	
-	public Compra(long idCompra, Cliente cliente, Producto producto, int unidades, Date fecha) {
+	public Compra(long idCompra, Cliente cliente, Producto producto, int unidades, Date fecha, float precioT) {
 		super();
 		this.idCompra = idCompra;
 		this.cliente = cliente;
-		Producto = producto;
+		this.producto = producto;
 		this.unidades = unidades;
 		this.fecha = fecha;
+		this.precioT=precioT;
 	}
 
 	public Compra() {
@@ -62,11 +65,11 @@ public class Compra {
 	}
 
 	public Producto getProducto() {
-		return Producto;
+		return producto;
 	}
 
 	public void setProducto(Producto producto) {
-		Producto = producto;
+		producto = producto;
 	}
 
 	public int getUnidades() {
@@ -84,11 +87,18 @@ public class Compra {
 	public void setFecha(Date fecha) {
 		this.fecha = fecha;
 	}
+	public float getPrecioT() {
+		return precioT;
+	}
+
+	public void setPrecioT(float precioT) {
+		this.precioT = precioT;
+	}
 
 	@Override
 	public String toString() {
-		return "Compra [idCompra=" + idCompra + ", cliente=" + cliente + ", Producto=" + Producto + ", unidades="
-				+ unidades + ", fecha=" + fecha + "]";
+		return "Compra [idCompra=" + idCompra + ", cliente=" + cliente + ", producto=" + producto + ", unidades="
+				+ unidades + ", fecha=" + fecha + ", precioT=" + precioT + "]";
 	}
 
 }

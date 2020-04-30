@@ -19,12 +19,13 @@ public class CompraServiceImpl implements CompraService{
 	CompraDao compraDao;
 
 	@Override
-	public Compra hacerCompra(Cliente cliente, Producto producto, int unidades, Date fecha) {
+	public Compra hacerCompra(Cliente cliente, Producto producto, int unidades, Date fecha, float precioT) {
 		Compra compra = new Compra();
 		compra.setCliente(cliente);
 		compra.setProducto(producto);
 		compra.setUnidades(unidades);
 		compra.setFecha(fecha);
+		compra.setPrecioT(precioT);
 		return compraDao.create(compra);
 	}
 

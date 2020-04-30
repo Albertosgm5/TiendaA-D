@@ -18,7 +18,7 @@ import ad.store.entity.Producto;
 public class CompraDaoImpl extends GenericDaoImpl<Compra> implements CompraDao{
 	private long idCliente;
 	@Override
-	public Compra hacerCompra(Cliente cliente, Producto producto, int unidades, Date fecha) {
+	public Compra hacerCompra(Cliente cliente, Producto producto, int unidades, Date fecha, float precioT) {
 		// TODO Auto-generated method stub
 		return null;
 	}

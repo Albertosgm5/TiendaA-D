@@ -41,6 +41,7 @@ CREATE TABLE `compra` (
   `idCompra` bigint(20) NOT NULL AUTO_INCREMENT,
   `fecha` datetime NOT NULL,
   `unidades` int(11) NOT NULL,
+  `precioTotal` float NOT NULL,
   `idProducto` bigint(20) NOT NULL,
   `idCliente` bigint(20) NOT NULL,
   PRIMARY KEY (`idCompra`),

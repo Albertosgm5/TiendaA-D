@@ -20,6 +20,7 @@ import ad.store.entity.Cliente;
 import ad.store.entity.Compra;
 import ad.store.entity.Producto;
 import ad.store.service.CompraService;
+import ad.store.service.UserService;
 
 @Controller
 @RequestMapping(value = "/compras")
@@ -28,6 +29,7 @@ public class CompraController {
 	private long idC;
 	@Autowired
 	CompraService compraService;
+	UserService userService;
 	
 	@RequestMapping(method = RequestMethod.GET,value="/cesta")
 	public ModelAndView cesta(HttpServletRequest request) {
@@ -43,8 +45,9 @@ public class CompraController {
 	public void handlecrear(HttpServletRequest request,HttpServletResponse response,
 			@RequestParam("cliente") Cliente cliente, @RequestParam("producto") Producto producto,
 			@RequestParam("unidades") int unidades, @RequestParam("fecha") Date fecha) throws IOException {
-		
-		Compra compra = compraService.hacerCompra(cliente, producto, unidades, fecha);
+		float pre = producto.getPrecio();
+		float precioT = pre * unidades;
+		Compra compra = compraService.hacerCompra(cliente, producto, unidades, fecha, precioT);
 		Compra comp = compraService.obtenerCompra(cliente, producto);
 		long idCompra=comp.getIdCompra();
 		Date fech=comp.getFecha();
@@ -79,9 +82,11 @@ public class CompraController {
 			System.out.println("Compra no valida");
 		}
 	}
-	@RequestMapping(method = RequestMethod.POST, value = "/listC")
-	public ModelAndView listarProductos(@RequestParam("cliente") Cliente cliente){
-		
+	@RequestMapping(method = RequestMethod.POST, value = "miscompras")
+	public ModelAndView listarProductos(HttpServletRequest request){
+		HttpSession session = request.getSession();
+		long id =(long) session.getAttribute("idSession");
+		Cliente cliente = userService.obtenerCliente(id);
 		ModelAndView mav = new ModelAndView();
 		
 		List<Compra> compra = compraService.listarCompras(cliente);
