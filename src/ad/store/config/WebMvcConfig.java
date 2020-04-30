@@ -9,6 +9,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.thymeleaf.extras.springsecurity5.dialect.SpringSecurityDialect;
 import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
@@ -31,12 +32,20 @@ public class WebMvcConfig implements WebMvcConfigurer{
 		templateResolver.setTemplateMode("HTML5");
 		return templateResolver;
 	}
+	
+	/* Permite añadir anotacones de Spring security a los ficheros html */
+	@Bean
+	public SpringSecurityDialect securityDialect() {
+		return new SpringSecurityDialect();
+	}
+	
 	/*Establecemos Thymeleaf como motor de plantillas*/
 	@Bean
 	public SpringTemplateEngine templateEngine() {
 		SpringTemplateEngine templateEngine = new SpringTemplateEngine();
 		templateEngine.setTemplateResolver(templateResolver());
 		templateEngine.setEnableSpringELCompiler(true);
+		templateEngine.addDialect(securityDialect());
 		return templateEngine;
 	}
 	/*Configuramos que las vistas sean renderizas por el motor de plantillas

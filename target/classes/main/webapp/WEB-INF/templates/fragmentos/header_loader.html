@@ -12,13 +12,9 @@
 </head>
 <body>
 
-	<nav sec:authorize="isAnonymous()"
-		th:replace="fragmentos/header_public"></nav>
-	<nav
-		sec:authorize="hasAuthority('ROL_USER') && !hasAuthority('ROL_ADMIN')"
-		th:replace="fragmentos/header_user"></nav>
-	<nav sec:authorize="hasAuthority('ROL_ADMIN')"
-		th:replace="fragmentos/header_admin"></nav>
+	<nav sec:authorize="isAnonymous()" th:replace="fragmentos/header_public"></nav>
+	<nav sec:authorize="hasAuthority('ROL_USER') && !hasAuthority('ROL_ADMIN')" th:replace="fragmentos/header_user"></nav>
+	<nav sec:authorize="hasAuthority('ROL_ADMIN')" th:replace="fragmentos/header_admin"></nav>
 
 
 </body>
