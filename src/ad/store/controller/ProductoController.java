@@ -42,6 +42,7 @@ public class ProductoController {
 	@RequestMapping(method = RequestMethod.POST,value="/detallesProducto/{idProducto}")
 	public ModelAndView agregarCesta(@PathVariable ("idProducto") long idProducto,@RequestParam("cantidad") int cantidad,HttpServletResponse response,HttpServletRequest request) throws IOException {
 
+		boolean existe = false;
 		ModelAndView mav = new ModelAndView();
 		int cantidad2 = cantidad;
 		Producto productoCesta = productoService.obtenerProducto(idProducto);
@@ -49,7 +50,15 @@ public class ProductoController {
 		productoCesta.setStock(cantidad2);
 		HttpSession sesion = request.getSession();
 		List<Producto>cProductos = (List<Producto>) sesion.getAttribute("lProductoSession");
-		cProductos.add(productoCesta);
+		for(int i = 0; i<cProductos.size();i++) {
+			if(cProductos.get(i).getIdProducto() == productoCesta.getIdProducto()) {
+				cProductos.get(i).setStock(cProductos.get(i).getStock() + productoCesta.getStock());
+				existe = true;
+			}
+		}
+		if(!existe) {
+			cProductos.add(productoCesta);
+		}
 		sesion.setAttribute("lProductoSession", cProductos);
 		mav.addObject("producto", productoVista);
 		mav.setViewName("detallesproducto");
