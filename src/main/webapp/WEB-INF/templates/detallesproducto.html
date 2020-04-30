@@ -24,14 +24,14 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarCollapse">
 				<ul class="navbar-nav mr-auto">
-					<li class="nav-item"><a class="nav-link" href="/A&DStore/login">
-							Ingresar</a></li>
-					<li class="nav-item"><a class="nav-link" href="/A&DStore/signup">
-							Registrarse</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="/A&DStore/login"> Ingresar</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="/A&DStore/signup"> Registrarse</a></li>
 				</ul>
 				<!-- Falla. Manda al login -->
-				<form class="form-inline mt-2 mt-md-0" th:action="@{/A&DStore/producto/list}" 
-					method="post">
+				<form class="form-inline mt-2 mt-md-0"
+					th:action="@{/A&DStore/producto/list}" method="post">
 					<input class="form-control mr-sm-2" type="text"
 						placeholder="Ingrese Producto" aria-label="Search" name="producto">
 					<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Busqueda
@@ -49,9 +49,14 @@
 		<div class="card">
 			<div class="card-body">
 				<p th:if="${exception}" class="error">Wrong user or password</p>
-				<form action="#" th:action="@{/producto/agregar}" th:object="${producto}" method="post">
+				<form action="#" th:object="${producto}" method="post">
 					<h2>Nombre Producto</h2>
-					<p id="nombreProducto" name="nombreProducto" th:text="*{nombreProducto}"></p>
+					<div class="form-group col-md-6">
+						<input field="*{nombreProducto}" id="username" name="username" />
+						<br />
+					</div>
+					<p id="nombreProducto" name="nombreProducto"
+						th:text="*{nombreProducto}"></p>
 					<h2>Precio</h2>
 					<p id="precio" name="precio" th:text="*{precio}"></p>
 					<h2>Stock</h2>
@@ -60,7 +65,16 @@
 					<p id="categoria" name="categoria" th:text="*{categoria}"></p>
 					<h2>Descripcion</h2>
 					<p id="descripcion" name="descripcion" th:text="*{descripcion}"></p>
-					<input type="submit" value="Registrar" />
+
+				</form>
+				<form action="#" th:object="${producto}"
+					th:action="@{/producto/detallesProducto/} + *{idProducto}"
+					method="post">
+					<div class="form-group col-md-6">
+						<label for="username">Cantidad</label>: <input
+							type="text" id="cantidad" name="cantidad" /> <br />
+					</div>
+					<input type="submit" value="Agregar" />
 				</form>
 			</div>
 		</div>

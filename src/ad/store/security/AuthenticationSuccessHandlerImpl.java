@@ -1,6 +1,7 @@
 package ad.store.security;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -34,7 +35,7 @@ public class AuthenticationSuccessHandlerImpl implements AuthenticationSuccessHa
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
 			Authentication authentication) throws IOException, ServletException {
 		
-		List<Producto>lProductos = null;
+		List<Producto>lProductos = new ArrayList<Producto>();
 		UserDetails userDetails = (UserDetails)
 		SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		HttpSession session = request.getSession();

@@ -55,18 +55,11 @@
 									</tr>
 								</thead>
 								<tbody>
-									<tr>
-										<td>Camara</td>
-										<td>8</td>
-										<td>8</td>
+									<tr th:each="producto : ${productos}">
+										<td th:text="${producto.nombreProducto}"></td>
+										<td th:text="${producto.precio}"></td>
+										<td th:text="${producto.stock}"></td>
 										<td></td>
-									</tr>
-									<tr>
-										<td>Television</td>
-										<td>4</td>
-										<td>3</td>
-										<td></td>
-									</tr>
 								</tbody>
 							</table>
 
