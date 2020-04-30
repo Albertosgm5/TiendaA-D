@@ -32,25 +32,34 @@
 						href="/A&DStore/compras/cesta"> Carrito</a></li>
 				</ul>
 				<!-- Falla. Manda al login -->
-				<form class="form-inline mt-2 mt-md-0"
-					th:action="@{producto/list}" method="post">
+				<form class="form-inline mt-2 mt-md-0" th:action="@{producto/list}"
+					method="post">
 					<input class="form-control mr-sm-2" type="text"
 						placeholder="Ingrese Producto" aria-label="Search" name="producto">
-					<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Busqueda Producto</button>
+					<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Busqueda
+						Producto</button>
 				</form>
 			</div>
 		</nav>
 	</header>
+
 	<div class="card text-center"
-		style="background-color: #116633; margin-top: 13px">
-		<h1 class="mt-5">A&D Store</h1>
+		style="background-color: #117733; margin-top: 13px">
+		<br /> <br /> <br /> <br />
+		<center>
+			<img th:src="@{/images/logo.jpg}" width="300" height="300"
+				class="rounded-circle">
+		</center>
+		<br /> <br />
 	</div>
-	<div class="card text-center" style="background-color: #BBB777;">
+	<div class="card text-center" style="background-color: #25BD7B;">
+		<br />
 		<h2>Bienvenido</h2>
 		<p>Si estas registrado logueate</p>
 		<a href="login"> Login</a>
 		<p>Y si no lo estas registrate</p>
 		<a href="signup"> Registrarse </a>
+		<br />
 	</div>
 	<div class="card text-center" style="background-color: #BBB777;">
 		<h2>Productos en Oferta!</h2>
