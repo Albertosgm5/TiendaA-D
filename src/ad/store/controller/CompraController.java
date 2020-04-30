@@ -20,6 +20,7 @@ import ad.store.entity.Cliente;
 import ad.store.entity.Compra;
 import ad.store.entity.Producto;
 import ad.store.service.CompraService;
+import ad.store.service.ProductoService;
 import ad.store.service.UserService;
 
 @Controller
@@ -30,65 +31,73 @@ public class CompraController {
 	@Autowired
 	CompraService compraService;
 	UserService userService;
-	
-	@RequestMapping(method = RequestMethod.GET,value="/cesta")
+	ProductoService productoService;
+
+	@RequestMapping(method = RequestMethod.GET, value = "/cesta")
 	public ModelAndView cesta(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
 		HttpSession session = request.getSession();
-		List<Producto>cProductos = (List<Producto>) session.getAttribute("lProductoSession");
+		List<Producto> cProductos = (List<Producto>) session.getAttribute("lProductoSession");
 		mav.addObject("productos", cProductos);
 		mav.setViewName("carro_Compra");
 		return mav;
 	}
-	
-	@RequestMapping(method = RequestMethod.POST,value = "crear_Producto")
-	public void handlecrear(HttpServletRequest request,HttpServletResponse response,
-			@RequestParam("cliente") Cliente cliente, @RequestParam("producto") Producto producto,
-			@RequestParam("unidades") int unidades, @RequestParam("fecha") Date fecha) throws IOException {
-		float pre = producto.getPrecio();
-		float precioT = pre * unidades;
-		Compra compra = compraService.hacerCompra(cliente, producto, unidades, fecha, precioT);
-		Compra comp = compraService.obtenerCompra(cliente, producto);
-		long idCompra=comp.getIdCompra();
-		Date fech=comp.getFecha();
-		ModelAndView mav = new ModelAndView();
-		if (compra == null) {
-			mav.addObject("exception", "Username or password are empty.");
-			mav.setViewName("index");
-		}
+
+	@RequestMapping(method = RequestMethod.POST, value = "crear_Compra")
+	public void handlecrear(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		HttpSession session = request.getSession();
-		session.setAttribute("compraSession", idCompra);
-		session.setAttribute("fechaCompraSession", fech);
-		 response.sendRedirect("/A&DStore/");
+		long id = (long) session.getAttribute("idSession");
+		Cliente cliente = userService.obtenerCliente(id);
+		Date fecha = new Date();
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(fecha);
+		List<Producto> productos = (List<Producto>) session.getAttribute("lProductoSession");
+		for (Producto product : productos) {
+			int unidades = product.getStock();
+			long idP = product.getIdProducto();
+			float pre = product.getPrecio();
+			float precioT = pre * unidades;
+			Producto producto = productoService.obtenerProducto(idP);
+			int stock = producto.getStock();
+			int stockResul = stock - unidades;
+			producto.setStock(stockResul);
+			productoService.editarProducto(producto);
+			Compra compra = compraService.hacerCompra(cliente, producto, unidades, fecha, precioT);
+		}
+		ModelAndView mav = new ModelAndView();
+
+		response.sendRedirect("/A&DStore/");
 	}
-	
-	@RequestMapping(value = "/BorrarC")
-	public void handleDelete(HttpServletRequest request,HttpServletResponse response) throws IOException {
+
+	/*@RequestMapping(value = "/BorrarC")
+	public void handleDelete(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		HttpSession sesion = request.getSession();
-		idC=(long) sesion.getAttribute("compraSession");
-		fechaC=(Date) sesion.getAttribute("fechaCompraSession");
+		idC = (long) sesion.getAttribute("compraSession");
+		fechaC = (Date) sesion.getAttribute("fechaCompraSession");
 		Compra comp = compraService.obtenerCompraPorId(idC);
-		Long id= comp.getIdCompra();
+		Long id = comp.getIdCompra();
 		Calendar fecha = Calendar.getInstance();
-		Calendar cal = Calendar.getInstance();;
+		Calendar cal = Calendar.getInstance();
+		;
 		cal.setTime(fechaC);
-		cal.add(Calendar.DAY_OF_YEAR, 15); 
-		if(fecha.DAY_OF_YEAR<=cal.DAY_OF_YEAR) {
-		compraService.devolverCompra(id);
-	    sesion.invalidate();
+		cal.add(Calendar.DAY_OF_YEAR, 15);
+		if (fecha.DAY_OF_YEAR <= cal.DAY_OF_YEAR) {
+			compraService.devolverCompra(id);
+			sesion.invalidate();
 
 			response.sendRedirect("/A&DStore/");
-		}else {
+		} else {
 			System.out.println("Compra no valida");
 		}
-	}
+	}*/
+
 	@RequestMapping(method = RequestMethod.POST, value = "miscompras")
-	public ModelAndView listarProductos(HttpServletRequest request){
+	public ModelAndView listarProductos(HttpServletRequest request) {
 		HttpSession session = request.getSession();
-		long id =(long) session.getAttribute("idSession");
+		long id = (long) session.getAttribute("idSession");
 		Cliente cliente = userService.obtenerCliente(id);
 		ModelAndView mav = new ModelAndView();
-		
+
 		List<Compra> compra = compraService.listarCompras(cliente);
 
 		mav.addObject("compras", compra);
