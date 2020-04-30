@@ -43,7 +43,7 @@ public class CompraController {
 		return mav;
 	}
 
-	@RequestMapping(method = RequestMethod.POST, value = "crear_Compra")
+	@RequestMapping("/crear_Compra")
 	public void handlecrear(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		HttpSession session = request.getSession();
 		long id = (long) session.getAttribute("idSession");
@@ -91,8 +91,8 @@ public class CompraController {
 		}
 	}*/
 
-	@RequestMapping(method = RequestMethod.POST, value = "miscompras")
-	public ModelAndView listarProductos(HttpServletRequest request) {
+	@RequestMapping("/miscompras")
+	public ModelAndView listarCompras(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		long id = (long) session.getAttribute("idSession");
 		Cliente cliente = userService.obtenerCliente(id);
