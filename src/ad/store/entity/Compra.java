@@ -27,7 +27,7 @@ public class Compra {
 	@OneToMany(fetch = FetchType.EAGER,mappedBy = "compra", cascade = CascadeType.ALL, orphanRemoval = true)
 	private Set<Cliente> clientes = new HashSet<>();
 	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "producto", 
+	@JoinTable(name = "compraProducto", 
 	joinColumns = @JoinColumn(name = "idCompra"),
 	inverseJoinColumns = @JoinColumn(name = "idProducto"))
 	private Set<Producto> productos = new HashSet<>();
