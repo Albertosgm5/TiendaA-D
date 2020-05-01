@@ -30,7 +30,9 @@ public class CompraController {
 	private long idC;
 	@Autowired
 	CompraService compraService;
+	@Autowired
 	UserService userService;
+	@Autowired
 	ProductoService productoService;
 
 	@RequestMapping(method = RequestMethod.GET, value = "/cesta")
@@ -50,7 +52,7 @@ public class CompraController {
 		Cliente cliente = userService.obtenerCliente(id);
 		Date fecha = new Date();
 		Calendar cal = Calendar.getInstance();
-		cal.setTime(fecha);
+		fecha=cal.getTime();
 		List<Producto> productos = (List<Producto>) session.getAttribute("lProductoSession");
 		for (Producto product : productos) {
 			int unidades = product.getStock();
