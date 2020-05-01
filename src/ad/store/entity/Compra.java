@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -21,10 +22,10 @@ public class Compra {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "idCompra")
 	private long idCompra;
-	@ManyToOne(cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "idCliente")
 	private Cliente cliente;
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "idProducto")
 	private Producto producto;
 	@Column(name = "unidades")
