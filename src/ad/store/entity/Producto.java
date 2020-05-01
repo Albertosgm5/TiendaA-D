@@ -34,7 +34,7 @@ public class Producto {
 	@Column(name = "descripcion")
 	private String descripcion;
 	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "compraProducto", joinColumns = @JoinColumn(name = "idProducto"), inverseJoinColumns = @JoinColumn(name = "idCompra"))
+	@JoinTable(name = "compra_producto", joinColumns = @JoinColumn(name = "idProducto"), inverseJoinColumns = @JoinColumn(name = "idCompra"))
 	private Set<Compra> compras = new HashSet<>();
 	
 	public Producto(long idProducto, String nombreProducto, float precio, int stock,String categoria, String descripcion) {

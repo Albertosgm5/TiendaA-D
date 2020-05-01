@@ -49,6 +49,11 @@ CONSTRAINT `fk_cliente` FOREIGN KEY (`idCliente`) REFERENCES `cliente` (`idClien
 CONSTRAINT `fk_producto` FOREIGN KEY (`idProducto`) REFERENCES `producto` (`idProducto`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+CREATE TABLE `compra_producto` (
+  `idProducto` bigint(20) NOT NULL,
+  `idCompra` bigint(20) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
 
 CREATE TABLE `rol` (
   `idRol` int NOT NULL AUTO_INCREMENT,
