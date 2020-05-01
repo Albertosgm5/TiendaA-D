@@ -15,7 +15,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
 
 
 @Entity
@@ -54,6 +56,9 @@ public class Cliente {
 	joinColumns = @JoinColumn(name = "idCliente"),
 	inverseJoinColumns = @JoinColumn(name = "idRol"))
 	private Set<Rol> roles = new HashSet<>();
+	@ManyToOne
+	@JoinColumn(name = "idCompra")
+	private Compra compra;
 	
 //	private List<Venta> ventas;
 
@@ -178,6 +183,13 @@ public class Cliente {
 	}
 	public void setRoles(Set<Rol> roles) {
 		this.roles = roles;
+	}
+	public Compra getCompra() {
+		return compra;
+	}
+
+	public void setCompra(Compra profesor) {
+		this.compra = compra;
 	}
 	@Override
 	public String toString() {

@@ -1,11 +1,20 @@
 package ad.store.entity;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+
+
 
 @Entity
 @Table(name = "producto")
@@ -24,6 +33,9 @@ public class Producto {
 	private String categoria;
 	@Column(name = "descripcion")
 	private String descripcion;
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "compraProducto", joinColumns = @JoinColumn(name = "idProducto"), inverseJoinColumns = @JoinColumn(name = "idCompra"))
+	private Set<Compra> compras = new HashSet<>();
 	
 	public Producto(long idProducto, String nombreProducto, float precio, int stock,String categoria, String descripcion) {
 		this.idProducto = idProducto;
@@ -41,6 +53,13 @@ public class Producto {
 		this.descripcion = descripcion;
 	}
 	public Producto() {
+	}
+	public Set<Compra> getCompras() {
+		return compras;
+	}
+
+	public void setCompras(Set<Compra>  compras) {
+		this.compras =  compras;
 	}
 	
 	public String getCategoria() {
