@@ -41,6 +41,9 @@
 					<td th:text="${compras.unidades}"></td>
 					<td th:text="${compras.fecha}"></td>
 					<td th:text="${compras.precioT}"></td>
+					<td><a href=#
+								th:href="@{/compra/detallesCompra/{idCompra}(idCompra = ${compra.idCompra})}">
+									Detalles </a></td>
 				</tr>
 			</table>
 		</CENTER>
@@ -48,41 +51,5 @@
 	<div class="card text-center" style="background-color: #117733;">
 		<br />
 	</div>
-<<<<<<< HEAD
-=======
-	<div class="card text-center" style="background-color: #BBB777;">
-		<h2>Datos de pago</h2>
-		<CENTER>
-			<table border width="100%" height="100%" style="margin: 0 auto;">
-				<tr>
-					<td>Banco:</td>
-					<td>Numero de tarjeta:</td>
-					<td>Titular:</td>
-					<td>Codigo de seguridad:</td>
-					<td>Direccion de facturacion:</td>
-				</tr>
-				<tr>
-					<td th:text="${account.banco}"></td>
-					<td th:text="${account.numTarjeta}"></td>
-					<td th:text="${account.titular}"></td>
-					<td th:text="${account.codigoS}"></td>
-					<td th:text="${account.direccionFa}"></td>
-				</tr>
-			</table>
-		</CENTER>
-	</div>
-	<div class="card text-center" style="background-color: #117733;">
-		<br />
-	</div>
-	<div class="card text-center" style="background-color: #BBB777;">
-		<a href="/A&DStore/editar_User"> Editar </a> <a
-			href="/A&DStore/cliente/cerrar">Logoff </a> <a
-			href="/A&DStore/producto/crear_Producto"> Crear Producto </a> <a
-			href="/A&DStore/producto/editar_Producto"> Editar Producto </a>
-	</div>
-	<div class="card text-center" style="background-color: #117733;">
-		<br />
-	</div>
->>>>>>> branch 'master' of https://github.com/Albertosgm5/TiendaA-D.git
 </body>
 </html>

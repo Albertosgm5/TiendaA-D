@@ -28,7 +28,7 @@ public class ProductoController {
 	ProductoService productoService;
 	
 	@RequestMapping("/detallesProducto/{idProducto}")
-	public ModelAndView perfilCliente(@PathVariable ("idProducto") long idProducto) {
+	public ModelAndView perfilProducto(@PathVariable ("idProducto") long idProducto) {
 
 		ModelAndView mav = new ModelAndView();
 

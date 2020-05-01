@@ -2,6 +2,7 @@ package ad.store.service;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,10 +20,10 @@ public class CompraServiceImpl implements CompraService{
 	CompraDao compraDao;
 
 	@Override
-	public Compra hacerCompra(Cliente cliente, Producto producto, int unidades, Date fecha, float precioT) {
+	public Compra hacerCompra(Set<Cliente> cliente, Set<Producto> producto, int unidades, Date fecha, float precioT) {
 		Compra compra = new Compra();
-		compra.setCliente(cliente);
-		compra.setProducto(producto);
+		compra.setClientes(cliente);
+		compra.setProductos(producto);
 		compra.setUnidades(unidades);
 		compra.setFecha(fecha);
 		compra.setPrecioT(precioT);

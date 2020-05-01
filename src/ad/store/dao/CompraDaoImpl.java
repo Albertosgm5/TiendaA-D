@@ -3,6 +3,7 @@ package ad.store.dao;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
@@ -17,11 +18,7 @@ import ad.store.entity.Producto;
 @Component("CompraDao")
 public class CompraDaoImpl extends GenericDaoImpl<Compra> implements CompraDao{
 	private long idCliente;
-	@Override
-	public Compra hacerCompra(Cliente cliente, Producto producto, int unidades, Date fecha, float precioT) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 
 	@Override
 	public List<Compra> listarCompras(Cliente cliente) {
@@ -50,6 +47,12 @@ public class CompraDaoImpl extends GenericDaoImpl<Compra> implements CompraDao{
 
 	@Override
 	public Compra obtenerCompraPorId(long idCompra) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Compra hacerCompra(Set<Cliente> cliente, Set<Producto> producto, int unidades, Date fecha, float precioT) {
 		// TODO Auto-generated method stub
 		return null;
 	}

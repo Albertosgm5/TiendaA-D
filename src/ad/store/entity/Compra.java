@@ -109,5 +109,4 @@ public class Compra {
 				+ unidades + ", fecha=" + fecha + ", precioT=" + precioT + "]";
 	}
 
-	
 }
