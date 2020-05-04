@@ -14,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -24,8 +25,11 @@ public class Compra {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "idCompra")
 	private long idCompra;
-	@OneToMany(fetch = FetchType.EAGER,mappedBy = "compra", cascade = CascadeType.ALL, orphanRemoval = true)
-	private Set<Cliente> clientes = new HashSet<>();
+	/*@OneToMany(fetch = FetchType.EAGER,mappedBy = "compra", cascade = CascadeType.ALL, orphanRemoval = true)
+	private Set<Cliente> clientes = new HashSet<>();*/
+	@ManyToOne
+	@JoinColumn(name = "idCliente")
+	private Cliente cliente;
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "compra_producto", 
 	joinColumns = @JoinColumn(name = "idCompra"),
@@ -41,11 +45,11 @@ public class Compra {
 	
 	
 
-	public Compra(long idCompra, Set<Cliente> clientes, Set<Producto> productos, int unidades, Date fecha,
+	public Compra(long idCompra, Cliente clientes, Set<Producto> productos, int unidades, Date fecha,
 			float precioT) {
 		super();
 		this.idCompra = idCompra;
-		this.clientes = clientes;
+		this.cliente = cliente;
 		this.productos = productos;
 		this.unidades = unidades;
 		this.fecha = fecha;
@@ -63,12 +67,14 @@ public class Compra {
 		this.idCompra = idCompra;
 	}
 
-	public Set<Cliente> getClientes() {
-		return clientes;
+	
+
+	public Cliente getCliente() {
+		return cliente;
 	}
 
-	public void setClientes(Set<Cliente> clientes) {
-		this.clientes = clientes;
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
 	}
 
 	public Set<Producto> getProductos() {
@@ -105,7 +111,7 @@ public class Compra {
 
 	@Override
 	public String toString() {
-		return "Compra [idCompra=" + idCompra + ", clientes=" + clientes + ", productos=" + productos + ", unidades="
+		return "Compra [idCompra=" + idCompra + ", clientes=" + cliente + ", productos=" + productos + ", unidades="
 				+ unidades + ", fecha=" + fecha + ", precioT=" + precioT + "]";
 	}
 

@@ -64,7 +64,6 @@ public class CompraController {
 		HttpSession session = request.getSession();
 		long id = (long) session.getAttribute("idSession");
 		Cliente cliente = userService.obtenerCliente(id);
-		Set<Cliente> cliente2 = (Set<Cliente>) cliente;
 		Date fecha = new Date();
 		Calendar cal = Calendar.getInstance();
 		fecha=cal.getTime();
@@ -80,7 +79,7 @@ public class CompraController {
 			producto.setStock(stockResul);
 			productoService.editarProducto(producto);
 			Set<Producto> producto2 = (Set<Producto>) producto;
-			Compra compra = compraService.hacerCompra(cliente2, producto2, unidades, fecha, precioT);
+			Compra compra = compraService.hacerCompra(cliente, producto2, unidades, fecha, precioT);
 		}
 		ModelAndView mav = new ModelAndView();
 

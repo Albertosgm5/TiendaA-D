@@ -52,7 +52,7 @@ public class CompraDaoImpl extends GenericDaoImpl<Compra> implements CompraDao{
 	}
 
 	@Override
-	public Compra hacerCompra(Set<Cliente> cliente, Set<Producto> producto, int unidades, Date fecha, float precioT) {
+	public Compra hacerCompra(Cliente cliente, Set<Producto> producto, int unidades, Date fecha, float precioT) {
 		// TODO Auto-generated method stub
 		return null;
 	}
