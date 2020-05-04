@@ -68,19 +68,22 @@ public class CompraController {
 		Calendar cal = Calendar.getInstance();
 		fecha=cal.getTime();
 		List<Producto> productos = (List<Producto>) session.getAttribute("lProductoSession");
+		int unidades = 0;
+		float precioT = 0;
+		Set<Producto> producto2 = null;
 		for (Producto product : productos) {
-			int unidades = product.getStock();
+			unidades = product.getStock();
 			long idP = product.getIdProducto();
 			float pre = product.getPrecio();
-			float precioT = pre * unidades;
+			precioT = pre * unidades;
 			Producto producto = productoService.obtenerProducto(idP);
 			int stock = producto.getStock();
 			int stockResul = stock - unidades;
 			producto.setStock(stockResul);
 			productoService.editarProducto(producto);
-			Set<Producto> producto2 = (Set<Producto>) producto;
-			Compra compra = compraService.hacerCompra(cliente, producto2, unidades, fecha, precioT);
+			producto2 = (Set<Producto>) producto;
 		}
+		Compra compra = compraService.hacerCompra(cliente, producto2, unidades, fecha, precioT);
 		ModelAndView mav = new ModelAndView();
 
 		response.sendRedirect("/A&DStore/");
