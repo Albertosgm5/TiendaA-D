@@ -3,6 +3,7 @@ package ad.store.controller;
 import java.io.IOException;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -70,7 +71,7 @@ public class CompraController {
 		List<Producto> productos = (List<Producto>) session.getAttribute("lProductoSession");
 		int unidades = 0;
 		float precioT = 0;
-		Set<Producto> productos2 = null;
+		Set<Producto> productos2 = new HashSet<>();
 		for (Producto product : productos) {
 			unidades = product.getStock();
 			long idP = product.getIdProducto();
