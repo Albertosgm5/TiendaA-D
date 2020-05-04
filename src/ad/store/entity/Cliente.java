@@ -63,7 +63,8 @@ public class Cliente {
 	@OneToMany(fetch = FetchType.EAGER,mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true)
 	private Set<Compra> compras = new HashSet<>();
 	
-//	private List<Venta> ventas;
+	@OneToMany(fetch = FetchType.EAGER,mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true)
+	private Set<Venta> ventas = new HashSet<>();
 
 	public Cliente() {
 
@@ -87,7 +88,7 @@ public class Cliente {
 		this.email = email;
 		this.fechaNa = fechaNa;
 	}
-	public Cliente(long idCliente, String direccionEnvio, String nombreUsuario, String password, List<Venta> ventas) {
+	public Cliente(long idCliente, String direccionEnvio, String nombreUsuario, String password) {
 		this.idCliente = idCliente;
 		this.direccionEnvio = direccionEnvio;
 		this.nombreUsuario = nombreUsuario;
@@ -118,12 +119,7 @@ public class Cliente {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-//	public List<Venta> getVentas() {
-//		return ventas;
-//	}
-//	public void setVentas(List<Venta> ventas) {
-//		this.ventas = ventas;
-//	}
+
 	public String getNombre() {
 		return nombre;
 	}
@@ -194,11 +190,21 @@ public class Cliente {
 	public void setCompras(Set<Compra> compras) {
 		this.compras = compras;
 	}
+	
+	public Set<Venta> getVentas() {
+		return ventas;
+	}
+	public void setVentas(Set<Venta> ventas) {
+		this.ventas = ventas;
+	}
 	@Override
 	public String toString() {
 		return "Cliente [idCliente=" + idCliente + ", direccionEnvio=" + direccionEnvio + ", nombreUsuario="
 				+ nombreUsuario + ", password=" + password + ", nombre=" + nombre + ", apellidos=" + apellidos
 				+ ", email=" + email + ", fechaNa=" + fechaNa + ", banco=" + banco + ", numTarjeta=" + numTarjeta
-				+ ", titular=" + titular + ", codigoS=" + codigoS + ", direccionFa=" + direccionFa + "]";
+				+ ", titular=" + titular + ", codigoS=" + codigoS + ", direccionFa=" + direccionFa + ", roles=" + roles
+				+ ", compras=" + compras + ", ventas=" + ventas + "]";
 	}
+
+	
 }

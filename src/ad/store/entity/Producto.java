@@ -3,6 +3,7 @@ package ad.store.entity;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -12,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
@@ -36,6 +38,8 @@ public class Producto {
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "compra_producto", joinColumns = @JoinColumn(name = "idProducto"), inverseJoinColumns = @JoinColumn(name = "idCompra"))
 	private Set<Compra> compras = new HashSet<>();
+	@OneToMany(fetch = FetchType.EAGER,mappedBy = "producto", cascade = CascadeType.ALL, orphanRemoval = true)
+	private Set<Venta> ventas = new HashSet<>();
 	
 	public Producto(long idProducto, String nombreProducto, float precio, int stock,String categoria, String descripcion) {
 		this.idProducto = idProducto;
@@ -99,6 +103,13 @@ public class Producto {
 		this.stock = stock;
 	}
 	
+	
+	public Set<Venta> getVentas() {
+		return ventas;
+	}
+	public void setVentas(Set<Venta> ventas) {
+		this.ventas = ventas;
+	}
 	@Override
 	public String toString() {
 		return "Producto [idProducto=" + idProducto + ", nombreProducto=" + nombreProducto + ", precio=" + precio

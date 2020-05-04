@@ -164,8 +164,7 @@ public class ProductoController {
 		Producto pro = productoService.obtenerProductoPorNombre(name);
 		Long id= pro.getIdProducto();
 		productoService.eliminarProducto(id);
-	    sesion.invalidate();
-
+	    
 			response.sendRedirect("/A&DStore/");
 
 

@@ -39,12 +39,14 @@
 					</thead>
 					<tbody>
 						<tr th:each="compra : ${compras}">
-							<!--  <tr th:each="compra : ${compras}">
-							<td th:text="${compra.productos.}"></td>
-							<td th:text="${compra.unidades}"></td>
+							<tr th:each="venta : ${ventas}">
+								<tr th:object="${producto}">
+									<td th:text="${producto.nombreProducto}"></td>
+								</tr>
+								<td th:text="${venta.unidades}"></td>
+							</tr>
 							<td th:text="${compra.fecha}"></td>
 							<td th:text="${compra.precioT}"></td>
-							</tr>-->
 							<td><a href=#
 								th:href="@{/compra/detallesCompra/{idCompra}(idCompra = ${compra.idCompra})}">
 									Detalles </a></td>

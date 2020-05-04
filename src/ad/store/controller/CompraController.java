@@ -22,9 +22,11 @@ import org.springframework.web.servlet.ModelAndView;
 import ad.store.entity.Cliente;
 import ad.store.entity.Compra;
 import ad.store.entity.Producto;
+import ad.store.entity.Venta;
 import ad.store.service.CompraService;
 import ad.store.service.ProductoService;
 import ad.store.service.UserService;
+import ad.store.service.VentaService;
 
 @Controller
 @RequestMapping(value = "/compras")
@@ -37,6 +39,8 @@ public class CompraController {
 	UserService userService;
 	@Autowired
 	ProductoService productoService;
+	@Autowired
+	VentaService ventaService;
 	
 	@RequestMapping("/detallesCompra/{idCompra}")
 	public ModelAndView perfilCompra(HttpServletRequest request,
@@ -83,8 +87,9 @@ public class CompraController {
 			producto.setStock(stockResul);
 			productoService.editarProducto(producto);
 			productos2.add(producto);
+			Venta venta = ventaService.hacerVenta(cliente, producto, unidades);
 		}
-		Compra compra = compraService.hacerCompra(cliente, productos2, unidades, fecha, precioT);
+		Compra compra = compraService.hacerCompra(cliente, productos2, fecha, precioT);
 		ModelAndView mav = new ModelAndView();
 
 		response.sendRedirect("/A&DStore/");
@@ -118,7 +123,7 @@ public class CompraController {
 		ModelAndView mav = new ModelAndView();
 
 		List<Compra> compra = compraService.listarCompras(cliente);
-
+		
 		mav.addObject("compras", compra);
 		mav.setViewName("listarcompras");
 		return mav;

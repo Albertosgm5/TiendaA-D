@@ -1,59 +1,66 @@
 package ad.store.entity;
-import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+@Entity
+@Table(name = "venta")
 public class Venta {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "idVenta")
 	private long idVenta;
-	private long idCliente;
-	private Date fechaVentas;
-	private float descuento;
-	
+	@ManyToOne
+	@JoinColumn(name = "idCliente")
+	private Cliente cliente;
+	@ManyToOne
+	@JoinColumn(name = "idProducto")
+	private Producto producto;
+	@Column(name = "unidades")
+	private int unidades;
+	public Venta(long idVenta, Cliente cliente, Producto producto, int unidades) {
+		super();
+		this.cliente = cliente;
+		this.producto = producto;
+		this.unidades = unidades;
+	}
 	public Venta() {
 		
 	}
-	public Venta(long idVenta, float descuento, Date fechaVentas) {
-		this.idVenta = idVenta;
-		this.fechaVentas = fechaVentas;
-		this.descuento = descuento;
-	}
-	/*public Venta(long idCliente, float descuento, Date fechaVentas) {
-		this.idCliente = idCliente;
-		this.fechaVentas = fechaVentas;
-		this.descuento = descuento;
-	}*/
-	public Venta(long idVenta, Date fechaVentas, float descuento) {
-		this.idVenta = idVenta;
-		this.fechaVentas = fechaVentas;
-		this.descuento = descuento;
-	}
+	
 	public long getIdVenta() {
 		return idVenta;
 	}
 	public void setIdVenta(long idVenta) {
 		this.idVenta = idVenta;
 	}
-	public Date getFechaVentas() {
-		return fechaVentas;
+	public Cliente getCliente() {
+		return cliente;
 	}
-	public void setFechaVentas(Date fechaVentas) {
-		this.fechaVentas = fechaVentas;
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
 	}
-	public float getDescuento() {
-		return descuento;
+	public Producto getProducto() {
+		return producto;
 	}
-	public void setDescuento(float descuento) {
-		this.descuento = descuento;
+	public void setProducto(Producto producto) {
+		this.producto = producto;
 	}
-
-	public long getIdCliente() {
-		return idCliente;
+	public int getUnidades() {
+		return unidades;
 	}
-	public void setIdCliente(long idCliente) {
-		this.idCliente = idCliente;
+	public void setUnidades(int unidades) {
+		this.unidades = unidades;
 	}
 	@Override
 	public String toString() {
-		return "Venta [idVenta=" + idVenta + ", fechaVentas=" + fechaVentas + ", descuento=" + descuento
-				+ "]";
+		return "Venta [idVenta=" + idVenta + ", cliente=" + cliente + ", producto=" + producto + ", unidades="
+				+ unidades + "]";
 	}
 	
 	

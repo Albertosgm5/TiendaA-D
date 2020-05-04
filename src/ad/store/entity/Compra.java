@@ -35,8 +35,6 @@ public class Compra {
 	joinColumns = @JoinColumn(name = "idCompra"),
 	inverseJoinColumns = @JoinColumn(name = "idProducto"))
 	private Set<Producto> productos = new HashSet<>();
-	@Column(name = "unidades")
-	private int unidades;
 	@Column(name = "fecha")
 	private Date fecha;
 	@Column(name = "precioTotal")
@@ -44,14 +42,14 @@ public class Compra {
 	
 	
 	
+	
 
-	public Compra(long idCompra, Cliente cliente, Set<Producto> productos, int unidades, Date fecha,
+	public Compra(long idCompra, Cliente cliente, Set<Producto> productos, Date fecha,
 			float precioT) {
 		super();
 		this.idCompra = idCompra;
 		this.cliente = cliente;
 		this.productos = productos;
-		this.unidades = unidades;
 		this.fecha = fecha;
 		this.precioT = precioT;
 	}
@@ -85,13 +83,6 @@ public class Compra {
 		this.productos = productos;
 	}
 
-	public int getUnidades() {
-		return unidades;
-	}
-
-	public void setUnidades(int unidades) {
-		this.unidades = unidades;
-	}
 
 	public Date getFecha() {
 		return fecha;
@@ -111,8 +102,14 @@ public class Compra {
 
 	@Override
 	public String toString() {
-		return "Compra [idCompra=" + idCompra + ", clientes=" + cliente + ", productos=" + productos + ", unidades="
-				+ unidades + ", fecha=" + fecha + ", precioT=" + precioT + "]";
+		return "Compra [idCompra=" + idCompra + ", cliente=" + cliente + ", productos=" + productos + ", fecha=" + fecha
+				+ ", precioT=" + precioT + "]";
 	}
+	
+
+	
+
+	
+
 
 }
