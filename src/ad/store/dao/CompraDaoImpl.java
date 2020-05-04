@@ -26,7 +26,7 @@ public class CompraDaoImpl extends GenericDaoImpl<Compra> implements CompraDao{
 		List<Compra> compra = new ArrayList<Compra>();
 
         compra = this.em
-                .createQuery("FROM Compra Where idCliente = ?"+idCliente, Compra.class).getResultList();
+                .createQuery("FROM Compra Where idCliente = "+idCliente, Compra.class).getResultList();
         if (compra != null ) {
             return compra;
         }

@@ -45,7 +45,7 @@ public class Compra {
 	
 	
 
-	public Compra(long idCompra, Cliente clientes, Set<Producto> productos, int unidades, Date fecha,
+	public Compra(long idCompra, Cliente cliente, Set<Producto> productos, int unidades, Date fecha,
 			float precioT) {
 		super();
 		this.idCompra = idCompra;

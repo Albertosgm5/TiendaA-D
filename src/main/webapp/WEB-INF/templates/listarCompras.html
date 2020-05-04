@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<link rel="icon" th:href="@{/images/logo.ico}" type="image/ico" />
+<title>Listado productos</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+<link rel="canonical"
+	href="https://getbootstrap.com/docs/4.0/examples/sticky-footer-navbar/">
+<link href="src/main/webapp/WEB-INF/dist/css/bootstrap.min.css"
+	rel="stylesheet">
+<link href="sticky-footer-navbar.css" rel="stylesheet">
+
+</head>
+<body style="background-color: #117733;">
+	<header>
+
+		<!-- Barra de navegacion -->
+		<nav th:replace="fragmentos/header_loader"></nav>
+	</header>
+	<form>
+		<input type="text" id="producto" name="producto" /> <input
+			type="submit" value="Busqueda" />
+	</form>
+	<div class="container my-5">
+		<h1>Listado de Productos</h1>
+		<div class="card">
+			<div class="card-body">
+				<table width="100%" height="100%" style="margin: 0 auto;">
+					<thead>
+						<tr>
+							<th>Nombre</th>
+							<th>Precio</th>
+							<th>Stock</th>
+							<th>Categoria</th>
+							<th>Descripcion</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="compra : ${compras}">
+							<!--  <tr th:each="compra : ${compras}">
+							<td th:text="${compra.productos.}"></td>
+							<td th:text="${compra.unidades}"></td>
+							<td th:text="${compra.fecha}"></td>
+							<td th:text="${compra.precioT}"></td>
+							</tr>-->
+							<td><a href=#
+								th:href="@{/compra/detallesCompra/{idCompra}(idCompra = ${compra.idCompra})}">
+									Detalles </a></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
