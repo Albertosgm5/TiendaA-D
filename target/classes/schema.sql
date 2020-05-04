@@ -40,7 +40,6 @@ CREATE TABLE `producto` (
 CREATE TABLE `compra` (
   `idCompra` bigint(20) NOT NULL AUTO_INCREMENT,
   `fecha` datetime NOT NULL,
-  `unidades` int(11) NOT NULL,
   `precioTotal` float NOT NULL,
   `idProducto` bigint(20) NOT NULL,
   `idCliente` bigint(20) NOT NULL,
@@ -51,7 +50,8 @@ CONSTRAINT `fk_producto` FOREIGN KEY (`idProducto`) REFERENCES `producto` (`idPr
 
 CREATE TABLE `compra_producto` (
   `idProducto` bigint(20) NOT NULL,
-  `idCompra` bigint(20) NOT NULL
+  `idCompra` bigint(20) NOT NULL,
+  `unidades` int(11) NOT NULL,
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 
