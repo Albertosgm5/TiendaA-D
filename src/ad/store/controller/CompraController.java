@@ -70,7 +70,7 @@ public class CompraController {
 		List<Producto> productos = (List<Producto>) session.getAttribute("lProductoSession");
 		int unidades = 0;
 		float precioT = 0;
-		Set<Producto> producto2 = null;
+		Set<Producto> productos2 = null;
 		for (Producto product : productos) {
 			unidades = product.getStock();
 			long idP = product.getIdProducto();
@@ -81,9 +81,9 @@ public class CompraController {
 			int stockResul = stock - unidades;
 			producto.setStock(stockResul);
 			productoService.editarProducto(producto);
-			producto2 = (Set<Producto>) producto;
+			productos2.add(producto);
 		}
-		Compra compra = compraService.hacerCompra(cliente, producto2, unidades, fecha, precioT);
+		Compra compra = compraService.hacerCompra(cliente, productos2, unidades, fecha, precioT);
 		ModelAndView mav = new ModelAndView();
 
 		response.sendRedirect("/A&DStore/");
