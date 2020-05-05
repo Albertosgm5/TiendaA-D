@@ -27,6 +27,8 @@
 		<h1>Detalles Producto</h1>
 		<div class="card">
 			<div class="card-body">
+				<label type="hidden" id="idProducto" name="idProducto"
+					th:value="${producto.idProducto}"></label>
 				<p th:if="${exception}" class="error">Wrong user or password</p>
 				<form action="#" th:object="${producto}" method="post">
 					<h2>Nombre Producto</h2>
@@ -42,7 +44,9 @@
 					<p id="descripcion" name="descripcion" th:text="*{descripcion}"></p>
 
 				</form>
-				<div style="float: right; width: 30%;">
+				<div
+					sec:authorize="hasAuthority('ROL_USER') || hasAuthority('ROL_ADMIN')"
+					style="float: right; width: 30%;">
 					<form action="#" th:object="${producto}"
 						th:action="@{/producto/detallesProducto/} + *{idProducto}"
 						method="post">
@@ -54,6 +58,10 @@
 							<input type="submit" value="Agregar" />
 						</div>
 					</form>
+					<br /> <br />
+					<div sec:authorize="hasAuthority('ROL_ADMIN')" class="card text-center" style="background-color: #BBB777;">
+						<a href= # th:href="@{/producto/editar_Producto/{idProducto}(idProducto = ${producto.idProducto})}"> Editar Producto</a>
+					</div>
 				</div>
 			</div>
 		</div>
