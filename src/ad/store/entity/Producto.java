@@ -40,7 +40,10 @@ public class Producto {
 	private Set<Compra> compras = new HashSet<>();
 	@OneToMany(fetch = FetchType.EAGER,mappedBy = "producto", cascade = CascadeType.ALL, orphanRemoval = true)
 	private Set<Venta> ventas = new HashSet<>();
+	@OneToMany(fetch = FetchType.EAGER,mappedBy = "producto", cascade = CascadeType.ALL, orphanRemoval = true)
+	private Set<Pregunta> preguntas= new HashSet<>();
 	
+
 	public Producto(long idProducto, String nombreProducto, float precio, int stock,String categoria, String descripcion) {
 		this.idProducto = idProducto;
 		this.nombreProducto = nombreProducto;
@@ -110,6 +113,13 @@ public class Producto {
 	public void setVentas(Set<Venta> ventas) {
 		this.ventas = ventas;
 	}
+	public Set<Pregunta> getPreguntas() {
+		return preguntas;
+	}
+	public void setPreguntas(Set<Pregunta> preguntas) {
+		this.preguntas = preguntas;
+	}
+	
 	@Override
 	public String toString() {
 		return "Producto [idProducto=" + idProducto + ", nombreProducto=" + nombreProducto + ", precio=" + precio
