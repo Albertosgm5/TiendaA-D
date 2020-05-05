@@ -59,7 +59,7 @@
 	</div>
 	<center>
 		</form>
-		<form th:action="@{/producto/BorrarP}">
+		<form th:action="@{/producto/borrarproducto/{idProducto}(idProducto = ${producto.idProducto})}" method="get">
 			<input type="submit" value="Borrar" />
 		</form>
 	</center>

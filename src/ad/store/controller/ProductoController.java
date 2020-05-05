@@ -130,7 +130,8 @@ public class ProductoController {
 	public void handleEdit(HttpServletRequest request, HttpServletResponse response,
 			@PathVariable("idProducto") long idProducto, @RequestParam("nombreProducto") String nombre,
 			@RequestParam("precio") float precio, @RequestParam("stock") int stock,
-			@RequestParam("categoria") String categoria, @RequestParam("descripcion") String descripcion) throws IOException {
+			@RequestParam("categoria") String categoria, @RequestParam("descripcion") String descripcion)
+			throws IOException {
 
 		Producto pro = productoService.obtenerProducto(idProducto);
 		pro.setNombreProducto(nombre);
@@ -157,14 +158,10 @@ public class ProductoController {
 		response.sendRedirect("/A&DStore/");
 	}
 
-	@RequestMapping(value = "/BorrarP")
-	public void handleDelete(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		HttpSession sesion = request.getSession();
-		name = (String) sesion.getAttribute("productoSession");
-		Producto pro = productoService.obtenerProductoPorNombre(name);
-		Long id = pro.getIdProducto();
-		productoService.eliminarProducto(id);
-
+	@RequestMapping(value = "/borrarproducto/{idProducto}")
+	public void handleDelete(HttpServletRequest request, HttpServletResponse response,
+			@PathVariable("idProducto") long idProducto) throws IOException {
+		productoService.eliminarProducto(idProducto);
 		response.sendRedirect("/A&DStore/");
 
 	}
