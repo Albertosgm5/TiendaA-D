@@ -28,7 +28,7 @@ public class VentaDaoImpl extends GenericDaoImpl<Venta> implements VentaDao{
 	}
 
 	@Override
-	public List<Venta> listarVentas(Cliente cliente, Producto producto) {
+	public List<Venta> obtenerVenta(Cliente cliente, Producto producto) {
 		idCliente=cliente.getIdCliente();
 		idProducto=producto.getIdProducto();
 		List<Venta> ventas = new ArrayList<Venta>();

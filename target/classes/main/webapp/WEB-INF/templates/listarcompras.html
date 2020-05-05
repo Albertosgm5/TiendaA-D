@@ -24,7 +24,7 @@
 			type="submit" value="Busqueda" />
 	</form>
 	<div class="container my-5">
-		<h1>Listado de Productos</h1>
+		<h1>Listado de Compras</h1>
 		<div class="card">
 			<div class="card-body">
 				<table width="100%" height="100%" style="margin: 0 auto;">
@@ -40,9 +40,7 @@
 					<tbody>
 						<tr th:each="compra : ${compras}">
 							<tr th:each="venta : ${ventas}">
-								<tr th:object="${producto}">
-									<td th:text="${producto.nombreProducto}"></td>
-								</tr>
+								<td th:text="${venta.produto.nombreProducto}"></td>
 								<td th:text="${venta.unidades}"></td>
 							</tr>
 							<td th:text="${compra.fecha}"></td>

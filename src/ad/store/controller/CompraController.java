@@ -1,6 +1,7 @@
 package ad.store.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashSet;
@@ -122,9 +123,17 @@ public class CompraController {
 		Cliente cliente = userService.obtenerCliente(id);
 		ModelAndView mav = new ModelAndView();
 
-		List<Compra> compra = compraService.listarCompras(cliente);
-		
-		mav.addObject("compras", compra);
+		List<Compra> compras = compraService.listarCompras(cliente);
+		List<Venta> ventas = new ArrayList<Venta>();
+		Set<Producto> productos = new HashSet<>();
+		for (Compra compra : compras) {
+			productos = compra.getProductos();
+			for (Producto producto : productos) {
+				ventas.add((Venta) ventaService.obtenerVenta(cliente, producto));
+			}
+		}
+		mav.addObject("compras", compras);
+		mav.addObject("ventas", ventas);
 		mav.setViewName("listarcompras");
 		return mav;
 	}

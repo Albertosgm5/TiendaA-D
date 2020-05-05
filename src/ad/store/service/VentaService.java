@@ -10,5 +10,5 @@ import ad.store.entity.Venta;
 
 public interface VentaService {
 	public Venta hacerVenta (Cliente cliente, Producto producto, int unidades);
-	public List<Venta> listarVentas(Cliente cliente, Producto producto);
+	public List<Venta> obtenerVenta(Cliente cliente, Producto producto);
 }

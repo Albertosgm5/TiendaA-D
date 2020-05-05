@@ -29,8 +29,8 @@ public class VentaServiceImpl implements VentaService{
 		return ventaDao.create(venta);
 	}
 	@Override
-	public List<Venta> listarVentas(Cliente cliente, Producto producto) {
-		return ventaDao.listarVentas(cliente, producto);
+	public List<Venta> obtenerVenta(Cliente cliente, Producto producto) {
+		return ventaDao.obtenerVenta(cliente, producto);
 	}
 
 }
