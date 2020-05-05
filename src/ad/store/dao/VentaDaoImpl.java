@@ -28,15 +28,15 @@ public class VentaDaoImpl extends GenericDaoImpl<Venta> implements VentaDao{
 	}
 
 	@Override
-	public List<Venta> obtenerVenta(Cliente cliente, Producto producto) {
+	public Venta obtenerVenta(Cliente cliente, Producto producto) {
 		idCliente=cliente.getIdCliente();
 		idProducto=producto.getIdProducto();
-		List<Venta> ventas = new ArrayList<Venta>();
+		Venta venta;
 
-        ventas = this.em
+        venta = (Venta) this.em
                 .createQuery("FROM Venta Where idCliente = "+idCliente+" AND idProducto ="+idProducto, Venta.class).getResultList();
-        if (ventas != null ) {
-            return ventas;
+        if (venta != null ) {
+            return venta;
         }
 		return null;
 	}
