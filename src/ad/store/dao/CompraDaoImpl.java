@@ -57,4 +57,12 @@ public class CompraDaoImpl extends GenericDaoImpl<Compra> implements CompraDao{
 		return null;
 	}
 
+	@Override
+	public void eliminarCompra(Compra compra) {
+		Producto p = new Producto();
+		p.deleteCompras(compra);
+		
+	}
+	
+
 }

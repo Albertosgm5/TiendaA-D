@@ -43,13 +43,21 @@ public class CompraController {
 	@Autowired
 	VentaService ventaService;
 	
-	@RequestMapping("/detallesCompra/{idCompra}")
+	@RequestMapping(method = RequestMethod.GET, value="/detallesCompra/{idCompra}")
 	public ModelAndView perfilCompra(HttpServletRequest request,
 			@PathVariable ("idCompra") long idCompra) {
+		HttpSession session = request.getSession();
+		long id = (long) session.getAttribute("idSession");
+		Cliente cliente = userService.obtenerCliente(id);
 		ModelAndView mav = new ModelAndView();
-		HttpSession sesion = request.getSession();
 		Compra compra = compraService.obtenerCompraPorId(idCompra);
-		sesion.setAttribute("CompraSession", compra);
+		List <Venta> ventas = new ArrayList<Venta>();
+		Set<Producto> productos = new HashSet<>();
+		productos = compra.getProductos();
+		for(Producto producto : productos) {
+			ventas.add(ventaService.obtenerVenta(cliente, producto));
+		}
+		mav.addObject("ventas", ventas);
 		mav.addObject("compra", compra);
 		mav.setViewName("detallescompra");
 		return mav;
@@ -75,13 +83,13 @@ public class CompraController {
 		fecha=cal.getTime();
 		List<Producto> productos = (List<Producto>) session.getAttribute("lProductoSession");
 		int unidades = 0;
-		float precioT = 0;
+		float precioT = 3.99f;
 		Set<Producto> productos2 = new HashSet<>();
 		for (Producto product : productos) {
 			unidades = product.getStock();
 			long idP = product.getIdProducto();
 			float pre = product.getPrecio();
-			precioT = pre * unidades;
+			precioT += pre * unidades;
 			Producto producto = productoService.obtenerProducto(idP);
 			int stock = producto.getStock();
 			int stockResul = stock - unidades;
@@ -91,24 +99,34 @@ public class CompraController {
 			Venta venta = ventaService.hacerVenta(cliente, producto, unidades);
 		}
 		Compra compra = compraService.hacerCompra(cliente, productos2, fecha, precioT);
+		session.setAttribute("lProductoSession", new ArrayList<Producto>());
 		ModelAndView mav = new ModelAndView();
 
 		response.sendRedirect("/A&DStore/");
 	}
-
-	@RequestMapping(method = RequestMethod.POST,value="/detallesCompra/{idCompra}")
-	public void handleDelete(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		HttpSession sesion = request.getSession();
-		Compra comp = (Compra) sesion.getAttribute("CompraSession");
-		Long id = comp.getIdCompra();
-		fechaC = comp.getFecha();
+	
+	@RequestMapping(method = RequestMethod.GET, value="/devolucion/{idCompra}")
+	public void handleDelete(HttpServletRequest request, HttpServletResponse response,@PathVariable ("idCompra") long idCompra) throws IOException {
+		Compra compra = compraService.obtenerCompraPorId(idCompra);
+		HttpSession session = request.getSession();
+		Cliente c = userService.obtenerCliente((long) session.getAttribute("idSession"));
+		Long id = compra.getIdCompra();
+		fechaC = compra.getFecha();
 		Calendar fecha = Calendar.getInstance();
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(fechaC);
 		cal.add(Calendar.DAY_OF_YEAR, 15);
 		if (fecha.DAY_OF_YEAR <= cal.DAY_OF_YEAR) {
-			compraService.devolverCompra(id);
-			sesion.invalidate();
+			List <Venta> ventas = new ArrayList<Venta>();
+			Set<Producto> productos = new HashSet<>();
+			productos = compra.getProductos();
+			for(Producto producto : productos) {
+				ventas.add(ventaService.obtenerVenta(c, producto));
+			}
+			for(int i = 0; i< ventas.size(); i++) {
+				ventaService.eliminarVenta(ventas.get(i));
+			}
+			compraService.eliminarCompra(compra);
 
 			response.sendRedirect("/A&DStore/");
 		} else {
@@ -124,16 +142,7 @@ public class CompraController {
 		ModelAndView mav = new ModelAndView();
 
 		List<Compra> compras = compraService.listarCompras(cliente);
-		List<Venta> ventas = new ArrayList<Venta>();
-		Set<Producto> productos = new HashSet<>();
-		for (Compra compra : compras) {
-			productos = compra.getProductos();
-			for (Producto producto : productos) {
-				ventas.add((Venta) ventaService.obtenerVenta(cliente, producto));
-			}
-		}
 		mav.addObject("compras", compras);
-		mav.addObject("ventas", ventas);
 		mav.setViewName("listarcompras");
 		return mav;
 	}

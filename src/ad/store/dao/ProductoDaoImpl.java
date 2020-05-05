@@ -8,7 +8,9 @@ import javax.persistence.Query;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
+import ad.store.entity.Compra;
 import ad.store.entity.Producto;
+import ad.store.entity.Venta;
 
 
 @Repository
@@ -96,6 +98,16 @@ public class ProductoDaoImpl extends GenericDaoImpl<Producto> implements Product
 			int index) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	@Override
+	public void eliminarCompra(Compra compra) {
+		Producto p = new Producto();
+		p.deleteCompras(compra);
+	}
+	@Override
+	public void eliminarVentas(Venta venta) {
+		Producto p = new Producto();
+		p.deleteVentas(venta);
 	}
 
 	

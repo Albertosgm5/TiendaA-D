@@ -39,10 +39,6 @@ public class Compra {
 	private Date fecha;
 	@Column(name = "precioTotal")
 	private float precioT;
-	
-	
-	
-	
 
 	public Compra(long idCompra, Cliente cliente, Set<Producto> productos, Date fecha,
 			float precioT) {

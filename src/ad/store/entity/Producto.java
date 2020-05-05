@@ -64,11 +64,18 @@ public class Producto {
 	public Set<Compra> getCompras() {
 		return compras;
 	}
+	
 
 	public void setCompras(Set<Compra>  compras) {
 		this.compras =  compras;
 	}
 	
+	public void deleteCompras(Compra compras) {
+		this.compras.remove(compras);
+	}
+	public void deleteVentas(Venta venta) {
+		this.ventas.remove(venta);
+	}
 	public String getCategoria() {
 		return categoria;
 	}
