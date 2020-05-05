@@ -34,7 +34,7 @@ public class VentaDaoImpl extends GenericDaoImpl<Venta> implements VentaDao{
 		List<Venta> ventas = new ArrayList<Venta>();
 
         ventas = this.em
-                .createQuery("FROM Venta Where idCliente = "+idCliente+", idProducto ="+idProducto, Venta.class).getResultList();
+                .createQuery("FROM Venta Where idCliente = "+idCliente+"AND idProducto ="+idProducto, Venta.class).getResultList();
         if (ventas != null ) {
             return ventas;
         }
