@@ -5,6 +5,8 @@ package ad.store.dao;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Query;
+
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
@@ -31,10 +33,10 @@ public class VentaDaoImpl extends GenericDaoImpl<Venta> implements VentaDao{
 	public Venta obtenerVenta(Cliente cliente, Producto producto) {
 		idCliente=cliente.getIdCliente();
 		idProducto=producto.getIdProducto();
-		Venta venta;
-
-        venta = (Venta) this.em
-                .createQuery("FROM Venta Where idCliente = "+idCliente+" AND idProducto ="+idProducto, Venta.class).getResultList();
+		Query query = this.em.createQuery("From Venta Where idCliente = :idCliente AND idProducto = :idProducto");
+		query.setParameter("idCliente", idCliente);
+		query.setParameter("idProducto", idProducto);
+		Venta venta = (Venta) query.getSingleResult();
         if (venta != null ) {
             return venta;
         }
