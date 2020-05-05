@@ -27,9 +27,9 @@ public class Pregunta {
 	private String pregunta;
 	@ManyToOne
 	@JoinColumn(name = "idProducto")
-	private Set<Producto> producto = new HashSet<>();
+	private Producto producto;
 	
-	public Pregunta(String pregunta, Set<Producto> producto) {
+	public Pregunta(String pregunta, Producto producto) {
 		super();
 		this.pregunta = pregunta;
 		this.producto = producto;
@@ -46,10 +46,10 @@ public class Pregunta {
 	public void setPregunta(String pregunta) {
 		this.pregunta = pregunta;
 	}
-	public Set<Producto> getProducto() {
+	public Producto getProducto() {
 		return producto;
 	}
-	public void setProducto(Set<Producto> producto) {
+	public void setProducto(Producto producto) {
 		this.producto = producto;
 	}
 
