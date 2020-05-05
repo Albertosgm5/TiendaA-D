@@ -57,14 +57,17 @@ public class Cliente {
 	joinColumns = @JoinColumn(name = "idCliente"),
 	inverseJoinColumns = @JoinColumn(name = "idRol"))
 	private Set<Rol> roles = new HashSet<>();
-	/*@ManyToOne
-	@JoinColumn(name = "idCompra")
-	private Compra compra;*/
+	
 	@OneToMany(fetch = FetchType.EAGER,mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true)
 	private Set<Compra> compras = new HashSet<>();
 	
 	@OneToMany(fetch = FetchType.EAGER,mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true)
 	private Set<Venta> ventas = new HashSet<>();
+	
+	@OneToMany(fetch = FetchType.EAGER,mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true)
+	private Set<Pregunta> preguntas = new HashSet<>();
+	@OneToMany(fetch = FetchType.EAGER,mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true)
+	private Set<Respuesta> respuestas = new HashSet<>();
 
 	public Cliente() {
 
@@ -196,6 +199,19 @@ public class Cliente {
 	}
 	public void setVentas(Set<Venta> ventas) {
 		this.ventas = ventas;
+	}
+	
+	public Set<Pregunta> getPreguntas() {
+		return preguntas;
+	}
+	public void setPreguntas(Set<Pregunta> preguntas) {
+		this.preguntas = preguntas;
+	}
+	public Set<Respuesta> getRespuestas() {
+		return respuestas;
+	}
+	public void setRespuestas(Set<Respuesta> respuestas) {
+		this.respuestas = respuestas;
 	}
 	@Override
 	public String toString() {

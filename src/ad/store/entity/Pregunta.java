@@ -3,6 +3,7 @@ package ad.store.entity;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -13,10 +14,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "preguntas")
+@Table(name = "pregunta")
 public class Pregunta {
 
 	@Id
@@ -28,11 +30,22 @@ public class Pregunta {
 	@ManyToOne
 	@JoinColumn(name = "idProducto")
 	private Producto producto;
+	@OneToMany(fetch = FetchType.EAGER,mappedBy = "pregunta", cascade = CascadeType.ALL, orphanRemoval = true)
+	private Set<Respuesta> respuestas= new HashSet<>();
+	@ManyToOne
+	@JoinColumn(name = "idCliente")
+	private Cliente cliente;
 	
-	public Pregunta(String pregunta, Producto producto) {
+	public Pregunta(long idPregunta, String pregunta, Producto producto, Set<Respuesta> respuestas, Cliente cliente) {
 		super();
+		this.idPregunta = idPregunta;
 		this.pregunta = pregunta;
 		this.producto = producto;
+		this.respuestas = respuestas;
+		this.cliente = cliente;
+	}
+	public Pregunta() {
+		
 	}
 	public long getIdPregunta() {
 		return idPregunta;
@@ -52,10 +65,23 @@ public class Pregunta {
 	public void setProducto(Producto producto) {
 		this.producto = producto;
 	}
-
-	
-	
-	
+	public Set<Respuesta> getRespuestas() {
+		return respuestas;
+	}
+	public void setRespuestas(Set<Respuesta> respuestas) {
+		this.respuestas = respuestas;
+	}
+	public Cliente getCliente() {
+		return cliente;
+	}
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+	@Override
+	public String toString() {
+		return "Pregunta [idPregunta=" + idPregunta + ", pregunta=" + pregunta + ", producto=" + producto
+				+ ", respuestas=" + respuestas + ", cliente=" + cliente + "]";
+	}
 	
 	
 }

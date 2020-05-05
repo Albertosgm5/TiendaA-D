@@ -62,7 +62,42 @@
 					<div sec:authorize="hasAuthority('ROL_ADMIN')" class="card text-center" style="background-color: #BBB777;">
 						<a href= # th:href="@{/producto/editar_Producto/{idProducto}(idProducto = ${producto.idProducto})}"> Editar Producto</a>
 					</div>
+				
+					
 				</div>
+					<form action="#" th:object="${pregunta}" method="post">
+						<div style="float: right; width: 30%;">
+							<textarea>Escribe aquí tu pregunta </textarea>
+						</div>
+						<div style="float: right; width: 10%;">
+							<input type="submit" value="Preguntar"/>
+						</div>
+					</form>
+					<br/><br/><br/>
+					<form action="#" th:object="${pregunta}" method="post">
+						<div style="float: right; width: 30%;">
+							<textarea>Escribe aquí tu respuesta </textarea>
+						</div>
+						<div style="float: right; width: 10%;">
+							<input type="submit" value="Responder"/>
+						</div>
+					</form>
+					<table width="100%" height="100%" style="margin: 0 auto;">
+					<thead>
+						<tr>
+							<th>Preguntas</th>
+							<th>Respuestas</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="pregunta : ${preguntas}">
+							<td th:text="${pregunta}"></td>
+							<tr th:each="respuesta : ${respuestas}">
+								<td th:text="${respuesta}"></td>
+							</tr>
+						</tr>
+					</tbody>
+				</table>
 			</div>
 		</div>
 	</div>
