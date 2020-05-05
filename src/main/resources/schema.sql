@@ -63,6 +63,21 @@ CREATE TABLE `compra_producto` (
   `idCompra` bigint(20) NOT NULL,
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+CREATE TABLE `preguntas` (
+  `idPregunta` bigint(20) NOT NULL AUTO_INCREMENT,
+  `textoPregunta` varchar(255) NOT NULL,
+  `idProducto` bigint(20) NOT NULL,
+  PRIMARY KEY (`idPregunta`),
+CONSTRAINT `fk_producto` FOREIGN KEY (`idProducto`) REFERENCES `producto` (`idProducto`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+CREATE TABLE `respuestas` (
+  `idRespuesta` bigint(20) NOT NULL AUTO_INCREMENT,
+  `textoRespuesta` varchar(255) NOT NULL,
+  `idPregunta` bigint(20) NOT NULL,
+  PRIMARY KEY (`idRespuesta`),
+CONSTRAINT `fk_pregunta` FOREIGN KEY (`idPregunta`) REFERENCES `preguntas` (`idPregunta`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 CREATE TABLE `rol` (
   `idRol` int NOT NULL AUTO_INCREMENT,
