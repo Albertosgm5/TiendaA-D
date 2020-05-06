@@ -22,6 +22,7 @@ import ad.store.entity.Venta;
 public class VentaDaoImpl extends GenericDaoImpl<Venta> implements VentaDao{
 	private long idCliente;
 	private long idProducto;
+	private long idCompra;
 
 	@Override
 	public Venta hacerVenta(Cliente cliente, Producto producto, int unidades) {
@@ -30,12 +31,14 @@ public class VentaDaoImpl extends GenericDaoImpl<Venta> implements VentaDao{
 	}
 
 	@Override
-	public Venta obtenerVenta(Cliente cliente, Producto producto) {
+	public Venta obtenerVenta(Cliente cliente, Producto producto, Compra compra) {
 		idCliente=cliente.getIdCliente();
 		idProducto=producto.getIdProducto();
-		Query query = this.em.createQuery("From Venta Where idCliente = :idCliente AND idProducto = :idProducto");
+		idCompra=compra.getIdCompra();
+		Query query = this.em.createQuery("From Venta Where idCliente = :idCliente AND idProducto = :idProducto AND idCompra = :idCompra");
 		query.setParameter("idCliente", idCliente);
 		query.setParameter("idProducto", idProducto);
+		query.setParameter("idCompra", idCompra);
 		Venta venta = (Venta) query.getSingleResult();
         if (venta != null ) {
             return venta;

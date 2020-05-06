@@ -19,20 +19,31 @@ public class Venta {
 	@JoinColumn(name = "idCliente")
 	private Cliente cliente;
 	@ManyToOne
+	@JoinColumn(name = "idCompra")
+	private Compra compra;
+	@ManyToOne
 	@JoinColumn(name = "idProducto")
 	private Producto producto;
 	@Column(name = "unidades")
 	private int unidades;
-	public Venta(long idVenta, Cliente cliente, Producto producto, int unidades) {
+	public Venta(long idVenta, Cliente cliente, Producto producto, Compra compra, int unidades) {
 		super();
 		this.cliente = cliente;
 		this.producto = producto;
+		this.compra = compra;
 		this.unidades = unidades;
 	}
 	public Venta() {
 		
 	}
 	
+	
+	public Compra getCompra() {
+		return compra;
+	}
+	public void setCompra(Compra compra) {
+		this.compra = compra;
+	}
 	public long getIdVenta() {
 		return idVenta;
 	}
