@@ -100,13 +100,13 @@ public class ProductoDaoImpl extends GenericDaoImpl<Producto> implements Product
 		return null;
 	}
 	@Override
-	public void eliminarCompra(Compra compra) {
-		Producto p = new Producto();
+	public void eliminarCompra(long idProducto, Compra compra) {
+		Producto p = this.find(idProducto);
 		p.deleteCompras(compra);
 	}
 	@Override
-	public void eliminarVentas(Venta venta) {
-		Producto p = new Producto();
+	public void eliminarVentas(long idProducto, Venta venta) {
+		Producto p = this.find(idProducto);
 		p.deleteVentas(venta);
 	}
 

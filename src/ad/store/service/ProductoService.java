@@ -23,4 +23,6 @@ public interface ProductoService {
 	public List<Producto> listarProductosPorPrecio (float minPrecio, float maxPrecio, int count, int index);
 	
 	public List<Producto> listarProductosPorNombreYPrecio (String nombre , float minPrecio, float maxPrecio, int count, int index);
+
+	public void eliminarComprayVenta(long idProducto, long idVenta, long idCompra);
 }

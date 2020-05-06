@@ -24,5 +24,7 @@ public interface UserService {
 	public boolean logOut(Cliente cliente);
 	
 	public Cliente findByUsername(String nombre);
+
+	public void eliminarCompra(long idCliente, long idCompra);
 	
 }

@@ -4,6 +4,7 @@ package ad.store.dao;
 import java.util.Date;
 
 import ad.store.entity.Cliente;
+import ad.store.entity.Compra;
 
 public interface UserDao extends GenericDao<Cliente>{
 
@@ -22,5 +23,7 @@ public interface UserDao extends GenericDao<Cliente>{
 	public boolean logOut(Cliente cliente);
 	
 	public Cliente findByUsername(String nombre);
+
+	public void eliminarCompras(long idCliente, Compra compra);
 	
 }

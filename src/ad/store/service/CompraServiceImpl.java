@@ -53,9 +53,6 @@ public class CompraServiceImpl implements CompraService{
 	public Compra obtenerCompraPorId(long idCompra) {
 		return compraDao.find(idCompra);
 	}
-	@Override
-	public void eliminarCompra(Compra compra) {
-		productoDao.eliminarCompra(compra);
-	}
+	
 
 }

@@ -10,6 +10,9 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import ad.store.entity.Cliente;
+import ad.store.entity.Compra;
+import ad.store.entity.Producto;
+import ad.store.entity.Venta;
 
 
 @Repository
@@ -78,6 +81,11 @@ public class UserDaoImpl extends GenericDaoImpl<Cliente> implements UserDao {
 		return null;
 	}
 
+	@Override
+	public void eliminarCompras(long idCliente, Compra compra) {
+		Cliente c = this.find(idCliente);
+		c.deleteCompra(compra);
+	}
 	
 	
 }

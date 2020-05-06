@@ -14,5 +14,4 @@ public interface CompraService {
 	public void devolverCompra(long idCompra);
 	public Compra obtenerCompra(Cliente cliente, Producto producto);
 	public Compra obtenerCompraPorId(long idCompra);
-	void eliminarCompra(Compra compra);
 }

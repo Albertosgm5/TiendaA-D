@@ -123,10 +123,15 @@ public class CompraController {
 			for(Producto producto : productos) {
 				ventas.add(ventaService.obtenerVenta(c, producto));
 			}
-			for(int i = 0; i< ventas.size(); i++) {
-				ventaService.eliminarVenta(ventas.get(i));
+			int cont = 0;
+			for(Producto producto : productos) {
+				productoService.eliminarComprayVenta(producto.getIdProducto(), ventas.get(cont).getIdVenta(), idCompra);
 			}
-			compraService.eliminarCompra(compra);
+			
+//			for(int i = 0; i< ventas.size(); i++) {
+//				ventaService.eliminarVenta(ventas.get(i));
+//			}
+			userService.eliminarCompra(c.getIdCliente(), idCompra);
 
 			response.sendRedirect("/A&DStore/");
 		} else {

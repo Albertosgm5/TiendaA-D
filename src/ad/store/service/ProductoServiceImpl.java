@@ -6,9 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import ad.store.dao.CompraDao;
 import ad.store.dao.ProductoDao;
+import ad.store.dao.VentaDao;
 import ad.store.entity.Cliente;
+import ad.store.entity.Compra;
 import ad.store.entity.Producto;
+import ad.store.entity.Venta;
 
 @Transactional
 @Service
@@ -16,6 +20,12 @@ public class ProductoServiceImpl implements ProductoService {
 
 	@Autowired
 	ProductoDao productoDao;
+	
+	@Autowired
+	CompraDao compraDao;
+	
+	@Autowired
+	VentaDao ventaDao;
 	
 	@Override
 	public List<Producto> listarProductos() {
@@ -71,5 +81,23 @@ public class ProductoServiceImpl implements ProductoService {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	@Override
+	public void eliminarComprayVenta(long idProducto, long idVenta, long idCompra) {
+
+		Compra compra = compraDao.find(idCompra);
+		Venta venta = ventaDao.find(idVenta);
+		Producto producto = productoDao.find(idProducto);
+
+		for (Compra c: producto.getCompras()){
+			if (c.getIdCompra() == idCompra) {
+				productoDao.eliminarCompra(idProducto, compra);			}
+		}
+		for (Venta v: producto.getVentas()){
+			if (v.getIdVenta() == idVenta) {
+				productoDao.eliminarVentas(idProducto, venta);;			}
+		}
+	}
+	
 
 }

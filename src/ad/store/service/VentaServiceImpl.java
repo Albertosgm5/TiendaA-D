@@ -37,14 +37,5 @@ public class VentaServiceImpl implements VentaService{
 	public Venta obtenerVenta(Cliente cliente, Producto producto) {
 		return ventaDao.obtenerVenta(cliente, producto);
 	}
-	@Override
-	public void eliminarVenta(Venta venta) {
-		productoDao.eliminarVentas(venta);
-		
-	}
-	
-	public void eliminarCompra(Compra compra) {
-		productoDao.eliminarCompra(compra);
-	}
 
 }

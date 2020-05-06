@@ -11,11 +11,14 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import ad.store.dao.CompraDao;
 import ad.store.dao.ProductoDao;
 import ad.store.dao.RolRepository;
 import ad.store.entity.Cliente;
+import ad.store.entity.Compra;
 import ad.store.entity.Producto;
 import ad.store.entity.Rol;
+import ad.store.entity.Venta;
 import ad.store.dao.ProductoDao;
 import ad.store.dao.UserDao;
 
@@ -29,6 +32,9 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private UserDao userDao;
+	
+	@Autowired
+	private CompraDao compraDao;
 
 	@Autowired
 	private RolRepository rolRepository;
@@ -108,8 +114,18 @@ public class UserServiceImpl implements UserService {
 	}
 
 
+	@Override
+	public void eliminarCompra(long idCliente, long idCompra) {
 
+		Compra compra = compraDao.find(idCompra);
+		Cliente cliente = userDao.find(idCliente);
 
+		for (Compra c: cliente.getCompras()){
+			if (c.getIdCompra() == idCompra) {
+				userDao.eliminarCompras(idCliente, compra);			}
+		}
+		
+	}
 
 	
 }
