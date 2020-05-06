@@ -213,6 +213,11 @@ public class Cliente {
 	public void setRespuestas(Set<Respuesta> respuestas) {
 		this.respuestas = respuestas;
 	}
+	
+	public void deleteCompra(Compra compras) {
+		this.compras.remove(compras);
+	}
+	
 	@Override
 	public String toString() {
 		return "Cliente [idCliente=" + idCliente + ", direccionEnvio=" + direccionEnvio + ", nombreUsuario="
