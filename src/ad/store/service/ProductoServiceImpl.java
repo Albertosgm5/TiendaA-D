@@ -94,7 +94,7 @@ public class ProductoServiceImpl implements ProductoService {
 				productoDao.eliminarCompra(idProducto, compra);			}
 		}
 		for (Venta v: producto.getVentas()){
-			if (v.getIdVenta() == idVenta) {
+			if (v.getIdVenta() == idVenta && v.getCompra().getIdCompra() == idCompra) {
 				productoDao.eliminarVentas(idProducto, venta);;			}
 		}
 	}

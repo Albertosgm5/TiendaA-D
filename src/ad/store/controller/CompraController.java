@@ -55,7 +55,7 @@ public class CompraController {
 		Set<Producto> productos = new HashSet<>();
 		productos = compra.getProductos();
 		for(Producto producto : productos) {
-			ventas.add(ventaService.obtenerVenta(cliente, producto));
+			ventas.add(ventaService.obtenerVenta(cliente, producto, compra));
 		}
 		mav.addObject("ventas", ventas);
 		mav.addObject("compra", compra);
@@ -87,18 +87,21 @@ public class CompraController {
 		Set<Producto> productos2 = new HashSet<>();
 		for (Producto product : productos) {
 			unidades = product.getStock();
-			long idP = product.getIdProducto();
 			float pre = product.getPrecio();
 			precioT += pre * unidades;
+			productos2.add(product);
+		}
+		Compra compra = compraService.hacerCompra(cliente, productos2, fecha, precioT);
+		for (Producto product : productos) {
+			unidades = product.getStock();
+			long idP = product.getIdProducto();
 			Producto producto = productoService.obtenerProducto(idP);
 			int stock = producto.getStock();
 			int stockResul = stock - unidades;
 			producto.setStock(stockResul);
 			productoService.editarProducto(producto);
-			productos2.add(producto);
-			Venta venta = ventaService.hacerVenta(cliente, producto, unidades);
+			Venta venta = ventaService.hacerVenta(cliente, producto, compra, unidades);
 		}
-		Compra compra = compraService.hacerCompra(cliente, productos2, fecha, precioT);
 		session.setAttribute("lProductoSession", new ArrayList<Producto>());
 		ModelAndView mav = new ModelAndView();
 
@@ -121,16 +124,14 @@ public class CompraController {
 			Set<Producto> productos = new HashSet<>();
 			productos = compra.getProductos();
 			for(Producto producto : productos) {
-				ventas.add(ventaService.obtenerVenta(c, producto));
+				ventas.add(ventaService.obtenerVenta(c, producto, compra));
 			}
 			int cont = 0;
 			for(Producto producto : productos) {
 				productoService.eliminarComprayVenta(producto.getIdProducto(), ventas.get(cont).getIdVenta(), idCompra);
+				cont++;
 			}
 			
-//			for(int i = 0; i< ventas.size(); i++) {
-//				ventaService.eliminarVenta(ventas.get(i));
-//			}
 			userService.eliminarCompra(c.getIdCliente(), idCompra);
 
 			response.sendRedirect("/A&DStore/");

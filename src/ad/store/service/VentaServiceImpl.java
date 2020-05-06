@@ -2,9 +2,6 @@ package ad.store.service;
 
 
 
-
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,16 +23,17 @@ public class VentaServiceImpl implements VentaService{
 	ProductoDao productoDao;
 
 	@Override
-	public Venta hacerVenta (Cliente cliente, Producto producto, int unidades) {
+	public Venta hacerVenta (Cliente cliente, Producto producto, Compra compra, int unidades) {
 		Venta venta = new Venta();
 		venta.setCliente(cliente);
 		venta.setProducto(producto);
+		venta.setCompra(compra);
 		venta.setUnidades(unidades);
 		return ventaDao.create(venta);
 	}
 	@Override
-	public Venta obtenerVenta(Cliente cliente, Producto producto) {
-		return ventaDao.obtenerVenta(cliente, producto);
+	public Venta obtenerVenta(Cliente cliente, Producto producto, Compra compra) {
+		return ventaDao.obtenerVenta(cliente, producto, compra);
 	}
 
 }

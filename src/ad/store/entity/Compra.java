@@ -39,6 +39,9 @@ public class Compra {
 	private Date fecha;
 	@Column(name = "precioTotal")
 	private float precioT;
+	
+	@OneToMany(fetch = FetchType.EAGER,mappedBy = "compra", cascade = CascadeType.ALL, orphanRemoval = true)
+	private Set<Venta> ventas = new HashSet<>();
 
 	public Compra(long idCompra, Cliente cliente, Set<Producto> productos, Date fecha,
 			float precioT) {
@@ -51,6 +54,14 @@ public class Compra {
 	}
 
 	public Compra() {
+	}
+
+	public Set<Venta> getVentas() {
+		return ventas;
+	}
+
+	public void setVentas(Set<Venta> ventas) {
+		this.ventas = ventas;
 	}
 
 	public long getIdCompra() {
