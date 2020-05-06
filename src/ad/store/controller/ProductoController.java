@@ -17,8 +17,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import ad.store.entity.Cliente;
+import ad.store.entity.Compra;
+import ad.store.entity.Pregunta;
 import ad.store.entity.Producto;
+import ad.store.entity.Respuesta;
+import ad.store.service.PreguntaService;
 import ad.store.service.ProductoService;
+import ad.store.service.RespuestaService;
+import ad.store.service.UserService;
 
 @Controller
 @RequestMapping(value = "/producto")
@@ -26,14 +32,21 @@ public class ProductoController {
 	private String name;
 	@Autowired
 	ProductoService productoService;
+	@Autowired
+	PreguntaService preguntaService;
+	@Autowired
+	RespuestaService respuestaService;
+	@Autowired
+	UserService userService;
 
 	@RequestMapping("/detallesProducto/{idProducto}")
-	public ModelAndView perfilProducto(@PathVariable("idProducto") long idProducto) {
-
+	public ModelAndView perfilProducto(HttpServletRequest request, HttpServletResponse response,
+			@PathVariable("idProducto") long idProducto) {
+		HttpSession sesion = request.getSession();
 		ModelAndView mav = new ModelAndView();
 
 		Producto producto = productoService.obtenerProducto(idProducto);
-
+		sesion.setAttribute("ProductoSession", producto);
 		mav.addObject("producto", producto);
 		mav.setViewName("detallesproducto");
 		return mav;
@@ -164,6 +177,39 @@ public class ProductoController {
 		productoService.eliminarProducto(idProducto);
 		response.sendRedirect("/A&DStore/");
 
+	}
+	
+	@RequestMapping(method = RequestMethod.POST, value = "/preguntar")
+	public void preguntar(HttpServletRequest request, HttpServletResponse response,
+			String pre) throws IOException {
+		HttpSession session = request.getSession();
+		long id = (long) session.getAttribute("idSession");
+		Cliente cliente = userService.obtenerCliente(id);
+		Producto producto = (Producto) session.getAttribute("ProductoSession");
+		Pregunta pregunta = preguntaService.hacerPregunta (pre, producto, cliente);
+
+		ModelAndView mav = new ModelAndView();
+		if (pregunta == null) {
+			mav.addObject("exception", "Username or password are empty.");
+			mav.setViewName("index");
+		}
+		session.setAttribute("preguntaSession", pregunta);
+	}
+	@RequestMapping(method = RequestMethod.POST, value = "/responder")
+	public void responder(HttpServletRequest request, HttpServletResponse response,
+			String res) throws IOException {
+		HttpSession session = request.getSession();
+		long id = (long) session.getAttribute("idSession");
+		Cliente cliente = userService.obtenerCliente(id);
+		Pregunta pregunta = (Pregunta) session.getAttribute("preguntaSession");
+		Respuesta respuesta = respuestaService.responder (res, pregunta, cliente);
+
+		ModelAndView mav = new ModelAndView();
+		if (respuesta == null) {
+			mav.addObject("exception", "Username or password are empty.");
+			mav.setViewName("index");
+		}
+		
 	}
 
 }
