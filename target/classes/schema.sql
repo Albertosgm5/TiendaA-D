@@ -56,6 +56,7 @@ CREATE TABLE `venta` (
   PRIMARY KEY (`idVenta`),
 CONSTRAINT `fk_cliente` FOREIGN KEY (`idCliente`) REFERENCES `cliente` (`idCliente`),
 CONSTRAINT `fk_producto` FOREIGN KEY (`idProducto`) REFERENCES `producto` (`idProducto`)
+CONSTRAINT `fk_compra` FOREIGN KEY (`idCompra`) REFERENCES `compra` (`idcompra`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 CREATE TABLE `compra_producto` (
