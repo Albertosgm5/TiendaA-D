@@ -69,9 +69,15 @@
 
 				</div>
 				<form th:action="@{preguntar}" method="post">
+<<<<<<< HEAD
 					<div style="float: left; width: 20%;">
 						<label for="pregunta" > Escribe tu pregunta </label>: <input
 									type="text" id="pregunta" name="pregunta" /> 
+=======
+					<div style="float: right; width: 30%;">
+						<textarea for="pregunta">Escribe tu pregunta </textarea>
+						: <input type="text" id="pregunta" name="pregunta" /> <br />
+>>>>>>> branch 'master' of https://github.com/Albertosgm5/TiendaA-D.git
 					</div>
 					<br />
 					
@@ -96,9 +102,15 @@
 						<span th:each="pregunta : ${preguntas}">
 						<td th:text="${pregunta}">
 							<form th:action="@{responder}" method="post">
+<<<<<<< HEAD
 								<div style="float: left; width: 25%;">
 									<label for="respuesta"> Escribe tu respuesta </label>: <input
 									type="text" id="respuesta" name="respuesta" /> <br />
+=======
+								<div style="float: right; width: 30%;">
+									<textarea for="respuesta">Escribe tu respuesta </textarea>
+									: <input type="text" id="respuesta" name="respuesta" /> <br />
+>>>>>>> branch 'master' of https://github.com/Albertosgm5/TiendaA-D.git
 								</div>
 								<br />
 								<div style="float: left; width: 10%;">
