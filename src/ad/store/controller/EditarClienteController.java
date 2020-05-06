@@ -22,7 +22,7 @@ import ad.store.entity.Cliente;
 import ad.store.entity.Producto;
 import ad.store.service.UserService;
 @Controller
-public class EditarCliente {
+public class EditarClienteController {
 	private Cliente cli;
 	private Cliente cliente;
 	private String name;

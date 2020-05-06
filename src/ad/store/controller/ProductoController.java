@@ -192,9 +192,9 @@ public class ProductoController {
 
 	}
 	
-	@RequestMapping(method = RequestMethod.POST, value = "/preguntar")
+	@RequestMapping(value = "preguntar")
 	public void preguntar(HttpServletRequest request, HttpServletResponse response,
-			String pre) throws IOException {
+			@RequestParam("pregunta") String pre) throws IOException {
 		HttpSession session = request.getSession();
 		long id = (long) session.getAttribute("idSession");
 		Cliente cliente = userService.obtenerCliente(id);
@@ -208,9 +208,9 @@ public class ProductoController {
 		}
 		session.setAttribute("preguntaSession", pregunta);
 	}
-	@RequestMapping(method = RequestMethod.POST, value = "/responder")
+	@RequestMapping(value = "responder")
 	public void responder(HttpServletRequest request, HttpServletResponse response,
-			String res) throws IOException {
+			@RequestParam("respuesta") String res) throws IOException {
 		HttpSession session = request.getSession();
 		long id = (long) session.getAttribute("idSession");
 		Cliente cliente = userService.obtenerCliente(id);
