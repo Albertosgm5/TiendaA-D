@@ -33,7 +33,7 @@ public class RespuestaDaoImpl extends GenericDaoImpl<Respuesta> implements Respu
 		List<Respuesta> respuestas = new ArrayList<Respuesta>();
 
         respuestas = this.em
-                .createQuery("FROM Compra Where idCliente = "+idCliente+" and idPregunta = "+idPregunta, Respuesta.class).getResultList();
+                .createQuery("FROM Respuesta Where idCliente = "+idCliente+" and idPregunta = "+idPregunta, Respuesta.class).getResultList();
         if (respuestas != null ) {
             return respuestas;
         }

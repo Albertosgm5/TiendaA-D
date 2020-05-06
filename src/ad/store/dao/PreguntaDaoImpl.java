@@ -37,7 +37,7 @@ public class PreguntaDaoImpl extends GenericDaoImpl<Pregunta> implements Pregunt
 		List<Pregunta> preguntas = new ArrayList<Pregunta>();
 
         preguntas = this.em
-                .createQuery("FROM Compra Where idCliente = "+idCliente+" and idProducto = "+idProducto, Pregunta.class).getResultList();
+                .createQuery("FROM Pregunta Where idCliente = "+idCliente+" and idProducto = "+idProducto, Pregunta.class).getResultList();
         if (preguntas != null ) {
             return preguntas;
         }
