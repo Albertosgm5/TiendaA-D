@@ -70,8 +70,7 @@
 				</div>
 				<form th:action="@{preguntar}" method="post">
 					<div style="float: right; width: 30%;">
-						<textarea for="pregunta">Escribe tu pregunta </textarea>
-						: <input type="text" id="pregunta" name="pregunta" /> <br />
+						<textarea id="pregunta" name="pregunta">Escribe tu pregunta </textarea>
 					</div>
 					<div style="float: right; width: 10%;">
 						<input type="submit" value="Preguntar" />
@@ -93,8 +92,7 @@
 						<td th:text="${pregunta}">
 							<form th:action="@{responder}" method="post">
 								<div style="float: right; width: 30%;">
-									<textarea for="respuesta">Escribe tu respuesta </textarea>
-									: <input type="text" id="respuesta" name="respuesta" /> <br />
+									<textarea id="respuesta" name="respuesta">Escribe tu respuesta </textarea>
 								</div>
 								<div style="float: right; width: 10%;">
 									<input type="submit" value="Responder" />
