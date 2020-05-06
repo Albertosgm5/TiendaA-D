@@ -1,6 +1,7 @@
 package ad.store.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -44,10 +45,22 @@ public class ProductoController {
 			@PathVariable("idProducto") long idProducto) {
 		HttpSession sesion = request.getSession();
 		ModelAndView mav = new ModelAndView();
-
+		long id = (long) sesion.getAttribute("idSession");
+		Cliente cliente = userService.obtenerCliente(id);
 		Producto producto = productoService.obtenerProducto(idProducto);
+		List<Pregunta> preguntas = preguntaService.listarPreguntas(producto, cliente);
+		List<Respuesta> respuestas = new ArrayList<Respuesta>();
+		for (Pregunta pregunta : preguntas) {
+			respuestas.add((Respuesta) respuestaService.listarRespuestas(pregunta, cliente));
+		}
 		sesion.setAttribute("ProductoSession", producto);
 		mav.addObject("producto", producto);
+		if(preguntas!=null) {
+		mav.addObject("preguntas", preguntas);
+		}
+		if(respuestas!=null) {
+		mav.addObject("respuestas", respuestas);
+		}
 		mav.setViewName("detallesproducto");
 		return mav;
 	}
