@@ -68,7 +68,7 @@
 
 
 				</div>
-				<form th:action="@{preguntar}" method="post">
+				<form th:action="@{/producto/preguntar/} + ${producto.idProducto}" method="post">
 					<div style="float: left; width: 20%;">
 						<label for="pregunta"> Escribe tu pregunta </label>: <input
 							type="text" id="pregunta" name="pregunta" />

@@ -192,21 +192,23 @@ public class ProductoController {
 
 	}
 	
-	@RequestMapping(value = "preguntar")
-	public void preguntar(HttpServletRequest request, HttpServletResponse response,
+	@RequestMapping(method = RequestMethod.POST, value = "/preguntar/{idProducto}")
+	public void preguntar(HttpServletRequest request, HttpServletResponse response,@PathVariable("idProducto") long idProducto,
 			@RequestParam("pregunta") String pre) throws IOException {
 		HttpSession session = request.getSession();
 		long id = (long) session.getAttribute("idSession");
 		Cliente cliente = userService.obtenerCliente(id);
 		Producto producto = (Producto) session.getAttribute("ProductoSession");
-		Pregunta pregunta = preguntaService.hacerPregunta (pre, producto, cliente);
+		preguntaService.hacerPregunta (pre, producto, cliente);
 
-		ModelAndView mav = new ModelAndView();
-		if (pregunta == null) {
-			mav.addObject("exception", "Username or password are empty.");
-			mav.setViewName("index");
-		}
-		session.setAttribute("preguntaSession", pregunta);
+		response.sendRedirect("/A&DStore/producto/detallesProducto/" + idProducto);
+//		ModelAndView mav = new ModelAndView();
+//		if (pregunta == null) {
+//			mav.addObject("exception", "Username or password are empty.");
+//			mav.setViewName("index");
+//		}
+//		session.setAttribute("preguntaSession", pregunta);
+//		mav.setViewName("");
 	}
 	@RequestMapping(value = "responder")
 	public void responder(HttpServletRequest request, HttpServletResponse response,
