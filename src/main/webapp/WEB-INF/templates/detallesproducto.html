@@ -107,8 +107,8 @@
 								</div>
 							</form>
 							</td>
-							<tr th:each="respuesta : ${respuestas}">
-								<span th:each="r : ${respuesta}">
+							<span th:each="respuesta : ${respuestas}">
+								<tr th:each="r : ${respuesta}">
 								<td></td>
 								<td></td>
 								<td th:if="${r.pregunta.idPregunta == pregunta.idPregunta}" th:text="${r.textoRespuesta}"></td>
