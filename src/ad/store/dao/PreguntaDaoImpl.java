@@ -47,8 +47,20 @@ public class PreguntaDaoImpl extends GenericDaoImpl<Pregunta> implements Pregunt
         }
 		return null;
 	}
-
-
+	@Override
+	public Pregunta obtenerPregunta(long idPregunta) {
+		
+		Query query = this.em
+                .createQuery("FROM Pregunta Where idPregunta = :idPregunta", Pregunta.class);
+		query.setParameter("idPregunta", idPregunta);
+		Pregunta pregunta = (Pregunta) query.getSingleResult();
+		
+		if(pregunta != null) {
+			return pregunta;
+		}
+		return null;
+	
+	}
 	
 
 }

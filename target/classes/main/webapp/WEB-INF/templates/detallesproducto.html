@@ -68,11 +68,11 @@
 
 
 				</div>
-				<form th:action="@{/producto/preguntar/} + ${producto.idProducto}" method="post">
+				<form th:action="@{/producto/preguntar/} + ${producto.idProducto}"
+					method="post">
 					<div style="float: left; width: 20%;">
 						<label for="pregunta"> Escribe tu pregunta </label>: <input
-							type="text" id="pregunta" name="pregunta" />
-						<br />
+							type="text" id="pregunta" name="pregunta" /> <br />
 					</div>
 					<br />
 					<div style="float: left; width: 10%;">
@@ -90,21 +90,29 @@
 					</thead>
 					<tbody>
 						<span th:each="pregunta : ${preguntas}">
-							<td th:text="${pregunta.pregunta}">
-								<form th:action="@{responder}" method="post">
-									<div style="float: left; width: 25%;">
-										<label for="respuesta"> Escribe tu respuesta </label>: <input
-											type="text" id="respuesta" name="respuesta" /> <br />
-									</div>
-									<br />
-									<div style="float: left; width: 10%;">
-										<input type="submit" value="Responder" />
-									</div>
-								</form>
-						<tr th:each="respuesta : ${respuestas}">
-								<td th:text="${respuesta}"></td>
-							</tr>
+							<td th:text="${pregunta.pregunta}"></td>
+							<td>
+							<form
+								th:action="@{/producto/responder/} + ${pregunta.idPregunta}"
+								method="post">
+								<div style="float: left; width: 25%;">
+									<label for="respuesta"> Escribe tu respuesta </label>: <input
+										type="text" id="respuesta" name="respuesta" /> <br />
+										<input type = "hidden" id="idProducto" name = "idProducto" th:value="${producto.idProducto}">
+								</div>
+								<br />
+								<div style="float: left; width: 10%;">
+									<input type="submit" value="Responder" />
+								</div>
+							</form>
 							</td>
+							<tr th:each="respuesta : ${respuestas}">
+								<span th:each="r : ${respuesta}">
+								<td></td>
+								<td th:text="${r.textoRespuesta}"></td>
+						
+						</tr>
+
 						</span>
 					</tbody>
 				</table>

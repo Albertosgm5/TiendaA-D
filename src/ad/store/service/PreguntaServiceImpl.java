@@ -35,6 +35,9 @@ public class PreguntaServiceImpl implements PreguntaService{
 		return preguntaDao.listarPreguntas(producto,cliente);
 	}
 
-	
+	@Override
+	public Pregunta obtenerPregunta(long idPregunta) {
+		return preguntaDao.obtenerPregunta(idPregunta);
+	}
 
 }
