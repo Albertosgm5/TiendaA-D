@@ -11,5 +11,5 @@ import ad.store.entity.Producto;
 public interface PreguntaService {
 	public Pregunta hacerPregunta (String pregunta, Producto producto, Cliente cliente);
 	public List<Pregunta> listarPreguntas(Producto producto, Cliente cliente);
-	Pregunta obtenerPregunta(long idPregunta);
+	public Pregunta obtenerPregunta(long idPregunta);
 }

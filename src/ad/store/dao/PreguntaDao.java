@@ -12,6 +12,6 @@ import ad.store.entity.Producto;
 public interface PreguntaDao extends GenericDao<Pregunta>{
 	public Pregunta hacerPregunta (String pregunta, Producto producto, Cliente cliente);
 	public List<Pregunta> listarPreguntas(Producto producto, Cliente cliente);
-	Pregunta obtenerPregunta(long idPregunta);
+	public Pregunta obtenerPregunta(long idPregunta);
 	
 }

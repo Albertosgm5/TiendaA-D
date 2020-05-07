@@ -97,22 +97,20 @@
 								method="post">
 								<div style="float: left; width: 25%;">
 									<label for="respuesta"> Escribe tu respuesta </label>: <input
-										type="text" id="respuesta" name="respuesta" /> <br />
+										type="text" id="respuesta" name="respuesta" /> 
 										<input type = "hidden" id="idProducto" name = "idProducto" th:value="${producto.idProducto}">
 								</div>
-								<br />
 								<div style="float: left; width: 10%;">
+								<br />
 									<input type="submit" value="Responder" />
 								</div>
 							</form>
 							</td>
 							<tr th:each="respuesta : ${respuestas}">
-								<span th:each="r : ${respuesta}">
+								<span th:each="r : ${respuesta.idPregunta}">
 								<td></td>
 								<td th:text="${r.textoRespuesta}"></td>
-						
-						</tr>
-
+							</tr>
 						</span>
 					</tbody>
 				</table>
