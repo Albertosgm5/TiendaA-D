@@ -90,7 +90,7 @@
 					</thead>
 					<tbody>
 						<span th:each="pregunta : ${preguntas}">
-							<td th:text="${pregunta}">
+							<td th:text="${pregunta.pregunta}">
 								<form th:action="@{responder}" method="post">
 									<div style="float: left; width: 25%;">
 										<label for="respuesta"> Escribe tu respuesta </label>: <input

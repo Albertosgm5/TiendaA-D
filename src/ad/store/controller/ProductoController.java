@@ -49,9 +49,11 @@ public class ProductoController {
 		Cliente cliente = userService.obtenerCliente(id);
 		Producto producto = productoService.obtenerProducto(idProducto);
 		List<Pregunta> preguntas = preguntaService.listarPreguntas(producto, cliente);
-		List<Respuesta> respuestas = new ArrayList<Respuesta>();
+		List<ArrayList> respuestas = new ArrayList<ArrayList>();
 		for (Pregunta pregunta : preguntas) {
-			respuestas.add((Respuesta) respuestaService.listarRespuestas(pregunta, cliente));
+			ArrayList<Respuesta>listar = new ArrayList<Respuesta>();
+			listar = (ArrayList<Respuesta>) respuestaService.listarRespuestas(pregunta, cliente);
+			respuestas.add(listar);
 		}
 		sesion.setAttribute("ProductoSession", producto);
 		mav.addObject("producto", producto);

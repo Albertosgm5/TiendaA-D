@@ -5,6 +5,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
+import javax.persistence.Query;
+
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
@@ -31,9 +33,12 @@ public class RespuestaDaoImpl extends GenericDaoImpl<Respuesta> implements Respu
 		idCliente=cliente.getIdCliente();
 		idPregunta=pregunta.getIdPregunta();
 		List<Respuesta> respuestas = new ArrayList<Respuesta>();
-
-        respuestas = this.em
-                .createQuery("FROM Respuesta Where idCliente = "+idCliente+" and idPregunta = "+idPregunta, Respuesta.class).getResultList();
+        
+        Query query = this.em
+                .createQuery("FROM Respuesta Where idCliente = :idCliente  AND idPregunta = :idPregunta", Respuesta.class);
+		query.setParameter("idCliente", idCliente);
+		query.setParameter("idPregunta", idPregunta);
+		respuestas = query.getResultList();
         if (respuestas != null ) {
             return respuestas;
         }
