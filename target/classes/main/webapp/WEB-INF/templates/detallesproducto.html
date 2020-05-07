@@ -107,7 +107,7 @@
 							</form>
 							</td>
 							<tr th:each="respuesta : ${respuestas}">
-								<span th:each="r : ${respuesta.idPregunta}">
+								<span th:each="r : ${respuesta}">
 								<td></td>
 								<td th:text="${r.textoRespuesta}"></td>
 							</tr>
