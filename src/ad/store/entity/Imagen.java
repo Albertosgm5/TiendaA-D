@@ -8,6 +8,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -16,6 +19,10 @@ public class Imagen {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long idImagen;
+	
+	@Column(name = "NOMBRE")
+    private String nombre;
+	
 	@Lob
 	@Column(name = "imagen")
 	private byte[] imagen;
@@ -23,6 +30,31 @@ public class Imagen {
 	@ManyToOne
 	@JoinColumn(name = "idProducto", nullable = true)
 	private Producto producto;
+
+	
+	
+	public Imagen() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
+	public Imagen(String nombre, byte[] imagen) {
+		super();
+		this.nombre = nombre;
+		this.imagen = imagen;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+
 
 	public long getIdImagen() {
 		return idImagen;

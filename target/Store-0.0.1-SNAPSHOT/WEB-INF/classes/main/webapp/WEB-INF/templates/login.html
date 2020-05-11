@@ -5,49 +5,21 @@
 <link rel="icon" th:href="@{/images/logo.ico}" type="image/ico" />
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-	<link rel="canonical"
+<link rel="canonical"
 	href="https://getbootstrap.com/docs/4.0/examples/sticky-footer-navbar/">
 <link href="src/main/webapp/WEB-INF/dist/css/bootstrap.min.css"
 	rel="stylesheet">
 <link href="sticky-footer-navbar.css" rel="stylesheet">
 </head>
 <body style="background-color: #117733;">
-<header>
+	<header>
 		<!-- Barra de navegacion -->
-		<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-			<a class="navbar-brand" href="/A&DStore">A&D Store</a>
-			<button class="navbar-toggler" type="button" data-toggle="collapse"
-				data-target="#navbarCollapse" aria-controls="navbarCollapse"
-				aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-			<div class="collapse navbar-collapse" id="navbarCollapse">
-				<ul class="navbar-nav mr-auto">
-					<li class="nav-item"><a class="nav-link"
-						href="/A&DStore/login"> Ingresar</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="/A&DStore/signup"> Registrarse</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="/A&DStore/cliente/perfil"> Perfil</a></li>
-				</ul>
-				<!-- Falla. Manda al login -->
-				<form class="form-inline mt-2 mt-md-0"
-					th:action="@{./producto/list}" method="post">
-					<input class="form-control mr-sm-2" type="text"
-						placeholder="Ingrese Producto" aria-label="Search" name="producto">
-					<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Busqueda
-						Producto</button>
-				</form>
-				<div>
-				<a class="nav-link" title="Cesta" href="/A&DStore/compras/cesta"><img th:src="@{/images/cesta.png}" alt="Cesta"  width="35px" height="35px"/></a>
-			</div>
-			</div>
-		</nav>
+		<nav th:replace="fragmentos/header_loader"></nav>
 	</header>
 	<form>
-			<input type="text" id="producto" name="producto" /> <input
-				type="submit" value="Busqueda" />
-		</form>
+		<input type="text" id="producto" name="producto" /> <input
+			type="submit" value="Busqueda" />
+	</form>
 	<div class="container my-5">
 		<h1>Ingresa</h1>
 		<div class="card">
@@ -61,8 +33,8 @@
 						</div>
 						<br /> <br /> <br />
 						<div class="form-group col-md-6">
-							<label for="username">Nombre de Usuario</label>: 
-							<input type="text" id="username" name="username" /> <br />
+							<label for="username">Nombre de Usuario</label>: <input
+								type="text" id="username" name="username" /> <br />
 						</div>
 						<div class="form-group col-md-6">
 							<label for="password">Contrase&ntilde;a</label>: <input
@@ -74,9 +46,8 @@
 						<div class="form-group col-md-8"></div>
 					</div>
 				</form>
-				<div th:if="${param.error}" class= "alert-danger" role="alert">
-					Campos invalidos
-				</div>
+				<div th:if="${param.error}" class="alert-danger" role="alert">
+					Campos invalidos</div>
 			</div>
 		</div>
 	</div>

@@ -4,6 +4,9 @@
 <head>
 <link rel="icon" th:href="@{/images/logo.ico}" type="image/ico" />
 <meta charset="ISO-8859-1">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Detalles Producto</title>
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
@@ -14,6 +17,79 @@
 <link href="sticky-footer-navbar.css" rel="stylesheet">
 </head>
 <body style="background-color: #117733;">
+<style type="text/css">
+.foto {
+	position: relative;
+	/* 	margin-top: 50px; */
+	width: 180px;
+	height: 180px;
+	float: left
+}
+
+.overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0);
+	transition: background 0.5s ease;
+}
+
+.foto:hover .overlay {
+	display: block;
+	background: rgba(0, 0, 0, .3);
+}
+
+.foto-perfil {
+	position: absolute;
+	width: 150px;
+	height: 150px;
+	margin-top: 15px;
+	margin-left: 15px;
+}
+
+.title {
+	position: absolute;
+	width: 500px;
+	left: 0;
+	top: 120px;
+	font-weight: 700;
+	font-size: 30px;
+	text-align: center;
+	text-transform: uppercase;
+	color: white;
+	z-index: 1;
+	transition: top .5s ease;
+}
+
+.foto:hover .title {
+	top: 90px;
+}
+
+.button {
+	position: absolute;
+	width: 175px;
+	left: 0;
+	top: 50px;
+	text-align: center;
+	opacity: 0;
+	transition: opacity .35s ease;
+}
+
+.button a {
+	width: 200px;
+	padding: 12px 48px;
+	text-align: center;
+	color: white;
+	border: solid 2px white;
+	z-index: 1;
+}
+
+.foto:hover .button {
+	opacity: 1;
+}
+</style>
 	<header>
 		<!-- Barra de navegacion -->
 		<nav th:replace="fragmentos/header_loader"></nav>
@@ -44,6 +120,7 @@
 					<p id="descripcion" name="descripcion" th:text="*{descripcion}"></p>
 
 				</form>
+				<img th:src="@{/producto/imagen/{idProducto}(idProducto=${producto.idProducto})}">
 				<div
 					sec:authorize="hasAuthority('ROL_USER') || hasAuthority('ROL_ADMIN')"
 					style="float: right; width: 30%;">

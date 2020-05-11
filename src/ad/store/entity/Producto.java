@@ -111,7 +111,12 @@ public class Producto {
 		this.stock = stock;
 	}
 	
-	
+	public Set<Imagen> getImagen() {
+		return imagen;
+	}
+	public void setImagen(Set<Imagen> imagen) {
+		this.imagen = imagen;
+	}
 	public Set<Venta> getVentas() {
 		return ventas;
 	}

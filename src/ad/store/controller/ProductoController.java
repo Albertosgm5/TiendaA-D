@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import ad.store.entity.Categoria;
@@ -24,6 +25,7 @@ import ad.store.entity.Compra;
 import ad.store.entity.Pregunta;
 import ad.store.entity.Producto;
 import ad.store.entity.Respuesta;
+import ad.store.service.ImagenService;
 import ad.store.service.PreguntaService;
 import ad.store.service.ProductoService;
 import ad.store.service.RespuestaService;
@@ -41,6 +43,8 @@ public class ProductoController {
 	RespuestaService respuestaService;
 	@Autowired
 	UserService userService;
+	@Autowired
+	ImagenService imagenService;
 
 	@RequestMapping("/detallesProducto/{idProducto}")
 	public ModelAndView perfilProducto(HttpServletRequest request, HttpServletResponse response,
@@ -231,6 +235,25 @@ public class ProductoController {
 //			mav.addObject("exception", "Username or password are empty.");
 //			mav.setViewName("index");
 //		}
+
+	}
+	
+	@RequestMapping(method = RequestMethod.POST, value = "/editar_Producto/{idProducto}")
+	public void handleEdit(HttpServletRequest request, HttpServletResponse response,
+			@PathVariable("idProducto") long idProducto, @RequestParam("nombreProducto") String nombre,
+			@RequestParam("precio") float precio, @RequestParam("stock") int stock,
+			@RequestParam("categoria") String categoria, @RequestParam("descripcion") String descripcion,
+			@RequestParam("imagen") MultipartFile imagen) throws IOException {
+
+		Producto pro = productoService.obtenerProducto(idProducto);
+		pro.setNombreProducto(nombre);
+		pro.setPrecio(precio);
+		pro.setStock(stock);
+		pro.setCategoria(categoria);
+		pro.setDescripcion(descripcion);
+		imagenService.actualizaFotoProducto(idProducto, imagen);
+		productoService.editarProducto(pro);
+		response.sendRedirect("/A&DStore/producto/detallesProducto/" + idProducto);
 
 	}
 
