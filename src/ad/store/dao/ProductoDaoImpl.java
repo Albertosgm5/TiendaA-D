@@ -2,12 +2,14 @@ package ad.store.dao;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Query;
 
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
+import ad.store.entity.Categoria;
 import ad.store.entity.Compra;
 import ad.store.entity.Producto;
 import ad.store.entity.Venta;
@@ -59,7 +61,7 @@ public class ProductoDaoImpl extends GenericDaoImpl<Producto> implements Product
 
 
 	@Override
-	public Producto crearProducto(String nombre, float precio, int stock, String categoria, String descripcion) {
+	public Producto crearProducto(String nombre, float precio, int stock, Set<Categoria> categorias, String descripcion) {
 		// TODO Auto-generated method stub
 		return null;
 	}

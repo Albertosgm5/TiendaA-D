@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import ad.store.entity.Categoria;
 import ad.store.entity.Cliente;
 import ad.store.entity.Compra;
 import ad.store.entity.Pregunta;
@@ -130,9 +132,9 @@ public class ProductoController {
 	@RequestMapping(method = RequestMethod.POST, value = "crear_Producto")
 	public void handleSignUp(HttpServletRequest request, HttpServletResponse response,
 			@RequestParam("nombreProducto") String nombre, @RequestParam("precio") float precio,
-			@RequestParam("stock") int stock, @RequestParam("categoria") String categoria,
+			@RequestParam("stock") int stock, @RequestParam("categorias") Set<Categoria> categorias,
 			@RequestParam("descripcion") String descripcion) throws IOException {
-		Producto producto = productoService.crearProducto(nombre, precio, stock, categoria, descripcion);
+		Producto producto = productoService.crearProducto(nombre, precio, stock, categorias, descripcion);
 
 		ModelAndView mav = new ModelAndView();
 		if (producto == null) {
@@ -158,14 +160,14 @@ public class ProductoController {
 	public void handleEdit(HttpServletRequest request, HttpServletResponse response,
 			@PathVariable("idProducto") long idProducto, @RequestParam("nombreProducto") String nombre,
 			@RequestParam("precio") float precio, @RequestParam("stock") int stock,
-			@RequestParam("categoria") String categoria, @RequestParam("descripcion") String descripcion)
+			@RequestParam("categoria") Set<Categoria> categorias, @RequestParam("descripcion") String descripcion)
 			throws IOException {
 
 		Producto pro = productoService.obtenerProducto(idProducto);
 		pro.setNombreProducto(nombre);
 		pro.setPrecio(precio);
 		pro.setStock(stock);
-		pro.setCategoria(categoria);
+		pro.setCategorias(categorias);
 		pro.setDescripcion(descripcion);
 
 		productoService.editarProducto(pro);
@@ -176,11 +178,11 @@ public class ProductoController {
 	@RequestMapping(method = RequestMethod.POST, value = "/agregar")
 	public void cambioSesionProducto(HttpServletRequest request, HttpServletResponse response,
 			@RequestParam("nombreProducto") String cliente, @RequestParam("precio") float precio,
-			@RequestParam("stock") int stock, @RequestParam("categoria") String categoria,
+			@RequestParam("stock") int stock, @RequestParam("categoria") Set<Categoria> categorias,
 			@RequestParam("descripcion") String descripcion) throws IOException {
 		HttpSession sesion = request.getSession();
 		List<Producto> cProductos = (List<Producto>) sesion.getAttribute("lProductoSession");
-		Producto producto = new Producto(cliente, precio, stock, categoria, descripcion);
+		Producto producto = new Producto(cliente, precio, stock, categorias, descripcion);
 		cProductos.add(producto);
 		sesion.setAttribute("lProductoSession", cProductos);
 		response.sendRedirect("/A&DStore/");

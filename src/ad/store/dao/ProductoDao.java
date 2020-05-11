@@ -1,7 +1,9 @@
 package ad.store.dao;
 
 import java.util.List;
+import java.util.Set;
 
+import ad.store.entity.Categoria;
 import ad.store.entity.Compra;
 import ad.store.entity.Producto;
 import ad.store.entity.Venta;
@@ -12,7 +14,7 @@ public interface ProductoDao extends GenericDao<Producto>{
 	
 	public List<Producto> listarProductosPorNombre(String nombreModulo);
 	
-	public Producto crearProducto (String nombre, float precio, int stock, String categoria, String descripcion);
+	public Producto crearProducto (String nombre, float precio, int stock, Set<Categoria> categorias, String descripcion);
 	
 	public Producto obtenerProducto (long idProducto);
 	

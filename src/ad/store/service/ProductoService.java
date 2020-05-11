@@ -1,7 +1,9 @@
 package ad.store.service;
 
 import java.util.List;
+import java.util.Set;
 
+import ad.store.entity.Categoria;
 import ad.store.entity.Producto;
 
 public interface ProductoService {
@@ -14,7 +16,7 @@ public interface ProductoService {
 	
 	public Producto obtenerProductoPorNombre(String nombreProducto);
 	
-	public Producto crearProducto (String nombre, float precio, int stock, String categoria, String descripcion);
+	public Producto crearProducto (String nombre, float precio, int stock, Set<Categoria> categorias, String descripcion);
 	
 	public Producto editarProducto(Producto producto);
 	

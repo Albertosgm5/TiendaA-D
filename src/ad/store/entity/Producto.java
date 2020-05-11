@@ -31,8 +31,6 @@ public class Producto {
 	private float precio;
 	@Column(name = "stock")
 	private int stock;
-	@Column(name = "categoria")
-	private String categoria;
 	@Column(name = "descripcion")
 	private String descripcion;
 	@ManyToMany(fetch = FetchType.EAGER)
@@ -42,21 +40,25 @@ public class Producto {
 	private Set<Venta> ventas = new HashSet<>();
 	@OneToMany(fetch = FetchType.EAGER,mappedBy = "producto", cascade = CascadeType.ALL, orphanRemoval = true)
 	private Set<Pregunta> preguntas= new HashSet<>();
-	
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "categoria_producto", 
+	joinColumns = @JoinColumn(name = "idProducto"),
+	inverseJoinColumns = @JoinColumn(name = "idCategoria"))
+	private Set<Categoria> categorias = new HashSet<>();
 
-	public Producto(long idProducto, String nombreProducto, float precio, int stock,String categoria, String descripcion) {
+	public Producto(long idProducto, String nombreProducto, float precio, int stock, Set<Categoria> categorias, String descripcion) {
 		this.idProducto = idProducto;
 		this.nombreProducto = nombreProducto;
 		this.precio = precio;
 		this.stock = stock;
-		this.categoria = categoria;
+		this.categorias = categorias;
 		this.descripcion = descripcion;
 	}
-	public Producto(String nombreProducto, float precio, int stock, String categoria, String descripcion) {
+	public Producto(String nombreProducto, float precio, int stock, Set<Categoria> categorias, String descripcion) {
 		this.nombreProducto = nombreProducto;
 		this.precio = precio;
 		this.stock = stock;
-		this.categoria = categoria;
+		this.categorias = categorias;
 		this.descripcion = descripcion;
 	}
 	public Producto() {
@@ -75,12 +77,6 @@ public class Producto {
 	}
 	public void deleteVentas(Venta venta) {
 		this.ventas.remove(venta);
-	}
-	public String getCategoria() {
-		return categoria;
-	}
-	public void setCategoria(String categoria) {
-		this.categoria = categoria;
 	}
 	public String getDescripcion() {
 		return descripcion;
@@ -127,10 +123,18 @@ public class Producto {
 		this.preguntas = preguntas;
 	}
 	
+	public Set<Categoria> getCategorias() {
+		return categorias;
+	}
+	public void setCategorias(Set<Categoria> categorias) {
+		this.categorias = categorias;
+	}
 	@Override
 	public String toString() {
 		return "Producto [idProducto=" + idProducto + ", nombreProducto=" + nombreProducto + ", precio=" + precio
-				+ ", stock=" + stock +", categoria=" + categoria+", stock=" + descripcion+ "]";
+				+ ", stock=" + stock + ", descripcion=" + descripcion + ", compras=" + compras + ", ventas=" + ventas
+				+ ", preguntas=" + preguntas + ", categorias=" + categorias + "]";
 	}
+	
 	
 }

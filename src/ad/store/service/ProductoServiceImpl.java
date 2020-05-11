@@ -1,6 +1,7 @@
 package ad.store.service;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import ad.store.dao.CompraDao;
 import ad.store.dao.ProductoDao;
 import ad.store.dao.VentaDao;
+import ad.store.entity.Categoria;
 import ad.store.entity.Cliente;
 import ad.store.entity.Compra;
 import ad.store.entity.Producto;
@@ -48,12 +50,12 @@ public class ProductoServiceImpl implements ProductoService {
 	}
 
 	@Override
-	public Producto crearProducto(String nombre, float precio, int stock, String categoria, String descripcion) {
+	public Producto crearProducto(String nombre, float precio, int stock, Set<Categoria> categorias, String descripcion) {
 		Producto producto = new Producto();
 		producto.setNombreProducto(nombre);
 		producto.setPrecio(precio);
 		producto.setStock(stock);
-		producto.setCategoria(categoria);
+		producto.setCategorias(categorias);
 		producto.setDescripcion(descripcion);
 		return productoDao.create(producto);
 	}
