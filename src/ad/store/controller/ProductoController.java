@@ -242,14 +242,14 @@ public class ProductoController {
 	public void handleEdit(HttpServletRequest request, HttpServletResponse response,
 			@PathVariable("idProducto") long idProducto, @RequestParam("nombreProducto") String nombre,
 			@RequestParam("precio") float precio, @RequestParam("stock") int stock,
-			@RequestParam("categoria") String categoria, @RequestParam("descripcion") String descripcion,
+			@RequestParam("categoria") Set<Categoria> categorias, @RequestParam("descripcion") String descripcion,
 			@RequestParam("imagen") MultipartFile imagen) throws IOException {
 
 		Producto pro = productoService.obtenerProducto(idProducto);
 		pro.setNombreProducto(nombre);
 		pro.setPrecio(precio);
 		pro.setStock(stock);
-		pro.setCategoria(categoria);
+		pro.setCategorias(categorias);
 		pro.setDescripcion(descripcion);
 		imagenService.actualizaFotoProducto(idProducto, imagen);
 		productoService.editarProducto(pro);
