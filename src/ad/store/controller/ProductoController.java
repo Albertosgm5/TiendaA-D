@@ -160,25 +160,6 @@ public class ProductoController {
 		return mav;
 	}
 
-	@RequestMapping(method = RequestMethod.POST, value = "/editar_Producto/{idProducto}")
-	public void handleEdit(HttpServletRequest request, HttpServletResponse response,
-			@PathVariable("idProducto") long idProducto, @RequestParam("nombreProducto") String nombre,
-			@RequestParam("precio") float precio, @RequestParam("stock") int stock,
-			@RequestParam("categoria") Set<Categoria> categorias, @RequestParam("descripcion") String descripcion)
-			throws IOException {
-
-		Producto pro = productoService.obtenerProducto(idProducto);
-		pro.setNombreProducto(nombre);
-		pro.setPrecio(precio);
-		pro.setStock(stock);
-		pro.setCategorias(categorias);
-		pro.setDescripcion(descripcion);
-
-		productoService.editarProducto(pro);
-		response.sendRedirect("/A&DStore/producto/detallesProducto/" + idProducto);
-
-	}
-
 	@RequestMapping(method = RequestMethod.POST, value = "/agregar")
 	public void cambioSesionProducto(HttpServletRequest request, HttpServletResponse response,
 			@RequestParam("nombreProducto") String cliente, @RequestParam("precio") float precio,
