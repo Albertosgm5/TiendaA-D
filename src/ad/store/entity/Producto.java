@@ -45,6 +45,8 @@ public class Producto {
 	joinColumns = @JoinColumn(name = "idProducto"),
 	inverseJoinColumns = @JoinColumn(name = "idCategoria"))
 	private Set<Categoria> categorias = new HashSet<>();
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "producto" , cascade = CascadeType.ALL, orphanRemoval = true)
+	private Set<Imagen> imagen = new HashSet<>();
 
 	public Producto(long idProducto, String nombreProducto, float precio, int stock, Set<Categoria> categorias, String descripcion) {
 		this.idProducto = idProducto;
