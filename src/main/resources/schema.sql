@@ -36,6 +36,22 @@ CREATE TABLE `producto` (
   PRIMARY KEY (`idProducto`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+CREATE TABLE `categoria` (
+  `idCategoria` bigint(20) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(255) NOT NULL,
+  `descripcion` varchar(255) NOT NULL,
+  PRIMARY KEY (`idCategoria`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+CREATE TABLE `categoria_producto` (
+  `idCategoria` bigint NOT NULL,
+  `idProducto` bigint NOT NULL,
+  PRIMARY KEY (`idCategoria`,`idProducto`),
+  KEY `fk_rolrol_idx` (`idProducto`),
+  CONSTRAINT `fk_categiriacat` FOREIGN KEY (`idCategoria`) REFERENCES `categoria` (`idCategoria`) ON DELETE CASCADE,
+  CONSTRAINT `fk_producproduc` FOREIGN KEY (`idProducto`) REFERENCES `producto` (`idProducto`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 CREATE TABLE `compra` (
   `idCompra` bigint(20) NOT NULL AUTO_INCREMENT,
@@ -64,7 +80,7 @@ CREATE TABLE `compra_producto` (
   `idCompra` bigint(20) NOT NULL,
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
-CREATE TABLE `preguntas` (
+CREATE TABLE `pregunta` (
   `idPregunta` bigint(20) NOT NULL AUTO_INCREMENT,
   `textoPregunta` varchar(255) NOT NULL,
   `idProducto` bigint(20) NOT NULL,
@@ -72,7 +88,7 @@ CREATE TABLE `preguntas` (
 CONSTRAINT `fk_producto` FOREIGN KEY (`idProducto`) REFERENCES `producto` (`idProducto`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
-CREATE TABLE `respuestas` (
+CREATE TABLE `respuesta` (
   `idRespuesta` bigint(20) NOT NULL AUTO_INCREMENT,
   `textoRespuesta` varchar(255) NOT NULL,
   `idPregunta` bigint(20) NOT NULL,

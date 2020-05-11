@@ -8,11 +8,27 @@ insert into Rol (idRol, nombreRol) values (2,'ROL_ADMIN');
 insert into Cliente_rol (idRol, idCliente) values (1,2);
 insert into Cliente_rol (idRol, idCliente) values (2,1);
 
-insert into Producto(nombreProducto, precio, stock, categoria, descripcion) values ('Camara', 53, 34,'Fotografia','Esto es una camara');
-insert into Producto(nombreProducto, precio, stock, categoria, descripcion) values ('Pantalla', 153, 3,'Perifericos','Esto es una pantalla');
-insert into Producto(nombreProducto, precio, stock, categoria, descripcion) values ('Teclado Gamer', 253, 4,'Perifericos','Esto es un teclado');
-insert into Producto(nombreProducto, precio, stock, categoria, descripcion) values ('Portatil hp v7', 353, 30,'Portatiles','Este es un portatil');
-insert into Producto(nombreProducto, precio, stock, categoria, descripcion) values ('Portatil Acer 45', 453, 31,'Portatiles','Este es un portatil');
-insert into Producto(nombreProducto, precio, stock, categoria, descripcion) values ('Xbox one + 6 juegos', 553, 14,'Consolas','Esto es una consola');
-insert into Producto(nombreProducto, precio, stock, categoria, descripcion) values ('Movil hn7', 653, 3,'Smartphones','Esto es un telefono');
-insert into Producto(nombreProducto, precio, stock, categoria, descripcion) values ('Movil Apple 78', 753, 4,'Smartphones','Esto es un telefono');
+insert into Producto(nombreProducto, precio, stock, descripcion) values ('Camara', 53, 34,'Esto es una camara');
+insert into Producto(nombreProducto, precio, stock, descripcion) values ('Pantalla', 153, 3,'Esto es una pantalla');
+insert into Producto(nombreProducto, precio, stock, descripcion) values ('Teclado Gamer', 253, 4,'Esto es un teclado');
+insert into Producto(nombreProducto, precio, stock, descripcion) values ('Portatil hp v7', 353, 30,'Este es un portatil');
+insert into Producto(nombreProducto, precio, stock, descripcion) values ('Portatil Acer 45', 453, 31,'Este es un portatil');
+insert into Producto(nombreProducto, precio, stock, descripcion) values ('Xbox one + 6 juegos', 553, 14,'Esto es una consola');
+insert into Producto(nombreProducto, precio, stock, descripcion) values ('Movil hn7', 653, 3,'Esto es un telefono');
+insert into Producto(nombreProducto, precio, stock, descripcion) values ('Movil Apple 78', 753, 4,'Esto es un telefono');
+
+insert into Categoria(nombre, descripcion) values ('Fotografia','Es arte');
+insert into Categoria(nombre, descripcion) values ('Perifericos','Son utiles');
+insert into Categoria(nombre, descripcion) values ('Portatiles','Son portables');
+insert into Categoria(nombre, descripcion) values ('Consolas','Son divertidas');
+insert into Categoria(nombre, descripcion) values ('Smartphones','Son multifuncionales');
+
+
+insert into Categoria_producto (idCategoria, idProducto) values (1,1);
+insert into Categoria_producto (idCategoria, idProducto) values (2,2);
+insert into Categoria_producto (idCategoria, idProducto) values (2,3);
+insert into Categoria_producto (idCategoria, idProducto) values (3,4);
+insert into Categoria_producto (idCategoria, idProducto) values (3,5);
+insert into Categoria_producto (idCategoria, idProducto) values (4,6);
+insert into Categoria_producto (idCategoria, idProducto) values (5,7);
+insert into Categoria_producto (idCategoria, idProducto) values (5,8);
