@@ -51,7 +51,7 @@ public class CategoriaController {
 
 
 
-	@RequestMapping(method = RequestMethod.POST, value = "/list")
+	@RequestMapping(method = RequestMethod.GET, value = "/list")
 	public ModelAndView listarCategorias() {
 
 		ModelAndView mav = new ModelAndView();
@@ -64,12 +64,12 @@ public class CategoriaController {
 	}
 
 
-	@RequestMapping(method = RequestMethod.GET, value = "crear_Categoria")
+	@RequestMapping(method = RequestMethod.GET, value = "/crear_Categoria")
 	public String signUpView() {
 		return "crear_Categoria";
 	}
 
-	@RequestMapping(method = RequestMethod.POST, value = "crear_Categoria")
+	@RequestMapping(method = RequestMethod.POST, value = "/crear_Categoria")
 	public void handleSignUp(HttpServletRequest request, HttpServletResponse response,
 			@RequestParam("nombreCategoria") String nombreCategoria, 
 			@RequestParam("descripcionCategoria") String descripcionCategoria) throws IOException {
