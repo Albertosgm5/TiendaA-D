@@ -56,7 +56,7 @@ public class CategoriaServiceImpl implements CategoriaService{
 	@Override
 	public List<Categoria> listarCategorias() {
 		// TODO Auto-generated method stub
-		return null;
+		return categoriaDao.listarCategorias();
 	}
 	
 	

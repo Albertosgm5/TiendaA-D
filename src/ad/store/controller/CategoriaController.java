@@ -50,8 +50,7 @@ public class CategoriaController {
 	}
 
 
-
-	@RequestMapping(method = RequestMethod.GET, value = "/list")
+	@RequestMapping("/list")
 	public ModelAndView listarCategorias() {
 
 		ModelAndView mav = new ModelAndView();
