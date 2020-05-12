@@ -3,6 +3,8 @@ package ad.store.controller;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -11,17 +13,23 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.CacheControl;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import ad.store.entity.Categoria;
 import ad.store.entity.Cliente;
 import ad.store.entity.Compra;
+import ad.store.entity.Imagen;
 import ad.store.entity.Pregunta;
 import ad.store.entity.Producto;
 import ad.store.entity.Respuesta;
@@ -91,7 +99,7 @@ public class ProductoController {
 		productoCesta.setStock(cantidad2);
 		HttpSession sesion = request.getSession();
 		List<Producto> cProductos = (List<Producto>) sesion.getAttribute("lProductoSession");
-		
+
 		for (int i = 0; i < cProductos.size(); i++) {
 			if (cProductos.get(i).getIdProducto() == productoCesta.getIdProducto()) {
 				cProductos.get(i).setStock(cProductos.get(i).getStock() + productoCesta.getStock());
@@ -135,15 +143,13 @@ public class ProductoController {
 	}
 
 	@RequestMapping(method = RequestMethod.GET, value = "crear_Producto")
-	public ModelAndView  signUpView() {
+	public ModelAndView signUpView() {
 		ModelAndView mav = new ModelAndView();
-		List <Categoria> categorias = categoriaService.listarCategorias();
+		List<Categoria> categorias = categoriaService.listarCategorias();
 		mav.addObject("categorias", categorias);
 		mav.setViewName("crear_Producto");
 		return mav;
 	}
-	
-	
 
 	@RequestMapping(method = RequestMethod.POST, value = "crear_Producto")
 	public void handleSignUp(HttpServletRequest request, HttpServletResponse response,
@@ -168,7 +174,7 @@ public class ProductoController {
 	public ModelAndView updateView(@PathVariable("idProducto") long idProducto) {
 		ModelAndView mav = new ModelAndView();
 		Producto producto = productoService.obtenerProducto(idProducto);
-		List <Categoria> categorias = categoriaService.listarCategorias();
+		List<Categoria> categorias = categoriaService.listarCategorias();
 		mav.addObject("categorias", categorias);
 		mav.addObject("producto", producto);
 		mav.setViewName("editar_Producto");
@@ -225,7 +231,7 @@ public class ProductoController {
 		Pregunta pregunta = preguntaService.obtenerPregunta(idPregunta);
 		respuestaService.responder(res, pregunta, cliente);
 		response.sendRedirect("/A&DStore/producto/detallesProducto/" + idProducto);
-		
+
 //		ModelAndView mav = new ModelAndView();
 //		if (respuesta == null) {
 //			mav.addObject("exception", "Username or password are empty.");
@@ -233,7 +239,7 @@ public class ProductoController {
 //		}
 
 	}
-	
+
 	@RequestMapping(method = RequestMethod.POST, value = "/editar_Producto/{idProducto}")
 	public void handleEdit(HttpServletRequest request, HttpServletResponse response,
 			@PathVariable("idProducto") long idProducto, @RequestParam("nombreProducto") String nombre,
@@ -252,6 +258,27 @@ public class ProductoController {
 		productoService.editarProducto(pro);
 		response.sendRedirect("/A&DStore/producto/detallesProducto/" + idProducto);
 
+	}
+
+	@RequestMapping(value = "/imagen/{idProducto}")
+	public @ResponseBody ResponseEntity getImageAsResponseEntity(@PathVariable("idProducto") String idProducto) {
+
+		try {
+			Producto p = productoService.obtenerProducto(Long.parseLong(idProducto));
+			Set<Imagen> imagenes = new HashSet<>();
+			imagenes = p.getImagen();
+			Iterator<Imagen> it = imagenes.iterator();
+			byte[] media = null;
+			while (it.hasNext()) {
+				media = it.next().getImagen();
+			}
+			HttpHeaders headers = new HttpHeaders();
+			headers.setCacheControl(CacheControl.noCache().getHeaderValue());
+			ResponseEntity<byte[]> responseEntity = new ResponseEntity<>(media, headers, HttpStatus.OK);
+			return responseEntity;
+		} catch (Exception e) {
+			return new ResponseEntity(HttpStatus.NOT_FOUND);
+		}
 	}
 
 }

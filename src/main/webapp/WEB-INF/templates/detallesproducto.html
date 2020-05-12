@@ -22,9 +22,9 @@
 .foto {
 	position: relative;
 	/* 	margin-top: 50px; */
-	width: 180px;
-	height: 180px;
-	float: left
+	width: 100;
+	height: 100;
+	float: right
 }
 
 .overlay {
@@ -42,12 +42,12 @@
 	background: rgba(0, 0, 0, .3);
 }
 
-.foto-perfil {
+.foto-producto {
 	position: absolute;
-	width: 150px;
-	height: 150px;
-	margin-top: 15px;
-	margin-left: 15px;
+	width: 100;
+	height: 100;
+	margin-top: 15;
+	margin-left: 15;
 }
 
 .title {
@@ -104,6 +104,9 @@
 		<h1>Detalles Producto</h1>
 		<div class="card">
 			<div class="card-body">
+				<div style="float: right;">
+					<img th:src="@{/producto/imagen/{idProducto}(idProducto=${producto.idProducto})}">
+				</div>
 				<label type="hidden" id="idProducto" name="idProducto"
 					th:value="${producto.idProducto}"></label>
 				<p th:if="${exception}" class="error">Wrong user or password</p>
@@ -123,7 +126,7 @@
 				</form>
 				<img
 					th:src="@{/producto/imagen/{idProducto}(idProducto=${producto.idProducto})}">
-				
+
 				<div
 					sec:authorize="hasAuthority('ROL_USER') || hasAuthority('ROL_ADMIN')"
 					style="float: right; width: 30%;">
