@@ -47,8 +47,8 @@ public class CategoriaController {
 		ModelAndView mav = new ModelAndView();
 		Categoria categoria = categoriaService.obtenerCategoriaPorId(idCategoria);
 		sesion.setAttribute("CategoriaSession", categoria);
-		Set<Producto> productos = new HashSet<>();
-		productos= (Set<Producto>) productoService.listarProductosPorCategoria(categoria);
+		List<Producto> productos = new ArrayList<Producto>();
+		productos= productoService.listarProductosPorCategoria(categoria);
 		mav.addObject("categoria", categoria);
 		mav.addObject("productos", productos);
 		mav.setViewName("detallescategoria");
