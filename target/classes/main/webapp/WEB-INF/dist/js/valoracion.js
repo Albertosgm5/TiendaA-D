@@ -61,6 +61,8 @@ class StarRating extends HTMLElement {
 
             let rateEvent = new Event('rate');
             this.dispatchEvent(rateEvent);
+            
+            agregarValoracion(this.value);
         });
     }
 }

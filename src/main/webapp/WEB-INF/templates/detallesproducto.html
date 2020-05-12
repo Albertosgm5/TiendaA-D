@@ -2,7 +2,8 @@
 <html>
 
 <head>
-<link rel="stylesheet" href="src/main/webapp/WEB-INF/dist/css/valoracion.css">
+<link rel="stylesheet"
+	href="valoracion.css">
 <link rel="icon" th:href="@{/images/logo.ico}" type="image/ico" />
 <meta charset="ISO-8859-1">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -105,7 +106,8 @@
 		<div class="card">
 			<div class="card-body">
 				<div style="float: right;">
-					<img th:src="@{/producto/imagen/{idProducto}(idProducto=${producto.idProducto})}">
+					<img
+						th:src="@{/producto/imagen/{idProducto}(idProducto=${producto.idProducto})}">
 				</div>
 				<label type="hidden" id="idProducto" name="idProducto"
 					th:value="${producto.idProducto}"></label>
@@ -126,12 +128,19 @@
 				</form>
 				<img
 					th:src="@{/producto/imagen/{idProducto}(idProducto=${producto.idProducto})}">
-
+					 <br />
+					<h4>Valora el producto del 1 al 5</h4>
+					<x-star-rating value="0" number="5"></x-star-rating>
+					<script src="valoracion.js"></script>
+					 <br />
+					<h5>Valoracion media del producto</h5>
+					 <br />
+					<h6>Valoraciones</h6>
+					<br />
 				<div
 					sec:authorize="hasAuthority('ROL_USER') || hasAuthority('ROL_ADMIN')"
 					style="float: right; width: 30%;">
-					<x-star-rating value="3" number="5"></x-star-rating>
-				<script src="src/main/webapp/WEB-INF/dist/js/valoracion.js"></script>
+
 					<form action="#" th:object="${producto}"
 						th:action="@{/producto/detallesProducto/} + *{idProducto}"
 						method="post">
@@ -151,7 +160,7 @@
 							Editar Producto</a>
 					</div>
 				</div>
-				
+
 				<form th:action="@{/producto/preguntar/} + ${producto.idProducto}"
 					method="post">
 					<div style="float: left; width: 20%;">
