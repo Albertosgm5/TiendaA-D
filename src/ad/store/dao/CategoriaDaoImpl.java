@@ -46,7 +46,13 @@ public class CategoriaDaoImpl extends GenericDaoImpl<Categoria> implements Categ
 	}
 
 	@Override
-	public Categoria obtenerCategoria(String nombre, Producto producto) {
+	public Categoria obtenerCategoria(String nombre) {
+		Query query = this.em.createQuery("From Categoria Where nombre = :nombreCategoria");
+		query.setParameter("nombreCategoria", nombre);
+		Categoria categoria = (Categoria) query.getSingleResult();
+        if (categoria != null ) {
+            return categoria;
+        }
 		return null;
 	}
 

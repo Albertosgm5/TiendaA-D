@@ -44,9 +44,8 @@
 							<div class="form-group col-md-6">
 								<label for="categoria">Categoria </label>: <select
 									id="categoria" name="categoria">
-									<span th:each="categoria : ${categorias}">
-										<option th:value="${categoria.nombreCategoria}"></option>
-								</span>
+									<option th:each="categoria : ${categorias}" th:value="${categoria.idCategoria}"
+										th:text="${categoria.nombreCategoria}"></option>
 								</select>
 							</div>
 							<div class="form-group col-md-6">

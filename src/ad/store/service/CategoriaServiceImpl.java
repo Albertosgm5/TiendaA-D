@@ -39,8 +39,8 @@ public class CategoriaServiceImpl implements CategoriaService{
 	}
 
 	@Override
-	public Categoria obtenerCategoria(String nombre, Producto producto) {
-		return categoriaDao.obtenerCategoria(nombre, producto);
+	public Categoria obtenerCategoria(String nombre) {
+		return categoriaDao.obtenerCategoria(nombre);
 	}
 
 	@Override
