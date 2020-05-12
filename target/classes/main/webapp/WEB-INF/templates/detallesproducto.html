@@ -2,8 +2,7 @@
 <html>
 
 <head>
-<link rel="stylesheet"
-	href="valoracion.css">
+<link rel="stylesheet" href="valoracion.css">
 <link rel="icon" th:href="@{/images/logo.ico}" type="image/ico" />
 <meta charset="ISO-8859-1">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -105,9 +104,22 @@
 		<h1>Detalles Producto</h1>
 		<div class="card">
 			<div class="card-body">
-				<div style="float: right;">
+				<div th:if="${producto.imagen == null}" style="float: right;">
+					<img th:src="@{/images/sin-foto.jpg}" width="300" height="300"
+						alt="No tiene foto">
+					<div class="overlay"></div>
+					<div class="button">
+						<a href="#" th:href="@{/imagenes/index}"> Editar foto </a>
+					</div>
+				</div>
+				<div th:if="${producto.imagen != null}" style="float: right;">
 					<img
-						th:src="@{/producto/imagen/{idProducto}(idProducto=${producto.idProducto})}">
+						th:src="@{/producto/imagen/{idProducto}(idProducto=${producto.idProducto})}"
+						width="300" height="300" alt="No tiene foto">
+					<div class="overlay"></div>
+					<div class="button">
+						<a href="#" th:href="@{/imagenes/index}"> Editar foto </a>
+					</div>
 				</div>
 				<label type="hidden" id="idProducto" name="idProducto"
 					th:value="${producto.idProducto}"></label>
@@ -126,17 +138,15 @@
 					<h2>Descripcion</h2>
 					<p id="descripcion" name="descripcion" th:text="*{descripcion}"></p>
 				</form>
-				<img
-					th:src="@{/producto/imagen/{idProducto}(idProducto=${producto.idProducto})}">
-					 <br />
-					<h4>Valora el producto del 1 al 5</h4>
-					<x-star-rating value="0" number="5"></x-star-rating>
-					<script src="valoracion.js"></script>
-					 <br />
-					<h5>Valoracion media del producto</h5>
-					 <br />
-					<h6>Valoraciones</h6>
-					<br />
+				<br />
+				<h4>Valora el producto del 1 al 5</h4>
+				<x-star-rating value="0" number="5"></x-star-rating>
+				<script src="valoracion.js"></script>
+				<br />
+				<h5>Valoracion media del producto</h5>
+				<br />
+				<h6>Valoraciones</h6>
+				<br />
 				<div
 					sec:authorize="hasAuthority('ROL_USER') || hasAuthority('ROL_ADMIN')"
 					style="float: right; width: 30%;">
