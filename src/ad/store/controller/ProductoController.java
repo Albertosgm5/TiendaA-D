@@ -25,6 +25,7 @@ import ad.store.entity.Compra;
 import ad.store.entity.Pregunta;
 import ad.store.entity.Producto;
 import ad.store.entity.Respuesta;
+import ad.store.service.CategoriaService;
 import ad.store.service.ImagenService;
 import ad.store.service.PreguntaService;
 import ad.store.service.ProductoService;
@@ -37,6 +38,8 @@ public class ProductoController {
 	private String name;
 	@Autowired
 	ProductoService productoService;
+	@Autowired
+	CategoriaService categoriaService;
 	@Autowired
 	PreguntaService preguntaService;
 	@Autowired
@@ -61,8 +64,11 @@ public class ProductoController {
 			listar = (ArrayList<Respuesta>) respuestaService.listarRespuestas(pregunta, cliente);
 			respuestas.add(listar);
 		}
+		List<Categoria> lCategoria = categoriaService.listarCategoriasPorProducto(producto);
+
 		sesion.setAttribute("ProductoSession", producto);
 		mav.addObject("producto", producto);
+		mav.addObject("categorias", lCategoria);
 		if (preguntas != null) {
 			mav.addObject("preguntas", preguntas);
 		}
@@ -86,6 +92,7 @@ public class ProductoController {
 		productoCesta.setStock(cantidad2);
 		HttpSession sesion = request.getSession();
 		List<Producto> cProductos = (List<Producto>) sesion.getAttribute("lProductoSession");
+		
 		for (int i = 0; i < cProductos.size(); i++) {
 			if (cProductos.get(i).getIdProducto() == productoCesta.getIdProducto()) {
 				cProductos.get(i).setStock(cProductos.get(i).getStock() + productoCesta.getStock());
@@ -132,6 +139,8 @@ public class ProductoController {
 	public String signUpView() {
 		return "crear_Producto";
 	}
+	
+	
 
 	@RequestMapping(method = RequestMethod.POST, value = "crear_Producto")
 	public void handleSignUp(HttpServletRequest request, HttpServletResponse response,

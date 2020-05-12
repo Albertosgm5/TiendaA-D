@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import ad.store.entity.Categoria;
+import ad.store.entity.Compra;
 import ad.store.entity.Producto;
 
 
@@ -55,7 +56,13 @@ public class CategoriaDaoImpl extends GenericDaoImpl<Categoria> implements Categ
 
 	@Override
 	public List<Categoria> listarCategorias() {
-		// TODO Auto-generated method stub
+		List<Categoria> categorias = new ArrayList<Categoria>();
+
+        categorias = this.em
+                .createQuery("FROM Categoria", Categoria.class).getResultList();
+        if (categorias != null ) {
+            return categorias;
+        }
 		return null;
 	}
 	
