@@ -3,6 +3,7 @@ package ad.store.controller;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -44,7 +45,10 @@ public class CategoriaController {
 		ModelAndView mav = new ModelAndView();
 		Categoria categoria = categoriaService.obtenerCategoriaPorId(idCategoria);
 		sesion.setAttribute("CategoriaSession", categoria);
+		Set<Producto> productos = new HashSet<>();
+		
 		mav.addObject("categoria", categoria);
+		mav.addObject("productos", productos);
 		mav.setViewName("detallescategoria");
 		return mav;
 	}
