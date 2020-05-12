@@ -42,7 +42,7 @@
 							<td th:text="${producto.nombreProducto}"></td>
 							<td th:text="${producto.precio}"></td>
 							<td th:text="${producto.stock}"></td>
-							<td th:text="${producto.categoria}"></td>
+							<td th:text="${producto.categoria.nombreCategoria}"></td>
 							<td th:text="${producto.descripcion}"></td>
 							<td><a href=#
 								th:href="@{/producto/detallesProducto/{idProducto}(idProducto = ${producto.idProducto})}">
