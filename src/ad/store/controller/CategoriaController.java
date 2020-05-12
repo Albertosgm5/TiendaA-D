@@ -45,7 +45,7 @@ public class CategoriaController {
 		Categoria categoria = categoriaService.obtenerCategoriaPorId(idCategoria);
 		sesion.setAttribute("CategoriaSession", categoria);
 		mav.addObject("categoria", categoria);
-		mav.setViewName("detallesproducto");
+		mav.setViewName("detallescategoria");
 		return mav;
 	}
 
@@ -59,7 +59,7 @@ public class CategoriaController {
 		List<Categoria> lCategoria = categoriaService.listarCategorias();
 
 		mav.addObject("categorias", lCategoria);
-		mav.setViewName("listarproductos");
+		mav.setViewName("listarcategorias");
 		return mav;
 	}
 
@@ -106,7 +106,7 @@ public class CategoriaController {
 		cat.setDescripcionCategoria(descripcionCategoria);
 
 		categoriaService.editarCategoria(cat);
-		response.sendRedirect("/A&DStore/producto/detallesProducto/" + idCategoria);
+		response.sendRedirect("/A&DStore/categoria/detallesCategoria/" + idCategoria);
 
 	}
 
