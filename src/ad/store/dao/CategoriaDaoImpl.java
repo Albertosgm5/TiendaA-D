@@ -27,8 +27,14 @@ public class CategoriaDaoImpl extends GenericDaoImpl<Categoria> implements Categ
 	@Override
 	public List<Categoria> listarCategoriasPorProducto(Producto producto) {
 		idProducto=producto.getIdProducto();
-		List<Categoria> categorias = new ArrayList<Categoria>();
 		
+		Query query = this.em.createQuery("From Categoria Where idCategoria In (Select idCategoria From Categoria_producto Where idProducto = :idProducto)");
+		query.setParameter("idProducto", idProducto);
+		List<Categoria> lCategoria = query.getResultList();
+       
+        if (lCategoria != null ) {
+            return lCategoria;
+        }
 		return null;
 	}
 
