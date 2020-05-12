@@ -16,7 +16,7 @@ public interface ProductoService {
 	
 	public Producto obtenerProductoPorNombre(String nombreProducto);
 	
-	public Producto crearProducto (String nombre, float precio, int stock, Set<Categoria> categorias, String descripcion);
+	public Producto crearProducto (String nombre, float precio, int stock, Categoria categoria, String descripcion);
 	
 	public Producto editarProducto(Producto producto);
 	

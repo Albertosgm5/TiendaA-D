@@ -50,12 +50,12 @@ public class ProductoServiceImpl implements ProductoService {
 	}
 
 	@Override
-	public Producto crearProducto(String nombre, float precio, int stock, Set<Categoria> categorias, String descripcion) {
+	public Producto crearProducto(String nombre, float precio, int stock, Categoria categoria, String descripcion) {
 		Producto producto = new Producto();
 		producto.setNombreProducto(nombre);
 		producto.setPrecio(precio);
 		producto.setStock(stock);
-		producto.setCategorias(categorias);
+		producto.setCategoria(categoria);
 		producto.setDescripcion(descripcion);
 		return productoDao.create(producto);
 	}

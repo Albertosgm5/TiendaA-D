@@ -61,7 +61,7 @@ public class ProductoDaoImpl extends GenericDaoImpl<Producto> implements Product
 
 
 	@Override
-	public Producto crearProducto(String nombre, float precio, int stock, Set<Categoria> categorias, String descripcion) {
+	public Producto crearProducto(String nombre, float precio, int stock, Categoria categoria, String descripcion) {
 		// TODO Auto-generated method stub
 		return null;
 	}

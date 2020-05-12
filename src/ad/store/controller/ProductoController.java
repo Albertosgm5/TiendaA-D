@@ -65,7 +65,6 @@ public class ProductoController {
 			listar = (ArrayList<Respuesta>) respuestaService.listarRespuestas(pregunta, cliente);
 			respuestas.add(listar);
 		}
-
 		sesion.setAttribute("ProductoSession", producto);
 		mav.addObject("producto", producto);
 		mav.addObject("categoria", categoria);
@@ -145,9 +144,9 @@ public class ProductoController {
 	@RequestMapping(method = RequestMethod.POST, value = "crear_Producto")
 	public void handleSignUp(HttpServletRequest request, HttpServletResponse response,
 			@RequestParam("nombreProducto") String nombre, @RequestParam("precio") float precio,
-			@RequestParam("stock") int stock, @RequestParam("categorias") Set<Categoria> categorias,
+			@RequestParam("stock") int stock, @RequestParam("categorias") Categoria categoria,
 			@RequestParam("descripcion") String descripcion) throws IOException {
-		Producto producto = productoService.crearProducto(nombre, precio, stock, categorias, descripcion);
+		Producto producto = productoService.crearProducto(nombre, precio, stock, categoria, descripcion);
 
 		ModelAndView mav = new ModelAndView();
 		if (producto == null) {
@@ -172,11 +171,11 @@ public class ProductoController {
 	@RequestMapping(method = RequestMethod.POST, value = "/agregar")
 	public void cambioSesionProducto(HttpServletRequest request, HttpServletResponse response,
 			@RequestParam("nombreProducto") String cliente, @RequestParam("precio") float precio,
-			@RequestParam("stock") int stock, @RequestParam("categoria") Set<Categoria> categorias,
+			@RequestParam("stock") int stock, @RequestParam("categoria") Categoria categoria,
 			@RequestParam("descripcion") String descripcion) throws IOException {
 		HttpSession sesion = request.getSession();
 		List<Producto> cProductos = (List<Producto>) sesion.getAttribute("lProductoSession");
-		Producto producto = new Producto(cliente, precio, stock, categorias, descripcion);
+		Producto producto = new Producto(cliente, precio, stock, categoria, descripcion);
 		cProductos.add(producto);
 		sesion.setAttribute("lProductoSession", cProductos);
 		response.sendRedirect("/A&DStore/");
@@ -232,14 +231,14 @@ public class ProductoController {
 	public void handleEdit(HttpServletRequest request, HttpServletResponse response,
 			@PathVariable("idProducto") long idProducto, @RequestParam("nombreProducto") String nombre,
 			@RequestParam("precio") float precio, @RequestParam("stock") int stock,
-			@RequestParam("categoria") Set<Categoria> categorias, @RequestParam("descripcion") String descripcion,
+			@RequestParam("categoria") Categoria categoria, @RequestParam("descripcion") String descripcion,
 			@RequestParam("imagen") MultipartFile imagen) throws IOException {
 
 		Producto pro = productoService.obtenerProducto(idProducto);
 		pro.setNombreProducto(nombre);
 		pro.setPrecio(precio);
 		pro.setStock(stock);
-		pro.setCategorias(categorias);
+		pro.setCategoria(categoria);
 		pro.setDescripcion(descripcion);
 		imagenService.actualizaFotoProducto(idProducto, imagen);
 		productoService.editarProducto(pro);
