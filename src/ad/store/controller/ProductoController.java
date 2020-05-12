@@ -168,6 +168,8 @@ public class ProductoController {
 	public ModelAndView updateView(@PathVariable("idProducto") long idProducto) {
 		ModelAndView mav = new ModelAndView();
 		Producto producto = productoService.obtenerProducto(idProducto);
+		List <Categoria> categorias = categoriaService.listarCategorias();
+		mav.addObject("categorias", categorias);
 		mav.addObject("producto", producto);
 		mav.setViewName("editar_Producto");
 		return mav;
@@ -236,14 +238,15 @@ public class ProductoController {
 	public void handleEdit(HttpServletRequest request, HttpServletResponse response,
 			@PathVariable("idProducto") long idProducto, @RequestParam("nombreProducto") String nombre,
 			@RequestParam("precio") float precio, @RequestParam("stock") int stock,
-			@RequestParam("categoria") Categoria categoria, @RequestParam("descripcion") String descripcion,
+			@RequestParam("categoria") String categoria, @RequestParam("descripcion") String descripcion,
 			@RequestParam("imagen") MultipartFile imagen) throws IOException {
 
+		Categoria c = categoriaService.obtenerCategoria(categoria);
 		Producto pro = productoService.obtenerProducto(idProducto);
 		pro.setNombreProducto(nombre);
 		pro.setPrecio(precio);
 		pro.setStock(stock);
-		pro.setCategoria(categoria);
+		pro.setCategoria(c);
 		pro.setDescripcion(descripcion);
 		imagenService.actualizaFotoProducto(idProducto, imagen);
 		productoService.editarProducto(pro);
