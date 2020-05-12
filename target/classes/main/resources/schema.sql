@@ -33,7 +33,8 @@ CREATE TABLE `producto` (
   `stock` int(11) NOT NULL,
   `categoria` varchar(255) NOT NULL,
   `descripcion` varchar(255) NOT NULL,
-  PRIMARY KEY (`idProducto`)
+  PRIMARY KEY (`idProducto`),
+  CONSTRAINT `fk_categiria` FOREIGN KEY (`idCategoria`) REFERENCES `categoria` (`idCategoria`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 CREATE TABLE `categoria` (
@@ -41,16 +42,6 @@ CREATE TABLE `categoria` (
   `nombre` varchar(255) NOT NULL,
   `descripcion` varchar(255) NOT NULL,
   PRIMARY KEY (`idCategoria`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-
-CREATE TABLE `categoria_producto` (
-  `idCategoria` bigint NOT NULL,
-  `idProducto` bigint NOT NULL,
-  PRIMARY KEY (`idCategoria`,`idProducto`),
-  KEY `fk_rolrol_idx` (`idProducto`),
-  CONSTRAINT `fk_categiriacat` FOREIGN KEY (`idCategoria`) REFERENCES `categoria` (`idCategoria`) ON DELETE CASCADE,
-  CONSTRAINT `fk_producproduc` FOREIGN KEY (`idProducto`) REFERENCES `producto` (`idProducto`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 CREATE TABLE `compra` (
