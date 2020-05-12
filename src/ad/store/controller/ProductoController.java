@@ -65,7 +65,6 @@ public class ProductoController {
 			listar = (ArrayList<Respuesta>) respuestaService.listarRespuestas(pregunta, cliente);
 			respuestas.add(listar);
 		}
-
 		sesion.setAttribute("ProductoSession", producto);
 		mav.addObject("producto", producto);
 		mav.addObject("categoria", categoria);
