@@ -18,7 +18,7 @@ import ad.store.entity.Venta;
 @Repository
 @Component("ProductoDao")
 public class ProductoDaoImpl extends GenericDaoImpl<Producto> implements ProductoDao {
-
+	private long idCategoria;
 	@Override
 	public List<Producto> listarProductosPorNombre(String nombreProducto) {
 		Query query = this.em
@@ -110,6 +110,18 @@ public class ProductoDaoImpl extends GenericDaoImpl<Producto> implements Product
 	public void eliminarVentas(long idProducto, Venta venta) {
 		Producto p = this.find(idProducto);
 		p.deleteVentas(venta);
+	}
+	@Override
+	public List<Producto> listarProductosPorCategoria(Categoria categoria) {
+		idCategoria=categoria.getIdCategoria();
+		List<Producto> productos = new ArrayList<Producto>();
+
+        productos = this.em
+                .createQuery("FROM Producto Where idCategoria = "+idCategoria, Producto.class).getResultList();
+        if (productos != null ) {
+            return productos;
+        }
+		return null;
 	}
 
 	

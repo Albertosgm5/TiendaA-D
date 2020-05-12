@@ -100,6 +100,11 @@ public class ProductoServiceImpl implements ProductoService {
 				productoDao.eliminarVentas(idProducto, venta);;			}
 		}
 	}
+
+	@Override
+	public List<Producto> listarProductosPorCategoria(Categoria categoria) {
+		return productoDao.listarProductosPorCategoria(categoria);
+	}
 	
 
 }

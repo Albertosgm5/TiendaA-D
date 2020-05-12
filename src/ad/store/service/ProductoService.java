@@ -11,6 +11,8 @@ public interface ProductoService {
 	public List<Producto> listarProductos();
 	
 	public List<Producto> listarProductosPorNombre(String nombreProducto);
+	
+	public List<Producto> listarProductosPorCategoria(Categoria categoria);
 
 	public Producto obtenerProducto(long idProducto);
 	
