@@ -84,7 +84,7 @@ public class CategoriaController {
 		session.setAttribute("categoriaSession", nombreCategoria);
 		response.sendRedirect("/A&DStore/");
 	}
-
+	
 	@RequestMapping("/editar_Categoria/{idCategoria}")
 	public ModelAndView updateView(@PathVariable("idCategoria") long idCategoria) {
 		ModelAndView mav = new ModelAndView();
