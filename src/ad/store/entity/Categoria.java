@@ -3,6 +3,7 @@ package ad.store.entity;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -13,6 +14,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -26,9 +28,8 @@ public class Categoria {
 	private String nombreCategoria;
 	@Column(name = "descripcion")
 	private String descripcionCategoria;
-	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "categoria_producto", joinColumns = @JoinColumn(name = "idCategoria"), inverseJoinColumns = @JoinColumn(name = "idProducto"))
-	private Set<Producto> productos = new HashSet<>();
+	@OneToMany(fetch = FetchType.EAGER,mappedBy = "categoria", cascade = CascadeType.ALL, orphanRemoval = true)
+	private Set<Producto> productos= new HashSet<>();
 	
 	
 	public Categoria(long idCategoria, String nombreCategoria, String descripcionCategoria, Set<Producto> productos) {
