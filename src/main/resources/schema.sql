@@ -37,6 +37,13 @@ CREATE TABLE `producto` (
   CONSTRAINT `fk_categiria` FOREIGN KEY (`idCategoria`) REFERENCES `categoria` (`idCategoria`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+CREATE TABLE `valoracion` (
+  `idValoracion` bigint(20) NOT NULL AUTO_INCREMENT,
+  `valoracion` int(11) NOT NULL,
+  PRIMARY KEY (`idValoracion`),
+  CONSTRAINT `fk_valpro` FOREIGN KEY (`idProducto`) REFERENCES `producto` (`idProducto`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 CREATE TABLE `categoria` (
   `idCategoria` bigint(20) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(255) NOT NULL,

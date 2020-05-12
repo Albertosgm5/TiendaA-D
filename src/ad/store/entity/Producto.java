@@ -46,7 +46,9 @@ public class Producto {
 	private Categoria categoria;
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "producto" , cascade = CascadeType.ALL, orphanRemoval = true)
 	private Set<Imagen> imagen = new HashSet<>();
-
+	@OneToMany(fetch = FetchType.EAGER,mappedBy = "producto", cascade = CascadeType.ALL, orphanRemoval = true)
+	private Set<Valoracion> valoraciones= new HashSet<>();
+	
 	public Producto(long idProducto, String nombreProducto, float precio, int stock, Categoria categoria, String descripcion) {
 		this.idProducto = idProducto;
 		this.nombreProducto = nombreProducto;
@@ -54,6 +56,15 @@ public class Producto {
 		this.stock = stock;
 		this.categoria = categoria;
 		this.descripcion = descripcion;
+	}
+	public Producto(long idProducto, String nombreProducto, float precio, int stock, Categoria categoria, String descripcion,  Set<Valoracion> valoraciones) {
+		this.idProducto = idProducto;
+		this.nombreProducto = nombreProducto;
+		this.precio = precio;
+		this.stock = stock;
+		this.categoria = categoria;
+		this.descripcion = descripcion;
+		this.valoraciones = valoraciones;
 	}
 	public Producto(String nombreProducto, float precio, int stock, Categoria categoria, String descripcion) {
 		this.nombreProducto = nombreProducto;
@@ -67,8 +78,6 @@ public class Producto {
 	public Set<Compra> getCompras() {
 		return compras;
 	}
-	
-
 	public void setCompras(Set<Compra>  compras) {
 		this.compras =  compras;
 	}
@@ -135,12 +144,17 @@ public class Producto {
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
 	}
-	
+	public Set<Valoracion> getValoraciones() {
+		return valoraciones;
+	}
+	public void setValoraciones(Set<Valoracion> valoraciones) {
+		this.valoraciones = valoraciones;
+	}
 	@Override
 	public String toString() {
 		return "Producto [idProducto=" + idProducto + ", nombreProducto=" + nombreProducto + ", precio=" + precio
 				+ ", stock=" + stock + ", descripcion=" + descripcion + ", compras=" + compras + ", ventas=" + ventas
-				+ ", preguntas=" + preguntas + ", categoria=" + categoria + ", imagen=" + imagen + "]";
+				+ ", preguntas=" + preguntas + ", categoria=" + categoria + ", imagen=" + imagen + ", valoraciones="
+				+ valoraciones + "]";
 	}
-	
 }

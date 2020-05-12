@@ -33,12 +33,14 @@ import ad.store.entity.Imagen;
 import ad.store.entity.Pregunta;
 import ad.store.entity.Producto;
 import ad.store.entity.Respuesta;
+import ad.store.entity.Valoracion;
 import ad.store.service.CategoriaService;
 import ad.store.service.ImagenService;
 import ad.store.service.PreguntaService;
 import ad.store.service.ProductoService;
 import ad.store.service.RespuestaService;
 import ad.store.service.UserService;
+import ad.store.service.ValoracionService;
 
 @Controller
 @RequestMapping(value = "/producto")
@@ -56,6 +58,9 @@ public class ProductoController {
 	UserService userService;
 	@Autowired
 	ImagenService imagenService;
+	
+	@Autowired
+	ValoracionService valoracionService;
 
 	@RequestMapping("/detallesProducto/{idProducto}")
 	public ModelAndView perfilProducto(HttpServletRequest request, HttpServletResponse response,
@@ -73,6 +78,23 @@ public class ProductoController {
 			listar = (ArrayList<Respuesta>) respuestaService.listarRespuestas(pregunta, cliente);
 			respuestas.add(listar);
 		}
+		
+		/*
+		int count = 0;
+		int suma = 0;
+		List <Valoracion> valoraciones = valoracionService.listarValoracionPorProducto(producto);
+		for (Valoracion valorar : valoraciones) {
+			count++;
+			suma = suma + valorar.getValoracion();
+		}
+		Valoracion val = new Valoracion();
+		int totalValoraciones = count;
+		int mT=suma/count;
+		int valoracionMedia = mT;
+		mav.addAttribute("totalValoraciones", totalValoraciones);
+		mav.addAttribute("valoracionMedia", valoracionMedia);
+		*/
+		
 		sesion.setAttribute("ProductoSession", producto);
 		mav.addObject("producto", producto);
 		mav.addObject("categoria", categoria);
@@ -279,6 +301,15 @@ public class ProductoController {
 		} catch (Exception e) {
 			return new ResponseEntity(HttpStatus.NOT_FOUND);
 		}
+	}
+	
+	@RequestMapping(method = RequestMethod.POST, value = "crear_Valoracion")
+	public void handleValorar(HttpServletRequest request, HttpServletResponse response,
+			@RequestParam("valoracion") int valoracion, @PathVariable("idProducto") long idProducto) throws IOException {
+		Producto p = productoService.obtenerProducto(idProducto);
+		Valoracion valorar = valoracionService.hacerValoracion(valoracion, p);
+		
+		response.sendRedirect("/A&DStore/producto/detallesProducto/" + idProducto);
 	}
 
 }
