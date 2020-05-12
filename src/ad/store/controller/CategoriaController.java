@@ -36,6 +36,8 @@ import ad.store.service.UserService;
 public class CategoriaController {
 	@Autowired
 	CategoriaService categoriaService;
+	@Autowired
+	ProductoService productoService;
 	
 
 	@RequestMapping("/detallesCategoria/{idCategoria}")
@@ -46,7 +48,7 @@ public class CategoriaController {
 		Categoria categoria = categoriaService.obtenerCategoriaPorId(idCategoria);
 		sesion.setAttribute("CategoriaSession", categoria);
 		Set<Producto> productos = new HashSet<>();
-		
+		productos= (Set<Producto>) productoService.listarProductosPorCategoria(categoria);
 		mav.addObject("categoria", categoria);
 		mav.addObject("productos", productos);
 		mav.setViewName("detallescategoria");
