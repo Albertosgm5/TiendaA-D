@@ -135,8 +135,12 @@ public class ProductoController {
 	}
 
 	@RequestMapping(method = RequestMethod.GET, value = "crear_Producto")
-	public String signUpView() {
-		return "crear_Producto";
+	public ModelAndView  signUpView() {
+		ModelAndView mav = new ModelAndView();
+		List <Categoria> categorias = categoriaService.listarCategorias();
+		mav.addObject("categorias", categorias);
+		mav.setViewName("crear_Producto");
+		return mav;
 	}
 	
 	
@@ -144,9 +148,10 @@ public class ProductoController {
 	@RequestMapping(method = RequestMethod.POST, value = "crear_Producto")
 	public void handleSignUp(HttpServletRequest request, HttpServletResponse response,
 			@RequestParam("nombreProducto") String nombre, @RequestParam("precio") float precio,
-			@RequestParam("stock") int stock, @RequestParam("categorias") Categoria categoria,
+			@RequestParam("stock") int stock, @RequestParam("categoria") String categoria,
 			@RequestParam("descripcion") String descripcion) throws IOException {
-		Producto producto = productoService.crearProducto(nombre, precio, stock, categoria, descripcion);
+		Categoria c = categoriaService.obtenerCategoria(categoria);
+		Producto producto = productoService.crearProducto(nombre, precio, stock, c, descripcion);
 
 		ModelAndView mav = new ModelAndView();
 		if (producto == null) {
