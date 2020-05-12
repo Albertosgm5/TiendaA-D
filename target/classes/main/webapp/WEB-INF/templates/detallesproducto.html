@@ -17,7 +17,7 @@
 <link href="sticky-footer-navbar.css" rel="stylesheet">
 </head>
 <body style="background-color: #117733;">
-<style type="text/css">
+	<style type="text/css">
 .foto {
 	position: relative;
 	/* 	margin-top: 50px; */
@@ -114,13 +114,17 @@
 					<p id="precio" name="precio" th:text="*{precio}"></p>
 					<h2>Stock</h2>
 					<p id="stock" name="stock" th:text="*{stock}"></p>
-				<!-- 	<h2>Categoria</h2>-->
-				<!-- 	<p id="categoria" name="categoria" th:text="*{categoria.nombreCategoria}"></p>-->
+					<span th:each="categoria: ${categorias}">
+						<h2>Categoria</h2>
+						<p id="categoria" name="categoria"
+							th:text="${categoria.nombreCategoria}"></p>
+					</span>
 					<h2>Descripcion</h2>
 					<p id="descripcion" name="descripcion" th:text="*{descripcion}"></p>
 
 				</form>
-				<img th:src="@{/producto/imagen/{idProducto}(idProducto=${producto.idProducto})}">
+				<img
+					th:src="@{/producto/imagen/{idProducto}(idProducto=${producto.idProducto})}">
 				<div
 					sec:authorize="hasAuthority('ROL_USER') || hasAuthority('ROL_ADMIN')"
 					style="float: right; width: 30%;">
@@ -162,7 +166,8 @@
 					<thead>
 						<tr>
 							<th>Preguntas</th>
-							<th><th>
+							<th>
+							<th>
 							<th>Respuestas</th>
 						</tr>
 					</thead>
@@ -170,26 +175,26 @@
 						<span th:each="pregunta : ${preguntas}">
 							<td th:text="${pregunta.pregunta}"></td>
 							<td>
-							<form
-								th:action="@{/producto/responder/} + ${pregunta.idPregunta}"
-								method="post">
-								<div style="float: left; width: 27%;">
-									<label for="respuesta"> Escribe tu respuesta </label>: <input
-										type="text" id="respuesta" name="respuesta" /> 
-										<input type = "hidden" id="idProducto" name = "idProducto" th:value="${producto.idProducto}">
-								</div>
-								<div style="float: left; width: 10%;">
-								<br />
-									<input type="submit" value="Responder" />
-								</div>
-							</form>
-							</td>
-							<span th:each="respuesta : ${respuestas}">
+								<form
+									th:action="@{/producto/responder/} + ${pregunta.idPregunta}"
+									method="post">
+									<div style="float: left; width: 27%;">
+										<label for="respuesta"> Escribe tu respuesta </label>: <input
+											type="text" id="respuesta" name="respuesta" /> <input
+											type="hidden" id="idProducto" name="idProducto"
+											th:value="${producto.idProducto}">
+									</div>
+									<div style="float: left; width: 10%;">
+										<br /> <input type="submit" value="Responder" />
+									</div>
+								</form>
+						</td> <span th:each="respuesta : ${respuestas}">
 								<tr th:each="r : ${respuesta}">
-								<td></td>
-								<td></td>
-								<td th:if="${r.pregunta.idPregunta == pregunta.idPregunta}" th:text="${r.textoRespuesta}"></td>
-							</tr>
+									<td></td>
+									<td></td>
+									<td th:if="${r.pregunta.idPregunta == pregunta.idPregunta}"
+										th:text="${r.textoRespuesta}"></td>
+								</tr>
 						</span>
 					</tbody>
 				</table>

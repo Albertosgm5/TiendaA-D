@@ -29,8 +29,8 @@ public class CategoriaServiceImpl implements CategoriaService{
 	}
 
 	@Override
-	public List<Categoria> listarCategoriasPorProducto(Producto producto) {
-		return categoriaDao.listarCategoriasPorProducto(producto);
+	public Categoria listarCategoriaPorProducto(Producto producto) {
+		return categoriaDao.listarCategoriaPorProducto(producto);
 	}
 
 	@Override

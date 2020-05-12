@@ -18,6 +18,7 @@ import ad.store.entity.Producto;
 @Component("CategoriaDao")
 public class CategoriaDaoImpl extends GenericDaoImpl<Categoria> implements CategoriaDao{
 	private long idProducto;
+	private long idCategoria;
 	
 	@Override
 	public Categoria crearCategoria(String nombreCategoria, String descripcionCategoria) {
@@ -26,15 +27,15 @@ public class CategoriaDaoImpl extends GenericDaoImpl<Categoria> implements Categ
 	}
 
 	@Override
-	public List<Categoria> listarCategoriasPorProducto(Producto producto) {
-		idProducto=producto.getIdProducto();
+	public Categoria listarCategoriaPorProducto(Producto producto) {
+		idCategoria=producto.getCategoria().idCategoria;
 		
-		Query query = this.em.createQuery("From Categoria Where idCategoria In (Select idCategoria From Categoria_producto Where idProducto = :idProducto)");
-		query.setParameter("idProducto", idProducto);
-		List<Categoria> lCategoria = query.getResultList();
+		Query query = this.em.createQuery("From Categoria Where idCategoria = :idCategoria");
+		query.setParameter("idCategoria", idCategoria);
+		Categoria categoria = (Categoria) query.getSingleResult();
        
-        if (lCategoria != null ) {
-            return lCategoria;
+        if (categoria != null ) {
+            return categoria;
         }
 		return null;
 	}
