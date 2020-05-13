@@ -60,12 +60,16 @@ public class ProductoController {
 	@RequestMapping("/detallesProducto/{idProducto}")
 	public ModelAndView perfilProducto(HttpServletRequest request, HttpServletResponse response,
 			@PathVariable("idProducto") long idProducto) {
+		Boolean sinImagen = false;
 		HttpSession sesion = request.getSession();
 		ModelAndView mav = new ModelAndView();
 		long id = (long) sesion.getAttribute("idSession");
 		Cliente cliente = userService.obtenerCliente(id);
 		Producto producto = productoService.obtenerProducto(idProducto);
 		List<Pregunta> preguntas = preguntaService.listarPreguntas(producto, cliente);
+		if(producto.getImagen().isEmpty()) {
+			sinImagen = true;
+		}
 		Categoria categoria = categoriaService.listarCategoriaPorProducto(producto);
 		List<ArrayList> respuestas = new ArrayList<ArrayList>();
 		for (Pregunta pregunta : preguntas) {
@@ -74,6 +78,7 @@ public class ProductoController {
 			respuestas.add(listar);
 		}
 		sesion.setAttribute("ProductoSession", producto);
+		mav.addObject("sinImagen",sinImagen);
 		mav.addObject("producto", producto);
 		mav.addObject("categoria", categoria);
 		if (preguntas != null) {
@@ -254,7 +259,7 @@ public class ProductoController {
 		pro.setStock(stock);
 		pro.setCategoria(c);
 		pro.setDescripcion(descripcion);
-		imagenService.actualizaFotoProducto(idProducto, imagen);
+		imagenService.agregarFotoProducto(idProducto, imagen);
 		productoService.editarProducto(pro);
 		response.sendRedirect("/A&DStore/producto/detallesProducto/" + idProducto);
 

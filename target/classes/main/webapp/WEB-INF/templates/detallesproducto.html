@@ -104,21 +104,21 @@
 		<h1>Detalles Producto</h1>
 		<div class="card">
 			<div class="card-body">
-				<div th:if="${producto.imagen == null}" style="float: right;">
+				<div th:if="${sinImagen}" style="float: right;">
 					<img th:src="@{/images/sin-foto.jpg}" width="300" height="300"
 						alt="No tiene foto">
 					<div class="overlay"></div>
 					<div class="button">
-						<a href="#" th:href="@{/imagenes/index}"> Editar foto </a>
+						<a href="#" th:href="@{/imagen}"> Mostrar foto </a>
 					</div>
 				</div>
-				<div th:if="${producto.imagen != null}" style="float: right;">
+				<div th:if="${!sinImagen}" style="float: right;">
 					<img
 						th:src="@{/producto/imagen/{idProducto}(idProducto=${producto.idProducto})}"
 						width="300" height="300" alt="No tiene foto">
 					<div class="overlay"></div>
 					<div class="button">
-						<a href="#" th:href="@{/imagenes/index}"> Editar foto </a>
+						<a href="#" th:href="@{/imagen}"> Mostrar foto </a>
 					</div>
 				</div>
 				<label type="hidden" id="idProducto" name="idProducto"
