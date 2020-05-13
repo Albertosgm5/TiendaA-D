@@ -103,7 +103,7 @@
 	<div class="container my-5">
 		<h1>Detalles Producto</h1>
 		<div class="card">
-		
+
 			<div class="card-body">
 				<div th:if="${producto.imagen.isEmpty()}" style="float: right;">
 					<img th:src="@{/images/sin-foto.jpg}" width="300" height="300"
@@ -136,6 +136,15 @@
 				<x-star-rating value="0" number="5"></x-star-rating>
 				<script src="valoracion.js"></script>
 				<br />
+				<!-- Ejemplo ajax y javaScript
+				<script type="text/javascript">
+    $('#campo_login').blur(
+        function() {
+            $('#mensaje').load('loginDisponible.do', 
+                               "login="+$('#campo_login').val())
+        }   
+    )
+</script> -->
 				<h5>Valoracion media del producto</h5>
 				<br />
 				<h6>Valoraciones</h6>

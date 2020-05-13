@@ -61,6 +61,14 @@ public class ProductoController {
 	
 	@Autowired
 	ValoracionService valoracionService;
+	/*Ejemplo ajax y javaScript
+	 *  @RequestMapping("/loginDisponible.do")
+    public @ResponseBody String loginDisponible(@RequestParam("login") String login) {
+        if (ubo.getUsuario(login)==null)
+            return "login disponible";
+        else
+            return "login <strong>no</strong> disponible";
+    }*/
 
 	@RequestMapping("/detallesProducto/{idProducto}")
 	public ModelAndView perfilProducto(HttpServletRequest request, HttpServletResponse response,
