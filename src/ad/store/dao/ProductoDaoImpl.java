@@ -18,7 +18,6 @@ import ad.store.entity.Venta;
 @Repository
 @Component("ProductoDao")
 public class ProductoDaoImpl extends GenericDaoImpl<Producto> implements ProductoDao {
-	private long idCategoria;
 	@Override
 	public List<Producto> listarProductosPorNombre(String nombreProducto) {
 		Query query = this.em
@@ -113,13 +112,14 @@ public class ProductoDaoImpl extends GenericDaoImpl<Producto> implements Product
 	}
 	@Override
 	public List<Producto> listarProductosPorCategoria(Categoria categoria) {
-		idCategoria=categoria.getIdCategoria();
-		List<Producto> productos = new ArrayList<Producto>();
-
-        productos = this.em
-                .createQuery("FROM Producto Where idCategoria = "+idCategoria, Producto.class).getResultList();
-        if (productos != null ) {
-            return productos;
+		long idCategoria= categoria.getIdCategoria();
+		
+		Query query = this.em.createQuery("From Producto Where idCategoria = :idCategoria");
+		query.setParameter("idCategoria", idCategoria);
+		List<Producto> lProducto = query.getResultList();
+        
+        if (lProducto != null ) {
+            return lProducto;
         }
 		return null;
 	}

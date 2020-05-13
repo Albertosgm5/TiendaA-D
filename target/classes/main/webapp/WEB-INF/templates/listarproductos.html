@@ -31,8 +31,9 @@
 					<div class="card-header">Categorias</div>
 					<ul class="list-group list-group-flush">
 						<span th:each="categoria : ${categorias}">
-							<li class="list-group-item"
-							th:text="${categoria.nombreCategoria}">Categorias</li>
+							<li class="list-group-item"><a href=# class="btn btn-primary"
+									th:href="@{/producto/listar/{idCategoria}(idCategoria = ${categoria.idCategoria})}" th:text="${categoria.nombreCategoria}">
+									Categoria</a></li>
 						</span>
 					</ul>
 				</div>

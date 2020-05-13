@@ -152,6 +152,23 @@ public class ProductoController {
 		mav.setViewName("listarproductos");
 		return mav;
 	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = "/listar/{idCategoria}")
+	public ModelAndView listarProductos(@PathVariable("idCategoria") long idCategoria) {
+
+		Categoria categoria = categoriaService.obtenerCategoriaPorId(idCategoria);
+		ModelAndView mav = new ModelAndView();
+		// var xhr = new XMLHttpRequest();
+		/*
+		 * xhr.open('PUT','myservice/user/{id}'); xhr.setRequestHeader();
+		 */
+		List<Producto> lProducto = productoService.listarProductosPorCategoria(categoria);
+		List<Categoria> categorias = categoriaService.listarCategorias();
+		mav.addObject("categorias", categorias);
+		mav.addObject("productos", lProducto);
+		mav.setViewName("listarproductos");
+		return mav;
+	}
 
 	@RequestMapping(method = RequestMethod.POST, value = "/listAjax")
 	public ModelAndView listarProductosAjax(@RequestParam("producto") String nombreProducto) {
