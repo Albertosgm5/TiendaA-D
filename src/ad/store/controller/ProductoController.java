@@ -124,7 +124,8 @@ public class ProductoController {
 		 * xhr.open('PUT','myservice/user/{id}'); xhr.setRequestHeader();
 		 */
 		List<Producto> lProducto = productoService.listarProductosPorNombre(nombreProducto);
-
+		List<Categoria> categorias = categoriaService.listarCategorias();
+		mav.addObject("categorias", categorias);
 		mav.addObject("productos", lProducto);
 		mav.setViewName("listarproductos");
 		return mav;

@@ -103,15 +103,16 @@
 	<div class="container my-5">
 		<h1>Detalles Producto</h1>
 		<div class="card">
+		
 			<div class="card-body">
 				<div th:if="${producto.imagen.isEmpty()}" style="float: right;">
 					<img th:src="@{/images/sin-foto.jpg}" width="300" height="300"
-						alt="No tiene foto">				
+						alt="No tiene foto">
 				</div>
 				<div th:if="${!producto.imagen.isEmpty()}" style="float: right;">
-						<a class="nav-link" title="Imagen" href="/A&DStore"><img
+					<img
 						th:src="@{/producto/imagen/{idProducto}(idProducto=${producto.idProducto})}"
-						width="300" height="300" alt="No tiene foto"></a>
+						width="300" height="300" alt="No tiene foto">
 				</div>
 				<label type="hidden" id="idProducto" name="idProducto"
 					th:value="${producto.idProducto}"></label>
