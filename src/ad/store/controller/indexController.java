@@ -24,6 +24,8 @@ public class indexController {
 		 ArrayList<Producto>oferta = new ArrayList<Producto>();
 	        for(int i = 0;i<8 && i< productos.size();i++) {
 	        	oferta.add(productos.get(i));
+
+	        		
 	        }
 		model.addAttribute("productos", oferta);
 		return "index";

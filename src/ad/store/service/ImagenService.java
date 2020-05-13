@@ -25,7 +25,7 @@ public class ImagenService {
 	
 	
 	
-	public Boolean actualizaFotoProducto(long idProducto, MultipartFile file) {
+	public Boolean agregarFotoProducto(long idProducto, MultipartFile file) {
 
 		Producto p = productoDao.find(idProducto);
 
@@ -40,9 +40,6 @@ public class ImagenService {
     			img.setProducto(p);
     			p.setImagen(imagenes);
     			imagenDao.save(img);
-
-			
-				
             
         } catch (Exception e) {
         	e.printStackTrace();

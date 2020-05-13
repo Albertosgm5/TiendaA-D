@@ -146,7 +146,8 @@ public class ProductoController {
 		 * xhr.open('PUT','myservice/user/{id}'); xhr.setRequestHeader();
 		 */
 		List<Producto> lProducto = productoService.listarProductosPorNombre(nombreProducto);
-
+		List<Categoria> categorias = categoriaService.listarCategorias();
+		mav.addObject("categorias", categorias);
 		mav.addObject("productos", lProducto);
 		mav.setViewName("listarproductos");
 		return mav;
@@ -276,7 +277,7 @@ public class ProductoController {
 		pro.setStock(stock);
 		pro.setCategoria(c);
 		pro.setDescripcion(descripcion);
-		imagenService.actualizaFotoProducto(idProducto, imagen);
+		imagenService.agregarFotoProducto(idProducto, imagen);
 		productoService.editarProducto(pro);
 		response.sendRedirect("/A&DStore/producto/detallesProducto/" + idProducto);
 
