@@ -40,7 +40,10 @@
 			</thead>
 			<tbody>
 				<tr th:each="producto : ${productos}">
-					<td WIDTH="50" HEIGHT="50"><img
+					<td th:if="${producto.imagen.isEmpty()}" WIDTH="50" HEIGHT="50"><img
+						th:src="@{/images/sin-foto.jpg}" width="100" height="100"
+						alt="No tiene foto"></td>
+					<td th:if="${!producto.imagen.isEmpty()}" WIDTH="50" HEIGHT="50"><img
 						th:src="@{/producto/imagen/{idProducto}(idProducto=${producto.idProducto})}"
 						width="100" height="100" alt="No tiene foto"></td>
 					<td th:text="${producto.nombreProducto}"></td>
@@ -50,6 +53,7 @@
 						th:href="@{/producto/detallesProducto/{idProducto}(idProducto = ${producto.idProducto})}">
 							Detalles </a></td>
 				</tr>
+
 			</tbody>
 		</table>
 		</CENTER>
