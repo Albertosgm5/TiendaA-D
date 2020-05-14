@@ -69,6 +69,7 @@ public class ProductoController {
         else
             return "login <strong>no</strong> disponible";
     }*/
+	
 
 	@RequestMapping("/detallesProducto/{idProducto}")
 	public ModelAndView perfilProducto(HttpServletRequest request, HttpServletResponse response,
@@ -160,6 +161,16 @@ public class ProductoController {
 		mav.setViewName("listarproductos");
 		return mav;
 	}
+	/*
+	@RequestMapping("/listAjax.do")
+    public @ResponseBody String loginDisponible(@RequestParam("producto") String nombreProducto) {
+		List<Producto> lProducto = productoService.listarProductosPorNombre(nombreProducto);
+		List<Categoria> categorias = categoriaService.listarCategorias();
+        if (producto.getNombreProducto(nombreProducto)==null)
+            return "producto disponible";
+        else
+            return "producto <strong>no</strong> disponible";
+	}*/
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/listar/{idCategoria}")
 	public ModelAndView listarProductos(@PathVariable("idCategoria") long idCategoria) {
@@ -189,6 +200,7 @@ public class ProductoController {
 		mav.setViewName("listarproductos");
 		return mav;
 	}
+	
 
 	@RequestMapping(method = RequestMethod.GET, value = "crear_Producto")
 	public ModelAndView signUpView() {
@@ -259,7 +271,7 @@ public class ProductoController {
 		Producto producto = (Producto) session.getAttribute("ProductoSession");
 		preguntaService.hacerPregunta(pre, producto, cliente);
 
-		response.sendRedirect("/A&DStore/producto/detallesProducto/" + idProducto);
+		//response.sendRedirect("/A&DStore/producto/detallesProducto/" + idProducto);
 //		ModelAndView mav = new ModelAndView();
 //		if (pregunta == null) {
 //			mav.addObject("exception", "Username or password are empty.");
@@ -278,7 +290,7 @@ public class ProductoController {
 		Cliente cliente = userService.obtenerCliente(id);
 		Pregunta pregunta = preguntaService.obtenerPregunta(idPregunta);
 		respuestaService.responder(res, pregunta, cliente);
-		response.sendRedirect("/A&DStore/producto/detallesProducto/" + idProducto);
+		//response.sendRedirect("/A&DStore/producto/detallesProducto/" + idProducto);
 
 //		ModelAndView mav = new ModelAndView();
 //		if (respuesta == null) {
