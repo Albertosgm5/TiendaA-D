@@ -174,7 +174,7 @@
 				</div>
 
 				<form th:action="@{/producto/preguntar/} + ${producto.idProducto}"
-					method="post" id="pregunta">
+					method="post" id="preguntar">
 					<div style="float: left; width: 20%;">
 						<label for="pregunta"> Escribe tu pregunta </label>: <input
 							type="text" id="pregunta" name="pregunta" /> <br />
@@ -185,14 +185,12 @@
 					</div>
 				</form>
 				<script type="text/javascript">
-					$('#pregunta').submit(function(evento) {
+					$('#preguntar').submit(function(evento) {
 						$.ajax({
 							url : '/preguntar/{idProducto}',
 							type : 'POST',
 							data : JSON.stringify({
-								pregunta : $('#pregunta').val(),
-								producto : $('#producto').val(),
-								cliente : $('#cliente').val()
+								pregunta : $('#pregunta').val()
 							}),
 							processData : false,
 							contentType : "application/json"
@@ -217,7 +215,7 @@
 							<td>
 								<form
 									th:action="@{/producto/responder/} + ${pregunta.idPregunta}"
-									method="post" id="respuesta">
+									method="post" id="responder">
 									<div style="float: left; width: 27%;">
 										<label for="respuesta"> Escribe tu respuesta </label>: <input
 											type="text" id="respuesta" name="respuesta" /> <input
@@ -229,14 +227,12 @@
 									</div>
 								</form>
 								<script type="text/javascript">
-									$('#respuesta').submit(function(evento) {
+									$('#responder').submit(function(evento) {
 										$.ajax({
 											url : '/responder/{idPregunta}',
 											type : 'POST',
 											data : JSON.stringify({
-												respuesta : $('#respuesta').val(),
-												pregunta : $('#pregunta').val(),
-												cliente : $('#cliente').val()
+												respuesta : $('#respuesta').val()
 											}),
 											processData : false,
 											contentType : "application/json"
