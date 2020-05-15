@@ -58,7 +58,7 @@
 						</div>
 						<div class="form-group col-md-6">
 							<label for="email">Email</label>: <input type="text" id="email"
-								name="email"/> <br />
+								name="email" pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}"/> <br />
 						</div>
 						<div class="form-group col-md-6">
 							<label for="fechaNa">Fecha de nacimiento</label>: <input
@@ -83,7 +83,9 @@
 						</div>
 						<div class="form-group col-md-6">
 							<label for="numTarjeta">Numero de tarjeta</label>: <input
-								type="number" id="numTarjeta" name="numTarjeta"/> <br />
+								type="number" id="numTarjeta" name="numTarjeta"  placeholder="Numero Tarjeta"
+         						required pattern="[0-9]{16}"
+         						title="Solo numeros.Tamanio minimo: 16."/> <br />
 						</div>
 						<div class="form-group col-md-6">
 							<label for="titular">Titular</label>: <input type="text"
@@ -93,7 +95,9 @@
 						</div>
 						<div class="form-group col-md-6">
 							<label for="codigoS">Codigo de seguridad</label>: <input
-								type="number" id="codigoS" name="codigoS"/> <br />
+								type="number" id="codigoS" name="codigoS" placeholder="Codigo"
+         						required pattern="[0-9]{3}"
+         						title="Solo numeros.Tamanio minimo: 3."/> <br />
 						</div>
 						<div class="form-group col-md-6">
 							<label for="direccionFa">Direccion de facturacion</label>: <input
