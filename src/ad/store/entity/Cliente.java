@@ -1,5 +1,6 @@
 package ad.store.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
@@ -23,8 +24,12 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "cliente")
-public class Cliente {
+public class Cliente implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5543491576692891286L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long idCliente;

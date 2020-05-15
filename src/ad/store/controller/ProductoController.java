@@ -19,6 +19,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -58,18 +59,17 @@ public class ProductoController {
 	UserService userService;
 	@Autowired
 	ImagenService imagenService;
-	
+
 	@Autowired
 	ValoracionService valoracionService;
-	/*Ejemplo ajax y javaScript
-	 *  @RequestMapping("/loginDisponible.do")
-    public @ResponseBody String loginDisponible(@RequestParam("login") String login) {
-        if (ubo.getUsuario(login)==null)
-            return "login disponible";
-        else
-            return "login <strong>no</strong> disponible";
-    }*/
-	
+	/*
+	 * Ejemplo ajax y javaScript
+	 * 
+	 * @RequestMapping("/loginDisponible.do") public @ResponseBody String
+	 * loginDisponible(@RequestParam("login") String login) { if
+	 * (ubo.getUsuario(login)==null) return "login disponible"; else return
+	 * "login <strong>no</strong> disponible"; }
+	 */
 
 	@RequestMapping("/detallesProducto/{idProducto}")
 	public ModelAndView perfilProducto(HttpServletRequest request, HttpServletResponse response,
@@ -87,23 +87,17 @@ public class ProductoController {
 			listar = (ArrayList<Respuesta>) respuestaService.listarRespuestas(pregunta, cliente);
 			respuestas.add(listar);
 		}
-		
+
 		/*
-		int count = 0;
-		int suma = 0;
-		List <Valoracion> valoraciones = valoracionService.listarValoracionPorProducto(producto);
-		for (Valoracion valorar : valoraciones) {
-			count++;
-			suma = suma + valorar.getValoracion();
-		}
-		Valoracion val = new Valoracion();
-		int totalValoraciones = count;
-		int mT=suma/count;
-		int valoracionMedia = mT;
-		mav.addAttribute("totalValoraciones", totalValoraciones);
-		mav.addAttribute("valoracionMedia", valoracionMedia);
-		*/
-		
+		 * int count = 0; int suma = 0; List <Valoracion> valoraciones =
+		 * valoracionService.listarValoracionPorProducto(producto); for (Valoracion
+		 * valorar : valoraciones) { count++; suma = suma + valorar.getValoracion(); }
+		 * Valoracion val = new Valoracion(); int totalValoraciones = count; int
+		 * mT=suma/count; int valoracionMedia = mT;
+		 * mav.addAttribute("totalValoraciones", totalValoraciones);
+		 * mav.addAttribute("valoracionMedia", valoracionMedia);
+		 */
+
 		sesion.setAttribute("ProductoSession", producto);
 		mav.addObject("producto", producto);
 		mav.addObject("categoria", categoria);
@@ -161,17 +155,23 @@ public class ProductoController {
 		mav.setViewName("listarproductos");
 		return mav;
 	}
-	/*
-	@RequestMapping("/listAjax.do")
-    public @ResponseBody String loginDisponible(@RequestParam("producto") String nombreProducto) {
+
+	@RequestMapping(method = RequestMethod.POST, value = "/lista/{nombreProducto}")
+	public @ResponseBody Producto listarProductos(HttpServletRequest request, @PathVariable("nombreProducto") String nombreProducto) {
 		List<Producto> lProducto = productoService.listarProductosPorNombre(nombreProducto);
-		List<Categoria> categorias = categoriaService.listarCategorias();
-        if (producto.getNombreProducto(nombreProducto)==null)
-            return "producto disponible";
-        else
-            return "producto <strong>no</strong> disponible";
-	}*/
-	
+		return lProducto.get(0);
+	}
+	/*
+	 * @RequestMapping("/listAjax.do") public @ResponseBody String
+	 * loginDisponible(@RequestParam("producto") String nombreProducto) {
+	 * List<Producto> lProducto =
+	 * productoService.listarProductosPorNombre(nombreProducto); List<Categoria>
+	 * categorias = categoriaService.listarCategorias(); if
+	 * (producto.getNombreProducto(nombreProducto)==null) return
+	 * "producto disponible"; else return "producto <strong>no</strong> disponible";
+	 * }
+	 */
+
 	@RequestMapping(method = RequestMethod.GET, value = "/listar/{idCategoria}")
 	public ModelAndView listarProductos(@PathVariable("idCategoria") long idCategoria) {
 
@@ -200,7 +200,6 @@ public class ProductoController {
 		mav.setViewName("listarproductos");
 		return mav;
 	}
-	
 
 	@RequestMapping(method = RequestMethod.GET, value = "crear_Producto")
 	public ModelAndView signUpView() {
@@ -271,7 +270,7 @@ public class ProductoController {
 		Producto producto = (Producto) session.getAttribute("ProductoSession");
 		preguntaService.hacerPregunta(pre, producto, cliente);
 
-		//response.sendRedirect("/A&DStore/producto/detallesProducto/" + idProducto);
+		// response.sendRedirect("/A&DStore/producto/detallesProducto/" + idProducto);
 //		ModelAndView mav = new ModelAndView();
 //		if (pregunta == null) {
 //			mav.addObject("exception", "Username or password are empty.");
@@ -290,7 +289,7 @@ public class ProductoController {
 		Cliente cliente = userService.obtenerCliente(id);
 		Pregunta pregunta = preguntaService.obtenerPregunta(idPregunta);
 		respuestaService.responder(res, pregunta, cliente);
-		//response.sendRedirect("/A&DStore/producto/detallesProducto/" + idProducto);
+		// response.sendRedirect("/A&DStore/producto/detallesProducto/" + idProducto);
 
 //		ModelAndView mav = new ModelAndView();
 //		if (respuesta == null) {
@@ -340,13 +339,14 @@ public class ProductoController {
 			return new ResponseEntity(HttpStatus.NOT_FOUND);
 		}
 	}
-	
+
 	@RequestMapping(method = RequestMethod.POST, value = "crear_Valoracion")
 	public void handleValorar(HttpServletRequest request, HttpServletResponse response,
-			@RequestParam("valoracion") int valoracion, @PathVariable("idProducto") long idProducto) throws IOException {
+			@RequestParam("valoracion") int valoracion, @PathVariable("idProducto") long idProducto)
+			throws IOException {
 		Producto p = productoService.obtenerProducto(idProducto);
 		Valoracion valorar = valoracionService.hacerValoracion(valoracion, p);
-		
+
 		response.sendRedirect("/A&DStore/producto/detallesProducto/" + idProducto);
 	}
 

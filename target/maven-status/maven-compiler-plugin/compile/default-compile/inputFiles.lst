@@ -4,6 +4,7 @@ C:\Users\Dani\Desktop\Spring\TiendaA-D\src\ad\store\entity\Imagen.java
 C:\Users\Dani\Desktop\Spring\TiendaA-D\src\ad\store\dao\RespuestaDao.java
 C:\Users\Dani\Desktop\Spring\TiendaA-D\src\ad\store\service\ProductoService.java
 C:\Users\Dani\Desktop\Spring\TiendaA-D\src\ad\store\service\RespuestaServiceImpl.java
+C:\Users\Dani\Desktop\Spring\TiendaA-D\src\ad\store\entity\Categoria.java
 C:\Users\Dani\Desktop\Spring\TiendaA-D\src\ad\store\service\PreguntaServiceImpl.java
 C:\Users\Dani\Desktop\Spring\TiendaA-D\src\ad\store\service\PreguntaService.java
 C:\Users\Dani\Desktop\Spring\TiendaA-D\src\ad\store\controller\ProductoController.java
@@ -11,7 +12,11 @@ C:\Users\Dani\Desktop\Spring\TiendaA-D\src\ad\store\service\CompraServiceImpl.ja
 C:\Users\Dani\Desktop\Spring\TiendaA-D\src\ad\store\service\ProductoServiceImpl.java
 C:\Users\Dani\Desktop\Spring\TiendaA-D\src\ad\store\entity\Producto.java
 C:\Users\Dani\Desktop\Spring\TiendaA-D\src\ad\store\entity\Rol.java
+C:\Users\Dani\Desktop\Spring\TiendaA-D\src\ad\store\service\CategoriaService.java
+C:\Users\Dani\Desktop\Spring\TiendaA-D\src\ad\store\dao\ValoracionDao.java
 C:\Users\Dani\Desktop\Spring\TiendaA-D\src\ad\store\service\VentaService.java
+C:\Users\Dani\Desktop\Spring\TiendaA-D\src\ad\store\service\ValoracionService.java
+C:\Users\Dani\Desktop\Spring\TiendaA-D\src\ad\store\service\CategoriaServiceImpl.java
 C:\Users\Dani\Desktop\Spring\TiendaA-D\src\ad\store\dao\GenericDao.java
 C:\Users\Dani\Desktop\Spring\TiendaA-D\src\ad\store\entity\Cliente.java
 C:\Users\Dani\Desktop\Spring\TiendaA-D\src\ad\store\config\AppInitializer.java
@@ -27,6 +32,7 @@ C:\Users\Dani\Desktop\Spring\TiendaA-D\src\ad\store\service\VentaServiceImpl.jav
 C:\Users\Dani\Desktop\Spring\TiendaA-D\src\ad\store\config\PersistenceJPAHibernateConfig.java
 C:\Users\Dani\Desktop\Spring\TiendaA-D\src\ad\store\controller\CompraController.java
 C:\Users\Dani\Desktop\Spring\TiendaA-D\src\ad\store\dao\CompraDaoImpl.java
+C:\Users\Dani\Desktop\Spring\TiendaA-D\src\ad\store\controller\CategoriaController.java
 C:\Users\Dani\Desktop\Spring\TiendaA-D\src\ad\store\entity\Pregunta.java
 C:\Users\Dani\Desktop\Spring\TiendaA-D\src\ad\store\dao\ImagenDao.java
 C:\Users\Dani\Desktop\Spring\TiendaA-D\src\ad\store\security\SecurityInitializer.java
@@ -42,11 +48,16 @@ C:\Users\Dani\Desktop\Spring\TiendaA-D\src\ad\store\dao\UserDaoImpl.java
 C:\Users\Dani\Desktop\Spring\TiendaA-D\src\ad\store\controller\indexController.java
 C:\Users\Dani\Desktop\Spring\TiendaA-D\src\ad\store\dao\ProductoDaoImpl.java
 C:\Users\Dani\Desktop\Spring\TiendaA-D\src\ad\store\dao\PreguntaDaoImpl.java
+C:\Users\Dani\Desktop\Spring\TiendaA-D\src\ad\store\dao\ValoracionDaoImpl.java
 C:\Users\Dani\Desktop\Spring\TiendaA-D\src\ad\store\dao\VentaDaoImpl.java
 C:\Users\Dani\Desktop\Spring\TiendaA-D\src\ad\store\controller\SignUpController.java
 C:\Users\Dani\Desktop\Spring\TiendaA-D\src\ad\store\dao\PreguntaDao.java
 C:\Users\Dani\Desktop\Spring\TiendaA-D\src\ad\store\controller\ClienteController.java
 C:\Users\Dani\Desktop\Spring\TiendaA-D\src\ad\store\security\LoggingAccessDeniedHandler.java
 C:\Users\Dani\Desktop\Spring\TiendaA-D\src\ad\store\service\RespuestaService.java
+C:\Users\Dani\Desktop\Spring\TiendaA-D\src\ad\store\entity\Valoracion.java
+C:\Users\Dani\Desktop\Spring\TiendaA-D\src\ad\store\service\ValoracionServiceImpl.java
 C:\Users\Dani\Desktop\Spring\TiendaA-D\src\ad\store\dao\ProductoDao.java
+C:\Users\Dani\Desktop\Spring\TiendaA-D\src\ad\store\dao\CategoriaDaoImpl.java
+C:\Users\Dani\Desktop\Spring\TiendaA-D\src\ad\store\dao\CategoriaDao.java
 C:\Users\Dani\Desktop\Spring\TiendaA-D\src\ad\store\service\CustomUserDetailsService.java

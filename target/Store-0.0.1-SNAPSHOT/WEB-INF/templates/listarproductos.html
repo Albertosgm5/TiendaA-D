@@ -11,6 +11,11 @@
 <link href="src/main/webapp/WEB-INF/dist/css/bootstrap.min.css"
 	rel="stylesheet">
 <link href="sticky-footer-navbar.css" rel="stylesheet">
+<script th:src="@{/js/jquery-3.5.1.js}"></script>
+<script th:src="@{/js/jquery-ui.min.js}"></script>
+<script th:src="@{/js/typeahead.bundle.min.js}"></script>
+<meta name="_csrf" th:content="${_csrf.token}" />
+	<meta name="_csrf_header" th:content="${_csrf.headerName}" />
 
 </head>
 <body style="background-color: #117733;">
@@ -25,33 +30,54 @@
 	</form>
 	<div class="container my-5">
 		<h1>Listado de Productos</h1>
+		<input class="form-control mr-sm-2" type="text"
+			placeholder="Ingrese Producto" aria-label="Search" name="nproducto" id="nproducto">
+		<button class="btn btn-outline-success my-2 my-sm-0" id="bProducto" type="submit">Busqueda
+			Producto</button>
 		<div class="card">
 			<div class="card-body">
-				<table width="100%" height="100%" style="margin: 0 auto;">
-					<thead>
-						<tr>
-							<th>Nombre</th>
-							<th>Precio</th>
-							<th>Stock</th>
-							<th>Categoria</th>
-							<th>Descripcion</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr th:each="producto : ${productos}">
-							<td th:text="${producto.nombreProducto}"></td>
-							<td th:text="${producto.precio}"></td>
-							<td th:text="${producto.stock}"></td>
-							<td th:text="${producto.categoria}"></td>
-							<td th:text="${producto.descripcion}"></td>
-							<td><a href=#
-								th:href="@{/producto/detallesProducto/{idProducto}(idProducto = ${producto.idProducto})}">
-									Detalles </a></td>
-						</tr>
-					</tbody>
-				</table>
+				<div class="card" style="width: 7rem; float: left; width: 20%;">
+					<div class="card-header">Categorias</div>
+					<ul class="list-group list-group-flush">
+						<span th:each="categoria : ${categorias}">
+							<li class="list-group-item"><a href=#
+								class="btn btn-primary"
+								th:href="@{/producto/listar/{idCategoria}(idCategoria = ${categoria.idCategoria})}"
+								th:text="${categoria.nombreCategoria}"> Categoria</a></li>
+						</span>
+					</ul>
+				</div>
+				<div style="float: right; width: 80%;">
+					<div id="listaPregunta" th:switch="${productos}">
+						<div th:case="*">
+							<span th:each="producto : ${productos}">
+								<div class="card"
+									style="width: 12rem; display: inline-block; margin: 20px;">
+									<div th:if="${producto.imagen.isEmpty()}">
+										<img th:src="@{/images/sin-foto.jpg}"
+											style="WIDTH: 12rem; HEIGHT: 12rem">
+									</div>
+									<div th:if="${!producto.imagen.isEmpty()}">
+										<img
+											th:src="@{/producto/imagen/{idProducto}(idProducto=${producto.idProducto})}"
+											style="WIDTH: 12rem; HEIGHT: 12rem">
+									</div>
+									<div class="card-body">
+										<h5 class="card-title" th:text="${producto.nombreProducto}">Card
+											title</h5>
+										<p class="card-text" th:text="${producto.descripcion}"></p>
+										<a href=# class="btn btn-primary"
+											th:href="@{/producto/detallesProducto/{idProducto}(idProducto = ${producto.idProducto})}">
+											Detalles </a>
+									</div>
+								</div>
+							</span>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
+	<script th:src="@{/js/buscarProductos.js}"></script>
 </body>
 </html>
