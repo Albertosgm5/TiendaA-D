@@ -69,7 +69,7 @@ class StarRating extends HTMLElement {
 
 customElements.define('x-star-rating', StarRating);
 
-function agregarValoracion (valoracion){
+function hacerValoracion (valoracion){
 var idProducto = document.getElementById('idProducto').value;
 	
 
