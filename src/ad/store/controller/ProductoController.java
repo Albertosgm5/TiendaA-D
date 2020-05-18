@@ -84,7 +84,7 @@ public class ProductoController {
 		 
 		 int count = 0; int suma = 0; List <Valoracion> valoraciones =
 		 valoracionService.listarValoracionPorProducto(producto); 
-		 if(valoraciones!=null) {
+		 if(!valoraciones.isEmpty()) {
 			 for (Valoracion valorar : valoraciones) {
 				 count++; suma = suma + valorar.getValoracion(); 
 			 }
@@ -92,7 +92,7 @@ public class ProductoController {
 			 int totalValoracion = count;
 			 float mT=suma/count;
 			 Integer totalValoraciones = totalValoracion;
-			 Float valoracionMedia = mT;
+			 float valoracionMedia = mT;
 				 mav.addObject("totalValoraciones", totalValoraciones);
 				 mav.addObject("valoracionMedia", valoracionMedia);
 		 }
