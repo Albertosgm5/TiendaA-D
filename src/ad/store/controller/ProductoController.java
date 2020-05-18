@@ -81,17 +81,20 @@ public class ProductoController {
 			listar = (ArrayList<Respuesta>) respuestaService.listarRespuestas(pregunta, cliente);
 			respuestas.add(listar);
 		}
-
+		 
 		 int count = 0; int suma = 0; List <Valoracion> valoraciones =
 		 valoracionService.listarValoracionPorProducto(producto); 
-		 for (Valoracion valorar : valoraciones) { count++; suma = suma + valorar.getValoracion(); }
-		 Valoracion val = new Valoracion(); int totalValoracion = count; int
-		 mT=suma/count;
-		 Integer totalValoraciones = totalValoracion;
-		 Integer valoracionMedia = mT;
 		 if(valoraciones!=null) {
-			 mav.addObject("totalValoraciones", totalValoraciones);
-			 mav.addObject("valoracionMedia", valoracionMedia);
+			 for (Valoracion valorar : valoraciones) {
+				 count++; suma = suma + valorar.getValoracion(); 
+			 }
+			 Valoracion val = new Valoracion();
+			 int totalValoracion = count;
+			 float mT=suma/count;
+			 Integer totalValoraciones = totalValoracion;
+			 Float valoracionMedia = mT;
+				 mav.addObject("totalValoraciones", totalValoraciones);
+				 mav.addObject("valoracionMedia", valoracionMedia);
 		 }
 		 
 		sesion.setAttribute("ProductoSession", producto);
