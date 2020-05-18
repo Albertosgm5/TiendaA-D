@@ -15,7 +15,7 @@
 <script th:src="@{/js/jquery-ui.min.js}"></script>
 <script th:src="@{/js/typeahead.bundle.min.js}"></script>
 <meta name="_csrf" th:content="${_csrf.token}" />
-	<meta name="_csrf_header" th:content="${_csrf.headerName}" />
+<meta name="_csrf_header" th:content="${_csrf.headerName}" />
 
 </head>
 <body style="background-color: #117733;">
@@ -31,9 +31,10 @@
 	<div class="container my-5">
 		<h1>Listado de Productos</h1>
 		<input class="form-control mr-sm-2" type="text"
-			placeholder="Ingrese Producto" aria-label="Search" name="nproducto" id="nproducto">
-		<button class="btn btn-outline-success my-2 my-sm-0" id="bProducto" type="submit">Busqueda
-			Producto</button>
+			placeholder="Ingrese Producto" aria-label="Search" name="nproducto"
+			id="nproducto">
+		<button class="btn btn-outline-success my-2 my-sm-0" id="bProducto"
+			type="submit">Busqueda Producto</button>
 		<div class="card">
 			<div class="card-body">
 				<div class="card" style="width: 7rem; float: left; width: 20%;">
@@ -48,32 +49,30 @@
 					</ul>
 				</div>
 				<div style="float: right; width: 80%;">
-					<div id="listaPregunta" th:switch="${productos}">
+					<div id="listaProductos" th:switch="${productos}">
 						<div th:case="*">
 							<span th:each="producto : ${productos}">
-								<div class="card"
-									style="width: 12rem; display: inline-block; margin: 20px;">
-									<div th:if="${producto.imagen.isEmpty()}">
-										<img th:src="@{/images/sin-foto.jpg}"
-											style="WIDTH: 12rem; HEIGHT: 12rem">
+								<div class='card'
+									style='width: 12rem; display: inline-block; margin: 20px;'>
+									<div th:if='${producto.imagen.isEmpty()}'>
+										<img th:src='@{/images/sin-foto.jpg}'
+											style='WIDTH: 12rem; HEIGHT: 12rem;'>
 									</div>
-									<div th:if="${!producto.imagen.isEmpty()}">
+									<div th:if='${!producto.imagen.isEmpty()}'>
 										<img
-											th:src="@{/producto/imagen/{idProducto}(idProducto=${producto.idProducto})}"
-											style="WIDTH: 12rem; HEIGHT: 12rem">
+											th:src='@{/producto/imagen/{idProducto}(idProducto=${producto.idProducto})}'
+											style='WIDTH: 12rem; HEIGHT: 12rem;'>
 									</div>
-									<div class="card-body">
-										<h5 class="card-title" th:text="${producto.nombreProducto}">Card
+									<div class='card-body'>
+										<h5 class='card-title' th:text='${producto.nombreProducto}'>Card
 											title</h5>
-										<p class="card-text" th:text="${producto.descripcion}"></p>
-										<a href=# class="btn btn-primary"
-											th:href="@{/producto/detallesProducto/{idProducto}(idProducto = ${producto.idProducto})}">
+										<p class='card-text' th:text='${producto.descripcion}'></p>
+										<a href=# class='btn btn-primary'
+											th:href='@{/producto/detallesProducto/{idProducto}(idProducto = ${producto.idProducto})}'>
 											Detalles </a>
 									</div>
 								</div>
 							</span>
-							<div id="prueba" value=""></div>
-							<input type="hidden" value="" name="prueba2"> 
 						</div>
 					</div>
 				</div>
