@@ -5,6 +5,12 @@ $(document).ready(function() {
 
 });
 
+$('#nproducto').keyup(function() {
+	buscarProducto();
+	
+	
+}).keyup();
+
 function buscarProducto() {
 	var textoProducto = document.getElementById('nproducto').value;
 
@@ -30,6 +36,10 @@ function buscarProducto() {
 					}
 					var lista = []
 					lista = response;
+					if(lista.length <= 0){
+						var fila = "<h5>Sin Productos con esa referencia</h5>"
+						$('#listaProductos').append(fila);
+					}else{
 					for (var i = 0; i < lista.length; i++) {
 								
 						var fila =	"<div class='card' style='width: 12rem; display: inline-block; margin: 20px;'>"
@@ -43,6 +53,7 @@ function buscarProducto() {
 
 						$('#listaProductos').append(fila);
 					}
+				}
 				},
 
 				error : function(xhr, status, error) {
