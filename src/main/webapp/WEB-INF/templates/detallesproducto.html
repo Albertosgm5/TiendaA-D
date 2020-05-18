@@ -132,19 +132,12 @@
 					<p id="descripcion" name="descripcion" th:text="*{descripcion}"></p>
 				</form>
 				<br />
-				<h4>Valora el producto del 1 al 5</h4>
-				<x-star-rating value="0" number="5"></x-star-rating>
-				<script src="valoracion.js"></script>
+				<div id="valor">
+					<h4>Valora el producto del 1 al 5</h4>
+					<x-star-rating value="0" number="5"></x-star-rating>
+					<script src="valoracion.js"></script>
+				</div>
 				<br />
-				<!-- Ejemplo ajax y javaScript
-				<script type="text/javascript">
-    $('#campo_login').blur(
-        function() {
-            $('#mensaje').load('loginDisponible.do', 
-                               "login="+$('#campo_login').val())
-        }   
-    )
-</script> -->
 				<h5>Valoracion media del producto</h5>
 				<br />
 				<h6>Valoraciones</h6>

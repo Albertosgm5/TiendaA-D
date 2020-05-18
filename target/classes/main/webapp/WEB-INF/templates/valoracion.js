@@ -62,9 +62,55 @@ class StarRating extends HTMLElement {
             let rateEvent = new Event('rate');
             this.dispatchEvent(rateEvent);
             
-            agregarValoracion(this.value);
+            hacerValoracion(this.value);
         });
     }
 }
 
 customElements.define('x-star-rating', StarRating);
+
+function agregarValoracion (valoracion){
+var idProducto = document.getElementById('idProducto').value;
+	
+
+	var token = $("meta[name='_csrf']").attr("content");
+	  var header = $("meta[name='_csrf_header']").attr("content");
+	  $(document).ajaxSend(function(e, xhr, options) {
+	    xhr.setRequestHeader(header, token);
+	  });
+	
+	$.ajax({
+      url: "http://localhost:8080/A&DStore/producto/crear_Valoracion/"+idProducto+"/"+valoracion,
+      contentType: "application/json; charset=utf-8",
+      type: "POST",
+      success: function (response) {
+    	  
+        $('#valor').html("");
+
+    	 var valor2 ="<div class='alert alert-primary' role='alert'>"+ "Gracias por valorarlo!!"+ "</div>" + 	"";
+      	
+      	$('#valor').html(valor2);
+      	$('#valor').html("");
+
+    	  
+    	
+		},
+		error: function(xhr, status, error) {
+			
+	      	$('#valor').html("");
+
+			 var valor ="" +
+		  		"<div class='alert alert-danger' role='alert'>"+
+		  		"Ya has valorado este producto antes."+
+		  			"</div>" +
+		  			"";
+			 
+		      	$('#valor').html(valor);
+
+
+			
+		}
+
+  });
+	
+}
