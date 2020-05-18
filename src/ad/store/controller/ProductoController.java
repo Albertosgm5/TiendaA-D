@@ -82,15 +82,18 @@ public class ProductoController {
 			respuestas.add(listar);
 		}
 
-		/* IMPORTANTE NO BORRAR, se usara si o si casi todo este CODIGO
 		 int count = 0; int suma = 0; List <Valoracion> valoraciones =
-		 valoracionService.listarValoracionPorProducto(producto); for (Valoracion
-		 valorar : valoraciones) { count++; suma = suma + valorar.getValoracion(); }
-		 Valoracion val = new Valoracion(); int totalValoraciones = count; int
-		 mT=suma/count; int valoracionMedia = mT;
-		 mav.addAttribute("totalValoraciones", totalValoraciones);
-		 mav.addAttribute("valoracionMedia", valoracionMedia);
-		 */
+		 valoracionService.listarValoracionPorProducto(producto); 
+		 for (Valoracion valorar : valoraciones) { count++; suma = suma + valorar.getValoracion(); }
+		 Valoracion val = new Valoracion(); int totalValoracion = count; int
+		 mT=suma/count;
+		 Integer totalValoraciones = totalValoracion;
+		 Integer valoracionMedia = mT;
+		 if(valoraciones!=null) {
+			 mav.addObject("totalValoraciones", totalValoraciones);
+			 mav.addObject("valoracionMedia", valoracionMedia);
+		 }
+		 
 		sesion.setAttribute("ProductoSession", producto);
 		mav.addObject("producto", producto);
 		mav.addObject("categoria", categoria);

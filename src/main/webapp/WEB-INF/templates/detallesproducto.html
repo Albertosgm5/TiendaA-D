@@ -138,9 +138,15 @@
 					<script src="valoracion.js"></script>
 				</div>
 				<br />
-				<h5>Valoracion media del producto</h5>
+				<div>
+					<h5>Valoracion media del producto</h5>
+					<p id="valoracionMedia" name="valoracionMedia" th:text="*{valoracionMedia}"></p>
+				</div>
 				<br />
-				<h6>Valoraciones</h6>
+				<div>
+					<h6>Valoraciones</h6>
+					<p id="totalValoraciones" name="totalValoraciones" th:text="*{totalValoraciones}"></p>
+				</div>
 				<br />
 				<div
 					sec:authorize="hasAuthority('ROL_USER') || hasAuthority('ROL_ADMIN')"
