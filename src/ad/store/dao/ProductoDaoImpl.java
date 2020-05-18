@@ -2,22 +2,28 @@ package ad.store.dao;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
+import java.util.stream.Collectors;
 
 import javax.persistence.Query;
 
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
+import ad.store.dto.ProductoDto;
 import ad.store.entity.Categoria;
 import ad.store.entity.Compra;
 import ad.store.entity.Producto;
 import ad.store.entity.Venta;
 
-
 @Repository
 @Component("ProductoDao")
 public class ProductoDaoImpl extends GenericDaoImpl<Producto> implements ProductoDao {
+	
+    @Autowired
+    private ModelMapper modelMapper;
+	
 	@Override
 	public List<Producto> listarProductosPorNombre(String nombreProducto) {
 		Query query = this.em
@@ -95,10 +101,19 @@ public class ProductoDaoImpl extends GenericDaoImpl<Producto> implements Product
 	}
 
 	@Override
-	public List<Producto> obtenerProductosPorNombreYPrecio(String nombre, float minPrecio, float maxPrecio, int count,
-			int index) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<ProductoDto> obtenerProductosPorNombre(String nombreProducto) {
+		Query query = this.em
+                .createQuery("FROM Producto u where u.nombreProducto LIKE :nombre",Producto.class);
+        query.setParameter("nombre",'%'+ nombreProducto +'%');
+        List<Producto> lProducto = query.getResultList();
+        
+        
+        if (lProducto == null ) {
+            return null;
+        }
+        return lProducto.stream()
+		          .map(this::convertToProductoDto)
+		          .collect(Collectors.toList());
 	}
 	@Override
 	public void eliminarCompra(long idProducto, Compra compra) {
@@ -124,6 +139,9 @@ public class ProductoDaoImpl extends GenericDaoImpl<Producto> implements Product
 		return null;
 	}
 
-	
+	private ProductoDto convertToProductoDto(Producto producto) {
+		ProductoDto profesotDto = modelMapper.map(producto, ProductoDto.class);
+        return profesotDto;
+    }
 
 }

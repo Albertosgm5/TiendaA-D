@@ -3,6 +3,7 @@ package ad.store.service;
 import java.util.List;
 import java.util.Set;
 
+import ad.store.dto.ProductoDto;
 import ad.store.entity.Categoria;
 import ad.store.entity.Producto;
 
@@ -25,6 +26,8 @@ public interface ProductoService {
 	public void eliminarProducto(long idProducto);
 	
 	public List<Producto> listarProductosPorPrecio (float minPrecio, float maxPrecio, int count, int index);
+	
+	public List<ProductoDto> obtenerProductosPorNombre (String nombreProducto);
 	
 	public List<Producto> listarProductosPorNombreYPrecio (String nombre , float minPrecio, float maxPrecio, int count, int index);
 

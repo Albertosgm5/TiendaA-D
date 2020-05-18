@@ -3,6 +3,7 @@ package ad.store.dao;
 import java.util.List;
 import java.util.Set;
 
+import ad.store.dto.ProductoDto;
 import ad.store.entity.Categoria;
 import ad.store.entity.Compra;
 import ad.store.entity.Producto;
@@ -30,7 +31,7 @@ public interface ProductoDao extends GenericDao<Producto>{
 	
 	public List<Producto> obtenerProductosPorPrecio (float minPrecio, float maxPrecio, int count, int index);
 	
-	public List<Producto> obtenerProductosPorNombreYPrecio (String nombre , float minPrecio, float maxPrecio, int count, int index);
+	public List<ProductoDto> obtenerProductosPorNombre (String nombreProducto);
 
 	public void eliminarCompra(long idProducto, Compra compra);
 

@@ -22,11 +22,16 @@ function buscarProducto() {
 				type : 'POST',
 				contentType : "application/json; charset=utf-8",
 				cache : false,
-				processData: false,
-				dataType : 'Producto',
+
 				success : function(response) {
-					
-						console.log(response.idProducto);
+					var lista = []
+					lista = response;
+			        for (var i = 0; i < lista.length; i++) {           
+			            	console.log(lista[i].idProducto + "-" + lista[i].nombreProducto);
+			            	document.getElementsByName("prueba").value = lista[i].nombreProducto;
+			            	document.getElementsByName("prueba2").value = lista[i].nombreProducto;
+			            	$('#prueba').html(lista[i].idProducto + "-" + lista[i].nombreProducto);
+			        }
 				},
  
 				error : function(xhr, status, error) {

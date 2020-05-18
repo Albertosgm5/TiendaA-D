@@ -27,6 +27,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import ad.store.dto.ProductoDto;
 import ad.store.entity.Categoria;
 import ad.store.entity.Cliente;
 import ad.store.entity.Compra;
@@ -157,9 +158,9 @@ public class ProductoController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST, value = "/lista/{nombreProducto}")
-	public @ResponseBody Producto listarProductos(HttpServletRequest request, @PathVariable("nombreProducto") String nombreProducto) {
-		List<Producto> lProducto = productoService.listarProductosPorNombre(nombreProducto);
-		return lProducto.get(0);
+	public @ResponseBody List<ProductoDto> listarProductos(HttpServletRequest request, @PathVariable("nombreProducto") String nombreProducto) {
+		List<ProductoDto> lProducto = productoService.obtenerProductosPorNombre(nombreProducto);
+		return lProducto;
 	}
 	/*
 	 * @RequestMapping("/listAjax.do") public @ResponseBody String

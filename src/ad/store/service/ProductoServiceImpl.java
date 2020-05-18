@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import ad.store.dao.CompraDao;
 import ad.store.dao.ProductoDao;
 import ad.store.dao.VentaDao;
+import ad.store.dto.ProductoDto;
 import ad.store.entity.Categoria;
 import ad.store.entity.Cliente;
 import ad.store.entity.Compra;
@@ -105,6 +106,13 @@ public class ProductoServiceImpl implements ProductoService {
 	public List<Producto> listarProductosPorCategoria(Categoria categoria) {
 		return productoDao.listarProductosPorCategoria(categoria);
 	}
+
+	@Override
+	public List<ProductoDto> obtenerProductosPorNombre(String nombreProducto) {
+		return productoDao.obtenerProductosPorNombre(nombreProducto);
+	}
+	
+	
 	
 
 }
