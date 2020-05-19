@@ -22,7 +22,7 @@ function buscarProducto() {
 
 	$
 			.ajax({
-				url : "http://localhost:8080/A&DStore/producto/lista/''"
+				url : "http://localhost:8080/A&DStore/producto/lista/"
 						+ textoProducto,
 				type : 'POST',
 				contentType : "application/json; charset=utf-8",
@@ -35,10 +35,6 @@ function buscarProducto() {
 					}
 					var lista = []
 					lista = response;
-					if (lista.length == -1) {
-						var fila = "<center><h5>Sin Productos con esa referencia</h5></center>"
-						$('#listaProductos').append(fila);
-					} else {
 						for (var i = 0; i < lista.length; i++) {
 
 							var fila = "<div class='card' style='width: 12rem; display: inline-block; margin: 20px;'>"
@@ -59,7 +55,7 @@ function buscarProducto() {
 									+ "</div>"
 
 							$('#listaProductos').append(fila);
-						}
+						
 					}
 				},
 

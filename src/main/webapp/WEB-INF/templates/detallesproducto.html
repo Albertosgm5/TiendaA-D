@@ -2,8 +2,9 @@
 <html>
 
 <head>
-<link rel="stylesheet" href="//code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-<link rel="stylesheet"  th:href="@{/css/valoracion.css}">
+<link rel="stylesheet"
+	href="//code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+<link rel="stylesheet" th:href="@{/css/valoracion.css}">
 <link rel="icon" th:href="@{/images/logo.ico}" type="image/ico" />
 <meta charset="ISO-8859-1">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -17,6 +18,11 @@
 <link href="src/main/webapp/WEB-INF/dist/css/bootstrap.min.css"
 	rel="stylesheet">
 <link href="sticky-footer-navbar.css" rel="stylesheet">
+<script th:src="@{/js/jquery-3.5.1.js}"></script>
+<script th:src="@{/js/jquery-ui.min.js}"></script>
+<script th:src="@{/js/typeahead.bundle.min.js}"></script>
+<meta name="_csrf" th:content="${_csrf.token}" />
+<meta name="_csrf_header" th:content="${_csrf.headerName}" />
 </head>
 <body style="background-color: #117733;">
 	<style type="text/css">
@@ -115,8 +121,8 @@
 						th:src="@{/producto/imagen/{idProducto}(idProducto=${producto.idProducto})}"
 						width="300" height="300" alt="No tiene foto">
 				</div>
-				<label type="hidden" id="idProducto" name="idProducto"
-					th:value="${producto.idProducto}"></label>
+				<input type="hidden" id="idProducto" name="idProducto"
+					th:value="${producto.idProducto}"></input>
 				<p th:if="${exception}" class="error">Wrong user or password</p>
 				<form action="#" th:object="${producto}" method="post">
 					<h2>Nombre Producto</h2>
@@ -141,12 +147,14 @@
 				<br />
 				<div>
 					<h5>Valoracion media del producto</h5>
-					<p id="valoracionMedia" name="valoracionMedia" th:text="*{valoracionMedia}"></p>
+					<p id="valoracionMedia" name="valoracionMedia"
+						th:text="*{valoracionMedia}"></p>
 				</div>
 				<br />
 				<div>
 					<h6>Valoraciones</h6>
-					<p id="totalValoraciones" name="totalValoraciones" th:text="*{totalValoraciones}"></p>
+					<p id="totalValoraciones" name="totalValoraciones"
+						th:text="*{totalValoraciones}"></p>
 				</div>
 				<br />
 				<div
@@ -158,9 +166,9 @@
 						method="post">
 						<label for="username">Introduce la cantidad a comprar:</label>
 						<div style="float: left; width: 70%;">
-							<input type="text" id="cantidad" name="cantidad" placeholder="Cantidad"
-         						required pattern="[0-9]"
-         						title="Solo numeros."/> <br />
+							<input type="text" id="cantidad" name="cantidad"
+								placeholder="Cantidad" required pattern="[0-9]"
+								title="Solo numeros." /> <br />
 						</div>
 						<div style="float: right; width: 30%;">
 							<input type="submit" value="Agregar" />
@@ -175,33 +183,18 @@
 					</div>
 				</div>
 
-				<form th:action="@{/producto/preguntar/} + ${producto.idProducto}"
-					method="post" id="preguntar">
+				
 					<div style="float: left; width: 20%;">
 						<label for="pregunta"> Escribe tu pregunta </label>: <input
-							type="text" id="pregunta" name="pregunta" placeholder="Pregunta"
-         							required pattern="[A-Za-z]{6,255}"
-        							 title="Solo letras. Tamanio minimo: 6. Tamanio maximo: 255"/> <br />
+							type="text" id="textoPregunta" name="pregunta" placeholder="Pregunta"
+							required pattern="[A-Za-z]{6,255}"
+							title="Solo letras. Tamanio minimo: 6. Tamanio maximo: 255" /> <br />
 					</div>
 					<br />
 					<div style="float: left; width: 10%;">
-						<input type="submit" value="Preguntar" />
+						<button  id="bPreguntar" type="submit">Preguntar</button>
 					</div>
-				</form>
-				<!--  <script type="text/javascript">
-					$('#preguntar').submit(function(evento) {
-						$.ajax({
-							url : '/preguntar/{idProducto}',
-							type : 'POST',
-							data : JSON.stringify({
-								pregunta : $('#pregunta').val()
-							}),
-							processData : false,
-							contentType : "application/json"
-						})
-						evento.preventDefault();
-					});
-				</script>-->
+
 				<br /> <br /> <br /> <br /> <br />
 				<table width="100%" height="100%"
 					style="margin: 0 auto; background-color: #B6CF9B;">
@@ -213,50 +206,13 @@
 							<th>Respuestas</th>
 						</tr>
 					</thead>
-					<tbody>
-						<span th:each="pregunta : ${preguntas}">
-							<td th:text="${pregunta.pregunta}"></td>
-							<td>
-								<form
-									th:action="@{/producto/responder/} + ${pregunta.idPregunta}"
-									method="post" id="responder">
-									<div style="float: left; width: 27%;">
-										<label for="respuesta"> Escribe tu respuesta </label>: <input
-											type="text" id="respuesta" name="respuesta" placeholder="Respuesta"
-         							required pattern="[A-Za-z]{6,255}"
-        							 title="Solo letras. Tamanio minimo: 6. Tamanio maximo: 255"/> <input
-											type="hidden" id="idProducto" name="idProducto"
-											th:value="${producto.idProducto}">
-									</div>
-									<div style="float: left; width: 10%;">
-										<br /> <input type="submit" value="Responder" />
-									</div>
-								</form>
-								<script type="text/javascript">
-									$('#responder').submit(function(evento) {
-										$.ajax({
-											url : '/responder/{idPregunta}',
-											type : 'POST',
-											data : JSON.stringify({
-												respuesta : $('#respuesta').val()
-											}),
-											processData : false,
-											contentType : "application/json"
-										})
-										evento.preventDefault();
-									});
-								</script>
-						</td> <span th:each="respuesta : ${respuestas}">
-								<tr th:each="r : ${respuesta}">
-									<td></td>
-									<td></td>
-									<td th:if="${r.pregunta.idPregunta == pregunta.idPregunta}"
-										th:text="${r.textoRespuesta}"></td>
-								</tr>
-						</span>
+					<tbody id="preguntas">
+
+							
 					</tbody>
 				</table>
 			</div>
 		</div>
 	</div>
+	<script th:src="@{/js/preguntas.js}"></script>
 </html>

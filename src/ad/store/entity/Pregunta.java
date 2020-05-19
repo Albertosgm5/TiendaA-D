@@ -52,6 +52,11 @@ public class Pregunta implements Serializable{
 	public Pregunta() {
 		
 	}
+	public Pregunta(String pregunta, Producto producto) {
+		super();
+		this.pregunta = pregunta;
+		this.producto = producto;
+	}
 	public long getIdPregunta() {
 		return idPregunta;
 	}
