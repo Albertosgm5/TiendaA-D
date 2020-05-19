@@ -2,8 +2,10 @@
 <html>
 
 <head>
+<!--  <link rel="stylesheet"
+	href="//code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">-->
 <link rel="stylesheet"
-	href="//code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+	href="@{/css/ionicons.min.css}">
 <link rel="stylesheet" th:href="@{/css/valoracion.css}">
 <link rel="icon" th:href="@{/images/logo.ico}" type="image/ico" />
 <meta charset="ISO-8859-1">
@@ -139,9 +141,9 @@
 					<p id="descripcion" name="descripcion" th:text="*{descripcion}"></p>
 				</form>
 				<br />
-				<div id="valor">
+				<div>
 					<h4>Valora el producto del 1 al 5</h4>
-					<x-star-rating value="0" number="5"></x-star-rating>
+					<x-star-rating value="0" number="5" id="valor"></x-star-rating>
 					<script th:href="@{/js/valoracion.js}"></script>
 				</div>
 				<br />
