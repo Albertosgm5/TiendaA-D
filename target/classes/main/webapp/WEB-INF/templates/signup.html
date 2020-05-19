@@ -35,8 +35,8 @@
 						<div class="form-group col-md-6">
 							<label for="username">Username</label>: <input type="text"
 								id="username" name="username" placeholder="Nick" required
-								pattern="[A-Za-z0-9]{5,40}"
-								title="Letras y numeros. Tamanio minimo: 5. Tamanio maximo: 40" />
+								pattern="[A-Za-z0-9]{4,40}"
+								title="Letras y numeros. Tamanio minimo: 4. Tamanio maximo: 40" />
 							<br />
 						</div>
 						<div class="form-group col-md-6">
@@ -49,14 +49,14 @@
 						<div class="form-group col-md-6">
 							<label for="nombre">Nombre</label>: <input type="text"
 								id="nombre" name="nombre" placeholder="Nombre" required
-								pattern="[A-Za-z]{5,40}"
-								title="Solo letras. Tamanio minimo: 5. Tamanio maximo: 40" /> <br />
+								pattern="[A-Za-z]{3,40}"
+								title="Solo letras. Tamanio minimo: 3. Tamanio maximo: 40" /> <br />
 						</div>
 						<div class="form-group col-md-6">
 							<label for="apellidos">Apellidos</label>: <input type="text"
 								id="apellidos" name="apellidos" placeholder="Apellidos" required
-								pattern="[A-Za-z]+[ ]+[A-Za-z]{5,80}"
-								title="Solo letras. Tamanio minimo: 5. Tamanio maximo: 80" /> <br />
+								pattern="[A-Za-z]+[ ]+[A-Za-z]{6,80}"
+								title="Solo letras. Tamanio minimo: 6. Tamanio maximo: 80" /> <br />
 						</div>
 						<div class="form-group col-md-6">
 							<label for="email">Email</label>: <input type="text" id="email"
@@ -70,9 +70,7 @@
 						</div>
 						<div class="form-group col-md-6">
 							<label for="direccion">Direccion de envio</label>: <input
-								type="text" id="direccionEnvio" name="direccionEnvio"
-								placeholder="Direccion" required pattern="[A-Za-z0-9]{12,255}"
-								title="Letras y numeros. Tamanio minimo: 12. Tamanio maximo: 255" />
+								type="text" id="direccionEnvio" name="direccionEnvio" />
 							<br />
 						</div>
 						<br /> <br /> <br /> <br />
@@ -83,20 +81,20 @@
 						<div class="form-group col-md-6">
 							<label for="banco">banco</label>: <input type="text" id="banco"
 								name="banco" placeholder="Banco" required
-								pattern="[A-Za-z]{5,40}"
-								title="Solo letras. Tamanio minimo: 5. Tamanio maximo: 40" /> <br />
+								pattern="[A-Za-z]{4,40}"
+								title="Solo letras. Tamanio minimo: 4. Tamanio maximo: 40" /> <br />
 						</div>
 						<div class="form-group col-md-6">
 							<label for="numTarjeta">Numero de tarjeta</label>: <input
 								type="number" id="numTarjeta" name="numTarjeta"
 								placeholder="Numero Tarjeta" required pattern="[0-9]{16}"
-								title="Solo numeros.Tamanio minimo: 16." /> <br />
+								title="Solo numeros.Tamanio exijido: 16." /> <br />
 						</div>
 						<div class="form-group col-md-6">
 							<label for="titular">Titular</label>: <input type="text"
 								id="titular" name="titular" placeholder="titular" required
-								pattern="[A-Za-z]{5,40}"
-								title="Solo letras. Tamanio minimo: 5. Tamanio maximo: 40" /> <br />
+								pattern="[A-Za-z]{3,40}"
+								title="Solo letras. Tamanio minimo: 3. Tamanio maximo: 40" /> <br />
 						</div>
 						<div class="form-group col-md-6">
 							<label for="codigoS">Codigo de seguridad</label>: <input
@@ -106,15 +104,13 @@
 						</div>
 						<div class="form-group col-md-6">
 							<label for="direccionFa">Direccion de facturacion</label>: <input
-								type="text" id="direccionFa" name="direccionFa"
-								placeholder="Direccion" required pattern="[A-Za-z0-9]{12,255}"
-								title="Letras y numeros. Tamanio minimo: 12. Tamanio maximo: 255" />
+								type="text" id="direccionFa" name="direccionFa" />
 							<br />
 						</div>
 						<div class="col-md-8">
 							<input type="submit" value="Registrar" />
 						</div>
-						<script type="text/javascript">
+						<!-- <script type="text/javascript">
 							$('#signup').submit(function(evento) {
 								$.ajax({
 									url : 'signup',
@@ -138,7 +134,7 @@
 								})
 								evento.preventDefault();
 							});
-						</script>
+						</script> -->
 						<div class="form-group col-md-8"></div>
 					</div>
 				</form>
