@@ -70,17 +70,30 @@ public class ProductoController {
 			@PathVariable("idProducto") long idProducto) {
 		HttpSession sesion = request.getSession();
 		ModelAndView mav = new ModelAndView();
-		long id = (long) sesion.getAttribute("idSession");
-		Cliente cliente = userService.obtenerCliente(id);
+		if(sesion.getAttribute("idSession") != null) {
+			long id = (long) sesion.getAttribute("idSession");
+			Cliente cliente = userService.obtenerCliente(id);
+		}
 		Producto producto = productoService.obtenerProducto(idProducto);
-//		List<Pregunta> preguntas = preguntaService.listarPreguntas(producto, cliente);
 		Categoria categoria = categoriaService.listarCategoriaPorProducto(producto);
-		List<ArrayList> respuestas = new ArrayList<ArrayList>();
-//		for (Pregunta pregunta : preguntas) {
-//			ArrayList<Respuesta> listar = new ArrayList<Respuesta>();
-//			listar = (ArrayList<Respuesta>) respuestaService.listarRespuestas(pregunta, cliente);
-//			respuestas.add(listar);
-//		}
+		if(sesion.getAttribute("idSession") != null) {
+			long id = (long) sesion.getAttribute("idSession");
+			Cliente cliente = userService.obtenerCliente(id);
+			List<Pregunta> preguntas = preguntaService.listarPreguntas(producto, cliente);
+			List<ArrayList> respuestas = new ArrayList<ArrayList>();
+			for (Pregunta pregunta : preguntas) {
+				ArrayList<Respuesta> listar = new ArrayList<Respuesta>();
+				listar = (ArrayList<Respuesta>) respuestaService.listarRespuestas(pregunta, cliente);
+				respuestas.add(listar);
+			}
+			if (preguntas != null) {
+				mav.addObject("preguntas", preguntas);
+		}
+			if (respuestas != null) {
+			mav.addObject("respuestas", respuestas);
+			}
+		}
+
 		 
 		 int count = 0; int suma = 0; List <Valoracion> valoraciones =
 		 valoracionService.listarValoracionPorProducto(producto); 
@@ -100,12 +113,6 @@ public class ProductoController {
 		sesion.setAttribute("ProductoSession", producto);
 		mav.addObject("producto", producto);
 		mav.addObject("categoria", categoria);
-//		if (preguntas != null) {
-//			mav.addObject("preguntas", preguntas);
-//		}
-//		if (respuestas != null) {
-//			mav.addObject("respuestas", respuestas);
-//		}
 		mav.setViewName("detallesproducto");
 		return mav;
 	}
@@ -244,14 +251,33 @@ public class ProductoController {
 
 	}
 
+	@RequestMapping(method = RequestMethod.POST, value = "/preguntar/{idProducto}")
+	public void preguntar(HttpServletRequest request, HttpServletResponse response,
+			@PathVariable("idProducto") long idProducto, @RequestParam("pregunta") String pre) throws IOException {
+		HttpSession session = request.getSession();
+		long id = (long) session.getAttribute("idSession");
+		Cliente cliente = userService.obtenerCliente(id);
+		Producto producto = (Producto) session.getAttribute("ProductoSession");
+		preguntaService.hacerPregunta(pre, producto, cliente);
+
+		response.sendRedirect("/A&DStore/producto/detallesProducto/" + idProducto);
+//		ModelAndView mav = new ModelAndView();
+//		if (pregunta == null) {
+//			mav.addObject("exception", "Username or password are empty.");
+//			mav.setViewName("index");
+//		}
+//		session.setAttribute("preguntaSession", pregunta);
+//		mav.setViewName("");
+	}
+//	
 //	@RequestMapping(method = RequestMethod.POST, value = "/preguntar/{idProducto}")
-//	public void preguntar(HttpServletRequest request, HttpServletResponse response,
-//			@PathVariable("idProducto") long idProducto, @RequestParam("pregunta") String pre) throws IOException {
+//	public @ResponseBody String preguntar(HttpServletRequest request, HttpServletResponse response,
+//			@PathVariable("idProducto") long idProducto, @RequestBody String pre ) throws IOException {
 //		HttpSession session = request.getSession();
 //		long id = (long) session.getAttribute("idSession");
 //		Cliente cliente = userService.obtenerCliente(id);
 //		Producto producto = (Producto) session.getAttribute("ProductoSession");
-//		preguntaService.hacerPregunta(pre, producto, cliente);
+//		return preguntaService.hacerPregunta(pre, producto, cliente).getPregunta();
 //
 //		// response.sendRedirect("/A&DStore/producto/detallesProducto/" + idProducto);
 ////		ModelAndView mav = new ModelAndView();
@@ -262,25 +288,6 @@ public class ProductoController {
 ////		session.setAttribute("preguntaSession", pregunta);
 ////		mav.setViewName("");
 //	}
-//	
-	@RequestMapping(method = RequestMethod.POST, value = "/preguntar/{idProducto}")
-	public @ResponseBody String preguntar(HttpServletRequest request, HttpServletResponse response,
-			@PathVariable("idProducto") long idProducto, @RequestBody String pre ) throws IOException {
-		HttpSession session = request.getSession();
-		long id = (long) session.getAttribute("idSession");
-		Cliente cliente = userService.obtenerCliente(id);
-		Producto producto = (Producto) session.getAttribute("ProductoSession");
-		return preguntaService.hacerPregunta(pre, producto, cliente).getPregunta();
-
-		// response.sendRedirect("/A&DStore/producto/detallesProducto/" + idProducto);
-//		ModelAndView mav = new ModelAndView();
-//		if (pregunta == null) {
-//			mav.addObject("exception", "Username or password are empty.");
-//			mav.setViewName("index");
-//		}
-//		session.setAttribute("preguntaSession", pregunta);
-//		mav.setViewName("");
-	}
 	
 
 	@RequestMapping(method = RequestMethod.POST, value = "/responder/{idPregunta}")
@@ -292,7 +299,7 @@ public class ProductoController {
 		Cliente cliente = userService.obtenerCliente(id);
 		Pregunta pregunta = preguntaService.obtenerPregunta(idPregunta);
 		respuestaService.responder(res, pregunta, cliente);
-		// response.sendRedirect("/A&DStore/producto/detallesProducto/" + idProducto);
+		response.sendRedirect("/A&DStore/producto/detallesProducto/" + idProducto);
 
 //		ModelAndView mav = new ModelAndView();
 //		if (respuesta == null) {
