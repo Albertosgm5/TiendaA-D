@@ -25,7 +25,7 @@
 		<div class="card">
 			<div class="card-body">
 				<p th:if="${exception}" class="error">Wrong user or password</p>
-				<form action="#" th:action="@{/signup}" method="post">
+				<form action="#" th:action="@{/signup}" method="post" id="signup">
 					<div class="row">
 						<br />
 						<div class="form-group col-md-8">
@@ -34,31 +34,35 @@
 						<br /> <br /> <br />
 						<div class="form-group col-md-6">
 							<label for="username">Username</label>: <input type="text"
-								id="username" name="username" placeholder="Nick"
-        					 required pattern="[A-Za-z0-9]{5,40}"
-        					 title="Letras y numeros. Tamanio minimo: 5. Tamanio maximo: 40"/> <br />
+								id="username" name="username" placeholder="Nick" required
+								pattern="[A-Za-z0-9]{5,40}"
+								title="Letras y numeros. Tamanio minimo: 5. Tamanio maximo: 40" />
+							<br />
 						</div>
 						<div class="form-group col-md-6">
 							<label for="password">Password</label>: <input type="text"
-								id="password" name="password" placeholder="Password"
-         						required pattern="[A-Za-z0-9]{5,40}"
-        						 title="Letras y números. Tamaño mínimo: 5. Tamaño máximo: 40"/> <br />
+								id="password" name="password" placeholder="Password" required
+								pattern="[A-Za-z0-9]{5,40}"
+								title="Letras y números. Tamaño mínimo: 5. Tamaño máximo: 40" />
+							<br />
 						</div>
 						<div class="form-group col-md-6">
 							<label for="nombre">Nombre</label>: <input type="text"
-								id="nombre" name="nombre" placeholder="Nombre"
-         							required pattern="[A-Za-z]{5,40}"
-        							 title="Solo letras. Tamanio minimo: 5. Tamanio maximo: 40"/> <br />
+								id="nombre" name="nombre" placeholder="Nombre" required
+								pattern="[A-Za-z]{5,40}"
+								title="Solo letras. Tamanio minimo: 5. Tamanio maximo: 40" /> <br />
 						</div>
 						<div class="form-group col-md-6">
 							<label for="apellidos">Apellidos</label>: <input type="text"
-								id="apellidos" name="apellidos" placeholder="Apellidos"
-         							required pattern="[A-Za-z]+[ ]+[A-Za-z]{5,80}"
-        							 title="Solo letras. Tamanio minimo: 5. Tamanio maximo: 80"/> <br />
+								id="apellidos" name="apellidos" placeholder="Apellidos" required
+								pattern="[A-Za-z]+[ ]+[A-Za-z]{5,80}"
+								title="Solo letras. Tamanio minimo: 5. Tamanio maximo: 80" /> <br />
 						</div>
 						<div class="form-group col-md-6">
 							<label for="email">Email</label>: <input type="text" id="email"
-								name="email" pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}"/> <br />
+								name="email"
+								pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}" />
+							<br />
 						</div>
 						<div class="form-group col-md-6">
 							<label for="fechaNa">Fecha de nacimiento</label>: <input
@@ -66,9 +70,10 @@
 						</div>
 						<div class="form-group col-md-6">
 							<label for="direccion">Direccion de envio</label>: <input
-								type="text" id="direccionEnvio" name="direccionEnvio" placeholder="Direccion"
-        					 required pattern="[A-Za-z0-9]{12,255}"
-        					 title="Letras y numeros. Tamanio minimo: 12. Tamanio maximo: 255"/> <br />
+								type="text" id="direccionEnvio" name="direccionEnvio"
+								placeholder="Direccion" required pattern="[A-Za-z0-9]{12,255}"
+								title="Letras y numeros. Tamanio minimo: 12. Tamanio maximo: 255" />
+							<br />
 						</div>
 						<br /> <br /> <br /> <br />
 						<div class="form-group col-md-8">
@@ -77,37 +82,63 @@
 						<br /> <br /> <br />
 						<div class="form-group col-md-6">
 							<label for="banco">banco</label>: <input type="text" id="banco"
-								name="banco" placeholder="Banco"
-         							required pattern="[A-Za-z]{5,40}"
-        							 title="Solo letras. Tamanio minimo: 5. Tamanio maximo: 40"/> <br />
+								name="banco" placeholder="Banco" required
+								pattern="[A-Za-z]{5,40}"
+								title="Solo letras. Tamanio minimo: 5. Tamanio maximo: 40" /> <br />
 						</div>
 						<div class="form-group col-md-6">
 							<label for="numTarjeta">Numero de tarjeta</label>: <input
-								type="number" id="numTarjeta" name="numTarjeta"  placeholder="Numero Tarjeta"
-         						required pattern="[0-9]{16}"
-         						title="Solo numeros.Tamanio minimo: 16."/> <br />
+								type="number" id="numTarjeta" name="numTarjeta"
+								placeholder="Numero Tarjeta" required pattern="[0-9]{16}"
+								title="Solo numeros.Tamanio minimo: 16." /> <br />
 						</div>
 						<div class="form-group col-md-6">
 							<label for="titular">Titular</label>: <input type="text"
-								id="titular" name="titular" placeholder="titular"
-         							required pattern="[A-Za-z]{5,40}"
-        							 title="Solo letras. Tamanio minimo: 5. Tamanio maximo: 40"/> <br />
+								id="titular" name="titular" placeholder="titular" required
+								pattern="[A-Za-z]{5,40}"
+								title="Solo letras. Tamanio minimo: 5. Tamanio maximo: 40" /> <br />
 						</div>
 						<div class="form-group col-md-6">
 							<label for="codigoS">Codigo de seguridad</label>: <input
 								type="number" id="codigoS" name="codigoS" placeholder="Codigo"
-         						required pattern="[0-9]{3}"
-         						title="Solo numeros.Tamanio minimo: 3."/> <br />
+								required pattern="[0-9]{3}"
+								title="Solo numeros.Tamanio minimo: 3." /> <br />
 						</div>
 						<div class="form-group col-md-6">
 							<label for="direccionFa">Direccion de facturacion</label>: <input
-								type="text" id="direccionFa" name="direccionFa" placeholder="Direccion"
-        					 required pattern="[A-Za-z0-9]{12,255}"
-        					 title="Letras y numeros. Tamanio minimo: 12. Tamanio maximo: 255"/> <br />
+								type="text" id="direccionFa" name="direccionFa"
+								placeholder="Direccion" required pattern="[A-Za-z0-9]{12,255}"
+								title="Letras y numeros. Tamanio minimo: 12. Tamanio maximo: 255" />
+							<br />
 						</div>
 						<div class="col-md-8">
 							<input type="submit" value="Registrar" />
 						</div>
+						<script type="text/javascript">
+							$('#signup').submit(function(evento) {
+								$.ajax({
+									url : 'signup',
+									type : 'POST',
+									data : JSON.stringify({
+										username : $('#username').val(),
+										password : $('#password').val(),
+										nombre : $('#nombre').val(),
+										apellidos : $('#apellidos').val(),
+										email : $('#email').val(),
+										fechaNa : $('#fechaNa').val(),
+										direccion : $('#direccion').val(),
+										banco : $('#banco').val(),
+										numTarjeta : $('#numTarjeta').val(),
+										titular : $('#titular').val(),
+										codigoS : $('#codigoS').val(),
+										direccionFa : $('#direccionFa').val()
+									}),
+									processData : false,
+									contentType : "application/json"
+								})
+								evento.preventDefault();
+							});
+						</script>
 						<div class="form-group col-md-8"></div>
 					</div>
 				</form>
