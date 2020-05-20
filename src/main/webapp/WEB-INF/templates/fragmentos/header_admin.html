@@ -21,22 +21,22 @@
 		<div class="collapse navbar-collapse" id="navbarCollapse">
 			<ul class="navbar-nav mr-auto">
 				<li class="nav-item"><a class="nav-link"
-					href="/A&DStore/producto/crear_Producto">Crear Producto</a></li>
+					href="/A&DStore/producto/crear_Producto" th:text="#{hadmin.crearProducto}"></a></li>
 			</ul>
 			<ul class="navbar-nav mr-auto">
 				<li class="nav-item"><a class="nav-link"
-					href="/A&DStore/categoria/crear_Categoria"> Crear Categoria</a></li>
+					href="/A&DStore/categoria/crear_Categoria" th:text="#{hadmin.crearCategoria}"></a></li>
 			</ul>
 			<ul class="navbar-nav mr-auto">
 				<li class="nav-item"><a class="nav-link"
-					href="/A&DStore/categoria/list"> Lista de Categorias</a></li>
+					href="/A&DStore/categoria/list" th:text="#{hadmin.listaCategorias}"></a></li>
 			</ul>
 			<form class="form-inline mt-2 mt-md-0" th:action="@{/producto/list}"
 				method="post">
 				<input class="form-control mr-sm-2" type="text"
 					placeholder="Ingrese Producto" aria-label="Search" name="producto">
-				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Busqueda
-					Producto</button>
+				<button class="btn btn-outline-success my-2 my-sm-0" type="submit" th:text="#{hadmin.buscarProducto}">
+					</button>
 			</form>
 			<div>
 				<a class="nav-link" title="perfil" href="/A&DStore/cliente/perfil"><img
@@ -48,6 +48,9 @@
 					th:src="@{/images/cesta.png}" alt="Cesta" width="35px"
 					height="35px" /></a>
 			</div>
+						<div style="padding: 10px; border: 1px solid gray;"> <a
+				href="?lang=es">Spanish</a> <a href="?lang=en">English</a>
+		</div>
 		</div>
 	</nav>
 </body>
