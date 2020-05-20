@@ -11,29 +11,32 @@
 </head>
 <body>
 	<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-			<a class="navbar-brand" href="/A&DStore">A&D Store</a>
-			<button class="navbar-toggler" type="button" data-toggle="collapse"
-				data-target="#navbarCollapse" aria-controls="navbarCollapse"
-				aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-			<div class="collapse navbar-collapse" id="navbarCollapse">
-				<ul class="navbar-nav mr-auto">
-					<li class="nav-item"><a class="nav-link"
-						href="/A&DStore/login"> Ingresar</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="/A&DStore/signup"> Registrarse</a></li>
-						
-				</ul>
-				<!-- Falla. Manda al login -->
-				<form class="form-inline mt-2 mt-md-0"
-					th:action="@{/producto/list}" method="post">
-					<input class="form-control mr-sm-2" type="text"
-						placeholder="Ingrese Producto" aria-label="Search" name="producto">
-					<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Busqueda Producto</button>
-				</form>
-			</div>
-		</nav>
+		<a class="navbar-brand" href="/A&DStore">A&D Store</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#navbarCollapse" aria-controls="navbarCollapse"
+			aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarCollapse">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item"><a class="nav-link" href="/A&DStore/login" th:text="#{hpublic.ingresar}">
+						</a></li>
+				<li class="nav-item"><a class="nav-link"
+					href="/A&DStore/signup" th:text="#{hpublic.registrarse}"></a></li>
+
+			</ul>
+			<!-- Falla. Manda al login -->
+			<form class="form-inline mt-2 mt-md-0" th:action="@{/producto/list}"
+				method="post">
+				<input class="form-control mr-sm-2" type="text"
+					placeholder="Ingrese Producto" aria-label="Search" name="producto">
+				<button class="btn btn-outline-success my-2 my-sm-0" type="submit" th:text="#{hpublic.bproducto}"></button>
+			</form>
+			<div style="padding: 10px; border: 1px solid gray;"> <a
+				href="?lang=es">Spanish</a> <a href="?lang=en">English</a>
+		</div>
+		</div>
+	</nav>
 </body>
 </html>
 
