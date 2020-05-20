@@ -178,9 +178,7 @@
 					method="post" id="preguntar">
 					<div style="float: left; width: 20%;">
 						<label for="pregunta"> Escribe tu pregunta </label>: <input
-							type="text" id="pregunta" name="pregunta" placeholder="Pregunta"
-         							required pattern="[A-Za-z]{6,255}"
-        							 title="Solo letras. Tamanio minimo: 6. Tamanio maximo: 255"/> <br />
+							type="text" id="pregunta" name="pregunta"/> <br />
 					</div>
 					<br />
 					<div style="float: left; width: 10%;">
@@ -221,9 +219,7 @@
 									method='post' id='responder'>
 									<div style='float: left; width: 27%;'>
 										<label for='respuesta'> Escribe tu respuesta </label>: <input
-											type='text' id="respuesta" name='respuesta' placeholder='Respuesta'
-         							required pattern='[A-Za-z]{6,255}'
-        							 title='Solo letras. Tamanio minimo: 6. Tamanio maximo: 255'/> <input
+											type='text' id="respuesta" name='respuesta'/> <input
 											type='hidden' id='idProducto' name='idProducto'
 											th:value='${producto.idProducto}'>
 									</div>
