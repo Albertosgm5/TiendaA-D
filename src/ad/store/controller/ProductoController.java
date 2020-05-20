@@ -204,10 +204,10 @@ public class ProductoController {
 	public void handleSignUp(HttpServletRequest request, HttpServletResponse response,
 			@RequestParam("nombreProducto") String nombre, @RequestParam("precio") float precio,
 			@RequestParam("stock") int stock, @RequestParam("categoria") String categoria,
-			@RequestParam("descripcion") String descripcion) throws IOException {
+			@RequestParam("descripcion") String descripcion,@RequestParam("imagen") MultipartFile imagen) throws IOException {
 		Categoria c = categoriaService.obtenerCategoria(categoria);
 		Producto producto = productoService.crearProducto(nombre, precio, stock, c, descripcion);
-
+		imagenService.agregarFotoProducto(producto.getIdProducto(), imagen);
 		ModelAndView mav = new ModelAndView();
 		if (producto == null) {
 			mav.addObject("exception", "Username or password are empty.");
