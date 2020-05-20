@@ -82,6 +82,7 @@ public class CompraController {
 		Calendar cal = Calendar.getInstance();
 		fecha=cal.getTime();
 		List<Producto> productos = (List<Producto>) session.getAttribute("lProductoSession");
+		if(!productos.isEmpty()) {
 		int unidades = 0;
 		float precioT = 3.99f;
 		Set<Producto> productos2 = new HashSet<>();
@@ -106,6 +107,9 @@ public class CompraController {
 		ModelAndView mav = new ModelAndView();
 
 		response.sendRedirect("/A&DStore/");
+		}else {
+			response.sendRedirect("/A&DStore/compras/cesta");
+		}
 	}
 	
 	@RequestMapping(method = RequestMethod.GET, value="/devolucion/{idCompra}")

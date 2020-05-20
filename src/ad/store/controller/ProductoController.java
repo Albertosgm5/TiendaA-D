@@ -127,6 +127,8 @@ public class ProductoController {
 		int cantidad2 = cantidad;
 		Producto productoCesta = productoService.obtenerProducto(idProducto);
 		Producto productoVista = productoService.obtenerProducto(idProducto);
+		Categoria categoria = categoriaService.listarCategoriaPorProducto(productoVista);
+		productoVista.setStock(productoVista.getStock()-cantidad2);
 		productoCesta.setStock(cantidad2);
 		HttpSession sesion = request.getSession();
 		List<Producto> cProductos = (List<Producto>) sesion.getAttribute("lProductoSession");
@@ -140,8 +142,44 @@ public class ProductoController {
 		if (!existe) {
 			cProductos.add(productoCesta);
 		}
+		
+		if(sesion.getAttribute("idSession") != null) {
+			long id = (long) sesion.getAttribute("idSession");
+			Cliente cliente = userService.obtenerCliente(id);
+			List<Pregunta> preguntas = preguntaService.listarPreguntas(productoVista, cliente);
+			List<ArrayList> respuestas = new ArrayList<ArrayList>();
+			for (Pregunta pregunta : preguntas) {
+				ArrayList<Respuesta> listar = new ArrayList<Respuesta>();
+				listar = (ArrayList<Respuesta>) respuestaService.listarRespuestas(pregunta, cliente);
+				respuestas.add(listar);
+			}
+			if (preguntas != null) {
+				mav.addObject("preguntas", preguntas);
+		}
+			if (respuestas != null) {
+			mav.addObject("respuestas", respuestas);
+			}
+		}
+		
+		
+		int count = 0; int suma = 0; List <Valoracion> valoraciones =
+				 valoracionService.listarValoracionPorProducto(productoVista); 
+				 if(!valoraciones.isEmpty()) {
+					 for (Valoracion valorar : valoraciones) {
+						 count++; suma = suma + valorar.getValoracion(); 
+					 }
+					 Valoracion val = new Valoracion();
+					 int totalValoracion = count;
+					 float mT=suma/count;
+					 Integer totalValoraciones = totalValoracion;
+					 float valoracionMedia = mT;
+						 mav.addObject("totalValoraciones", totalValoraciones);
+						 mav.addObject("valoracionMedia", valoracionMedia);
+				 }
+		
 		sesion.setAttribute("lProductoSession", cProductos);
 		mav.addObject("producto", productoVista);
+		mav.addObject("categoria", categoria);
 		mav.setViewName("detallesproducto");
 		return mav;
 	}
