@@ -25,7 +25,7 @@
 		<div class="card">
 			<div class="card-body">
 				<div class="col-md-10">
-					<form th:action="@{/editar_User}" method="post">
+					<form th:action="@{/editar_User}" method="post" id="editar">
 						<div class="row">
 							<br />
 							<div class="form-group col-md-8">
@@ -53,8 +53,8 @@
 							<div class="form-group col-md-6">
 								<label for="apellidos">Apellidos</label>: <input type="text"
 									id="apellidos" name="apellidos" placeholder="Apellidos"
-         							required pattern="[A-Za-z]{5,80}"
-        							 title="Solo letras. Tamanio minimo: 5. Tamanio maximo: 80"/> <br />
+         							required pattern="[A-Za-z]+[ ]+[A-Za-z]{6,80}"
+								title="Solo letras y un espacio entre los dos apellidos. Tamanio minimo: 6. Tamanio maximo: 80"/> <br />
 							</div>
 							<div class="form-group col-md-6">
 								<label for="email">Email</label>: <input type="text" id="email"
@@ -66,9 +66,7 @@
 							</div>
 							<div class="form-group col-md-6">
 								<label for="direccion">Direccion de envio</label>: <input
-									type="text" id="direccionEnvio" name="direccionEnvio" placeholder="Direccion"
-        					 required pattern="[A-Za-z0-9]{12,255}"
-        					 title="Letras y numeros. Tamanio minimo: 12. Tamanio maximo: 255"/> <br />
+									type="text" id="direccionEnvio" name="direccionEnvio"/> <br />
 							</div>
 							<br /> <br /> <br /> <br />
 							<div class="form-group col-md-8">
@@ -101,13 +99,36 @@
 							</div>
 							<div class="form-group col-md-6">
 								<label for="direccionFa">Direccion de facturacion</label>: <input
-									type="text" id="direccionFa" name="direccionFa" placeholder="Direccion"
-        					 required pattern="[A-Za-z0-9]{12,255}"
-        					 title="Letras y numeros. Tamanio minimo: 12. Tamanio maximo: 255"/> <br />
+									type="text" id="direccionFa" name="direccionFa"/> <br />
 							</div>
 							<div class="col-md-8">
 								<input type="submit" value="Editar" />
 							</div>
+							<script type="text/javascript">
+								$('#editar').submit(function(evento) {
+									$.ajax({
+										url : 'editar_User',
+										type : 'POST',
+										data : JSON.stringify({
+											username : $('#username').val(),
+											password : $('#password').val(),
+											nombre : $('#nombre').val(),
+											apellidos : $('#apellidos').val(),
+											email : $('#email').val(),
+											fechaNa : $('#fechaNa').val(),
+											direccion : $('#direccion').val(),
+											banco : $('#banco').val(),
+											numTarjeta : $('#numTarjeta').val(),
+											titular : $('#titular').val(),
+											codigoS : $('#codigoS').val(),
+											direccionFa : $('#direccionFa').val()
+										}),
+										processData : false,
+										contentType : "application/json"
+									})
+									evento.preventDefault();
+								 });
+						</script>
 							<div class="form-group col-md-8"></div>
 						</div>
 					</form>

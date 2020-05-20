@@ -28,7 +28,7 @@
 			<div class="card-body">
 				<div class="col-md-10">
 					<form
-						th:action="@{/categoria/editar_Categoria/{idCategoria}(idCategoria = ${categoria.idCategoria})}" method="post">
+						th:action="@{/categoria/editar_Categoria/{idCategoria}(idCategoria = ${categoria.idCategoria})}" method="post" id="editarC">
 
 						<div class="row">
 							<div class="form-group col-md-6">
@@ -41,13 +41,26 @@
 						    <div class="form-group col-md-6">
 							 	<label for="descripcion">Descripcion </label>: <input
 									type="text" id="descripcionCategoria" name="descripcionCategoria"
-									th:value="${categoria.descripcionCategoria}" placeholder="Descripcion"
-         							required pattern="[A-Za-z]{6,255}"
-        							 title="Solo letras. Tamanio minimo: 6. Tamanio maximo: 255"/> <br />
+									th:value="${categoria.descripcionCategoria}"/> <br />
 							</div>
 							<div class="col-md-8">
 								<input type="submit" value="Editar" />
 							</div>
+							<script type="text/javascript">
+								$('#editarC').submit(function(evento) {
+									$.ajax({
+										url : 'categoria/editar_Categoria/{idCategoria}(idCategoria = ${categoria.idCategoria})',
+										type : 'POST',
+										data : JSON.stringify({
+											nombreCategoria : $('#nombreCategoria').val(),
+											descripcionCategoria : $('#descripcionCategoria').val()
+										}),
+										processData : false,
+										contentType : "application/json"
+									})
+									evento.preventDefault();
+								});
+							</script>
 							<div class="form-group col-md-8"></div>
 						</div>
 					</form>

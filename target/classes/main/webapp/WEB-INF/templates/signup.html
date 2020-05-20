@@ -54,9 +54,9 @@
 						</div>
 						<div class="form-group col-md-6">
 							<label for="apellidos">Apellidos</label>: <input type="text"
-								id="apellidos" name="apellidos" placeholder="Apellidos" required
-								pattern="[A-Za-z]+[ ]+[A-Za-z]{6,80}"
-								title="Solo letras. Tamanio minimo: 6. Tamanio maximo: 80" /> <br />
+								id="apellidos" name="apellidos" placeholder="Apellidos" 
+								required pattern="[A-Za-z]+[ ]+[A-Za-z]{6,80}"
+								title="Solo letras y un espacio entre los dos apellidos. Tamanio minimo: 6. Tamanio maximo: 80" /> <br />
 						</div>
 						<div class="form-group col-md-6">
 							<label for="email">Email</label>: <input type="text" id="email"
@@ -110,7 +110,7 @@
 						<div class="col-md-8">
 							<input type="submit" value="Registrar" />
 						</div>
-						<!-- <script type="text/javascript">
+						<script type="text/javascript">
 							$('#signup').submit(function(evento) {
 								$.ajax({
 									url : 'signup',
@@ -134,7 +134,7 @@
 								})
 								evento.preventDefault();
 							});
-						</script> -->
+						</script>
 						<div class="form-group col-md-8"></div>
 					</div>
 				</form>
