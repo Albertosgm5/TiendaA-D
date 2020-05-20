@@ -21,7 +21,7 @@ import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 @EnableWebMvc
 @Configuration
 @ComponentScan(basePackages = {"TiendaA-D.spring.controller"})
-public class WebAppConfig extends WebMvcConfigurerAdapter implements ApplicationContextAware  {
+public class WebAppConfig extends WebMvcConfig implements ApplicationContextAware  {
 	private ApplicationContext applicationContext;
 	@Override
 	public void setApplicationContext(ApplicationContext ac) throws BeansException {
@@ -35,8 +35,8 @@ public class WebAppConfig extends WebMvcConfigurerAdapter implements Application
     }
 
     @Bean
-    public LocaleResolver localeResolver() {
-        return (LocaleResolver) new SessionLocaleResolver();
+    public SessionLocaleResolver localeResolver() {
+        return new SessionLocaleResolver();
     }
 
     @Bean
