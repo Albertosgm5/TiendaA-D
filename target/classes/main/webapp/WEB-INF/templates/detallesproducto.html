@@ -185,10 +185,10 @@
 						<input type="submit" value="Preguntar" />
 					</div>
 				</form>
-				<!--  <script type="text/javascript">
+				<script type="text/javascript">
 					$('#preguntar').submit(function(evento) {
 						$.ajax({
-							url : '/preguntar/{idProducto}',
+							url : 'producto/preguntar/} + ${producto.idProducto}',
 							type : 'POST',
 							data : JSON.stringify({
 								pregunta : $('#pregunta').val()
@@ -198,7 +198,7 @@
 						})
 						evento.preventDefault();
 					});
-				</script>-->
+				</script>
 				<br /> <br /> <br /> <br /> <br />
 				<table width="100%" height="100%"
 					style="margin: 0 auto; background-color: #B6CF9B;">
@@ -227,7 +227,20 @@
 										<br /> <input type='submit' value="Responder" />
 									</div>
 								</form>
-							
+								<script type="text/javascript">
+									$('#responder').submit(function(evento) {
+										$.ajax({
+											url : 'producto/responder/} + ${pregunta.idPregunta}',
+											type : 'POST',
+											data : JSON.stringify({
+												respuesta : $('#respuesta').val()
+											}),
+											processData : false,
+											contentType : "application/json"
+										})
+										evento.preventDefault();
+									});
+								</script>
 						</td> <span th:each="respuesta : ${respuestas}">
 								<tr th:each="r : ${respuesta}">
 									<td></td>
