@@ -67,7 +67,7 @@
 									id="imagen" name="imagen" /> <br />
 							</div>
 							<div class="col-md-8">
-								<input type="submit" th:value="#{eproducto.cabecera}" />
+								<input type="submit" th:value="#{eproducto.editar}" />
 							</div>
 							<script type="text/javascript">
 								$('#editarP).submit(function(evento) {
@@ -100,7 +100,7 @@
 		<form
 			th:action="@{/producto/borrarproducto/{idProducto}(idProducto = ${producto.idProducto})}"
 			method="get">
-			<input type="submit" th:text="#{eproducto.value}" />
+			<input type="submit" th:value="#{eproducto.borrar}" />
 		</form>
 	</center>
 </body>
