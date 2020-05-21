@@ -4,7 +4,7 @@
 <head>
 <link rel="icon" th:href="@{/images/logo.ico}" type="image/ico" />
 <meta charset="ISO-8859-1">
-<title>Detalles Compra</title>
+<title th:text="#{dcompra.cabecera}"></title>
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 <link rel="canonical"
@@ -24,7 +24,7 @@
 			type="submit" value="Busqueda" />
 	</form>
 	<div class="container my-5">
-		<h1>Detalles Compra</h1>
+		<h1 th:text="#{dcompra.titulo}"></h1>
 		<div class="card">
 			<div class="card-body">
 				<h3 th:text="${compra.fecha}"></h3>
@@ -32,8 +32,8 @@
 					<table width="100%" height="100%" style="margin: 0 auto;">
 						<thead>
 							<tr>
-								<th>Producto</th>
-								<th>Unidades</th>
+								<th th:text="#{dcompra.producto}"></th>
+								<th th:text="#{dcompra.unidades}"></th>
 							</tr>
 						</thead>
 						<tbody>
@@ -41,8 +41,9 @@
 								<td th:text="${venta.producto.nombreProducto}"></td>
 								<td th:text="${venta.unidades}"></td>
 								<td><a href=#
-									th:href="@{/producto/detallesProducto/{idProducto}(idProducto = ${venta.producto.idProducto})}">
-										Detalles </a></td>
+									th:href="@{/producto/detallesProducto/{idProducto}(idProducto = ${venta.producto.idProducto})}"
+									th:text="#{dcompra.detalles}">
+									</a></td>
 							</tr>
 						</tbody>
 					</table>
@@ -51,8 +52,9 @@
 				<h3>Precio total:</h3>
 					<h3 th:text="${compra.precioT}"></h3>
 					<a href=#
-						th:href="@{/compras/devolucion/{idCompra}(idCompra = ${compra.idCompra})}">
-						Devolucion pedido </a>
+						th:href="@{/compras/devolucion/{idCompra}(idCompra = ${compra.idCompra})}"
+						th:text="#{dcompra.devolucion}">
+						 </a>
 				</div>
 			</div>
 		</div>

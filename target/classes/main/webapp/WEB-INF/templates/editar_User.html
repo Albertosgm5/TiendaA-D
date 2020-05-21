@@ -36,29 +36,30 @@
 								<label for="username" th:text="#{eusuario.username}"></label>: <input type="text" th:value="${cliente.nombreUsuario}"
 									id="username" name="username" placeholder="Nick"
         					 required pattern="[A-Za-z0-9]{4,40}"
-        					 title="Letras y numeros. Tamanio minimo: 4. Tamanio maximo: 40"/> <br />
+        					 th:title="#{eusuario.validacionusername}"/> <br />
 							</div>
 							<div class="form-group col-md-6">
 								<label for="password" th:text="#{eusuario.password}"></label>: <input type="int"
 									id="password" name="password" placeholder="Password"
          						required pattern="[A-Za-z0-9]{5,40}"
-        						 title="Letras y números. Tamaño mínimo: 5. Tamaño máximo: 40"/> <br />
+        						th:title="#{eusuario.validacionpassword}"/> <br />
 							</div>
 							<div class="form-group col-md-6">
 								<label for="nombre" th:text="#{eusuario.nombre}"></label>: <input type="text" th:value="${cliente.nombre}"
 									id="nombre" name="nombre" placeholder="Nombre"
          							required pattern="[A-Za-z]{5,40}"
-        							 title="Solo letras. Tamanio minimo: 5. Tamanio maximo: 40"/> <br />
+        							 th:title="#{eusuario.validacionnombre}"/> <br />
 							</div>
 							<div class="form-group col-md-6">
 								<label for="apellidos" th:text="#{eusuario.apellidos}"></label>: <input type="text" th:value="${cliente.apellidos}"
 									id="apellidos" name="apellidos" placeholder="Apellidos"
          							required pattern="[A-Za-z]+[ ]+[A-Za-z]{6,80}"
-								title="Solo letras y un espacio entre los dos apellidos. Tamanio minimo: 6. Tamanio maximo: 80"/> <br />
+								th:title="#{eusuario.validacionapellidos}"/> <br />
 							</div>
 							<div class="form-group col-md-6">
 								<label for="email" th:text="#{eusuario.email}"></label>: <input type="text" id="email" th:value="${cliente.email}"
-									name="email" pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}"/> <br />
+									name="email" pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}"
+									th:title="#{eusuario.validacionemail}"/> <br />
 							</div>
 							<div class="form-group col-md-6">
 								<label for="fechaNa" th:text="#{eusuario.fecha}"></label>: <input
@@ -77,25 +78,25 @@
 								<label for="banco" th:text="#{eusuario.banco}"></label>: <input type="text" th:value="${cliente.banco}" id="banco"
 									name="banco" placeholder="Banco"
          							required pattern="[A-Za-z]{5,40}"
-        							 title="Solo letras. Tamanio minimo: 5. Tamanio maximo: 40"/> <br />
+        							 th:title="#{eusuario.validacionbanco}"/> <br />
 							</div>
 							<div class="form-group col-md-6">
 								<label for="numTarjeta" th:text="#{eusuario.tarjeta}"></label>: <input
 									type="number" id="numTarjeta" name="numTarjeta" th:value="${cliente.numTarjeta}" placeholder="Numero Tarjeta"
          						required pattern="[0-9]{16}"
-         						title="Solo numeros.Tamanio minimo: 16."/> <br />
+         						th:title="#{eusuario.validacionnumtarjeta}"/> <br />
 							</div>
 							<div class="form-group col-md-6">
 								<label for="titular" th:text="#{eusuario.titular}"></label>: <input type="text"
 									id="titular" name="titular" th:value="${cliente.titular}" placeholder="titular"
          							required pattern="[A-Za-z]{5,40}"
-        							 title="Solo letras. Tamanio minimo: 5. Tamanio maximo: 40"/> <br />
+        							 th:title="#{eusuario.validaciontitular}"/> <br />
 							</div>
 							<div class="form-group col-md-6">
 								<label for="codigoS" th:text="#{eusuario.codigo}"></label>: <input
 									type="number" id="codigoS" th:value="${cliente.codigoS}" name="codigoS" placeholder="Codigo"
          						required pattern="[0-9]{3}"
-         						title="Solo numeros.Tamanio minimo: 3."/> <br />
+         						th:title="#{eusuario.validacioncodigo}"/> <br />
 							</div>
 							<div class="form-group col-md-6">
 								<label for="direccionFa" th:text="#{eusuario.direccionFa}"></label>: <input

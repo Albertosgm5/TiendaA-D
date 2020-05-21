@@ -33,19 +33,19 @@
 								<label for="nombreProducto" th:text="#{cproducto.nombre}"></label>: <input
 									type="text" id="nombreProducto" name="nombreProducto" placeholder="Nombre"
          							required pattern="[A-Za-z]{5,40}"
-        							 title="Solo letras. Tamanio minimo: 5. Tamanio maximo: 40"/> <br />
+        							  th:title="#{cproducto.validacionnombre}"/> <br />
 							</div>
 							<div class="form-group col-md-6">
 								<label for="precio" th:text="#{cproducto.precio}"></label>: <input type="number"
 									id="precio" name="precio" placeholder="Precio"
          						required pattern="[0-9]"
-         						title="Solo numeros."/> <br />
+         						 th:title="#{cproducto.validacionprecio}"/> <br />
 							</div>
 							<div class="form-group col-md-6">
 								<label for="stock" th:text="#{cproducto.stock}"></label>: <input type="number"
 									id="stock" name="stock" placeholder="Stock"
          						required pattern="[0-9]"
-         						 title="Solo numeros."/> <br />
+         						  th:title="#{cproducto.validacionstock}"/> <br />
 							</div>
 							<div class="form-group col-md-6">
 								<label for="categoria" th:text="#{cproducto.categoria}"></label>: <select

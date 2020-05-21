@@ -36,32 +36,33 @@
 							<label for="username" th:text="#{signup.username}"></label>: <input type="text"
 								id="username" name="username" placeholder="Nick" required
 								pattern="[A-Za-z0-9]{4,40}"
-								title="Letras y numeros. Tamanio minimo: 4. Tamanio maximo: 40" />
+								th:title="#{signup.validacionusername}" />
 							<br />
 						</div>
 						<div class="form-group col-md-6">
 							<label for="password" th:text="#{signup.password}"></label>: <input type="text"
 								id="password" name="password" placeholder="Password" required
 								pattern="[A-Za-z0-9]{5,40}"
-								title="Letras y números. Tamaño mínimo: 5. Tamaño máximo: 40" />
+								th:title="#{signup.validacionpassword}"/>
 							<br />
 						</div>
 						<div class="form-group col-md-6">
 							<label for="nombre" th:text="#{signup.nombre}"></label>: <input type="text"
 								id="nombre" name="nombre" placeholder="Nombre" required
 								pattern="[A-Za-z]{3,40}"
-								title="Solo letras. Tamanio minimo: 3. Tamanio maximo: 40" /> <br />
+								th:title="#{signup.validacionnombre}"/> <br />
 						</div>
 						<div class="form-group col-md-6">
 							<label for="apellidos" th:text="#{signup.apellidos}"></label>: <input type="text"
 								id="apellidos" name="apellidos" placeholder="Apellidos" 
 								required pattern="[A-Za-z]+[ ]+[A-Za-z]{6,80}"
-								title="Solo letras y un espacio entre los dos apellidos. Tamanio minimo: 6. Tamanio maximo: 80" /> <br />
+								th:title="#{signup.validacionapellidos}" /> <br />
 						</div>
 						<div class="form-group col-md-6">
 							<label for="email" th:text="#{signup.email}"></label>: <input type="text" id="email"
 								name="email"
-								pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}" />
+								pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}"
+								th:title="#{signup.validacionemail}" />
 							<br />
 						</div>
 						<div class="form-group col-md-6">
@@ -82,25 +83,25 @@
 							<label for="banco" th:text="#{signup.banco}"></label>: <input type="text" id="banco"
 								name="banco" placeholder="Banco" required
 								pattern="[A-Za-z]{4,40}"
-								title="Solo letras. Tamanio minimo: 4. Tamanio maximo: 40" /> <br />
+								th:title="#{signup.validacionbanco}" /> <br />
 						</div>
 						<div class="form-group col-md-6">
 							<label for="numTarjeta" th:text="#{signup.tarjeta}"></label>: <input
 								type="number" id="numTarjeta" name="numTarjeta"
 								placeholder="Numero Tarjeta" required pattern="[0-9]{16}"
-								title="Solo numeros.Tamanio exijido: 16." /> <br />
+								th:title="#{signup.validacionnumtarjeta}" /> <br />
 						</div>
 						<div class="form-group col-md-6">
 							<label for="titular" th:text="#{signup.titular}"></label>: <input type="text"
 								id="titular" name="titular" placeholder="titular" required
 								pattern="[A-Za-z]{3,40}"
-								title="Solo letras. Tamanio minimo: 3. Tamanio maximo: 40" /> <br />
+								th:title="#{signup.validaciontitular}" /> <br />
 						</div>
 						<div class="form-group col-md-6">
 							<label for="codigoS" th:text="#{signup.codigo}"></label>: <input
 								type="number" id="codigoS" name="codigoS" placeholder="Codigo"
 								required pattern="[0-9]{3}"
-								title="Solo numeros.Tamanio minimo: 3." /> <br />
+								th:title="#{signup.validacioncodigo}" /> <br />
 						</div>
 						<div class="form-group col-md-6">
 							<label for="direccionFa" th:text="#{signup.direccionFa}"></label>: <input
