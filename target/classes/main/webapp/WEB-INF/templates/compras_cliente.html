@@ -3,7 +3,7 @@
 <head>
 <link rel="icon" th:href="@{/images/logo.ico}" type="image/ico" />
 <meta charset="ISO-8859-1">
-<title>Compras</title>
+<title th:text="#{compras.cabecera}"></title>
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 <link rel="canonical"
@@ -25,16 +25,16 @@
 	<br />
 	<br />
 	<div class="card text-center" style="background-color: #116633;">
-		<h1>Tus compras</h1>
+		<h1 th:text="#{compras.titulo}"></h1>
 	</div>
 	<div class="card text-center" style="background-color: #BBB777;">
 		<CENTER>
 			<table border width="100%" height="100%" style="margin: 0 auto;">
 				<tr>
-					<td>Producto:</td>
-					<td>Unidades:</td>
-					<td>Fecha de la compra:</td>
-					<td>Precio:</td>
+					<td th:text="#{compras.producto}"></td>
+					<td th:text="#{compras.unidades}"></td>
+					<td th:text="#{compras.fecha}"></td>
+					<td th:text="#{compras.precio}"></td>
 				</tr>
 				<tr th:each="compra : ${compras}">
 					<td th:text="${compras.producto}"></td>
@@ -42,8 +42,8 @@
 					<td th:text="${compras.fecha}"></td>
 					<td th:text="${compras.precioT}"></td>
 					<td><a href=#
-								th:href="@{/compra/detallesCompra/{idCompra}(idCompra = ${compra.idCompra})}">
-									Detalles </a></td>
+								th:href="@{/compra/detallesCompra/{idCompra}(idCompra = ${compra.idCompra})}" th:text="#{compras.detalles}">
+									 </a></td>
 				</tr>
 			</table>
 		</CENTER>
