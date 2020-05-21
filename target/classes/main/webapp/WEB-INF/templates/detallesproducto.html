@@ -8,7 +8,7 @@
 <link rel="stylesheet"  th:href="@{/css/valoracion.css}">
 <link rel="stylesheet" href="//code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 <link rel="icon" th:href="@{/images/logo.ico}" type="image/ico" />
-<title>Detalles Producto</title>
+<title  th:text="#{dproducto.cabecera}"></title>
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 <link rel="canonical"
@@ -101,7 +101,7 @@
 			type="submit" value="Busqueda" />
 	</form>
 	<div class="container my-5">
-		<h1>Detalles Producto</h1>
+		<h1 th:text="#{dproducto.titulo}"></h1>
 		<div class="card">
 
 			<div class="card-body">
@@ -118,33 +118,39 @@
 					th:value="${producto.idProducto}"></label>
 				<p th:if="${exception}" class="error">Wrong user or password</p>
 				<form action="#" th:object="${producto}" method="post">
-					<h2>Nombre Producto</h2>
+				
+					<h2 th:text="#{dproducto.nombre}"></h2>
 					<p id="nombreProducto" name="nombreProducto"
 						th:text="*{nombreProducto}"></p>
-					<h2>Precio</h2>
+						
+					<h2 th:text="#{dproducto.precio}"></h2>
 					<p id="precio" name="precio" th:text="*{precio}"></p>
-					<h2>Stock</h2>
+					
+					<h2 th:text="#{dproducto.stock}"></h2>
 					<p id="stock" name="stock" th:text="*{stock}"></p>
-					<h2>Categoria</h2>
+					
+					<h2 th:text="#{dproducto.categoria}"></h2>
 					<p id="categoria" name="categoria"
 						th:text="${categoria.nombreCategoria}"></p>
-					<h2>Descripcion</h2>
+					
+					<h2 th:text="#{dproducto.descripcion}"></h2>
 					<p id="descripcion" name="descripcion" th:text="*{descripcion}"></p>
+				
 				</form>
 				<br />
 				<div >
-					<h4>Valora el producto del 1 al 5</h4>
+					<h4 th:text="#{dproducto.valor}"></h4>
 					<x-star-rating value="1" number="5" id="valor"></x-star-rating>
 					<script th:href="@{/js/valoracion.js}"></script>
 				</div>
 				<br />
 				<div>
-					<h5>Valoracion media del producto</h5>
+					<h5 th:text="#{dproducto.valor2}"></h5>
 					<p id="valoracionMedia" name="valoracionMedia" th:text="*{valoracionMedia}"></p>
 				</div>
 				<br />
 				<div>
-					<h6>Valoraciones</h6>
+					<h6 th:text="#{dproducto.valor3}"></h6>
 					<p id="totalValoraciones" name="totalValoraciones" th:text="*{totalValoraciones}"></p>
 				</div>
 				<br />
