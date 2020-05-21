@@ -32,7 +32,7 @@
 								<label for="nombreProducto" th:text="#{ccategoria.nombre}"></label>: <input
 									type="text" id="nombreCategoria" name="nombreCategoria" placeholder="Nombre"
          							required pattern="[A-Za-z]{5,40}"
-        							 title="Solo letras. Tamanio minimo: 5. Tamanio maximo: 40"/> <br />
+        							 th:title="#{ccategoria.validacionnombre}"/> <br />
 							</div>
 							<div class="form-group col-md-6">
 								<label for="descripcion" th:text="#{ccategoria.descripcion}"></label>: <input
