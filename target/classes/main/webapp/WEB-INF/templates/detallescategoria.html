@@ -4,7 +4,7 @@
 <head>
 <link rel="icon" th:href="@{/images/logo.ico}" type="image/ico" />
 <meta charset="ISO-8859-1">
-<title>Detalles Compra</title>
+<title th:text="#{dcategoria.cabecera}"></title>
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 <link rel="canonical"
@@ -24,31 +24,31 @@
 			type="submit" value="Busqueda" />
 	</form>
 	<div class="container my-5">
-		<h1>Detalles Categoria</h1>
+		<h1 th:text="#{dcategoria.titulo}"></h1>
 		<div class="card">
 			<div class="card-body">
 				<label type="hidden" id="idCategoria" name="idCategoria"
 					th:value="${categoria.idCategoria}"></label>
 				<form action="#" th:object="${categoria}" method="post">
-					<h2>Nombre Categoria</h2>
+					<h2 th:text="#{dcategoria.nombre}"></h2>
 					<p id="nombreCategoria" name="nombreCategoria"
 						th:text="*{nombreCategoria}"></p>
-					<h2>Descripcion Categoria</h2>
+					<h2 th:text="#{dcategoria.descripcion}"></h2>
 					<p id="descripcionCategoria" name="descripcionCategoria" th:text="*{descripcionCategoria}"></p>
 				</form>
 				<table width="100%" height="100%" style="margin: 0 auto;">
 					<thead>
 						<tr>
-							<th>Productos</th>
-							<th>Ver</th>
+							<th th:text="#{dcategoria.productos}"></th>
+							<th th:text="#{dcategoria.ver}"></th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr th:each="producto : ${productos}">
 							<td th:text="${producto.nombreProducto}"></td>
 							<td><a href=#
-								th:href="@{/producto/detallesProducto/{idProducto}(idProducto = ${producto.idProducto})}">
-									Detalles </a></td>
+								th:href="@{/producto/detallesProducto/{idProducto}(idProducto = ${producto.idProducto})}"
+								th:text="#{dcategoria.detalles}"></a></td>
 						</tr>
 					</tbody>
 				</table>
@@ -56,7 +56,8 @@
 					<div sec:authorize="hasAuthority('ROL_ADMIN')"
 						class="card text-center" style="background-color: #BBB777;">
 						<a href=#
-							th:href="@{/categoria/editar_Categoria/{idCategoria}(idCategoria = ${categoria.idCategoria})}">
+							th:href="@{/categoria/editar_Categoria/{idCategoria}(idCategoria = ${categoria.idCategoria})}"
+							th:text="#{dcategoria.editarCategoria}">
 							Editar Categoria</a>
 					</div>
 				</div>
