@@ -3,8 +3,9 @@
 <head>
 <link rel="icon" th:href="@{/images/logo.ico}" type="image/ico" />
 <meta charset="ISO-8859-1">
-<title th:text="${session.accountSession}" th:unless="${session ==null}">
-	Perfil</title>
+<title th:text="${session.accountSession}" th:unless="${session ==null}"
+th:text="#{profile.cabecera}">
+	</title>
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 <link rel="canonical"
@@ -26,23 +27,23 @@
 	<br />
 	<br />
 	<div class="card text-center" style="background-color: #116633;">
-		<h1>Perfil</h1>
+		<h1 th:text="#{profile.titulo}"></h1>
 	</div>
 	<CENTER>
 		<p th:text="${session.accountSession}">Perfil</p>
 	</CENTER>
 	<div class="card text-center" style="background-color: #BBB777;">
-		<h2>Datos personales</h2>
+		<h2 th:text="#{profile.datosPersonales}"></h2>
 		<CENTER>
 			<table border width="100%" height="100%" style="margin: 0 auto;">
 				<tr>
-					<td>Usuario:</td>
-					<td>Password:</td>
-					<td>Nombre:</td>
-					<td>Apellidos:</td>
-					<td>Email:</td>
-					<td>Fecha de nacimiento:</td>
-					<td>Direccion de envio:</td>
+					<td th:text="#{profile.username}">:</td>
+					<td th:text="#{profile.password}">:</td>
+					<td th:text="#{profile.nombre}">:</td>
+					<td th:text="#{profile.apellidos}">:</td>
+					<td th:text="#{profile.email}">:</td>
+					<td th:text="#{profile.fecha}">:</td>
+					<td th:text="#{profile.direcionEnvio}">:</td>
 				</tr>
 				<tr>
 					<td th:text="${account.nombreUsuario}"></td>
@@ -60,15 +61,15 @@
 		<br />
 	</div>
 	<div class="card text-center" style="background-color: #BBB777;">
-		<h2>Datos de pago</h2>
+		<h2 th:text="#{profile.datosPago}"></h2>
 		<CENTER>
 			<table border width="100%" height="100%" style="margin: 0 auto;">
 				<tr>
-					<td>Banco:</td>
-					<td>Numero de tarjeta:</td>
-					<td>Titular:</td>
-					<td>Codigo de seguridad:</td>
-					<td>Direccion de facturacion:</td>
+					<td th:text="#{profile.banco}">:</td>
+					<td th:text="#{profile.tarjeta}">:</td>
+					<td th:text="#{profile.titular}">:</td>
+					<td th:text="#{profile.codigo}">:</td>
+					<td th:text="#{profile.direccionFa}">:</td>
 				</tr>
 				<tr>
 					<td th:text="${account.banco}"></td>
@@ -84,9 +85,9 @@
 		<br />
 	</div>
 	<div class="card text-center" style="background-color: #BBB777;">
-		<a href="/A&DStore/editar_User"> Editar </a> <a
-			href="/A&DStore/cliente/cerrar">Logoff </a> <a
-			href="/A&DStore/compras/miscompras"> Mis compras </a>
+		<a href="/A&DStore/editar_User" th:text="#{profile.editar}"></a><a
+			href="/A&DStore/cliente/cerrar" th:text="#{profile.logff}"></a><a
+			href="/A&DStore/compras/miscompras"th:text="#{profile.compras}"></a>
 	</div>
 	<div class="card text-center" style="background-color: #117733;">
 		<br />
