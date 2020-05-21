@@ -161,29 +161,30 @@
 					<form action="#" th:object="${producto}"
 						th:action="@{/producto/detallesProducto/} + *{idProducto}"
 						method="post">
-						<label for="username">Introduce la cantidad a comprar:</label>
+						<label for="username" th:text="#{dproducto.cantidad}"></label>
 						<div style="float: left; width: 70%;">
 							<input type="text" id="cantidad" name="cantidad" placeholder="Cantidad"
          						required pattern="[0-9]"
          						title="Solo numeros."/> <br />
 						</div>
 						<div style="float: right; width: 30%;">
-							<input type="submit" value="Agregar" />
+							<input type="submit" th:value="#{dproducto.agregar}" />
 						</div>
 					</form>
 					<br /> <br />
 					<div sec:authorize="hasAuthority('ROL_ADMIN')"
 						class="card text-center" style="background-color: #BBB777;">
 						<a href=#
-							th:href="@{/producto/editar_Producto/{idProducto}(idProducto = ${producto.idProducto})}">
-							Editar Producto</a>
+							th:href="@{/producto/editar_Producto/{idProducto}(idProducto = ${producto.idProducto})}"
+							th:text="#{dproducto.editarProducto}">
+							</a>
 					</div>
 				</div>
 
 				<form th:action="@{/producto/preguntar/} + ${producto.idProducto}"
 					method="post" id="preguntar">
 					<div style="float: left; width: 20%;">
-						<label for="pregunta"> Escribe tu pregunta </label>: <input
+						<label for="pregunta" th:text="#{dproducto.pregunta}"> </label>: <input
 							type="text" id="pregunta" name="pregunta"/> <br />
 					</div>
 					<br />
@@ -210,10 +211,10 @@
 					style="margin: 0 auto; background-color: #B6CF9B;">
 					<thead>
 						<tr>
-							<th>Preguntas</th>
+							<th th:text="#{dproducto.pregunta2}"><th>
 							<th>
 							<th>
-							<th>Respuestas</th>
+							<th th:text="#{dproducto.respuestas}">Respuestas</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -224,7 +225,7 @@
 									th:action='@{/producto/responder/} + ${pregunta.idPregunta}'
 									method='post' id='responder'>
 									<div style='float: left; width: 27%;'>
-										<label for='respuesta'> Escribe tu respuesta </label>: <input
+										<label for='respuesta' th:text="#{dproducto.respuesta2}"></label>: <input
 											type='text' id="respuesta" name='respuesta'/> <input
 											type='hidden' id='idProducto' name='idProducto'
 											th:value='${producto.idProducto}'>

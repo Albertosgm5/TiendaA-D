@@ -20,22 +20,22 @@
 	</div>
 	<div class="card text-center" style="background-color: #25BD7B;">
 		<br />
-		<h2>Bienvenido</h2>
-		<p>Si estas registrado logueate</p>
-		<a href="login"> Login</a>
-		<p>Y si no lo estas registrate</p>
-		<a href="signup"> Registrarse </a> <br />
+		<h2 th:text="#{index.bienvenido}"></h2>
+		<p th:text="#{index.rloguearte}"></p>
+		<a href="login" th:text="#{index.login}"></a>
+		<p th:text="#{index.rregistrarse}"></p>
+		<a href="signup" th:text="#{index.signup}"></a> <br />
 	</div>
 	<div class="card text-center" style="background-color: #BBB777;">
-		<h2>Productos en Oferta!</h2>
+		<h2 th:text="#{index.productos}"></h2>
 		<table border width="100%" height="100%" style="margin: 0 auto;">
 			<thead>
 				<tr>
 					<th></th>
-					<th>Nombre</th>
-					<th>Precio</th>
-					<th>Stock</th>
-					<th>Informacion</th>
+					<th th:text="#{index.nombre}"></th>
+					<th th:text="#{index.precio}"></th>
+					<th th:text="#{index.stock}"></th>
+					<th th:text="#{index.informacion}"></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -50,8 +50,9 @@
 					<td th:text="${producto.precio}"></td>
 					<td th:text="${producto.stock}"></td>
 					<td><a href=#
-						th:href="@{/producto/detallesProducto/{idProducto}(idProducto = ${producto.idProducto})}">
-							Detalles </a></td>
+						th:href="@{/producto/detallesProducto/{idProducto}(idProducto = ${producto.idProducto})}"
+						th:text="#{index.detalles}">
+							 </a></td>
 				</tr>
 
 			</tbody>
