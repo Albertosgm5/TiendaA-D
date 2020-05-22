@@ -71,6 +71,7 @@ public class ProductoController {
 			@PathVariable("idProducto") long idProducto) {
 		HttpSession sesion = request.getSession();
 		ModelAndView mav = new ModelAndView();
+		Boolean conStock = true;
 		if(sesion.getAttribute("idSession") != null) {
 			long id = (long) sesion.getAttribute("idSession");
 			Cliente cliente = userService.obtenerCliente(id);
@@ -112,6 +113,7 @@ public class ProductoController {
 		 }
 		 
 		sesion.setAttribute("ProductoSession", producto);
+		mav.addObject("conStock", conStock);
 		mav.addObject("producto", producto);
 		mav.addObject("categoria", categoria);
 		mav.setViewName("detallesproducto");
@@ -133,7 +135,6 @@ public class ProductoController {
 		if(productoVista.getStock()<cantidad2) {
 			conStock =false;
 		}else {
-		productoVista.setStock(productoVista.getStock()-cantidad2);
 		productoCesta.setStock(cantidad2);
 		List<Producto> cProductos = (List<Producto>) sesion.getAttribute("lProductoSession");
 

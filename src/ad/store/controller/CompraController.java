@@ -65,8 +65,28 @@ public class CompraController {
 
 	@RequestMapping(method = RequestMethod.GET, value = "/cesta")
 	public ModelAndView cesta(HttpServletRequest request) {
+		Boolean c= false;
 		ModelAndView mav = new ModelAndView();
 		HttpSession session = request.getSession();
+		if(session.getAttribute("condicion") != null) {
+		String condicion=(String) session.getAttribute("condicion");
+		if(condicion.equalsIgnoreCase("success")) {
+			c= true;
+			String m = "";
+			mav.addObject("success",  c);
+			session.setAttribute("condicion", m);
+		}else if(condicion.equalsIgnoreCase("stock")) {
+			c= true;
+			String m =  "";
+			mav.addObject("danger",  c);
+			session.setAttribute("condicion", m);
+		}else if(condicion.equalsIgnoreCase("empty")) {
+			c= true;
+			String m =  "";
+			mav.addObject("info",  c);
+			session.setAttribute("condicion", m);
+		}
+		}
 		List<Producto> cProductos = (List<Producto>) session.getAttribute("lProductoSession");
 		mav.addObject("productos", cProductos);
 		mav.setViewName("carro_Compra");
@@ -80,6 +100,7 @@ public class CompraController {
 		Cliente cliente = userService.obtenerCliente(id);
 		Date fecha = new Date();
 		Calendar cal = Calendar.getInstance();
+		boolean conStock=true;
 		fecha=cal.getTime();
 		List<Producto> productos = (List<Producto>) session.getAttribute("lProductoSession");
 		if(!productos.isEmpty()) {
@@ -87,12 +108,18 @@ public class CompraController {
 		float precioT = 3.99f;
 		Set<Producto> productos2 = new HashSet<>();
 		for (Producto product : productos) {
+			Producto p = productoService.obtenerProducto(product.getIdProducto());
+			if(p.getStock()<product.getStock()) {
+				conStock= false;
+			}
 			unidades = product.getStock();
 			float pre = product.getPrecio();
 			precioT += pre * unidades;
 			productos2.add(product);
 		}
+		if(conStock) {
 		Compra compra = compraService.hacerCompra(cliente, productos2, fecha, precioT);
+		
 		for (Producto product : productos) {
 			unidades = product.getStock();
 			long idP = product.getIdProducto();
@@ -103,11 +130,18 @@ public class CompraController {
 			productoService.editarProducto(producto);
 			Venta venta = ventaService.hacerVenta(cliente, producto, compra, unidades);
 		}
+		String condicion= "success";
 		session.setAttribute("lProductoSession", new ArrayList<Producto>());
-		ModelAndView mav = new ModelAndView();
-
-		response.sendRedirect("/A&DStore/");
+		session.setAttribute("condicion", condicion);
+		response.sendRedirect("/A&DStore/compras/cesta");
 		}else {
+			String condicion= "stock";
+			session.setAttribute("condicion", condicion);
+			response.sendRedirect("/A&DStore/compras/cesta");
+		}
+		}else {
+			String condicion= "empty";
+			session.setAttribute("condicion", condicion);
 			response.sendRedirect("/A&DStore/compras/cesta");
 		}
 	}
