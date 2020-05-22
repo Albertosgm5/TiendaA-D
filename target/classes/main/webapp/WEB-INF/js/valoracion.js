@@ -22,8 +22,8 @@ class StarRating extends HTMLElement {
         }
 
         for (let i = 0; i < this.number; i++) {
-            let s = document.createElement('div');
-            s.className = 'star';
+            let s = document.createElement('ion-icon');
+            s.setAttribute("name", 'star-outline')
             this.appendChild(s);
             this.stars.push(s);
         }
@@ -33,7 +33,7 @@ class StarRating extends HTMLElement {
 
     highlight (index) {
         this.stars.forEach((star, i) => {
-            star.classList.toggle('full', i <= index);
+            star.classList.toggle('star-outline', i <= index);
         });
     }
 
