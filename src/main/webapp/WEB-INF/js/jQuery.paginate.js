@@ -56,7 +56,7 @@
 		function showPage( page_number ) {
 			var start_from = ( page_number * options.items_per_page );
 			var end_on = ( ( page_number + 1 ) * options.items_per_page );
-			obj.children().not( '.pagination__controls' ).css( 'display', 'none' ).slice( start_from, end_on ).css( 'display', 'block' );
+			obj.children().not( '.pagination__controls' ).css( 'display', 'none' ).slice( start_from, end_on ).css( 'display', 'inline-block' );
 		}
 
 		createPaginationControls( pages );

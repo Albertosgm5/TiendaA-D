@@ -1,4 +1,5 @@
--<!DOCTYPE html>
+-
+<!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
@@ -19,6 +20,11 @@
 
 </head>
 <body style="background-color: #117733;">
+<style type="text/css">
+.pagination__controls {
+	text-align: center;
+}
+</style>
 	<header>
 
 		<!-- Barra de navegacion -->
@@ -51,34 +57,47 @@
 				<div style="float: right; width: 80%;">
 					<div id="listaProductos" th:switch="${productos}">
 						<div th:case="*">
-							<span th:each="producto : ${productos}">
-								<div class='card'
-									style='width: 12rem; display: inline-block; margin: 20px;'>
-									<div th:if='${producto.imagen.isEmpty()}'>
-										<img th:src='@{/images/sin-foto.jpg}'
-											style='WIDTH: 12rem; HEIGHT: 12rem;'>
+							<div id="pagination-1">
+								<span th:each="producto : ${productos}">
+									<div class="pagination__item">
+										<div class='card'
+											style='width: 12rem; display: inline-block; margin: 20px;'>
+											<div th:if='${producto.imagen.isEmpty()}'>
+												<img th:src='@{/images/sin-foto.jpg}'
+													style='WIDTH: 12rem; HEIGHT: 12rem;'>
+											</div>
+											<div th:if='${!producto.imagen.isEmpty()}'>
+												<img
+													th:src='@{/producto/imagen/{idProducto}(idProducto=${producto.idProducto})}'
+													style='WIDTH: 12rem; HEIGHT: 12rem;'>
+											</div>
+											<div class='card-body'>
+												<h5 class='card-title' th:text='${producto.nombreProducto}'></h5>
+												<p class='card-text' th:text='${producto.descripcion}'></p>
+												<a href=# class='btn btn-primary'
+													th:href='@{/producto/detallesProducto/{idProducto}(idProducto = ${producto.idProducto})}'
+													th:text="#{lproductos.detalles}"> </a>
+											</div>
+										</div>
 									</div>
-									<div th:if='${!producto.imagen.isEmpty()}'>
-										<img
-											th:src='@{/producto/imagen/{idProducto}(idProducto=${producto.idProducto})}'
-											style='WIDTH: 12rem; HEIGHT: 12rem;'>
-									</div>
-									<div class='card-body'>
-										<h5 class='card-title' th:text='${producto.nombreProducto}'></h5>
-										<p class='card-text' th:text='${producto.descripcion}'></p>
-										<a href=# class='btn btn-primary'
-											th:href='@{/producto/detallesProducto/{idProducto}(idProducto = ${producto.idProducto})}'
-											th:text="#{lproductos.detalles}">
-											 </a>
-									</div>
-								</div>
-							</span>
+								</span>
+							</div>
 						</div>
 					</div>
+
 				</div>
 			</div>
 		</div>
 	</div>
+
 	<script th:src="@{/js/buscarProductos.js}"></script>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<script th:src="@{/js/jQuery.paginate.js}"></script>
+	<script>
+		$('#pagination-1').paginate({
+			items_per_page : 4
+		});
+	</script>
 </body>
 </html>
