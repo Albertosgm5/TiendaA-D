@@ -64,6 +64,7 @@ public class ProductoController {
 	@Autowired
 	ValoracionService valoracionService;
 	
+	
 
 	@RequestMapping("/detallesProducto/{idProducto}")
 	public ModelAndView perfilProducto(HttpServletRequest request, HttpServletResponse response,
@@ -121,16 +122,19 @@ public class ProductoController {
 	public ModelAndView agregarCesta(@PathVariable("idProducto") long idProducto,
 			@RequestParam("cantidad") int cantidad, HttpServletResponse response, HttpServletRequest request)
 			throws IOException {
-
+		Boolean conStock = true;
 		boolean existe = false;
 		ModelAndView mav = new ModelAndView();
 		int cantidad2 = cantidad;
 		Producto productoCesta = productoService.obtenerProducto(idProducto);
 		Producto productoVista = productoService.obtenerProducto(idProducto);
 		Categoria categoria = categoriaService.listarCategoriaPorProducto(productoVista);
+		HttpSession sesion = request.getSession();
+		if(productoVista.getStock()<cantidad2) {
+			conStock =false;
+		}else {
 		productoVista.setStock(productoVista.getStock()-cantidad2);
 		productoCesta.setStock(cantidad2);
-		HttpSession sesion = request.getSession();
 		List<Producto> cProductos = (List<Producto>) sesion.getAttribute("lProductoSession");
 
 		for (int i = 0; i < cProductos.size(); i++) {
@@ -141,6 +145,8 @@ public class ProductoController {
 		}
 		if (!existe) {
 			cProductos.add(productoCesta);
+		}
+		sesion.setAttribute("lProductoSession", cProductos);
 		}
 		
 		if(sesion.getAttribute("idSession") != null) {
@@ -176,8 +182,7 @@ public class ProductoController {
 						 mav.addObject("totalValoraciones", totalValoraciones);
 						 mav.addObject("valoracionMedia", valoracionMedia);
 				 }
-		
-		sesion.setAttribute("lProductoSession", cProductos);
+		mav.addObject("conStock", conStock);
 		mav.addObject("producto", productoVista);
 		mav.addObject("categoria", categoria);
 		mav.setViewName("detallesproducto");

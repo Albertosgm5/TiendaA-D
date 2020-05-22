@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import ad.store.dao.CategoriaDao;
 import ad.store.dao.CompraDao;
 import ad.store.dao.ProductoDao;
 import ad.store.dao.VentaDao;
@@ -23,6 +24,9 @@ public class ProductoServiceImpl implements ProductoService {
 
 	@Autowired
 	ProductoDao productoDao;
+	
+	@Autowired
+	CategoriaDao categoriaDao;
 	
 	@Autowired
 	CompraDao compraDao;
@@ -69,6 +73,9 @@ public class ProductoServiceImpl implements ProductoService {
 
 	@Override
 	public void eliminarProducto(long idProducto) {
+		Producto p = productoDao.find(idProducto);
+		Set<Producto>producto =p.getCategoria().getProductos();
+		producto.remove(p);
 		productoDao.delete(idProducto);
 	}
 
