@@ -142,6 +142,12 @@
 					<h4 th:text="#{dproducto.valor}"></h4>
 					<x-star-rating value="1" number="5" id="valor"></x-star-rating>
 					<script th:href="@{/js/valoracion.js}"></script>
+					<script>
+						rating.addEventListener('rate',()=>{
+							console.log(rating.value);
+							rating.number++;
+						});
+					</script>
 				</div>
 				<br />
 				<div>
