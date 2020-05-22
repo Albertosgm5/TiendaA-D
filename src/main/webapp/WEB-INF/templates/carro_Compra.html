@@ -25,13 +25,13 @@
 		<div class="card">
 			<div class="card-body">
 				<div class="alert alert-success" th:if="${success}">
-					<strong th:text="${carro.compra}"></strong>
+					<strong th:text="#{carro.compra}"></strong>
 				</div>
 				<div class="alert alert-danger" th:if="${danger}">
-					<strong th:text="${carro.sinstock}"></strong>
+					<strong th:text="#{carro.sinstock}"></strong>
 				</div>
 				<div class="alert alert-info" th:if="${info}">
-					<strong th:text="${carro.vacio}"></strong>
+					<strong th:text="#{carro.vacio}"></strong>
 				</div>
 				<form action="#" th:action="@{/login}" method="post">
 					<div class="row">
